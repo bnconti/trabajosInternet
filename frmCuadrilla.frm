@@ -71,7 +71,7 @@ Begin VB.Form frmCuadrilla
       GridLines       =   1
       GridLinesFixed  =   2
       GridLineWidth   =   1
-      Rows            =   50
+      Rows            =   1
       Cols            =   2
       FixedRows       =   1
       FixedCols       =   0
@@ -126,16 +126,12 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
+Private Sub btnNuevaCuadrilla_Click()
+    frmCuadrillaNueva.Show 1, Me
+End Sub
+
 Private Sub Form_Load()
-    Call cargarTablitaCuadrillas
+    Call cargarCuadrillas(tablaCuadrillas)
 End Sub
 
 
-Private Sub cargarTablitaCuadrillas()
-    Dim status As Integer
-    status = main.VCuadrillas.GetFirst
-    
-    While status = 0:
-        tablaCuadrillas.AddItem
-    Wend
-End Sub

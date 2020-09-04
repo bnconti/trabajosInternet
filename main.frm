@@ -83,9 +83,8 @@ Begin VB.Form main
          _ExtentY        =   635
          _StockProps     =   0
          VAccessName     =   "VCuadrillas"
-         TableName       =   "CUADRILLAS"
-         Location        =   "\\servidor\D\Compu\SFS2000\Datos\CUADRILLAS.mkd"
-         OpenMode        =   2
+         TableName       =   "CUADRILLASINTERNET"
+         Location        =   "\\servidor\D\Compu\SFS2000\Datos\CUADRILLASINTERNET.mkd"
          DdfPath         =   "\\servidor\D\Compu\SFS2000\Datos"
          VAUDDDFInfo     =   "main.frx":2CF4
       End
@@ -101,7 +100,7 @@ Begin VB.Form main
       _Version        =   393216
       TabHeight       =   520
       TabCaption(0)   =   "Para programar"
-      TabPicture(0)   =   "main.frx":3643
+      TabPicture(0)   =   "main.frx":368F
       Tab(0).ControlEnabled=   -1  'True
       Tab(0).Control(0)=   "tablaTrabajos"
       Tab(0).Control(0).Enabled=   0   'False
@@ -117,11 +116,11 @@ Begin VB.Form main
       Tab(0).Control(5).Enabled=   0   'False
       Tab(0).ControlCount=   6
       TabCaption(1)   =   "Para instalar"
-      TabPicture(1)   =   "main.frx":365F
+      TabPicture(1)   =   "main.frx":36AB
       Tab(1).ControlEnabled=   0   'False
       Tab(1).ControlCount=   0
       TabCaption(2)   =   "Instalados"
-      TabPicture(2)   =   "main.frx":367B
+      TabPicture(2)   =   "main.frx":36C7
       Tab(2).ControlEnabled=   0   'False
       Tab(2).ControlCount=   0
       Begin VB.Frame frmFiltrar 
@@ -250,7 +249,7 @@ Begin VB.Form main
          ColWidthMin     =   0
          ColWidthMax     =   0
          ExtendLastCol   =   0   'False
-         FormatString    =   $"main.frx":3697
+         FormatString    =   $"main.frx":36E3
          ScrollTrack     =   0   'False
          ScrollBars      =   3
          ScrollTips      =   0   'False
@@ -317,7 +316,7 @@ Private Const PROGRAMADO As Integer = 2     ' Se le asignó una fecha, hora y cua
 Private Const TERMINADO As Integer = 0      ' La instalación fue realizada
 
 Private Sub Form_Load()
-    Call cargarCuadrillas
+    Call cargarCuadrillas(cmbFiltroCuadrilla)
     Call cargarTiposConexion
 End Sub
 
@@ -339,18 +338,6 @@ Private Sub btnRecuperar_Click()
     
 End Sub
 
-Private Sub cargarCuadrillas()
-    Dim status As Integer
-    With cmbFiltroCuadrilla
-        status = VCuadrillas.GetFirst
-        While status = 0
-            .AddItem (VCuadrillas.FieldValue("MIEMBROS"))
-            status = VCuadrillas.GetNext
-        Wend
-    End With
-End Sub
-
-
 Private Sub cargarTiposConexion()
     With cmbFiltroTipoDeConexion
         .AddItem ("ALTA FTTH")
@@ -361,5 +348,5 @@ Private Sub cargarTiposConexion()
 End Sub
 
 Private Sub mnuCuadrilla_Click()
-
+    frmCuadrilla.Show
 End Sub
