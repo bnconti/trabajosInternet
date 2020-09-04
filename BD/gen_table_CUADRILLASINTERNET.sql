@@ -1,8 +1,8 @@
 CREATE TABLE "CUADRILLASINTERNET" (
- "idcuadrilla" IDENTITY DEFAULT = 1,
+ "idcuadrilla" IDENTITY DEFAULT '1' NOT NULL,
  "miembros" VARCHAR(50),
  "email" VARCHAR(100),
- "habilitado" INTEGER
+ "habilitado" BIT
 )#
 CREATE UNIQUE NOT MODIFIABLE "Index_0" ON "CUADRILLAS" ( "idcuadrilla" )#
-CREATE INDEX "Index_1" ON "CUADRILLAS" ( "miembros" )#
+CREATE UNIQUE INDEX "Index_1" ON "CUADRILLAS" ( "miembros" )#

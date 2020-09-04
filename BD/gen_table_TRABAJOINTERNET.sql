@@ -1,5 +1,5 @@
 CREATE TABLE "TRABAJOINTERNET" (
- "id_trabajo" IDENTITY DEFAULT = 1,
+ "id_trabajo" IDENTITY DEFAULT '1',
  "Nroorden" INTEGER,
  "estado" INTEGER,
  "fecha_pedido" DATE,
