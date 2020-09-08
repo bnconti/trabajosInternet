@@ -5,35 +5,26 @@ Begin VB.Form frmCuadrilla
    ClientHeight    =   3195
    ClientLeft      =   60
    ClientTop       =   345
-   ClientWidth     =   4680
+   ClientWidth     =   9690
    LinkTopic       =   "Form1"
    ScaleHeight     =   3195
-   ScaleWidth      =   4680
+   ScaleWidth      =   9690
    StartUpPosition =   3  'Windows Default
-   Begin VB.CommandButton btnHabilitar 
-      Caption         =   "Habilitar/Deshabilitar"
-      Height          =   375
-      Left            =   2520
-      TabIndex        =   2
-      ToolTipText     =   "Una cuadrilla deshabilitada seguirá existiendo en la base de datos, pero no aparecerá en el "
-      Top             =   2760
-      Width           =   1695
-   End
    Begin VB.CommandButton btnNuevaCuadrilla 
       Caption         =   "Nueva cuadrilla"
       Height          =   375
-      Left            =   480
+      Left            =   7920
       TabIndex        =   1
       Top             =   2760
       Width           =   1695
    End
    Begin VSFlex7LCtl.VSFlexGrid tablaCuadrillas 
       Height          =   2535
-      Left            =   233
+      Left            =   120
       TabIndex        =   0
       Top             =   120
-      Width           =   4215
-      _cx             =   7435
+      Width           =   9495
+      _cx             =   16748
       _cy             =   4471
       _ConvInfo       =   1
       Appearance      =   1
@@ -72,7 +63,7 @@ Begin VB.Form frmCuadrilla
       GridLinesFixed  =   2
       GridLineWidth   =   1
       Rows            =   1
-      Cols            =   2
+      Cols            =   4
       FixedRows       =   1
       FixedCols       =   0
       RowHeightMin    =   0
@@ -102,7 +93,7 @@ Begin VB.Form frmCuadrilla
       PictureType     =   0
       TabBehavior     =   0
       OwnerDraw       =   0
-      Editable        =   0
+      Editable        =   2
       ShowComboButton =   1
       WordWrap        =   0   'False
       TextStyle       =   0
@@ -118,6 +109,14 @@ Begin VB.Form frmCuadrilla
       ForeColorFrozen =   0
       WallPaperAlignment=   9
    End
+   Begin VB.Label Label1 
+      Caption         =   "Para editar una cuadrilla, haga doble clic sobre la celda correspondiente y modifique el dato."
+      Height          =   375
+      Left            =   120
+      TabIndex        =   2
+      Top             =   2760
+      Width           =   4095
+   End
 End
 Attribute VB_Name = "frmCuadrilla"
 Attribute VB_GlobalNameSpace = False
@@ -126,12 +125,93 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
-Private Sub btnNuevaCuadrilla_Click()
-    frmCuadrillaNueva.Show 1, Me
-End Sub
+Private Const COL_HABILITADO As Integer = 3
+Private DATO_VIEJO As String
 
 Private Sub Form_Load()
-    Call cargarCuadrillas(tablaCuadrillas)
+    Call cargarCuadrillas
 End Sub
+
+Private Sub btnNuevaCuadrilla_Click()
+    frmCuadrillaNueva.Show 1, Me
+    Call cargarCuadrillas
+End Sub
+
+Private Sub cargarCuadrillas()
+    Dim status As Integer
+    tablaCuadrillas.Rows = 1
+    
+    With main.VCuadrillas
+        .IndexNumber = 0
+        status = .GetFirst
+        
+        While status = 0
+            tablaCuadrillas.AddItem (.FieldValue("idcuadrilla") & vbTab & _
+                                    .FieldValue("miembros") & vbTab & _
+                                    .FieldValue("email") & vbTab)
+            If .FieldValue("habilitado") Then
+                tablaCuadrillas.Cell(flexcpChecked, tablaCuadrillas.Rows - 1, COL_HABILITADO, tablaCuadrillas.Rows - 1, COL_HABILITADO) = flexChecked
+            Else
+                tablaCuadrillas.Cell(flexcpChecked, tablaCuadrillas.Rows - 1, COL_HABILITADO, tablaCuadrillas.Rows - 1, COL_HABILITADO) = flexUnchecked
+            End If
+            
+            status = .GetNext
+        Wend
+    End With
+    
+    tablaCuadrillas.AutoSize 1, 2
+End Sub
+
+
+Private Sub tablaCuadrillas_BeforeEdit(ByVal Row As Long, ByVal Col As Long, Cancel As Boolean)
+    DATO_VIEJO = tablaCuadrillas.TextMatrix(Row, Col)
+End Sub
+
+
+Private Sub tablaCuadrillas_AfterEdit(ByVal Row As Long, ByVal Col As Long)
+
+    Dim confirmado As Integer
+    Dim datoNuevo As String
+    datoNuevo = tablaCuadrillas.TextMatrix(Row, Col)
+
+    Dim msj As String
+    
+    If Col = COL_HABILITADO Then
+        Dim estaHabilitado As Boolean
+        estaHabilitado = (tablaCuadrillas.Cell(flexcpChecked, Row, COL_HABILITADO, Row, COL_HABILITADO) = flexChecked)
+        msj = "¿Está seguro de querer " & IIf(estaHabilitado, "habilitar", "deshabilitar") & " esta cuadrilla?"
+    Else
+        msj = "¿Está seguro de querer modificar " & DATO_VIEJO & " por " & datoNuevo & "?"
+    End If
+    
+    confirmado = MsgBox(msj, vbYesNo, "Confirmación")
+    
+    If confirmado = vbYes Then
+        Dim id As Integer
+        id = tablaCuadrillas.TextMatrix(Row, 0)
+        
+        With main.VCuadrillas
+            .IndexNumber = 0
+            .FieldValue("idcuadrilla") = id
+            .GetEqual
+            
+            Select Case Col
+                Case 1: .FieldValue("miembros") = datoNuevo
+                Case 2: .FieldValue("email") = datoNuevo
+                Case 3
+                    
+                    
+                    .FieldValue("habilitado") = estaHabilitado
+            End Select
+            
+            .Update
+            
+        End With
+    Else
+        tablaCuadrillas.TextMatrix(Row, Col) = DATO_VIEJO
+    End If
+
+End Sub
+
 
 

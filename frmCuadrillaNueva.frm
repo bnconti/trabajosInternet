@@ -1,12 +1,15 @@
 VERSION 5.00
 Begin VB.Form frmCuadrillaNueva 
+   BorderStyle     =   1  'Fixed Single
    Caption         =   "Nueva cuadrilla"
-   ClientHeight    =   1950
-   ClientLeft      =   60
-   ClientTop       =   345
+   ClientHeight    =   2145
+   ClientLeft      =   45
+   ClientTop       =   330
    ClientWidth     =   4680
    LinkTopic       =   "Form1"
-   ScaleHeight     =   1950
+   MaxButton       =   0   'False
+   MinButton       =   0   'False
+   ScaleHeight     =   2145
    ScaleWidth      =   4680
    StartUpPosition =   3  'Windows Default
    Begin VB.CommandButton btnGuardarCuadrilla 
@@ -14,7 +17,7 @@ Begin VB.Form frmCuadrillaNueva
       Height          =   375
       Left            =   2520
       TabIndex        =   5
-      Top             =   1440
+      Top             =   1680
       Width           =   1815
    End
    Begin VB.CommandButton btnVolver 
@@ -23,7 +26,7 @@ Begin VB.Form frmCuadrillaNueva
       Height          =   375
       Left            =   360
       TabIndex        =   4
-      Top             =   1440
+      Top             =   1680
       Width           =   1815
    End
    Begin VB.TextBox txtCorreoCuadrilla 
@@ -40,9 +43,17 @@ Begin VB.Form frmCuadrillaNueva
       Top             =   240
       Width           =   2295
    End
-   Begin VB.Label Label2 
-      Caption         =   "Correo electrónico"
+   Begin VB.Label Label1 
+      Caption         =   "(separar direcciones por punto y coma)"
       Height          =   375
+      Left            =   360
+      TabIndex        =   6
+      Top             =   1080
+      Width           =   1695
+   End
+   Begin VB.Label lblCorreo 
+      Caption         =   "Correo electrónico"
+      Height          =   255
       Left            =   360
       TabIndex        =   1
       Top             =   840
@@ -71,4 +82,11 @@ Private Sub btnGuardarCuadrilla_Click()
         main.VCuadrillas.FieldValue("habilitado") = True
         main.VCuadrillas.Insert
     End If
+    
+    Unload Me
 End Sub
+
+Private Sub btnVolver_Click()
+    Unload Me
+End Sub
+

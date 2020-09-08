@@ -316,7 +316,7 @@ Private Const PROGRAMADO As Integer = 2     ' Se le asignó una fecha, hora y cua
 Private Const TERMINADO As Integer = 0      ' La instalación fue realizada
 
 Private Sub Form_Load()
-    Call cargarCuadrillas(cmbFiltroCuadrilla)
+    Call cargarCuadrillas
     Call cargarTiposConexion
 End Sub
 
@@ -345,6 +345,22 @@ Private Sub cargarTiposConexion()
         .AddItem ("CAMBIO A FTTH")
         .AddItem ("ALTA EDIFICIO")
     End With
+End Sub
+
+Private Sub cargarCuadrillas()
+    Dim status As Integer
+    
+    With main.VCuadrillas
+        .IndexNumber = 0
+        status = .GetFirst
+        
+        While status = 0
+            cmbFiltroCuadrilla.AddItem (.FieldValue("miembros"))
+            cmbFiltroCuadrilla.ItemData(cmbFiltroCuadrilla.NewIndex) = .FieldValue("idcuadrilla")
+            status = .GetNext
+        Wend
+    End With
+
 End Sub
 
 Private Sub mnuCuadrilla_Click()
