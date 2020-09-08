@@ -76,6 +76,8 @@ Attribute VB_Exposed = False
 Option Explicit
 
 Private Sub btnGuardarCuadrilla_Click()
+    main.VCuadrillas.Clear ' Para borrar el ID
+    
     If txtMiembros <> vbNullString And txtCorreoCuadrilla <> vbNullString Then
         main.VCuadrillas.FieldValue("miembros") = txtMiembros
         main.VCuadrillas.FieldValue("email") = txtCorreoCuadrilla

@@ -12,10 +12,18 @@ Begin VB.Form main
    ScaleHeight     =   11400
    ScaleWidth      =   18000
    StartUpPosition =   3  'Windows Default
+   Begin VB.CommandButton btnCambioFTTH 
+      Caption         =   "Cambiar a FTTH"
+      Height          =   375
+      Left            =   7680
+      TabIndex        =   29
+      Top             =   480
+      Width           =   2655
+   End
    Begin VB.Frame frmBD 
       Height          =   1455
       Left            =   7800
-      TabIndex        =   11
+      TabIndex        =   10
       Top             =   7440
       Visible         =   0   'False
       Width           =   2775
@@ -48,14 +56,14 @@ Begin VB.Form main
          HostConnect     =   0   'False
          VAUDDDFInfo     =   "main.frx":099B
       End
-      Begin VAccessLib.VAccess VClientes 
+      Begin VAccessLib.VAccess VAClientes 
          Left            =   600
          Top             =   240
          _Version        =   458752
          _ExtentX        =   635
          _ExtentY        =   635
          _StockProps     =   0
-         VAccessName     =   "VClientes"
+         VAccessName     =   "VAClientes"
          TableName       =   "CLIENTES"
          Location        =   "\\servidor\D\Compu\SFS2000\Datos\CLIENTES.mkd"
          OpenMode        =   2
@@ -98,89 +106,76 @@ Begin VB.Form main
       _ExtentX        =   20346
       _ExtentY        =   15055
       _Version        =   393216
-      Tab             =   2
       TabHeight       =   520
       TabCaption(0)   =   "Para programar"
       TabPicture(0)   =   "main.frx":368F
-      Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "frmFiltrar"
-      Tab(0).Control(1)=   "Command1"
-      Tab(0).Control(2)=   "btnProgImprimir"
-      Tab(0).Control(3)=   "btnProgExcel"
-      Tab(0).Control(4)=   "btnProgRecuperar"
-      Tab(0).Control(5)=   "tablaTrabajos"
-      Tab(0).ControlCount=   6
+      Tab(0).ControlEnabled=   -1  'True
+      Tab(0).Control(0)=   "tablaTrabajos"
+      Tab(0).Control(0).Enabled=   0   'False
+      Tab(0).Control(1)=   "btnProgRecuperar"
+      Tab(0).Control(1).Enabled=   0   'False
+      Tab(0).Control(2)=   "btnProgExcel"
+      Tab(0).Control(2).Enabled=   0   'False
+      Tab(0).Control(3)=   "btnProgImprimir"
+      Tab(0).Control(3).Enabled=   0   'False
+      Tab(0).Control(4)=   "frmFiltrar"
+      Tab(0).Control(4).Enabled=   0   'False
+      Tab(0).ControlCount=   5
       TabCaption(1)   =   "Para instalar"
       TabPicture(1)   =   "main.frx":36AB
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "Command7"
-      Tab(1).Control(1)=   "Command6"
+      Tab(1).Control(0)=   "VSFlexGrid1"
+      Tab(1).Control(1)=   "Frame1"
       Tab(1).Control(2)=   "Command5"
-      Tab(1).Control(3)=   "Command4"
-      Tab(1).Control(4)=   "Frame1"
-      Tab(1).Control(5)=   "VSFlexGrid1"
-      Tab(1).ControlCount=   6
+      Tab(1).Control(3)=   "Command6"
+      Tab(1).Control(4)=   "Command7"
+      Tab(1).ControlCount=   5
       TabCaption(2)   =   "Instalados"
       TabPicture(2)   =   "main.frx":36C7
-      Tab(2).ControlEnabled=   -1  'True
+      Tab(2).ControlEnabled=   0   'False
       Tab(2).Control(0)=   "VSFlexGrid2"
-      Tab(2).Control(0).Enabled=   0   'False
       Tab(2).Control(1)=   "Frame2"
-      Tab(2).Control(1).Enabled=   0   'False
-      Tab(2).Control(2)=   "Command8"
-      Tab(2).Control(2).Enabled=   0   'False
-      Tab(2).Control(3)=   "Command9"
-      Tab(2).Control(3).Enabled=   0   'False
-      Tab(2).Control(4)=   "Command10"
-      Tab(2).Control(4).Enabled=   0   'False
-      Tab(2).Control(5)=   "Command11"
-      Tab(2).Control(5).Enabled=   0   'False
-      Tab(2).ControlCount=   6
+      Tab(2).Control(2)=   "Command9"
+      Tab(2).Control(3)=   "Command10"
+      Tab(2).Control(4)=   "Command11"
+      Tab(2).ControlCount=   5
       Begin VB.CommandButton Command11 
          BackColor       =   &H8000000E&
          Caption         =   "Recuperar"
          Height          =   615
-         Left            =   360
-         TabIndex        =   30
+         Left            =   -74640
+         TabIndex        =   27
          Top             =   6720
          Width           =   1695
       End
       Begin VB.CommandButton Command10 
          Caption         =   "Exportar a Excel"
          Height          =   615
-         Left            =   8520
-         TabIndex        =   29
+         Left            =   -66480
+         TabIndex        =   26
          Top             =   6480
          Width           =   1695
       End
       Begin VB.CommandButton Command9 
          Caption         =   "Imprimir"
          Height          =   615
-         Left            =   6600
-         TabIndex        =   28
+         Left            =   -68400
+         TabIndex        =   25
          Top             =   6480
          Width           =   1695
-      End
-      Begin VB.CommandButton Command8 
-         Caption         =   "Cambiar a FTTH"
-         Height          =   375
-         Left            =   7680
-         TabIndex        =   27
-         Top             =   480
-         Width           =   2655
       End
       Begin VB.Frame Frame2 
          Caption         =   "Filtrar por"
          Height          =   1395
-         Left            =   2400
-         TabIndex        =   22
+         Left            =   -72600
+         TabIndex        =   20
          Top             =   6360
          Width           =   3855
          Begin VB.ComboBox cmbInstaladosConexion 
             Height          =   315
             Left            =   1680
             Style           =   2  'Dropdown List
-            TabIndex        =   24
+            TabIndex        =   22
             Top             =   840
             Width           =   2055
          End
@@ -188,7 +183,7 @@ Begin VB.Form main
             Height          =   315
             Left            =   1680
             Style           =   2  'Dropdown List
-            TabIndex        =   23
+            TabIndex        =   21
             Top             =   360
             Width           =   2055
          End
@@ -196,7 +191,7 @@ Begin VB.Form main
             Caption         =   "Tipo de conexión"
             Height          =   345
             Left            =   120
-            TabIndex        =   26
+            TabIndex        =   24
             Top             =   840
             Width           =   1335
          End
@@ -204,7 +199,7 @@ Begin VB.Form main
             Caption         =   "Cuadrilla"
             Height          =   345
             Left            =   120
-            TabIndex        =   25
+            TabIndex        =   23
             Top             =   360
             Width           =   1335
          End
@@ -214,7 +209,7 @@ Begin VB.Form main
          Caption         =   "Recuperar"
          Height          =   615
          Left            =   -74640
-         TabIndex        =   20
+         TabIndex        =   18
          Top             =   6720
          Width           =   1695
       End
@@ -222,7 +217,7 @@ Begin VB.Form main
          Caption         =   "Exportar a Excel"
          Height          =   615
          Left            =   -66480
-         TabIndex        =   19
+         TabIndex        =   17
          Top             =   6480
          Width           =   1695
       End
@@ -230,30 +225,22 @@ Begin VB.Form main
          Caption         =   "Imprimir"
          Height          =   615
          Left            =   -68400
-         TabIndex        =   18
+         TabIndex        =   16
          Top             =   6480
          Width           =   1695
-      End
-      Begin VB.CommandButton Command4 
-         Caption         =   "Cambiar a FTTH"
-         Height          =   375
-         Left            =   -67320
-         TabIndex        =   17
-         Top             =   480
-         Width           =   2655
       End
       Begin VB.Frame Frame1 
          Caption         =   "Filtrar por"
          Height          =   1395
          Left            =   -72600
-         TabIndex        =   12
+         TabIndex        =   11
          Top             =   6360
          Width           =   3855
          Begin VB.ComboBox cmbInstConexion 
             Height          =   315
             Left            =   1680
             Style           =   2  'Dropdown List
-            TabIndex        =   14
+            TabIndex        =   13
             Top             =   840
             Width           =   2055
          End
@@ -261,7 +248,7 @@ Begin VB.Form main
             Height          =   315
             Left            =   1680
             Style           =   2  'Dropdown List
-            TabIndex        =   13
+            TabIndex        =   12
             Top             =   360
             Width           =   2055
          End
@@ -269,7 +256,7 @@ Begin VB.Form main
             Caption         =   "Tipo de conexión"
             Height          =   345
             Left            =   120
-            TabIndex        =   16
+            TabIndex        =   15
             Top             =   840
             Width           =   1335
          End
@@ -277,7 +264,7 @@ Begin VB.Form main
             Caption         =   "Cuadrilla"
             Height          =   345
             Left            =   120
-            TabIndex        =   15
+            TabIndex        =   14
             Top             =   360
             Width           =   1335
          End
@@ -285,15 +272,15 @@ Begin VB.Form main
       Begin VB.Frame frmFiltrar 
          Caption         =   "Filtrar por"
          Height          =   1395
-         Left            =   -72600
-         TabIndex        =   5
+         Left            =   2400
+         TabIndex        =   4
          Top             =   6360
          Width           =   3855
          Begin VB.ComboBox cmbProgCuadrilla 
             Height          =   315
             Left            =   1680
             Style           =   2  'Dropdown List
-            TabIndex        =   7
+            TabIndex        =   6
             Top             =   360
             Width           =   2055
          End
@@ -301,7 +288,7 @@ Begin VB.Form main
             Height          =   315
             Left            =   1680
             Style           =   2  'Dropdown List
-            TabIndex        =   6
+            TabIndex        =   5
             Top             =   840
             Width           =   2055
          End
@@ -309,7 +296,7 @@ Begin VB.Form main
             Caption         =   "Cuadrilla"
             Height          =   345
             Left            =   120
-            TabIndex        =   9
+            TabIndex        =   8
             Top             =   360
             Width           =   1335
          End
@@ -317,23 +304,15 @@ Begin VB.Form main
             Caption         =   "Tipo de conexión"
             Height          =   345
             Left            =   120
-            TabIndex        =   8
+            TabIndex        =   7
             Top             =   840
             Width           =   1335
          End
       End
-      Begin VB.CommandButton Command1 
-         Caption         =   "Cambiar a FTTH"
-         Height          =   375
-         Left            =   -67320
-         TabIndex        =   4
-         Top             =   480
-         Width           =   2655
-      End
       Begin VB.CommandButton btnProgImprimir 
          Caption         =   "Imprimir"
          Height          =   615
-         Left            =   -68400
+         Left            =   6600
          TabIndex        =   3
          Top             =   6480
          Width           =   1695
@@ -341,7 +320,7 @@ Begin VB.Form main
       Begin VB.CommandButton btnProgExcel 
          Caption         =   "Exportar a Excel"
          Height          =   615
-         Left            =   -66480
+         Left            =   8520
          TabIndex        =   2
          Top             =   6480
          Width           =   1695
@@ -350,15 +329,15 @@ Begin VB.Form main
          BackColor       =   &H8000000E&
          Caption         =   "Recuperar"
          Height          =   615
-         Left            =   -74640
+         Left            =   360
          TabIndex        =   1
          Top             =   6720
          Width           =   1695
       End
       Begin VSFlex7LCtl.VSFlexGrid tablaTrabajos 
          Height          =   5295
-         Left            =   -74640
-         TabIndex        =   10
+         Left            =   360
+         TabIndex        =   9
          Top             =   960
          Width           =   9975
          _cx             =   17595
@@ -449,7 +428,7 @@ Begin VB.Form main
       Begin VSFlex7LCtl.VSFlexGrid VSFlexGrid1 
          Height          =   5295
          Left            =   -74640
-         TabIndex        =   21
+         TabIndex        =   19
          Top             =   960
          Width           =   9975
          _cx             =   17595
@@ -539,8 +518,8 @@ Begin VB.Form main
       End
       Begin VSFlex7LCtl.VSFlexGrid VSFlexGrid2 
          Height          =   5295
-         Left            =   360
-         TabIndex        =   31
+         Left            =   -74640
+         TabIndex        =   28
          Top             =   960
          Width           =   9975
          _cx             =   17595
@@ -659,6 +638,10 @@ Private Const TERMINADO As Integer = 0      ' La instalación fue realizada
 Private arrConexiones As Variant
 
 
+Private Sub btnCambioFTTH_Click()
+    frmSelCli.Show 1, Me
+End Sub
+
 Private Sub Form_Load()
 
     arrConexiones = Array("ALTA FTTH", "ALTA ANTENA", "CAMBIO A FTTH", "ALTA EDIFICIO")
@@ -720,3 +703,4 @@ End Sub
 Private Sub mnuCuadrilla_Click()
     frmCuadrilla.Show 1, Me
 End Sub
+
