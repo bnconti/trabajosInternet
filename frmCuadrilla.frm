@@ -1,13 +1,16 @@
 VERSION 5.00
 Object = "{C0A63B80-4B21-11D3-BD95-D426EF2C7949}#1.0#0"; "vsflex7l.ocx"
 Begin VB.Form frmCuadrilla 
+   BorderStyle     =   1  'Fixed Single
    Caption         =   "Cuadrillas"
-   ClientHeight    =   3195
-   ClientLeft      =   60
-   ClientTop       =   345
+   ClientHeight    =   3225
+   ClientLeft      =   45
+   ClientTop       =   330
    ClientWidth     =   9690
    LinkTopic       =   "Form1"
-   ScaleHeight     =   3195
+   MaxButton       =   0   'False
+   MinButton       =   0   'False
+   ScaleHeight     =   3225
    ScaleWidth      =   9690
    StartUpPosition =   3  'Windows Default
    Begin VB.CommandButton btnNuevaCuadrilla 
@@ -115,7 +118,7 @@ Begin VB.Form frmCuadrilla
       Left            =   120
       TabIndex        =   2
       Top             =   2760
-      Width           =   4095
+      Width           =   7335
    End
 End
 Attribute VB_Name = "frmCuadrilla"
