@@ -1,6 +1,6 @@
 CREATE TABLE "TRABAJOINTERNET" (
- "id_trabajo" IDENTITY DEFAULT '1',
- "Nroorden" INTEGER NOT NULL,
+ "id_trabajo" IDENTITY DEFAULT '0' NOT NULL,
+ "nroorden" INTEGER NOT NULL,
  "estado" INTEGER NOT NULL,
  "fecha_pedido" DATE,
  "fecha_inst" DATE,
@@ -12,7 +12,7 @@ CREATE TABLE "TRABAJOINTERNET" (
 )#
 
 CREATE UNIQUE NOT MODIFIABLE INDEX "index_0" ON "TRABAJOINTERNET" ( "id_trabajo" )#
-CREATE INDEX "index_1" ON "TRABAJOINTERNET" ( "Nroorden" )#
+CREATE INDEX "index_1" ON "TRABAJOINTERNET" ( "nroorden" )#
 CREATE INDEX "index_2" ON "TRABAJOINTERNET" ( "estado" )#
 CREATE INDEX "index_3" ON "TRABAJOINTERNET" ( "fecha_pedido" )#
 CREATE INDEX "index_4" ON "TRABAJOINTERNET" ( "fecha_inst" )#
