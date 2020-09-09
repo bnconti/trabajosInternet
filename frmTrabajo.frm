@@ -21,72 +21,65 @@ Begin VB.Form frmTrabajo
          Caption         =   "Imprimir orden de conexión"
          Height          =   375
          Left            =   3840
-         TabIndex        =   22
+         TabIndex        =   21
          Top             =   5280
          Width           =   2295
       End
-      Begin VB.ComboBox Combo1 
+      Begin VB.ComboBox cmbTipoConexion 
          Height          =   315
+         ItemData        =   "frmTrabajo.frx":030A
          Left            =   2760
-         TabIndex        =   21
-         Text            =   "Combo1"
-         Top             =   1800
-         Width           =   3255
-      End
-      Begin VB.TextBox Text5 
-         Enabled         =   0   'False
-         Height          =   375
-         Left            =   2760
+         List            =   "frmTrabajo.frx":031A
+         Style           =   2  'Dropdown List
          TabIndex        =   20
-         Text            =   "Text1"
-         Top             =   2280
+         Top             =   3120
          Width           =   3255
       End
-      Begin VB.TextBox Text4 
+      Begin VB.TextBox txtTlfn 
+         BackColor       =   &H80000000&
          Enabled         =   0   'False
          Height          =   375
          Left            =   2760
          TabIndex        =   19
-         Text            =   "Text1"
-         Top             =   2760
+         Top             =   1800
          Width           =   3255
       End
-      Begin VB.TextBox Text3 
+      Begin VB.TextBox txtUsInternet 
+         BackColor       =   &H80000000&
          Enabled         =   0   'False
          Height          =   375
          Left            =   2760
          TabIndex        =   18
-         Text            =   "Text1"
          Top             =   1320
          Width           =   3255
       End
-      Begin VB.TextBox Text2 
+      Begin VB.TextBox txtDomi 
+         BackColor       =   &H80000000&
          Enabled         =   0   'False
          Height          =   375
          Left            =   2760
          TabIndex        =   17
-         Text            =   "Text1"
          Top             =   840
          Width           =   3255
       End
-      Begin VB.TextBox Text1 
+      Begin VB.TextBox txtNombre 
+         BackColor       =   &H80000000&
          Enabled         =   0   'False
          Height          =   375
          Left            =   2760
          TabIndex        =   16
-         Text            =   "Text1"
          Top             =   360
          Width           =   3255
       End
       Begin VB.ComboBox cmbCuadrilla 
          Height          =   315
          Left            =   2760
+         Style           =   2  'Dropdown List
          TabIndex        =   15
-         Text            =   "Combo1"
          Top             =   4560
          Width           =   3255
       End
-      Begin MSComCtl2.DTPicker DTPicker2 
+      Begin MSComCtl2.DTPicker dtHoraInst 
          Height          =   375
          Left            =   2760
          TabIndex        =   14
@@ -95,10 +88,10 @@ Begin VB.Form frmTrabajo
          _ExtentX        =   5741
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   95420417
+         Format          =   41025538
          CurrentDate     =   44076
       End
-      Begin MSComCtl2.DTPicker DTPicker1 
+      Begin MSComCtl2.DTPicker dtFechaInst 
          Height          =   375
          Left            =   2760
          TabIndex        =   13
@@ -107,13 +100,13 @@ Begin VB.Form frmTrabajo
          _ExtentX        =   5741
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   95420417
+         Format          =   41025537
          CurrentDate     =   44076
       End
       Begin VB.CommandButton btnEliminar 
          Caption         =   "Eliminar"
          Height          =   450
-         Left            =   2400
+         Left            =   4320
          TabIndex        =   12
          Top             =   6000
          Width           =   1600
@@ -121,7 +114,7 @@ Begin VB.Form frmTrabajo
       Begin VB.CommandButton btnVolver 
          Caption         =   "Volver"
          Height          =   450
-         Left            =   480
+         Left            =   240
          TabIndex        =   11
          Top             =   6000
          Width           =   1600
@@ -129,10 +122,23 @@ Begin VB.Form frmTrabajo
       Begin VB.CommandButton btnActualizar 
          Caption         =   "Actualizar"
          Height          =   450
-         Left            =   4320
+         Left            =   2280
          TabIndex        =   10
          Top             =   6000
          Width           =   1600
+      End
+      Begin MSComCtl2.DTPicker dtFechaPedido 
+         Height          =   375
+         Left            =   2760
+         TabIndex        =   22
+         Top             =   2280
+         Width           =   3255
+         _ExtentX        =   5741
+         _ExtentY        =   661
+         _Version        =   393216
+         Enabled         =   0   'False
+         Format          =   41025537
+         CurrentDate     =   44076
       End
       Begin VB.Line Line2 
          X1              =   120
@@ -143,8 +149,8 @@ Begin VB.Form frmTrabajo
       Begin VB.Line Line1 
          X1              =   120
          X2              =   6120
-         Y1              =   3360
-         Y2              =   3360
+         Y1              =   2880
+         Y2              =   2880
       End
       Begin VB.Label lblCuadrilla 
          Caption         =   "Cuadrilla"
@@ -155,7 +161,7 @@ Begin VB.Form frmTrabajo
          Width           =   2175
       End
       Begin VB.Label lblHora 
-         Caption         =   "Hora"
+         Caption         =   "Hora de instalación"
          Height          =   375
          Left            =   240
          TabIndex        =   8
@@ -175,7 +181,7 @@ Begin VB.Form frmTrabajo
          Height          =   375
          Left            =   240
          TabIndex        =   6
-         Top             =   2760
+         Top             =   1800
          Width           =   2175
       End
       Begin VB.Label lblFechaDePedido 
@@ -191,11 +197,11 @@ Begin VB.Form frmTrabajo
          Height          =   375
          Left            =   240
          TabIndex        =   4
-         Top             =   1800
+         Top             =   3120
          Width           =   2175
       End
       Begin VB.Label lblNombreDeUsuario 
-         Caption         =   "Nombre de usuario"
+         Caption         =   "Cuenta de Internet"
          Height          =   375
          Left            =   240
          TabIndex        =   3
@@ -211,7 +217,7 @@ Begin VB.Form frmTrabajo
          Width           =   2175
       End
       Begin VB.Label lblNombreCompleto 
-         Caption         =   "Nombre completo"
+         Caption         =   "Apellido y nombre"
          Height          =   375
          Left            =   240
          TabIndex        =   1
@@ -225,23 +231,107 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+Private idTrabajo As Long
+
+
+Private Sub Form_Load()
+
+    With main.tablaTrabajosAProgramar
+        txtNombre = .TextMatrix(.Row, 0)
+        txtDomi = .TextMatrix(.Row, 1)
+        txtUsInternet = .TextMatrix(.Row, 2)
+        txtTlfn = .TextMatrix(.Row, 5)
+        dtFechaPedido = .TextMatrix(.Row, 4)
+        cmbTipoConexion.ListIndex = Val(Mid(.TextMatrix(.Row, 3), 1, 1)) - 1
+        idTrabajo = Val(.TextMatrix(.Row, 6))
+    End With
+    
+    dtFechaInst.Value = DateTime.Now
+    
+    Call cargarCuadrillas
+    
+    
+    ' Ver si se puede cargar directamente en las props.
+    cmbTipoConexion.ItemData(0) = 1
+    cmbTipoConexion.ItemData(1) = 2
+    cmbTipoConexion.ItemData(2) = 3
+    cmbTipoConexion.ItemData(3) = 4
+
+End Sub
+
 Private Sub btnActualizar_Click()
 
-    ' Actualizar el trabajo en la BD.
+    Dim st As Integer
+    
+    If cmbCuadrilla.Text = vbNullString Then
+        MsgBox "¡Recordá seleccionar una cuadrilla!", vbOKOnly + vbExclamation, "Datos incompletos"
+    Else
+    
+        With main.vTrabInternet
+            .IndexNumber = 0
+            .FieldValue("id_trabajo") = idTrabajo
+            
+            st = .GetEqual
+            
+            If st = 0 Then
+                .FieldValue("tipo_conexion") = cmbTipoConexion.ItemData(cmbTipoConexion.ListIndex)
+                .FieldValue("fecha_inst") = dtFechaInst.Value
+                .FieldValue("hora_inst") = dtHoraInst.Value
+                .FieldValue("idcuadrilla") = cmbCuadrilla.ItemData(cmbCuadrilla.ListIndex)
+                .FieldValue("estado") = Estados.PROGRAMADO
+                
+                .Update
+            End If
+            
+        End With
 
-    If chkImprimirOrden = True Then
-        ' Llamar módulo de impresión
+        If chkImprimirOrden = True Then
+            ' Llamar módulo de impresión
+        End If
+        
+        Unload Me
+        
     End If
+
 End Sub
 
 Private Sub btnEliminar_Click()
-    If MsgBox("Se eliminará este trabajo de la base de datos, ¿está seguro?", vbYesNo) = vbYes Then
-        ' Borrar
-    Else
-        Unload Me
+    If MsgBox("Se eliminará este trabajo de la base de datos, ¿está seguro?", vbYesNo + vbQuestion, "Eliminar trabajo") = vbYes Then
+    
+        Dim st As Integer
+        
+        With main.vTrabInternet
+            .FieldValue("id_trabajo") = idTrabajo
+            st = .GetEqual
+            If st = 0 Then
+                .Delete
+            End If
+        End With
     End If
+        
+    Unload Me
 End Sub
 
 Private Sub btnVolver_Click()
     Unload Me
 End Sub
+
+Private Sub cargarCuadrillas()
+    Dim status As Integer
+    
+    With main.VCuadrillas
+        .IndexNumber = 0
+        status = .GetFirst
+        
+        While status = 0
+            If .FieldValue("habilitado") = 1 Then
+                cmbCuadrilla.AddItem (.FieldValue("miembros"))
+                cmbCuadrilla.ItemData(cmbCuadrilla.NewIndex) = .FieldValue("idcuadrilla")
+            End If
+            
+            status = .GetNext
+        Wend
+    End With
+End Sub
+
+

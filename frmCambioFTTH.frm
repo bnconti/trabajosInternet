@@ -50,7 +50,7 @@ Begin VB.Form frmCambioFTTH
          _ExtentX        =   3625
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   95420417
+         Format          =   41025537
          CurrentDate     =   44083
       End
       Begin VB.Label lblObs 
@@ -123,9 +123,11 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
-
 Private mNroOrden As Long
 
+Private Sub Form_Load()
+    dtpInstInt = DateTime.Now
+End Sub
 
 Property Get NroOrden() As Long
     NroOrden = mNroOrden
@@ -136,18 +138,25 @@ Property Let NroOrden(NroOrdenNuevo As Long)
 End Property
 
 Private Sub cmdGuardarTrabajo_Click()
-    Dim st As Integer
-    With main.vTrabInternet
-        .Clear
-        .FieldValue("NroOrden") = mNroOrden
-        .FieldValue("Estado") = Estados.NUEVO
-        .FieldValue("Fecha_Pedido") = dtpInstInt.Value
-        .FieldValue("tipo_conexion") = Conexiones.CAMBIO_FTTH
-        .FieldValue("obs") = txtObs.Text
-        st = .Insert
-    End With
+
+    If lblCodInternet.Caption = vbNullString Then
+        MsgBox "Seleccione un usuario antes de generar la orden.", vbOKOnly + vbInformation, "Faltan datos"
+    Else
     
-    Call cerrar
+        Dim st As Integer
+        With main.vTrabInternet
+            .Clear
+            .FieldValue("NroOrden") = mNroOrden
+            .FieldValue("Estado") = Estados.NUEVO
+            .FieldValue("Fecha_Pedido") = dtpInstInt.Value
+            .FieldValue("tipo_conexion") = Conexiones.CAMBIO_FTTH
+            .FieldValue("obs") = txtObs.Text
+            st = .Insert
+        End With
+    
+        Call cerrar
+        
+    End If
 End Sub
 
 Private Sub cmdSelCli_Click()
@@ -158,7 +167,8 @@ Private Sub cerrar()
     Unload Me
 End Sub
 
-
 Private Sub cmdVolver_Click()
     Call cerrar
 End Sub
+
+

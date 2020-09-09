@@ -65,8 +65,8 @@ Begin VB.Form main
          _ExtentY        =   635
          _StockProps     =   0
          VAccessName     =   "VAClientes"
-         TableName       =   "CLIENTES"
-         Location        =   "\\servidor\D\Compu\SFS2000\Datos\CLIENTES.mkd"
+         TableName       =   "ACLIENTES"
+         Location        =   "\\servidor\D\Compu\SFS2000\Datos\ACLIENTES.MKD"
          OpenMode        =   2
          DdfPath         =   "\\servidor\D\Compu\SFS2000\Datos"
          VAUDDDFInfo     =   "main.frx":3DD0
@@ -82,7 +82,7 @@ Begin VB.Form main
          TableName       =   "TRABAJOINTERNET"
          Location        =   "\\servidor\D\Compu\SFS2000\Datos\TRABAJOINTERNET.mkd"
          DdfPath         =   "\\servidor\D\Compu\SFS2000\Datos"
-         VAUDDDFInfo     =   "main.frx":4A17
+         VAUDDDFInfo     =   "main.frx":4959
       End
       Begin VAccessLib.VAccess VCuadrillas 
          Left            =   1560
@@ -95,7 +95,7 @@ Begin VB.Form main
          TableName       =   "CUADRILLASINTERNET"
          Location        =   "\\servidor\D\Compu\SFS2000\Datos\CUADRILLASINTERNET.mkd"
          DdfPath         =   "\\servidor\D\Compu\SFS2000\Datos"
-         VAUDDDFInfo     =   "main.frx":5496
+         VAUDDDFInfo     =   "main.frx":53D8
       End
    End
    Begin TabDlg.SSTab tabTrabajos 
@@ -107,39 +107,38 @@ Begin VB.Form main
       _ExtentX        =   20346
       _ExtentY        =   15055
       _Version        =   393216
-      Tab             =   1
       TabHeight       =   520
       TabCaption(0)   =   "Para programar"
-      TabPicture(0)   =   "main.frx":5E31
-      Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "tablaTrabajos"
+      TabPicture(0)   =   "main.frx":5D73
+      Tab(0).ControlEnabled=   -1  'True
+      Tab(0).Control(0)=   "tablaTrabajosAProgramar"
+      Tab(0).Control(0).Enabled=   0   'False
       Tab(0).Control(1)=   "btnProgRecuperar"
+      Tab(0).Control(1).Enabled=   0   'False
       Tab(0).Control(2)=   "btnProgExcel"
+      Tab(0).Control(2).Enabled=   0   'False
       Tab(0).Control(3)=   "btnProgImprimir"
+      Tab(0).Control(3).Enabled=   0   'False
       Tab(0).Control(4)=   "frmFiltrar"
+      Tab(0).Control(4).Enabled=   0   'False
       Tab(0).ControlCount=   5
       TabCaption(1)   =   "Para instalar"
-      TabPicture(1)   =   "main.frx":5E4D
-      Tab(1).ControlEnabled=   -1  'True
+      TabPicture(1)   =   "main.frx":5D8F
+      Tab(1).ControlEnabled=   0   'False
       Tab(1).Control(0)=   "VSFlexGrid1"
-      Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "Frame1"
-      Tab(1).Control(1).Enabled=   0   'False
       Tab(1).Control(2)=   "Command5"
-      Tab(1).Control(2).Enabled=   0   'False
       Tab(1).Control(3)=   "Command6"
-      Tab(1).Control(3).Enabled=   0   'False
       Tab(1).Control(4)=   "Command7"
-      Tab(1).Control(4).Enabled=   0   'False
       Tab(1).ControlCount=   5
       TabCaption(2)   =   "Instalados"
-      TabPicture(2)   =   "main.frx":5E69
+      TabPicture(2)   =   "main.frx":5DAB
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "VSFlexGrid2"
-      Tab(2).Control(1)=   "Frame2"
+      Tab(2).Control(0)=   "Command11"
+      Tab(2).Control(1)=   "Command10"
       Tab(2).Control(2)=   "Command9"
-      Tab(2).Control(3)=   "Command10"
-      Tab(2).Control(4)=   "Command11"
+      Tab(2).Control(3)=   "Frame2"
+      Tab(2).Control(4)=   "VSFlexGrid2"
       Tab(2).ControlCount=   5
       Begin VB.CommandButton Command11 
          BackColor       =   &H8000000E&
@@ -210,7 +209,7 @@ Begin VB.Form main
          BackColor       =   &H8000000E&
          Caption         =   "Recuperar"
          Height          =   615
-         Left            =   360
+         Left            =   -74640
          TabIndex        =   18
          Top             =   6720
          Width           =   1695
@@ -218,7 +217,7 @@ Begin VB.Form main
       Begin VB.CommandButton Command6 
          Caption         =   "Exportar a Excel"
          Height          =   615
-         Left            =   8520
+         Left            =   -66480
          TabIndex        =   17
          Top             =   6480
          Width           =   1695
@@ -226,7 +225,7 @@ Begin VB.Form main
       Begin VB.CommandButton Command5 
          Caption         =   "Imprimir"
          Height          =   615
-         Left            =   6600
+         Left            =   -68400
          TabIndex        =   16
          Top             =   6480
          Width           =   1695
@@ -234,7 +233,7 @@ Begin VB.Form main
       Begin VB.Frame Frame1 
          Caption         =   "Filtrar por"
          Height          =   1395
-         Left            =   2400
+         Left            =   -72600
          TabIndex        =   11
          Top             =   6360
          Width           =   3855
@@ -274,7 +273,7 @@ Begin VB.Form main
       Begin VB.Frame frmFiltrar 
          Caption         =   "Filtrar por"
          Height          =   1395
-         Left            =   -72600
+         Left            =   2400
          TabIndex        =   4
          Top             =   6360
          Width           =   3855
@@ -314,7 +313,7 @@ Begin VB.Form main
       Begin VB.CommandButton btnProgImprimir 
          Caption         =   "Imprimir"
          Height          =   615
-         Left            =   -68400
+         Left            =   6600
          TabIndex        =   3
          Top             =   6480
          Width           =   1695
@@ -322,7 +321,7 @@ Begin VB.Form main
       Begin VB.CommandButton btnProgExcel 
          Caption         =   "Exportar a Excel"
          Height          =   615
-         Left            =   -66480
+         Left            =   8520
          TabIndex        =   2
          Top             =   6480
          Width           =   1695
@@ -331,18 +330,18 @@ Begin VB.Form main
          BackColor       =   &H8000000E&
          Caption         =   "Recuperar"
          Height          =   615
-         Left            =   -74640
+         Left            =   360
          TabIndex        =   1
          Top             =   6720
          Width           =   1695
       End
-      Begin VSFlex7LCtl.VSFlexGrid tablaTrabajos 
+      Begin VSFlex7LCtl.VSFlexGrid tablaTrabajosAProgramar 
          Height          =   5295
-         Left            =   -74640
+         Left            =   360
          TabIndex        =   9
          Top             =   960
-         Width           =   9975
-         _cx             =   17595
+         Width           =   10815
+         _cx             =   19076
          _cy             =   9340
          _ConvInfo       =   1
          Appearance      =   1
@@ -381,7 +380,7 @@ Begin VB.Form main
          GridLinesFixed  =   2
          GridLineWidth   =   1
          Rows            =   1
-         Cols            =   9
+         Cols            =   7
          FixedRows       =   1
          FixedCols       =   0
          RowHeightMin    =   0
@@ -389,7 +388,7 @@ Begin VB.Form main
          ColWidthMin     =   0
          ColWidthMax     =   0
          ExtendLastCol   =   0   'False
-         FormatString    =   $"main.frx":5E85
+         FormatString    =   $"main.frx":5DC7
          ScrollTrack     =   0   'False
          ScrollBars      =   3
          ScrollTips      =   0   'False
@@ -429,7 +428,7 @@ Begin VB.Form main
       End
       Begin VSFlex7LCtl.VSFlexGrid VSFlexGrid1 
          Height          =   5295
-         Left            =   360
+         Left            =   -74640
          TabIndex        =   19
          Top             =   960
          Width           =   9975
@@ -480,7 +479,7 @@ Begin VB.Form main
          ColWidthMin     =   0
          ColWidthMax     =   0
          ExtendLastCol   =   0   'False
-         FormatString    =   $"main.frx":5FED
+         FormatString    =   $"main.frx":5ED9
          ScrollTrack     =   0   'False
          ScrollBars      =   3
          ScrollTips      =   0   'False
@@ -571,7 +570,7 @@ Begin VB.Form main
          ColWidthMin     =   0
          ColWidthMax     =   0
          ExtendLastCol   =   0   'False
-         FormatString    =   $"main.frx":6155
+         FormatString    =   $"main.frx":6041
          ScrollTrack     =   0   'False
          ScrollBars      =   3
          ScrollTips      =   0   'False
@@ -653,13 +652,62 @@ Private Sub btnCambioFTTH_Click()
     frmCambioFTTH.Show 1, Me
 End Sub
 
+Private Sub btnProgRecuperar_Click()
+    Call cargarTablaTrabajosAProgramar
+End Sub
+
 Private Sub Form_Load()
 
-    arrConexiones = Array("ALTA FTTH", "ALTA ANTENA", "CAMBIO A FTTH", "ALTA EDIFICIO")
+    arrConexiones = Array("ALTA FTTH", "ALTA ANTENA", "ALTA EDIFICIO", "CAMBIO A FTTH")
     
     Call cargarCuadrillas
     Call cargarTiposConexion
 
+End Sub
+
+Private Sub cargarTablaTrabajosAProgramar()
+    Dim st As Integer
+    
+    tablaTrabajosAProgramar.Rows = 1
+    
+    With vTrabInternet
+        vTrabInternet.IndexNumber = 0
+        st = .GetFirst
+        
+        While st = 0
+        
+            VOrdenes.IndexNumber = 0
+            VAClientes.IndexNumber = 0
+            VAsumAlumInte.IndexNumber = 0
+            
+            VOrdenes.FieldValue("NroOrden") = .FieldValue("Nroorden")
+            VOrdenes.GetEqual
+            
+            VAClientes.FieldValue("CodCli") = VOrdenes.FieldValue("CodCli")
+            VAClientes.GetEqual
+            
+            VAsumAlumInte.FieldValue("CodAlumbrado") = VOrdenes.FieldValue("CodAlumbrado")
+            VAsumAlumInte.GetEqual
+            
+            If VOrdenes.status = 0 And VAClientes.status = 0 And VAsumAlumInte.status = 0 And vTrabInternet.FieldValue("estado") = 1 Then
+            
+                tablaTrabajosAProgramar.AddItem (VAClientes.FieldValue("apellido") & ", " & VAClientes.FieldValue("nombre") & vbTab & _
+                                         VOrdenes.FieldValue("domicilio") & vbTab & _
+                                         VAsumAlumInte.FieldValue("UsInt") & vbTab & _
+                                         vTrabInternet.FieldValue("Tipo_Conexion") & " - " & arrConexiones(vTrabInternet.FieldValue("Tipo_Conexion") - 1) & vbTab & _
+                                         vTrabInternet.FieldValue("fecha_pedido") & vbTab & _
+                                         VAClientes.FieldValue("reserva") & vbTab & _
+                                         vTrabInternet.FieldValue("id_trabajo"))
+                
+            End If
+                                     
+            st = .GetNext
+        
+        Wend
+        
+        tablaTrabajosAProgramar.AutoSize 0, tablaTrabajosAProgramar.Cols - 1
+        
+    End With
 End Sub
 
 
@@ -714,4 +762,20 @@ End Sub
 Private Sub mnuCuadrilla_Click()
     frmCuadrilla.Show 1, Me
 End Sub
+
+
+Private Sub tablaTrabajosAProgramar_DblClick()
+    If tablaTrabajosAProgramar.MouseRow > 0 And tablaTrabajosAProgramar.MouseCol >= 0 Then
+        Call abrirFrmTrabajo
+    End If
+End Sub
+
+
+Private Sub abrirFrmTrabajo()
+    frmTrabajo.Show 1, Me
+    Call cargarTablaTrabajosAProgramar
+End Sub
+
+
+
 

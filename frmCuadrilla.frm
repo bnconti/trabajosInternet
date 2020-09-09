@@ -202,10 +202,7 @@ Private Sub tablaCuadrillas_AfterEdit(ByVal Row As Long, ByVal Col As Long)
             Select Case Col
                 Case 1: .FieldValue("miembros") = datoNuevo
                 Case 2: .FieldValue("email") = datoNuevo
-                Case 3
-                    
-                    
-                    .FieldValue("habilitado") = estaHabilitado
+                Case 3: .FieldValue("habilitado") = estaHabilitado
             End Select
             
             .Update
