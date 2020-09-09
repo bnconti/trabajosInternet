@@ -1,26 +1,63 @@
 VERSION 5.00
+Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
 Begin VB.Form frmCambioFTTH 
    Caption         =   "Cambio a FTTH"
-   ClientHeight    =   5100
+   ClientHeight    =   4695
    ClientLeft      =   60
    ClientTop       =   345
-   ClientWidth     =   4680
+   ClientWidth     =   5085
+   Icon            =   "frmCambioFTTH.frx":0000
    LinkTopic       =   "Form1"
-   ScaleHeight     =   5100
-   ScaleWidth      =   4680
+   ScaleHeight     =   4695
+   ScaleWidth      =   5085
    StartUpPosition =   3  'Windows Default
+   Begin VB.CommandButton cmdVolver 
+      Caption         =   "&Volver"
+      Height          =   495
+      Left            =   495
+      TabIndex        =   7
+      Top             =   3960
+      Width           =   1815
+   End
+   Begin VB.CommandButton cmdGuardarTrabajo 
+      Caption         =   "&Guardar trabajo"
+      Height          =   495
+      Left            =   2775
+      TabIndex        =   6
+      Top             =   3960
+      Width           =   1815
+   End
    Begin VB.Frame frmDatosTrabajo 
       Caption         =   "Datos del trabajo"
-      Height          =   1695
+      Height          =   1815
       Left            =   120
-      TabIndex        =   6
+      TabIndex        =   3
       Top             =   1920
-      Width           =   4455
+      Width           =   4815
+      Begin VB.TextBox txtObs 
+         Height          =   375
+         Left            =   240
+         TabIndex        =   9
+         Top             =   1200
+         Width           =   4455
+      End
+      Begin MSComCtl2.DTPicker dtpInstInt 
+         Height          =   375
+         Left            =   2640
+         TabIndex        =   8
+         Top             =   360
+         Width           =   2055
+         _ExtentX        =   3625
+         _ExtentY        =   661
+         _Version        =   393216
+         Format          =   95420417
+         CurrentDate     =   44083
+      End
       Begin VB.Label lblObs 
          Caption         =   "Observaciones"
          Height          =   375
          Left            =   240
-         TabIndex        =   8
+         TabIndex        =   5
          Top             =   840
          Width           =   1935
       End
@@ -28,7 +65,7 @@ Begin VB.Form frmCambioFTTH
          Caption         =   "Fecha de pedido"
          Height          =   375
          Left            =   240
-         TabIndex        =   7
+         TabIndex        =   4
          Top             =   360
          Width           =   1935
       End
@@ -39,46 +76,43 @@ Begin VB.Form frmCambioFTTH
       Left            =   120
       TabIndex        =   0
       Top             =   120
-      Width           =   4455
-      Begin VB.TextBox txtCodCliente 
-         Enabled         =   0   'False
-         Height          =   285
-         Left            =   2880
-         TabIndex        =   5
-         Top             =   840
-         Width           =   1335
-      End
-      Begin VB.TextBox txtCodUs 
-         Enabled         =   0   'False
-         Height          =   285
-         Left            =   2880
-         TabIndex        =   4
-         Top             =   480
-         Width           =   1335
-      End
+      Width           =   4815
       Begin VB.CommandButton cmdSelCli 
-         Caption         =   "Lupita"
-         Height          =   615
-         Left            =   360
-         TabIndex        =   1
+         Height          =   732
+         Left            =   240
+         Picture         =   "frmCambioFTTH.frx":08CA
+         Style           =   1  'Graphical
+         TabIndex        =   12
          Top             =   480
-         Width           =   735
+         Width           =   945
       End
-      Begin VB.Label lblNroOrden 
-         Caption         =   "Cod. de cliente"
+      Begin VB.Label lblDomicilio 
          Height          =   375
          Left            =   1320
-         TabIndex        =   3
-         Top             =   840
-         Width           =   1455
+         TabIndex        =   11
+         Top             =   1080
+         Width           =   3015
       End
-      Begin VB.Label lblCodUs 
-         Caption         =   "Cód. de usuario"
+      Begin VB.Label lblNombre 
          Height          =   375
          Left            =   1320
+         TabIndex        =   10
+         Top             =   720
+         Width           =   3015
+      End
+      Begin VB.Label lblCodCli 
+         Height          =   375
+         Left            =   3120
          TabIndex        =   2
-         Top             =   480
+         Top             =   360
          Width           =   1455
+      End
+      Begin VB.Label lblCodInternet 
+         Height          =   375
+         Left            =   1320
+         TabIndex        =   1
+         Top             =   360
+         Width           =   1575
       End
    End
 End
@@ -89,6 +123,42 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
-Private Sub cmd_Click()
+
+Private mNroOrden As Long
+
+
+Property Get NroOrden() As Long
+    NroOrden = mNroOrden
+End Property
+
+Property Let NroOrden(NroOrdenNuevo As Long)
+    mNroOrden = NroOrdenNuevo
+End Property
+
+Private Sub cmdGuardarTrabajo_Click()
+    Dim st As Integer
+    With main.vTrabInternet
+        .Clear
+        .FieldValue("NroOrden") = mNroOrden
+        .FieldValue("Estado") = Estados.NUEVO
+        .FieldValue("Fecha_Pedido") = dtpInstInt.Value
+        .FieldValue("tipo_conexion") = Conexiones.CAMBIO_FTTH
+        .FieldValue("obs") = txtObs.Text
+        st = .Insert
+    End With
+    
+    Call cerrar
+End Sub
+
+Private Sub cmdSelCli_Click()
     frmSelCli.Show 1, Me
+End Sub
+
+Private Sub cerrar()
+    Unload Me
+End Sub
+
+
+Private Sub cmdVolver_Click()
+    Call cerrar
 End Sub

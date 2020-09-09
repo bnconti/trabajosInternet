@@ -7,6 +7,7 @@ Begin VB.Form frmSelOrd
    ClientLeft      =   480
    ClientTop       =   345
    ClientWidth     =   7830
+   Icon            =   "frmSelOrd.frx":0000
    KeyPreview      =   -1  'True
    MaxButton       =   0   'False
    MinButton       =   0   'False
@@ -76,7 +77,7 @@ Begin VB.Form frmSelOrd
       GridLinesFixed  =   1
       GridLineWidth   =   1
       Rows            =   1
-      Cols            =   3
+      Cols            =   4
       FixedRows       =   1
       FixedCols       =   2
       RowHeightMin    =   0
@@ -84,7 +85,7 @@ Begin VB.Form frmSelOrd
       ColWidthMin     =   0
       ColWidthMax     =   0
       ExtendLastCol   =   0   'False
-      FormatString    =   $"frmSelOrd.frx":0000
+      FormatString    =   $"frmSelOrd.frx":030A
       ScrollTrack     =   0   'False
       ScrollBars      =   3
       ScrollTips      =   0   'False
@@ -192,7 +193,8 @@ Private Sub MostrarOrdenes(Cli As Long)
         If .VOrdenes.FieldValue("CodAlumbrado") > 0 Then
             grilla.AddItem .VOrdenes.FieldValue("NroOrden") & vbTab & _
               Format$(.VOrdenes.FieldValue("Ruta"), String$(2, "0")) & "-" & Format$(.VOrdenes.FieldValue("SubRuta"), String$(6, "0")) & vbTab & _
-              .VOrdenes.FieldValue("CodAlumbrado")
+              .VOrdenes.FieldValue("CodAlumbrado") & vbTab & _
+              .VOrdenes.FieldValue("domicilio")
           grilla.RowData(grilla.Rows - 1) = .VOrdenes.Position
         End If
       End If
@@ -209,12 +211,18 @@ Private Sub regreso()
     mCodAlumbrado = 0
   Else
     mCodAlumbrado = Val(grilla.TextMatrix(grilla.Row, 2))
+    frmCambioFTTH.lblCodInternet = "Cód. Internet " & mCodAlumbrado
+    frmCambioFTTH.lblDomicilio = grilla.TextMatrix(grilla.Row, 3)
+
     With main.VOrdenes
       ' dejar el formulario posicionado
-      .IndexNumber = 2
+      .IndexNumber = 4
       .FieldValue("CodAlumbrado") = mCodAlumbrado
       .GetEqual
     End With
+    
+    frmCambioFTTH.NroOrden = main.VOrdenes.FieldValue("NroOrden")
+    
   End If
   Unload Me
 End Sub

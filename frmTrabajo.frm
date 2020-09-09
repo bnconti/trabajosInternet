@@ -6,6 +6,7 @@ Begin VB.Form frmTrabajo
    ClientLeft      =   60
    ClientTop       =   345
    ClientWidth     =   6555
+   Icon            =   "frmTrabajo.frx":0000
    LinkTopic       =   "Form1"
    ScaleHeight     =   7035
    ScaleWidth      =   6555
@@ -94,7 +95,7 @@ Begin VB.Form frmTrabajo
          _ExtentX        =   5741
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   118882305
+         Format          =   95420417
          CurrentDate     =   44076
       End
       Begin MSComCtl2.DTPicker DTPicker1 
@@ -106,7 +107,7 @@ Begin VB.Form frmTrabajo
          _ExtentX        =   5741
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   118882305
+         Format          =   95420417
          CurrentDate     =   44076
       End
       Begin VB.CommandButton btnEliminar 

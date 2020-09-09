@@ -7,6 +7,7 @@ Begin VB.Form frmCuadrilla
    ClientLeft      =   45
    ClientTop       =   330
    ClientWidth     =   9690
+   Icon            =   "frmCuadrilla.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
@@ -74,7 +75,7 @@ Begin VB.Form frmCuadrilla
       ColWidthMin     =   0
       ColWidthMax     =   0
       ExtendLastCol   =   0   'False
-      FormatString    =   $"frmCuadrilla.frx":0000
+      FormatString    =   $"frmCuadrilla.frx":08CA
       ScrollTrack     =   0   'False
       ScrollBars      =   3
       ScrollTips      =   0   'False

@@ -6,6 +6,7 @@ Begin VB.Form frmCuadrillaNueva
    ClientLeft      =   45
    ClientTop       =   330
    ClientWidth     =   4680
+   Icon            =   "frmCuadrillaNueva.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False

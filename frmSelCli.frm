@@ -71,6 +71,15 @@ Begin VB.Form frmSelCli
       _ExtentY        =   6032
       _StockProps     =   77
       BackColor       =   16777215
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       VAccessName     =   "VAClientes"
       VAFieldName     =   "CODCLI,APELLIDO,NOMBRE"
       VARecordList    =   -1  'True
@@ -192,5 +201,9 @@ End Sub
 Private Sub lstClientes_DblClick()
   frmSelOrd.Show 1
   mCodLuz = frmSelOrd.CodAlumbrado
+  frmCambioFTTH.lblNombre = main.VAClientes.FieldValue("nombre") & " " & main.VAClientes.FieldValue("apellido")
+  frmCambioFTTH.lblCodCli = "Cód. cli. " & main.VAClientes.FieldValue("CodCli")
+  
+  
   If mCodLuz > 0 Then Unload Me
 End Sub
