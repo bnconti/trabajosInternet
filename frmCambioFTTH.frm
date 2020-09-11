@@ -1,13 +1,16 @@
 VERSION 5.00
 Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
 Begin VB.Form frmCambioFTTH 
+   BorderStyle     =   1  'Fixed Single
    Caption         =   "Cambio a FTTH"
    ClientHeight    =   4695
-   ClientLeft      =   60
-   ClientTop       =   345
+   ClientLeft      =   45
+   ClientTop       =   330
    ClientWidth     =   5085
    Icon            =   "frmCambioFTTH.frx":0000
    LinkTopic       =   "Form1"
+   MaxButton       =   0   'False
+   MinButton       =   0   'False
    ScaleHeight     =   4695
    ScaleWidth      =   5085
    StartUpPosition =   3  'Windows Default
@@ -50,7 +53,7 @@ Begin VB.Form frmCambioFTTH
          _ExtentX        =   3625
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   41025537
+         Format          =   96468993
          CurrentDate     =   44083
       End
       Begin VB.Label lblObs 

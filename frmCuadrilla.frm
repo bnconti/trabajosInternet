@@ -130,7 +130,7 @@ Attribute VB_Exposed = False
 Option Explicit
 
 Private Const COL_HABILITADO As Integer = 3
-Private DATO_VIEJO As String
+Private datoViejo As String
 
 Private Sub Form_Load()
     Call cargarCuadrillas
@@ -168,29 +168,26 @@ End Sub
 
 
 Private Sub tablaCuadrillas_BeforeEdit(ByVal Row As Long, ByVal Col As Long, Cancel As Boolean)
-    DATO_VIEJO = tablaCuadrillas.TextMatrix(Row, Col)
+    datoViejo = tablaCuadrillas.TextMatrix(Row, Col)
 End Sub
 
 
 Private Sub tablaCuadrillas_AfterEdit(ByVal Row As Long, ByVal Col As Long)
-
-    Dim confirmado As Integer
-    Dim datoNuevo As String
-    datoNuevo = tablaCuadrillas.TextMatrix(Row, Col)
-
-    Dim msj As String
-    
     If Col = COL_HABILITADO Then
-        Dim estaHabilitado As Boolean
-        estaHabilitado = (tablaCuadrillas.Cell(flexcpChecked, Row, COL_HABILITADO, Row, COL_HABILITADO) = flexChecked)
-        msj = "¿Está seguro de querer " & IIf(estaHabilitado, "habilitar", "deshabilitar") & " esta cuadrilla?"
+        modificarCuadrillaHabilitado Row, Col
     Else
-        msj = "¿Está seguro de querer modificar " & DATO_VIEJO & " por " & datoNuevo & "?"
+        modificarCuadrilla Row, Col
     End If
+End Sub
+
+Private Sub modificarCuadrillaHabilitado(ByVal Row As Long, ByVal Col As Long)
+    Dim estaHabilitado As Boolean
+    estaHabilitado = (tablaCuadrillas.Cell(flexcpChecked, Row, COL_HABILITADO, Row, COL_HABILITADO) = flexChecked)
     
-    confirmado = MsgBox(msj, vbYesNo, "Confirmación")
+    Dim msj As String
+    msj = "¿Está seguro de querer " & IIf(estaHabilitado, "habilitar", "deshabilitar") & " esta cuadrilla?"
     
-    If confirmado = vbYes Then
+    If MsgBox(msj, vbYesNo, "Confirmación") = vbYes Then
         Dim id As Integer
         id = tablaCuadrillas.TextMatrix(Row, 0)
         
@@ -198,19 +195,50 @@ Private Sub tablaCuadrillas_AfterEdit(ByVal Row As Long, ByVal Col As Long)
             .IndexNumber = 0
             .FieldValue("idcuadrilla") = id
             .GetEqual
-            
-            Select Case Col
-                Case 1: .FieldValue("miembros") = datoNuevo
-                Case 2: .FieldValue("email") = datoNuevo
-                Case 3: .FieldValue("habilitado") = estaHabilitado
-            End Select
-            
-            .Update
+             
+            If .status = 0 Then
+                .FieldValue("habilitado") = estaHabilitado
+                .Update
+            End If
             
         End With
     Else
-        tablaCuadrillas.TextMatrix(Row, Col) = DATO_VIEJO
+        tablaCuadrillas.Cell(flexcpChecked, Row, COL_HABILITADO, Row, COL_HABILITADO) = flexChecked = Not estaHabilitado
     End If
+    
+End Sub
+
+Private Sub modificarCuadrilla(ByVal Row As Long, ByVal Col As Long)
+    Dim datoNuevo As String
+    datoNuevo = tablaCuadrillas.TextMatrix(Row, Col)
+    
+    Dim msj As String
+    msj = "¿Está seguro de querer modificar " & datoViejo & " por " & datoNuevo & "?"
+    
+    If MsgBox(msj, vbYesNo, "Confirmación") = vbYes Then
+        Dim idCuadrilla As Integer
+        idCuadrilla = tablaCuadrillas.TextMatrix(Row, 0)
+        
+        With main.VCuadrillas
+            .IndexNumber = 0
+            .FieldValue("idcuadrilla") = idCuadrilla
+            .GetEqual
+            
+            If .status = 0 Then
+                Select Case Col
+                    Case 1: .FieldValue("miembros") = datoNuevo
+                    Case 2: .FieldValue("email") = datoNuevo
+                End Select
+                
+                .Update
+            End If
+            
+        End With
+    Else
+        tablaCuadrillas.TextMatrix(Row, Col) = datoViejo
+    End If
+    
+    
 
 End Sub
 
