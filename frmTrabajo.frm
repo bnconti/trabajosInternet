@@ -3,7 +3,7 @@ Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
 Begin VB.Form frmTrabajo 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Datos del trabajo"
-   ClientHeight    =   7155
+   ClientHeight    =   7845
    ClientLeft      =   45
    ClientTop       =   330
    ClientWidth     =   6555
@@ -11,15 +11,57 @@ Begin VB.Form frmTrabajo
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   7155
+   ScaleHeight     =   7845
    ScaleWidth      =   6555
    StartUpPosition =   3  'Windows Default
+   Begin VB.CommandButton btnVolverAInstalar 
+      Caption         =   "Pasar a ""Para programar"""
+      Height          =   495
+      Left            =   360
+      TabIndex        =   27
+      Top             =   5400
+      Width           =   2295
+   End
    Begin VB.Frame frmDatosUsuario 
-      Height          =   6900
+      Height          =   7740
       Left            =   120
       TabIndex        =   1
-      Top             =   120
+      Top             =   0
       Width           =   6255
+      Begin VB.TextBox txtObsConex 
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   375
+         Left            =   240
+         TabIndex        =   25
+         Top             =   6360
+         Width           =   5775
+      End
+      Begin VB.TextBox txtFechaPedido 
+         BackColor       =   &H80000000&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   375
+         Left            =   2280
+         Locked          =   -1  'True
+         TabIndex        =   24
+         Top             =   2280
+         Width           =   3735
+      End
       Begin VB.TextBox txtObs 
          BeginProperty Font 
             Name            =   "MS Sans Serif"
@@ -32,7 +74,7 @@ Begin VB.Form frmTrabajo
          EndProperty
          Height          =   375
          Left            =   240
-         TabIndex        =   24
+         TabIndex        =   23
          Top             =   3360
          Width           =   5775
       End
@@ -41,7 +83,7 @@ Begin VB.Form frmTrabajo
          Height          =   375
          Left            =   3840
          TabIndex        =   21
-         Top             =   5520
+         Top             =   5400
          Width           =   2295
       End
       Begin VB.ComboBox cmbTipoConexion 
@@ -171,7 +213,7 @@ Begin VB.Form frmTrabajo
             Strikethrough   =   0   'False
          EndProperty
          CustomFormat    =   "hh:mm tt"
-         Format          =   96665603
+         Format          =   95551491
          UpDown          =   -1  'True
          CurrentDate     =   44076
       End
@@ -193,59 +235,45 @@ Begin VB.Form frmTrabajo
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   96665601
+         Format          =   95551489
          CurrentDate     =   44076
       End
       Begin VB.CommandButton btnEliminar 
          Caption         =   "Eliminar"
          Height          =   450
-         Left            =   4815
+         Left            =   3240
          TabIndex        =   13
-         Top             =   6240
+         Top             =   7080
          Width           =   1245
       End
       Begin VB.CommandButton btnVolver 
          Caption         =   "Volver"
          Height          =   450
-         Left            =   255
+         Left            =   4920
          TabIndex        =   12
-         Top             =   6240
+         Top             =   7080
          Width           =   1125
       End
       Begin VB.CommandButton btnActualizar 
          Height          =   450
-         Left            =   1935
+         Left            =   240
          TabIndex        =   11
-         Top             =   6240
+         Top             =   7080
          Width           =   2475
       End
-      Begin MSComCtl2.DTPicker dtFechaPedido 
+      Begin VB.Label lblObsConex 
+         Caption         =   "Observaciones finales"
          Height          =   375
-         Left            =   2280
-         TabIndex        =   22
-         Top             =   2280
-         Width           =   3735
-         _ExtentX        =   6588
-         _ExtentY        =   661
-         _Version        =   393216
-         Enabled         =   0   'False
-         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "MS Sans Serif"
-            Size            =   12
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Format          =   96665601
-         CurrentDate     =   44076
+         Left            =   240
+         TabIndex        =   26
+         Top             =   6120
+         Width           =   2175
       End
       Begin VB.Label lblObs 
          Caption         =   "Observaciones"
          Height          =   375
          Left            =   240
-         TabIndex        =   23
+         TabIndex        =   22
          Top             =   3120
          Width           =   2175
       End
@@ -342,6 +370,19 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Private idTrabajo As Long
 
+Private Sub btnVolverAInstalar_Click()
+    With main.vTrabInternet
+        .IndexNumber = 0
+        .FieldValue("id_trabajo") = idTrabajo
+        .GetEqual
+        
+        If .status = 0 Then
+            .FieldValue("estado") = Estados.NUEVO
+            .Update
+        End If
+    End With
+End Sub
+
 Private Sub Form_Load()
 
     Call cargarCuadrillas
@@ -376,10 +417,14 @@ Private Sub cargarFormProgramar()
         txtDomi = .TextMatrix(.Row, 1)
         txtUsInternet = .TextMatrix(.Row, 2)
         txtTlfn = .TextMatrix(.Row, 5)
-        dtFechaPedido = .TextMatrix(.Row, 4)
+        txtFechaPedido = .TextMatrix(.Row, 4)
         cmbTipoConexion.ListIndex = Val(Mid(.TextMatrix(.Row, 3), 1, 1)) - 1
         idTrabajo = Val(.TextMatrix(.Row, 6))
+        dtHoraInst = DateTime.Now
     End With
+    
+    lblObsConex.Visible = False
+    txtObsConex.Visible = False
 End Sub
 
 Private Sub cargarFormInstalar()
@@ -390,9 +435,10 @@ Private Sub cargarFormInstalar()
         txtDomi = .TextMatrix(.Row, 2)
         txtUsInternet = .TextMatrix(.Row, 3)
         txtTlfn = .TextMatrix(.Row, 6)
-        dtFechaPedido = .TextMatrix(.Row, 5)
+        txtFechaPedido = .TextMatrix(.Row, 5)
         cmbTipoConexion.ListIndex = Val(Mid(.TextMatrix(.Row, 4), 1, 1)) - 1
         idTrabajo = Val(.TextMatrix(.Row, 10))
+        dtHoraInst = .TextMatrix(.Row, 8)
         Call seleccionarCuadrilla
     End With
 End Sub
@@ -431,7 +477,7 @@ Private Sub btnActualizar_Click()
                 .FieldValue("idcuadrilla") = cmbCuadrilla.ItemData(cmbCuadrilla.ListIndex)
                 .FieldValue("estado") = IIf(main.tabTrabajos.Tab = 0, Estados.PROGRAMADO, Estados.TERMINADO)
                 .FieldValue("obs") = txtObs.Text
-                
+                .FieldValue("reserva") = txtObsConex.Text
                 .Update
             End If
             
@@ -486,3 +532,6 @@ Private Sub cargarCuadrillas()
     End With
 End Sub
 
+Private Sub frmDatosUsuario_DragDrop(Source As Control, X As Single, Y As Single)
+
+End Sub

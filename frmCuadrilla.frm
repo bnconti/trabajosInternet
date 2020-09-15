@@ -187,7 +187,10 @@ Private Sub modificarCuadrillaHabilitado(ByVal Row As Long, ByVal Col As Long)
     Dim msj As String
     msj = "¿Está seguro de querer " & IIf(estaHabilitado, "habilitar", "deshabilitar") & " esta cuadrilla?"
     
-    If MsgBox(msj, vbYesNo, "Confirmación") = vbYes Then
+    Dim resp As String
+    resp = MsgBox(msj, vbYesNo, "Confirmación")
+    
+    If resp = vbYes Then
         Dim id As Integer
         id = tablaCuadrillas.TextMatrix(Row, 0)
         
@@ -202,8 +205,10 @@ Private Sub modificarCuadrillaHabilitado(ByVal Row As Long, ByVal Col As Long)
             End If
             
         End With
-    Else
-        tablaCuadrillas.Cell(flexcpChecked, Row, COL_HABILITADO, Row, COL_HABILITADO) = flexChecked = Not estaHabilitado
+        
+    ElseIf resp = vbNo Then
+        ' Deja la celda como estaba antes de modificarla
+        tablaCuadrillas.Cell(flexcpChecked, Row, COL_HABILITADO, Row, COL_HABILITADO) = IIf(estaHabilitado, flexChecked, flexUnchecked)
     End If
     
 End Sub

@@ -2,33 +2,34 @@ VERSION 5.00
 Object = "{47E7B6C9-8256-11CF-AB56-0000C04D1EB9}#7.0#0"; "ACBTR732.OCX"
 Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
 Object = "{C0A63B80-4B21-11D3-BD95-D426EF2C7949}#1.0#0"; "vsflex7l.ocx"
+Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
 Begin VB.Form main 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Trabajos de Internet"
    ClientHeight    =   8265
    ClientLeft      =   150
    ClientTop       =   720
-   ClientWidth     =   15000
+   ClientWidth     =   17415
    Icon            =   "main.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   8265
-   ScaleWidth      =   15000
+   ScaleWidth      =   17415
    StartUpPosition =   3  'Windows Default
    Begin VB.CommandButton btnCambioFTTH 
       Caption         =   "Cambiar a FTTH"
       Height          =   375
-      Left            =   12000
-      TabIndex        =   29
+      Left            =   14400
+      TabIndex        =   27
       Top             =   480
       Width           =   2655
    End
    Begin VB.Frame frmBD 
       Height          =   1455
-      Left            =   7800
-      TabIndex        =   10
-      Top             =   7440
+      Left            =   11520
+      TabIndex        =   8
+      Top             =   7200
       Visible         =   0   'False
       Width           =   2775
       Begin VAccessLib.VAccess VAsumAlumInte 
@@ -106,50 +107,57 @@ Begin VB.Form main
       Left            =   0
       TabIndex        =   0
       Top             =   0
-      Width           =   15000
-      _ExtentX        =   26458
+      Width           =   17400
+      _ExtentX        =   30692
       _ExtentY        =   14552
       _Version        =   393216
+      Tab             =   1
       TabHeight       =   520
       TabCaption(0)   =   "Para programar"
       TabPicture(0)   =   "main.frx":5D73
-      Tab(0).ControlEnabled=   -1  'True
+      Tab(0).ControlEnabled=   0   'False
       Tab(0).Control(0)=   "tablaTrabajosAProgramar"
-      Tab(0).Control(0).Enabled=   0   'False
       Tab(0).Control(1)=   "btnProgRecuperar"
-      Tab(0).Control(1).Enabled=   0   'False
       Tab(0).Control(2)=   "btnProgExcel"
-      Tab(0).Control(2).Enabled=   0   'False
       Tab(0).Control(3)=   "btnProgImprimir"
-      Tab(0).Control(3).Enabled=   0   'False
       Tab(0).Control(4)=   "frmFiltrar"
-      Tab(0).Control(4).Enabled=   0   'False
       Tab(0).ControlCount=   5
       TabCaption(1)   =   "Para instalar"
       TabPicture(1)   =   "main.frx":5D8F
-      Tab(1).ControlEnabled=   0   'False
+      Tab(1).ControlEnabled=   -1  'True
       Tab(1).Control(0)=   "tablaTrabajosAInstalar"
+      Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "Frame1"
+      Tab(1).Control(1).Enabled=   0   'False
       Tab(1).Control(2)=   "Command5"
+      Tab(1).Control(2).Enabled=   0   'False
       Tab(1).Control(3)=   "Command6"
+      Tab(1).Control(3).Enabled=   0   'False
       Tab(1).Control(4)=   "btnAInstalarRecuperar"
-      Tab(1).Control(5)=   "Command1"
+      Tab(1).Control(4).Enabled=   0   'False
+      Tab(1).Control(5)=   "btnGuardarFinalizados"
+      Tab(1).Control(5).Enabled=   0   'False
       Tab(1).ControlCount=   6
-      TabCaption(2)   =   "Instalados"
+      TabCaption(2)   =   "Terminados"
       TabPicture(2)   =   "main.frx":5DAB
       Tab(2).ControlEnabled=   0   'False
       Tab(2).Control(0)=   "tablaTrabajosInstalados"
-      Tab(2).Control(1)=   "Frame2"
+      Tab(2).Control(0).Enabled=   0   'False
+      Tab(2).Control(1)=   "frmFiltrado"
+      Tab(2).Control(1).Enabled=   0   'False
       Tab(2).Control(2)=   "Command9"
+      Tab(2).Control(2).Enabled=   0   'False
       Tab(2).Control(3)=   "Command10"
+      Tab(2).Control(3).Enabled=   0   'False
       Tab(2).Control(4)=   "btnInstaladosRecuperar"
+      Tab(2).Control(4).Enabled=   0   'False
       Tab(2).ControlCount=   5
-      Begin VB.CommandButton Command1 
+      Begin VB.CommandButton btnGuardarFinalizados 
          BackColor       =   &H8000000E&
-         Caption         =   "Marcar como finalizados"
+         Caption         =   "Guardar finalizados"
          Height          =   615
-         Left            =   -74640
-         TabIndex        =   30
+         Left            =   360
+         TabIndex        =   28
          Top             =   7200
          Width           =   1695
       End
@@ -158,62 +166,104 @@ Begin VB.Form main
          Caption         =   "Recuperar"
          Height          =   615
          Left            =   -74640
-         TabIndex        =   27
-         Top             =   6720
+         TabIndex        =   25
+         Top             =   6480
          Width           =   1695
       End
       Begin VB.CommandButton Command10 
          Caption         =   "Exportar a Excel"
          Height          =   615
-         Left            =   -62040
-         TabIndex        =   26
+         Left            =   -59640
+         TabIndex        =   24
          Top             =   6480
          Width           =   1695
       End
       Begin VB.CommandButton Command9 
          Caption         =   "Imprimir"
          Height          =   615
-         Left            =   -63960
-         TabIndex        =   25
+         Left            =   -61560
+         TabIndex        =   23
          Top             =   6480
          Width           =   1695
       End
-      Begin VB.Frame Frame2 
+      Begin VB.Frame frmFiltrado 
          Caption         =   "Filtrar por"
-         Height          =   1395
+         Height          =   1875
          Left            =   -72600
-         TabIndex        =   20
-         Top             =   6360
-         Width           =   3855
-         Begin VB.ComboBox cmbInstaladosConexion 
+         TabIndex        =   18
+         Top             =   6240
+         Width           =   4455
+         Begin MSComCtl2.DTPicker dtDesdeTerminados 
+            Height          =   375
+            Left            =   2400
+            TabIndex        =   31
+            Top             =   600
+            Width           =   1695
+            _ExtentX        =   2990
+            _ExtentY        =   661
+            _Version        =   393216
+            CustomFormat    =   "dd/MM"
+            Format          =   95551491
+            CurrentDate     =   44089
+         End
+         Begin VB.ComboBox cmbConexionTerminados 
             Height          =   315
-            Left            =   1680
+            Left            =   120
             Style           =   2  'Dropdown List
-            TabIndex        =   22
-            Top             =   840
+            TabIndex        =   20
+            Top             =   1320
             Width           =   2055
          End
-         Begin VB.ComboBox cmbInstaladosCuadrilla 
+         Begin VB.ComboBox cmbCuadrillaTerminados 
             Height          =   315
-            Left            =   1680
+            Left            =   120
             Style           =   2  'Dropdown List
-            TabIndex        =   21
-            Top             =   360
+            TabIndex        =   19
+            Top             =   600
             Width           =   2055
+         End
+         Begin MSComCtl2.DTPicker dtHastaTerminados 
+            Height          =   375
+            Left            =   2400
+            TabIndex        =   32
+            Top             =   1320
+            Width           =   1695
+            _ExtentX        =   2990
+            _ExtentY        =   661
+            _Version        =   393216
+            CustomFormat    =   "dd/MM"
+            Format          =   95551491
+            CurrentDate     =   44089
+         End
+         Begin VB.Label lblFechaHastaInstalados 
+            Caption         =   "Fecha hasta"
+            Height          =   345
+            Left            =   2400
+            TabIndex        =   30
+            Top             =   1080
+            Width           =   1335
+         End
+         Begin VB.Label lblFechaDesdeInstalados 
+            Caption         =   "Fecha desde"
+            Height          =   345
+            Left            =   2400
+            TabIndex        =   29
+            Top             =   360
+            Width           =   1335
          End
          Begin VB.Label Label4 
             Caption         =   "Tipo de conexión"
             Height          =   345
             Left            =   120
-            TabIndex        =   24
-            Top             =   840
+            TabIndex        =   22
+            Top             =   1080
             Width           =   1335
          End
          Begin VB.Label Label3 
             Caption         =   "Cuadrilla"
             Height          =   345
             Left            =   120
-            TabIndex        =   23
+            TabIndex        =   21
             Top             =   360
             Width           =   1335
          End
@@ -222,111 +272,95 @@ Begin VB.Form main
          BackColor       =   &H8000000E&
          Caption         =   "Recuperar"
          Height          =   615
-         Left            =   -74640
-         TabIndex        =   18
+         Left            =   360
+         TabIndex        =   16
          Top             =   6480
          Width           =   1695
       End
       Begin VB.CommandButton Command6 
          Caption         =   "Exportar a Excel"
          Height          =   615
-         Left            =   -62040
-         TabIndex        =   17
+         Left            =   15360
+         TabIndex        =   15
          Top             =   6480
          Width           =   1695
       End
       Begin VB.CommandButton Command5 
          Caption         =   "Imprimir"
          Height          =   615
-         Left            =   -63960
-         TabIndex        =   16
+         Left            =   13440
+         TabIndex        =   14
          Top             =   6480
          Width           =   1695
       End
       Begin VB.Frame Frame1 
          Caption         =   "Filtrar por"
-         Height          =   1395
-         Left            =   -72600
-         TabIndex        =   11
-         Top             =   6360
-         Width           =   3855
-         Begin VB.ComboBox cmbInstConexion 
+         Height          =   1875
+         Left            =   2400
+         TabIndex        =   9
+         Top             =   6240
+         Width           =   2535
+         Begin VB.ComboBox cmbConexionAInstalar 
             Height          =   315
-            Left            =   1680
+            Left            =   120
             Style           =   2  'Dropdown List
-            TabIndex        =   13
-            Top             =   840
+            TabIndex        =   11
+            Top             =   1320
             Width           =   2055
          End
-         Begin VB.ComboBox cmbInstCuadrilla 
+         Begin VB.ComboBox cmbCuadrillaAInstalar 
             Height          =   315
-            Left            =   1680
+            Left            =   120
             Style           =   2  'Dropdown List
-            TabIndex        =   12
-            Top             =   360
+            TabIndex        =   10
+            Top             =   600
             Width           =   2055
          End
          Begin VB.Label Label2 
             Caption         =   "Tipo de conexión"
             Height          =   345
             Left            =   120
-            TabIndex        =   15
-            Top             =   840
+            TabIndex        =   13
+            Top             =   1080
             Width           =   1335
          End
          Begin VB.Label Label1 
             Caption         =   "Cuadrilla"
             Height          =   345
             Left            =   120
-            TabIndex        =   14
+            TabIndex        =   12
             Top             =   360
             Width           =   1335
          End
       End
       Begin VB.Frame frmFiltrar 
          Caption         =   "Filtrar por"
-         Height          =   1395
-         Left            =   2400
+         Height          =   1155
+         Left            =   -72600
          TabIndex        =   4
-         Top             =   6360
-         Width           =   3855
-         Begin VB.ComboBox cmbProgCuadrilla 
+         Top             =   6240
+         Width           =   2535
+         Begin VB.ComboBox cmbConexionAProgramar 
             Height          =   315
-            Left            =   1680
-            Style           =   2  'Dropdown List
-            TabIndex        =   6
-            Top             =   360
-            Width           =   2055
-         End
-         Begin VB.ComboBox cmbProgConexion 
-            Height          =   315
-            Left            =   1680
+            Left            =   120
             Style           =   2  'Dropdown List
             TabIndex        =   5
-            Top             =   840
+            Top             =   600
             Width           =   2055
-         End
-         Begin VB.Label lblCuadrilla 
-            Caption         =   "Cuadrilla"
-            Height          =   345
-            Left            =   120
-            TabIndex        =   8
-            Top             =   360
-            Width           =   1335
          End
          Begin VB.Label lblTipoDeConexion 
             Caption         =   "Tipo de conexión"
             Height          =   345
             Left            =   120
-            TabIndex        =   7
-            Top             =   840
+            TabIndex        =   6
+            Top             =   360
             Width           =   1335
          End
       End
       Begin VB.CommandButton btnProgImprimir 
          Caption         =   "Imprimir"
          Height          =   615
-         Left            =   11040
+         Left            =   -61560
          TabIndex        =   3
          Top             =   6480
          Width           =   1695
@@ -334,7 +368,7 @@ Begin VB.Form main
       Begin VB.CommandButton btnProgExcel 
          Caption         =   "Exportar a Excel"
          Height          =   615
-         Left            =   12960
+         Left            =   -59640
          TabIndex        =   2
          Top             =   6480
          Width           =   1695
@@ -343,18 +377,18 @@ Begin VB.Form main
          BackColor       =   &H8000000E&
          Caption         =   "Recuperar"
          Height          =   615
-         Left            =   360
+         Left            =   -74640
          TabIndex        =   1
-         Top             =   6720
+         Top             =   6480
          Width           =   1695
       End
       Begin VSFlex7LCtl.VSFlexGrid tablaTrabajosAProgramar 
          Height          =   5295
-         Left            =   360
-         TabIndex        =   9
+         Left            =   -74640
+         TabIndex        =   7
          Top             =   960
-         Width           =   14295
-         _cx             =   25215
+         Width           =   16695
+         _cx             =   29448
          _cy             =   9340
          _ConvInfo       =   1
          Appearance      =   1
@@ -441,11 +475,11 @@ Begin VB.Form main
       End
       Begin VSFlex7LCtl.VSFlexGrid tablaTrabajosAInstalar 
          Height          =   5295
-         Left            =   -74640
-         TabIndex        =   19
+         Left            =   360
+         TabIndex        =   17
          Top             =   960
-         Width           =   14295
-         _cx             =   25215
+         Width           =   16695
+         _cx             =   29448
          _cy             =   9340
          _ConvInfo       =   1
          Appearance      =   1
@@ -514,7 +548,7 @@ Begin VB.Form main
          PictureType     =   0
          TabBehavior     =   0
          OwnerDraw       =   0
-         Editable        =   0
+         Editable        =   2
          ShowComboButton =   1
          WordWrap        =   0   'False
          TextStyle       =   0
@@ -533,10 +567,10 @@ Begin VB.Form main
       Begin VSFlex7LCtl.VSFlexGrid tablaTrabajosInstalados 
          Height          =   5295
          Left            =   -74640
-         TabIndex        =   28
+         TabIndex        =   26
          Top             =   960
-         Width           =   14295
-         _cx             =   25215
+         Width           =   16695
+         _cx             =   29448
          _cy             =   9340
          _ConvInfo       =   1
          Appearance      =   1
@@ -651,14 +685,12 @@ Public Enum Estados
     TERMINADO = 0      ' La instalación fue realizada
 End Enum
 
-Public Enum Conexiones
-    ALTA_FTTH = 1
-    ALTA_ANTENA = 2
-    ALTA_EDIFICIO = 3
-    CAMBIO_FTTH = 4
-End Enum
+Private Const CHEQUEADO As Integer = 1
+
+Private Const COL_ID_TRABAJO As Integer = 10
 
 Private arrConexiones As Variant
+
 
 Private Sub Form_Load()
 
@@ -709,7 +741,10 @@ Private Sub cargarTablaTrabajosAProgramar()
             VAsumAlumInte.FieldValue("CodAlumbrado") = VOrdenes.FieldValue("CodAlumbrado")
             VAsumAlumInte.GetEqual
             
-            If VOrdenes.status = 0 And VAClientes.status = 0 And VAsumAlumInte.status = 0 And vTrabInternet.FieldValue("estado") = 1 Then
+            If VOrdenes.status = 0 And _
+                VAClientes.status = 0 And _
+                VAsumAlumInte.status = 0 And _
+                vTrabInternet.FieldValue("estado") = Estados.NUEVO Then
             
                 tablaTrabajosAProgramar.AddItem (VAClientes.FieldValue("apellido") & ", " & VAClientes.FieldValue("nombre") & vbTab & _
                                          VOrdenes.FieldValue("domicilio") & vbTab & _
@@ -725,6 +760,7 @@ Private Sub cargarTablaTrabajosAProgramar()
         
         Wend
         
+        Call filtrarTablaAProgramar
         tablaTrabajosAProgramar.AutoSize 0, tablaTrabajosAProgramar.Cols - 1
         
     End With
@@ -734,7 +770,6 @@ Private Sub cargarTablaTrabajosAInstalar()
     Dim st As Integer
     
     tablaTrabajosAInstalar.Rows = 1
-    
     
     vTrabInternet.IndexNumber = 0
     st = vTrabInternet.GetFirst
@@ -756,13 +791,13 @@ Private Sub cargarTablaTrabajosAInstalar()
         VAsumAlumInte.GetEqual
         
         VCuadrillas.FieldValue("idcuadrilla") = vTrabInternet.FieldValue("idcuadrilla")
-        VCuadrillas.GetFirst
+        VCuadrillas.GetEqual
         
         If VOrdenes.status = 0 And _
             VAClientes.status = 0 And _
             VAsumAlumInte.status = 0 And _
             VCuadrillas.status = 0 And _
-            vTrabInternet.FieldValue("estado") = 2 Then
+            vTrabInternet.FieldValue("estado") = Estados.PROGRAMADO Then
         
             tablaTrabajosAInstalar.AddItem (vbNullString & vbTab & _
                                     VAClientes.FieldValue("apellido") & ", " & VAClientes.FieldValue("nombre") & vbTab & _
@@ -783,6 +818,7 @@ Private Sub cargarTablaTrabajosAInstalar()
     
     Wend
     
+    ' Call filtrarTablaAInstalar
     tablaTrabajosAInstalar.AutoSize 0, tablaTrabajosAInstalar.Cols - 1
 
 End Sub
@@ -819,7 +855,7 @@ Private Sub cargarTablaTrabajosInstalados()
                 VAClientes.status = 0 And _
                 VAsumAlumInte.status = 0 And _
                 VCuadrillas.status = 0 And _
-                vTrabInternet.FieldValue("estado") = 3 Then
+                vTrabInternet.FieldValue("estado") = Estados.TERMINADO Then
             
                 tablaTrabajosInstalados.AddItem (VAClientes.FieldValue("apellido") & ", " & VAClientes.FieldValue("nombre") & vbTab & _
                                          VOrdenes.FieldValue("domicilio") & vbTab & _
@@ -843,22 +879,155 @@ Private Sub cargarTablaTrabajosInstalados()
     End With
 End Sub
 
-Private Sub cmbFiltroCuadrilla_Change()
-    ' Filtrado por cuadrilla
+Private Sub btnGuardarFinalizados_Click()
+    If tablaTrabajosAInstalar.Rows > 1 Then
+    
+        Dim idTrabajo As Integer
+
+        Dim fila As Integer
+        Dim ultimaFila As Integer
+        ultimaFila = tablaTrabajosAInstalar.Rows - 1
+
+        With tablaTrabajosAInstalar
+            For fila = 1 To ultimaFila
+                If .Cell(flexcpChecked, fila, 0, fila, 0) = CHEQUEADO Then
+                    idTrabajo = .TextMatrix(fila, 10)
+                    Call finalizarTrabajo(idTrabajo)
+                End If
+            Next fila
+        End With
+        
+        Call cargarTablaTrabajosAInstalar
+
+    Else
+        MsgBox "Tiene que recuperar los trabajos antes de poder marcarlos como finalizados.", vbInformation + vbOKOnly, "No hay trabajos"
+    End If
 End Sub
 
-Private Sub cmbFiltroTipoDeConexion_Change()
-    ' Filtrado por tipo de conexión
+Private Sub finalizarTrabajo(idTrabajo As Integer)
+    With main.vTrabInternet
+        .IndexNumber = 0
+        .FieldValue("id_trabajo") = idTrabajo
+        .GetEqual
+        
+        If .status = 0 Then
+            .FieldValue("estado") = Estados.TERMINADO
+            .Update
+        End If
+            
+    End With
+End Sub
+
+Private Sub cmbConexionAProgramar_Click()
+    Call filtrarTablaAProgramar
+End Sub
+
+Private Sub filtrarTablaAProgramar()
+
+    Dim fila As Integer
+    Dim ultimaFila As Integer
+    ultimaFila = tablaTrabajosAProgramar.Rows - 1
+    
+    Dim conexion As String
+
+    With tablaTrabajosAProgramar
+        For fila = 1 To ultimaFila
+            conexion = Mid(.TextMatrix(fila, 3), 5)
+            If conexion = cmbConexionAProgramar.Text Or cmbConexionAProgramar.Text = "TODAS" Then
+                .RowHidden(fila) = False
+            Else
+                .RowHidden(fila) = True
+            End If
+        Next fila
+    End With
+End Sub
+
+
+Private Sub cmbConexionAInstalar_Click()
+    If tablaTrabajosAInstalar.Rows > 1 Then Call filtrarTablaAInstalar
+End Sub
+
+Private Sub cmbCuadrillaAInstalar_Click()
+    If tablaTrabajosAInstalar.Rows > 1 Then Call filtrarTablaAInstalar
+End Sub
+
+Private Sub filtrarTablaAInstalar()
+    Dim fila As Integer
+    Dim ultimaFila As Integer
+    ultimaFila = tablaTrabajosAInstalar.Rows - 1
+    
+    Dim conexion As String
+    Dim cuadrilla As String
+
+    With tablaTrabajosAInstalar
+        For fila = 1 To ultimaFila
+            conexion = Mid(.TextMatrix(fila, 4), 5)
+            cuadrilla = .TextMatrix(fila, 9)
+            If (conexion = cmbConexionAInstalar.Text Or cmbConexionAInstalar.Text = "TODAS") _
+                And (cuadrilla = cmbCuadrillaAInstalar.Text Or cmbCuadrillaAInstalar.Text = "TODAS") Then
+                .RowHidden(fila) = False
+            Else
+                .RowHidden(fila) = True
+            End If
+        Next fila
+    End With
+End Sub
+
+Private Sub cmbCuadrillaTerminados_Click()
+    Call filtrarTablaTerminados
+End Sub
+
+Private Sub cmbConexionTerminados_Change()
+    Call filtrarTablaTerminados
+End Sub
+
+Private Sub dtDesdeTerminados_Click()
+    Call filtrarTablaTerminados
+End Sub
+
+Private Sub dtHastaTerminados_Click()
+    Call filtrarTablaTerminados
+End Sub
+
+Private Sub filtrarTablaTerminados()
+    Dim fila As Integer
+    Dim ultimaFila As Integer
+    ultimaFila = tablaTrabajosInstalados.Rows - 1
+    
+    Dim conexion As String
+    Dim cuadrilla As String
+
+    With tablaTrabajosInstalados
+        For fila = 1 To ultimaFila
+            conexion = Mid(.TextMatrix(fila, 3), 5)
+            cuadrilla = .TextMatrix(fila, 8)
+            If (conexion = cmbConexionAInstalar.Text Or cmbConexionAInstalar.Text = "TODAS") _
+                And (cuadrilla = cmbCuadrillaAInstalar.Text Or cmbCuadrillaAInstalar.Text = "TODAS") Then
+                .RowHidden(fila) = False
+            Else
+                .RowHidden(fila) = True
+            End If
+        Next fila
+    End With
 End Sub
 
 Private Sub cargarTiposConexion()
-    Dim conexion As Variant
-    'For Each conexion In Conexiones
-    For conexion = ALTA_FTTH To CAMBIO_FTTH
-        cmbProgConexion.AddItem (conexion)
-        cmbInstConexion.AddItem (conexion)
-        cmbInstaladosConexion.AddItem (conexion)
-    Next conexion
+    Dim i As Integer
+    
+    For i = 0 To UBound(arrConexiones)
+        cmbConexionAProgramar.AddItem (arrConexiones(i))
+        cmbConexionAInstalar.AddItem (arrConexiones(i))
+        cmbConexionTerminados.AddItem (arrConexiones(i))
+    Next i
+    
+    cmbConexionAProgramar.AddItem "TODAS"
+    cmbConexionAInstalar.AddItem "TODAS"
+    cmbConexionTerminados.AddItem "TODAS"
+    
+    cmbConexionAProgramar.ListIndex = cmbConexionAProgramar.ListCount - 1
+    cmbConexionAInstalar.ListIndex = cmbConexionAInstalar.ListCount - 1
+    cmbConexionTerminados.ListIndex = cmbConexionTerminados.ListCount - 1
+    
 End Sub
 
 Private Sub cargarCuadrillas()
@@ -869,24 +1038,26 @@ Private Sub cargarCuadrillas()
         status = .GetFirst
         
         While status = 0
-            cmbProgCuadrilla.AddItem (.FieldValue("miembros"))
-            cmbProgCuadrilla.ItemData(cmbProgCuadrilla.NewIndex) = .FieldValue("idcuadrilla")
+            cmbCuadrillaAInstalar.AddItem (.FieldValue("miembros"))
+            cmbCuadrillaAInstalar.ItemData(cmbCuadrillaAInstalar.NewIndex) = .FieldValue("idcuadrilla")
             
-            cmbInstCuadrilla.AddItem (.FieldValue("miembros"))
-            cmbInstCuadrilla.ItemData(cmbInstCuadrilla.NewIndex) = .FieldValue("idcuadrilla")
-            
-            cmbInstaladosCuadrilla.AddItem (.FieldValue("miembros"))
-            cmbInstaladosCuadrilla.ItemData(cmbInstaladosCuadrilla.NewIndex) = .FieldValue("idcuadrilla")
+            cmbCuadrillaTerminados.AddItem (.FieldValue("miembros"))
+            cmbCuadrillaTerminados.ItemData(cmbCuadrillaTerminados.NewIndex) = .FieldValue("idcuadrilla")
             status = .GetNext
         Wend
+        
+        cmbCuadrillaAInstalar.AddItem "TODAS"
+        cmbCuadrillaAInstalar.ListIndex = cmbCuadrillaAInstalar.ListCount - 1
+    
+        cmbCuadrillaTerminados.AddItem "TODAS"
+        cmbCuadrillaTerminados.ListIndex = cmbCuadrillaTerminados.ListCount - 1
     End With
-
 End Sub
+
 
 Private Sub mnuCuadrilla_Click()
     frmCuadrilla.Show 1, Me
 End Sub
-
 
 Private Sub tablaTrabajosAProgramar_DblClick()
     If tablaTrabajosAProgramar.MouseRow > 0 And tablaTrabajosAProgramar.MouseCol >= 0 Then
