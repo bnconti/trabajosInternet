@@ -1,6 +1,8 @@
 Attribute VB_Name = "moduloFunciones"
 Option Explicit
 
+Public Declare Function SetDefaultPrinter Lib "Winspool.drv" Alias "SetDefaultPrinterA" (ByVal pszPrinter As String) As Boolean
+
 Public Function Izq(Texto As String, largo As Integer) As String
   Izq = left$(LTrim$(Texto), largo)
   Izq = Izq & String$(largo - Len(Izq), " ")
@@ -21,7 +23,7 @@ Public Sub imprimirOrden(idTrabajo As Long)
     Dim fechaInstalacion As String
     Dim horaInstalacion As String
     
-    Dim obs As String
+    Dim Obs As String
     Dim nombre As String
     Dim dni As String
     Dim domicilioFacturacion As String
@@ -76,7 +78,7 @@ Public Sub imprimirOrden(idTrabajo As Long)
             tipoConexion = frmTrabajo.cmbTipoConexion.Text
             fechaInstalacion = .vTrabInternet.FieldValue("fecha_inst")
             horaInstalacion = .vTrabInternet.FieldValue("hora_inst")
-            obs = .vTrabInternet.FieldValue("obs")
+            Obs = .vTrabInternet.FieldValue("obs")
             
             nombre = .VAClientes.FieldValue("nombre") & " " & .VAClientes.FieldValue("apellido")
             dni = .VAClientes.FieldValue("NroDocIde") & vbNullString
@@ -109,11 +111,11 @@ Public Sub imprimirOrden(idTrabajo As Long)
         .LineH 25, 40, 165
         
         .Text 25, 45, "Todd Net - Nueva conexión", 10, True, "Arial"
-        .Text 25, 50, "Observaciones: " & obs, 9, True, "Arial"
+        .Text 25, 50, "Observaciones: " & Obs, 9, True, "Arial"
         
         .Text 25, 55, "N.º de usuario: " & nroUsuario, 9, False, "Arial"
-        .Text 75, 55, "Fecha de inst. prog.: " & fechaInstalacion, 9, False, "Arial"
-        .Text 140, 55, "Hora de inst. prog.: " & horaInstalacion, 9, False, "Arial"
+        .Text 70, 55, "Fecha de inst. programada: " & fechaInstalacion, 9, False, "Arial"
+        .Text 135, 55, "Hora de inst. programada: " & horaInstalacion, 9, False, "Arial"
         .LineH 25, 65, 165
         
         .Text 25, 70, "Apellido y nombre: " & nombre, 9, False, "Arial"

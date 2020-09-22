@@ -1,9 +1,10 @@
 VERSION 5.00
 Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
+Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "comdlg32.ocx"
 Begin VB.Form frmTrabajo 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Datos del trabajo"
-   ClientHeight    =   8100
+   ClientHeight    =   8625
    ClientLeft      =   45
    ClientTop       =   330
    ClientWidth     =   6555
@@ -11,7 +12,7 @@ Begin VB.Form frmTrabajo
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   8100
+   ScaleHeight     =   8625
    ScaleWidth      =   6555
    StartUpPosition =   3  'Windows Default
    Begin VB.CommandButton btnVolverAInstalar 
@@ -23,11 +24,18 @@ Begin VB.Form frmTrabajo
       Width           =   2295
    End
    Begin VB.Frame frmDatosUsuario 
-      Height          =   8000
+      Height          =   8475
       Left            =   120
       TabIndex        =   1
       Top             =   0
       Width           =   6255
+      Begin MSComDlg.CommonDialog cdImpresora 
+         Left            =   3120
+         Top             =   5520
+         _ExtentX        =   847
+         _ExtentY        =   847
+         _Version        =   393216
+      End
       Begin VB.CheckBox chkImprimirOrden 
          Caption         =   "Imprimir orden de trabajo"
          Height          =   495
@@ -223,7 +231,7 @@ Begin VB.Form frmTrabajo
             Strikethrough   =   0   'False
          EndProperty
          CustomFormat    =   "hh:mm tt"
-         Format          =   40435715
+         Format          =   96600067
          UpDown          =   -1  'True
          CurrentDate     =   44076
       End
@@ -245,28 +253,61 @@ Begin VB.Form frmTrabajo
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   40435713
+         Format          =   96600065
          CurrentDate     =   44076
       End
       Begin VB.CommandButton btnEliminar 
          Caption         =   "Eliminar"
-         Height          =   450
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   1050
          Left            =   3240
+         Picture         =   "frmTrabajo.frx":0354
+         Style           =   1  'Graphical
          TabIndex        =   13
          Top             =   7320
          Width           =   1245
       End
       Begin VB.CommandButton btnVolver 
          Caption         =   "Volver"
-         Height          =   450
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   1050
          Left            =   4920
+         Picture         =   "frmTrabajo.frx":0C1E
+         Style           =   1  'Graphical
          TabIndex        =   12
          Top             =   7320
          Width           =   1125
       End
       Begin VB.CommandButton btnActualizar 
-         Height          =   450
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   1050
          Left            =   240
+         Picture         =   "frmTrabajo.frx":0D30
+         Style           =   1  'Graphical
          TabIndex        =   11
          Top             =   7320
          Width           =   2475
@@ -493,6 +534,29 @@ Private Sub cargarObs()
     End With
 End Sub
 
+Private Sub dialogoImpresion()
+    Dim copia As Integer
+    Dim defPrinter As String
+    defPrinter = Printer.DeviceName
+  
+    With frmTrabajo.cdImpresora
+      .Flags = cdlPDNoSelection Or cdlPDHidePrintToFile Or cdlPDUseDevModeCopies
+      On Error GoTo FinImpresion
+      .ShowPrinter
+      On Error GoTo 0
+      
+      For copia = 1 To .Copies
+        Call imprimirOrden(idTrabajo)
+      Next
+      
+    End With
+    
+    Call SetDefaultPrinter(defPrinter)
+        
+FinImpresion:
+    On Error GoTo 0
+End Sub
+
 Private Sub btnActualizar_Click()
 
     Dim st As Integer
@@ -521,9 +585,9 @@ Private Sub btnActualizar_Click()
         End With
 
         If chkImprimirOrden.Value = 1 Then
-            Call imprimirOrden(idTrabajo)
+            cdImpresora.ShowOpen
         End If
-        
+     
         Unload Me
         
     End If
@@ -585,6 +649,6 @@ Private Sub cargarCuadrillas()
 End Sub
 
 Private Sub btnImprimirOrden_Click()
-    imprimirOrden (idTrabajo)
+    Call dialogoImpresion
 End Sub
 

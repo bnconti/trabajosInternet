@@ -139,6 +139,15 @@ Begin VB.Form main
       _ExtentY        =   14975
       _Version        =   393216
       TabHeight       =   520
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "MS Sans Serif"
+         Size            =   12
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       TabCaption(0)   =   "Para programar"
       TabPicture(0)   =   "main.frx":72BD
       Tab(0).ControlEnabled=   -1  'True
@@ -156,23 +165,24 @@ Begin VB.Form main
       TabCaption(1)   =   "Para instalar"
       TabPicture(1)   =   "main.frx":72D9
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "tablaTrabajosAInstalar"
-      Tab(1).Control(1)=   "Frame1"
-      Tab(1).Control(2)=   "btnGuardarFinalizados"
-      Tab(1).Control(3)=   "btnExpExcelInstalar"
-      Tab(1).Control(4)=   "btnImprimirInstalar"
-      Tab(1).Control(5)=   "btnAInstalarRecuperar"
+      Tab(1).Control(0)=   "btnAInstalarRecuperar"
+      Tab(1).Control(1)=   "btnImprimirInstalar"
+      Tab(1).Control(2)=   "btnExpExcelInstalar"
+      Tab(1).Control(3)=   "btnGuardarFinalizados"
+      Tab(1).Control(4)=   "Frame1"
+      Tab(1).Control(5)=   "tablaTrabajosAInstalar"
       Tab(1).ControlCount=   6
       TabCaption(2)   =   "Terminados"
       TabPicture(2)   =   "main.frx":72F5
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "tablaTrabajosTerminados"
-      Tab(2).Control(1)=   "frmFiltrado"
+      Tab(2).Control(0)=   "btnInstaladosRecuperar"
+      Tab(2).Control(1)=   "btnImprimirTerminados"
       Tab(2).Control(2)=   "btnExpExcelTerminados"
-      Tab(2).Control(3)=   "btnImprimirTerminados"
-      Tab(2).Control(4)=   "btnInstaladosRecuperar"
+      Tab(2).Control(3)=   "frmFiltrado"
+      Tab(2).Control(4)=   "tablaTrabajosTerminados"
       Tab(2).ControlCount=   5
       Begin VB.CommandButton btnInstaladosRecuperar 
+         BackColor       =   &H00CCF2FF&
          Caption         =   "Recuperar"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
@@ -192,6 +202,7 @@ Begin VB.Form main
          Width           =   2175
       End
       Begin VB.CommandButton btnAInstalarRecuperar 
+         BackColor       =   &H00F7EBDD&
          Caption         =   "Recuperar"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
@@ -211,6 +222,7 @@ Begin VB.Form main
          Width           =   2175
       End
       Begin VB.CommandButton btnAProgramarRecuperar 
+         BackColor       =   &H00DAEFE2&
          Caption         =   "Recuperar"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
@@ -230,6 +242,7 @@ Begin VB.Form main
          Width           =   2175
       End
       Begin VB.CommandButton btnImprimirProgramar 
+         BackColor       =   &H00DAEFE2&
          Caption         =   "Imprimir"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
@@ -249,6 +262,7 @@ Begin VB.Form main
          Width           =   1215
       End
       Begin VB.CommandButton btnImprimirInstalar 
+         BackColor       =   &H00F7EBDD&
          Caption         =   "Imprimir"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
@@ -268,6 +282,7 @@ Begin VB.Form main
          Width           =   1215
       End
       Begin VB.CommandButton btnImprimirTerminados 
+         BackColor       =   &H00CCF2FF&
          Caption         =   "Imprimir"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
@@ -287,6 +302,7 @@ Begin VB.Form main
          Width           =   1215
       End
       Begin VB.CommandButton btnExpExcelTerminados 
+         BackColor       =   &H00CCF2FF&
          Caption         =   "Exportar a Excel"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
@@ -306,6 +322,7 @@ Begin VB.Form main
          Width           =   1215
       End
       Begin VB.CommandButton btnExpExcelInstalar 
+         BackColor       =   &H00F7EBDD&
          Caption         =   "Exportar a Excel"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
@@ -325,6 +342,7 @@ Begin VB.Form main
          Width           =   1215
       End
       Begin VB.CommandButton btnExpExcelProgramar 
+         BackColor       =   &H00DAEFE2&
          Caption         =   "Exportar a Excel"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
@@ -344,6 +362,7 @@ Begin VB.Form main
          Width           =   1215
       End
       Begin VB.CommandButton btnGuardarFinalizados 
+         BackColor       =   &H00F7EBDD&
          Caption         =   "Guardar finalizados"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
@@ -379,7 +398,7 @@ Begin VB.Form main
             _ExtentY        =   661
             _Version        =   393216
             CustomFormat    =   "dd/MM/yy"
-            Format          =   96534531
+            Format          =   96600067
             CurrentDate     =   44089
          End
          Begin VB.ComboBox cmbConexionTerminados 
@@ -408,7 +427,7 @@ Begin VB.Form main
             _ExtentY        =   661
             _Version        =   393216
             CustomFormat    =   "dd/MM/yy"
-            Format          =   96534531
+            Format          =   96600067
             CurrentDate     =   44089
          End
          Begin VB.Label lblFechaHastaInstalados 
@@ -1285,10 +1304,10 @@ Private Sub exportarExcel(tabla As VSFlexGrid)
             
             Write #1, "sep=,"
             
-            Dim titulo As String
-            titulo = getNombreTabla(tabla.Name)
+            Dim Titulo As String
+            Titulo = getNombreTabla(tabla.Name)
             
-            Write #1, titulo
+            Write #1, Titulo
             Write #1, "Listado generado el " & Format$(DateTime.Now, "dd/MM/yyyy") & " a las " & Format$(DateTime.Now, "hh:mm AMPM")
                 
             With tabla
@@ -1334,7 +1353,7 @@ Private Sub Imprimir(tabla As VSFlexGrid)
         .grilla = tabla
         .RazonSocial = ini.GetVar("Empresa", "RazonSocial")
         
-        .titulo = getNombreTabla(tabla.Name)
+        .Titulo = getNombreTabla(tabla.Name)
         .Subtitulo = "Listado generado el " & Format$(DateTime.Now, "dd/MM/yyyy") & " a las " & Format$(DateTime.Now, "hh:mm AMPM")
         
         Call .Imprimir(, , 6)

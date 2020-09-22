@@ -77,7 +77,7 @@ Begin VB.Form frmCuadrilla
       ColWidthMin     =   0
       ColWidthMax     =   0
       ExtendLastCol   =   0   'False
-      FormatString    =   $"frmCuadrilla.frx":0BD4
+      FormatString    =   $"frmCuadrilla.frx":09D2
       ScrollTrack     =   0   'False
       ScrollBars      =   3
       ScrollTips      =   0   'False
@@ -172,20 +172,20 @@ End Sub
 
 
 
-Private Sub tablaCuadrillas_BeforeEdit(ByVal Row As Long, ByVal col As Long, Cancel As Boolean)
-    datoViejo = tablaCuadrillas.TextMatrix(Row, col)
+Private Sub tablaCuadrillas_BeforeEdit(ByVal Row As Long, ByVal Col As Long, Cancel As Boolean)
+    datoViejo = tablaCuadrillas.TextMatrix(Row, Col)
 End Sub
 
 
-Private Sub tablaCuadrillas_AfterEdit(ByVal Row As Long, ByVal col As Long)
-    If col = COL_HABILITADO Then
-        modificarCuadrillaHabilitado Row, col
+Private Sub tablaCuadrillas_AfterEdit(ByVal Row As Long, ByVal Col As Long)
+    If Col = COL_HABILITADO Then
+        modificarCuadrillaHabilitado Row, Col
     Else
-        modificarCuadrilla Row, col
+        modificarCuadrilla Row, Col
     End If
 End Sub
 
-Private Sub modificarCuadrillaHabilitado(ByVal Row As Long, ByVal col As Long)
+Private Sub modificarCuadrillaHabilitado(ByVal Row As Long, ByVal Col As Long)
     Dim estaHabilitado As Boolean
     estaHabilitado = (tablaCuadrillas.Cell(flexcpChecked, Row, COL_HABILITADO, Row, COL_HABILITADO) = flexChecked)
     
@@ -218,9 +218,9 @@ Private Sub modificarCuadrillaHabilitado(ByVal Row As Long, ByVal col As Long)
     
 End Sub
 
-Private Sub modificarCuadrilla(ByVal Row As Long, ByVal col As Long)
+Private Sub modificarCuadrilla(ByVal Row As Long, ByVal Col As Long)
     Dim datoNuevo As String
-    datoNuevo = tablaCuadrillas.TextMatrix(Row, col)
+    datoNuevo = tablaCuadrillas.TextMatrix(Row, Col)
     
     Dim msj As String
     msj = "¿Está seguro de querer modificar " & datoViejo & " por " & datoNuevo & "?"
@@ -235,7 +235,7 @@ Private Sub modificarCuadrilla(ByVal Row As Long, ByVal col As Long)
             .GetEqual
             
             If .status = 0 Then
-                Select Case col
+                Select Case Col
                     Case 1: .FieldValue("miembros") = datoNuevo
                     Case 2: .FieldValue("email") = datoNuevo
                 End Select
@@ -245,7 +245,7 @@ Private Sub modificarCuadrilla(ByVal Row As Long, ByVal col As Long)
             
         End With
     Else
-        tablaCuadrillas.TextMatrix(Row, col) = datoViejo
+        tablaCuadrillas.TextMatrix(Row, Col) = datoViejo
     End If
 End Sub
 
