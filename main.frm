@@ -1,7 +1,7 @@
 VERSION 5.00
-Object = "{47E7B6C9-8256-11CF-AB56-0000C04D1EB9}#7.0#0"; "ACBTR732.OCX"
-Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
-Object = "{C0A63B80-4B21-11D3-BD95-D426EF2C7949}#1.0#0"; "vsflex7l.ocx"
+Object = "{47E7B6C9-8256-11CF-AB56-0000C04D1EB9}#7.0#0"; "ACBtr732.ocx"
+Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TabCtl32.Ocx"
+Object = "{C0A63B80-4B21-11D3-BD95-D426EF2C7949}#1.0#0"; "Vsflex7L.ocx"
 Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
 Begin VB.Form main 
    BorderStyle     =   1  'Fixed Single
@@ -57,7 +57,7 @@ Begin VB.Form main
          TableName       =   "ASUMALUM"
          Location        =   "\\servidor\D\Compu\SFS2000\Datos\ASUMALUM.mkd"
          DdfPath         =   "\\servidor\D\Compu\SFS2000\Datos"
-         VAUDDDFInfo     =   "main.frx":3163
+         VAUDDDFInfo     =   "main.frx":316D
       End
       Begin VAccessLib.VAccess VAsumAlumInte 
          Left            =   1080
@@ -71,7 +71,7 @@ Begin VB.Form main
          Location        =   "\\servidor\D\Compu\SFS2000\Datos\ASUMALUMINTE.mkd"
          OpenMode        =   2
          DdfPath         =   "\\servidor\D\Compu\SFS2000\Datos"
-         VAUDDDFInfo     =   "main.frx":3CEC
+         VAUDDDFInfo     =   "main.frx":3D18
       End
       Begin VAccessLib.VAccess VOrdenes 
          Left            =   120
@@ -86,7 +86,7 @@ Begin VB.Form main
          OpenMode        =   2
          DdfPath         =   "\\servidor\compu\SFS2000\datos"
          HostConnect     =   0   'False
-         VAUDDDFInfo     =   "main.frx":4687
+         VAUDDDFInfo     =   "main.frx":46BB
       End
       Begin VAccessLib.VAccess VAClientes 
          Left            =   600
@@ -100,7 +100,7 @@ Begin VB.Form main
          Location        =   "\\servidor\D\Compu\SFS2000\Datos\ACLIENTES.MKD"
          OpenMode        =   2
          DdfPath         =   "\\servidor\D\Compu\SFS2000\Datos"
-         VAUDDDFInfo     =   "main.frx":531A
+         VAUDDDFInfo     =   "main.frx":537E
       End
       Begin VAccessLib.VAccess vTrabInternet 
          Left            =   120
@@ -113,7 +113,7 @@ Begin VB.Form main
          TableName       =   "TRABAJOINTERNET"
          Location        =   "\\servidor\D\Compu\SFS2000\Datos\TRABAJOINTERNET.mkd"
          DdfPath         =   "\\servidor\D\Compu\SFS2000\Datos"
-         VAUDDDFInfo     =   "main.frx":5EA3
+         VAUDDDFInfo     =   "main.frx":5F29
       End
       Begin VAccessLib.VAccess VCuadrillas 
          Left            =   1560
@@ -126,7 +126,7 @@ Begin VB.Form main
          TableName       =   "CUADRILLASINTERNET"
          Location        =   "\\servidor\D\Compu\SFS2000\Datos\CUADRILLASINTERNET.mkd"
          DdfPath         =   "\\servidor\D\Compu\SFS2000\Datos"
-         VAUDDDFInfo     =   "main.frx":6922
+         VAUDDDFInfo     =   "main.frx":69BC
       End
    End
    Begin TabDlg.SSTab tabTrabajos 
@@ -149,7 +149,7 @@ Begin VB.Form main
          Strikethrough   =   0   'False
       EndProperty
       TabCaption(0)   =   "Para programar"
-      TabPicture(0)   =   "main.frx":72BD
+      TabPicture(0)   =   "main.frx":735F
       Tab(0).ControlEnabled=   -1  'True
       Tab(0).Control(0)=   "tablaTrabajosAProgramar"
       Tab(0).Control(0).Enabled=   0   'False
@@ -163,7 +163,7 @@ Begin VB.Form main
       Tab(0).Control(4).Enabled=   0   'False
       Tab(0).ControlCount=   5
       TabCaption(1)   =   "Para instalar"
-      TabPicture(1)   =   "main.frx":72D9
+      TabPicture(1)   =   "main.frx":737B
       Tab(1).ControlEnabled=   0   'False
       Tab(1).Control(0)=   "btnAInstalarRecuperar"
       Tab(1).Control(1)=   "btnImprimirInstalar"
@@ -173,7 +173,7 @@ Begin VB.Form main
       Tab(1).Control(5)=   "tablaTrabajosAInstalar"
       Tab(1).ControlCount=   6
       TabCaption(2)   =   "Terminados"
-      TabPicture(2)   =   "main.frx":72F5
+      TabPicture(2)   =   "main.frx":7397
       Tab(2).ControlEnabled=   0   'False
       Tab(2).Control(0)=   "btnInstaladosRecuperar"
       Tab(2).Control(1)=   "btnImprimirTerminados"
@@ -195,7 +195,7 @@ Begin VB.Form main
          EndProperty
          Height          =   855
          Left            =   -74640
-         Picture         =   "main.frx":7311
+         Picture         =   "main.frx":73B3
          Style           =   1  'Graphical
          TabIndex        =   32
          Top             =   6480
@@ -215,7 +215,7 @@ Begin VB.Form main
          EndProperty
          Height          =   855
          Left            =   -74640
-         Picture         =   "main.frx":CF23
+         Picture         =   "main.frx":CFC5
          Style           =   1  'Graphical
          TabIndex        =   31
          Top             =   6480
@@ -235,7 +235,7 @@ Begin VB.Form main
          EndProperty
          Height          =   855
          Left            =   360
-         Picture         =   "main.frx":12B35
+         Picture         =   "main.frx":12BD7
          Style           =   1  'Graphical
          TabIndex        =   30
          Top             =   6480
@@ -255,7 +255,7 @@ Begin VB.Form main
          EndProperty
          Height          =   975
          Left            =   14400
-         Picture         =   "main.frx":18747
+         Picture         =   "main.frx":187E9
          Style           =   1  'Graphical
          TabIndex        =   29
          Top             =   6480
@@ -275,7 +275,7 @@ Begin VB.Form main
          EndProperty
          Height          =   975
          Left            =   -60600
-         Picture         =   "main.frx":1E9D1
+         Picture         =   "main.frx":1EA73
          Style           =   1  'Graphical
          TabIndex        =   28
          Top             =   6480
@@ -295,7 +295,7 @@ Begin VB.Form main
          EndProperty
          Height          =   975
          Left            =   -60600
-         Picture         =   "main.frx":24C5B
+         Picture         =   "main.frx":24CFD
          Style           =   1  'Graphical
          TabIndex        =   27
          Top             =   6480
@@ -315,7 +315,7 @@ Begin VB.Form main
          EndProperty
          Height          =   975
          Left            =   -59160
-         Picture         =   "main.frx":2AEE5
+         Picture         =   "main.frx":2AF87
          Style           =   1  'Graphical
          TabIndex        =   26
          Top             =   6480
@@ -335,7 +335,7 @@ Begin VB.Form main
          EndProperty
          Height          =   975
          Left            =   -59160
-         Picture         =   "main.frx":2B99F
+         Picture         =   "main.frx":2BA41
          Style           =   1  'Graphical
          TabIndex        =   25
          Top             =   6480
@@ -355,7 +355,7 @@ Begin VB.Form main
          EndProperty
          Height          =   975
          Left            =   15840
-         Picture         =   "main.frx":2C459
+         Picture         =   "main.frx":2C4FB
          Style           =   1  'Graphical
          TabIndex        =   24
          Top             =   6480
@@ -375,7 +375,7 @@ Begin VB.Form main
          EndProperty
          Height          =   855
          Left            =   -74640
-         Picture         =   "main.frx":2CF13
+         Picture         =   "main.frx":2CFB5
          Style           =   1  'Graphical
          TabIndex        =   19
          Top             =   7440
@@ -398,7 +398,7 @@ Begin VB.Form main
             _ExtentY        =   661
             _Version        =   393216
             CustomFormat    =   "dd/MM/yy"
-            Format          =   96600067
+            Format          =   75038723
             CurrentDate     =   44089
          End
          Begin VB.ComboBox cmbConexionTerminados 
@@ -427,7 +427,7 @@ Begin VB.Form main
             _ExtentY        =   661
             _Version        =   393216
             CustomFormat    =   "dd/MM/yy"
-            Format          =   96600067
+            Format          =   75038723
             CurrentDate     =   44089
          End
          Begin VB.Label lblFechaHastaInstalados 
@@ -580,7 +580,7 @@ Begin VB.Form main
          ColWidthMin     =   0
          ColWidthMax     =   0
          ExtendLastCol   =   0   'False
-         FormatString    =   $"main.frx":2D21D
+         FormatString    =   $"main.frx":2D2BF
          ScrollTrack     =   -1  'True
          ScrollBars      =   3
          ScrollTips      =   0   'False
@@ -671,7 +671,7 @@ Begin VB.Form main
          ColWidthMin     =   0
          ColWidthMax     =   0
          ExtendLastCol   =   0   'False
-         FormatString    =   $"main.frx":2D32F
+         FormatString    =   $"main.frx":2D3D1
          ScrollTrack     =   -1  'True
          ScrollBars      =   3
          ScrollTips      =   0   'False
@@ -762,7 +762,7 @@ Begin VB.Form main
          ColWidthMin     =   0
          ColWidthMax     =   0
          ExtendLastCol   =   0   'False
-         FormatString    =   $"main.frx":2D4C1
+         FormatString    =   $"main.frx":2D563
          ScrollTrack     =   -1  'True
          ScrollBars      =   3
          ScrollTips      =   0   'False
@@ -804,7 +804,11 @@ Begin VB.Form main
    Begin VB.Menu mnuArchivo 
       Caption         =   "Archivo"
       Begin VB.Menu mnuCuadrilla 
-         Caption         =   "Cuadrilla"
+         Caption         =   "Cuadrillas"
+      End
+      Begin VB.Menu mnuSalir 
+         Caption         =   "&Salir"
+         Shortcut        =   ^Q
       End
    End
    Begin VB.Menu mnuProcesos 
@@ -812,9 +816,6 @@ Begin VB.Form main
       Begin VB.Menu mnuCambioFTTH 
          Caption         =   "Cambio a FTTH"
       End
-   End
-   Begin VB.Menu mnuListados 
-      Caption         =   "Listados"
    End
 End
 Attribute VB_Name = "main"
@@ -1223,8 +1224,12 @@ Private Sub cargarTiposConexion()
     
 End Sub
 
-Private Sub cargarCuadrillas()
+Public Sub cargarCuadrillas()
     Dim status As Integer
+    
+    ' Los borro por si llamo a la funcion de vuelta
+    cmbCuadrillaAInstalar.Clear
+    cmbCuadrillaTerminados.Clear
     
     With main.VCuadrillas
         .IndexNumber = 0

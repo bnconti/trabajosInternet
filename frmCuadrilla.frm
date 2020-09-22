@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{C0A63B80-4B21-11D3-BD95-D426EF2C7949}#1.0#0"; "vsflex7l.ocx"
+Object = "{C0A63B80-4B21-11D3-BD95-D426EF2C7949}#1.0#0"; "Vsflex7L.ocx"
 Begin VB.Form frmCuadrilla 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Cuadrillas"
@@ -38,7 +38,7 @@ Begin VB.Form frmCuadrilla
       Enabled         =   -1  'True
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Size            =   9.75
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
@@ -136,12 +136,15 @@ Private Const COL_HABILITADO As Integer = 3
 Private datoViejo As String
 
 Private Sub Form_Load()
+    Call ponerEncabezadoEnNegrita(tablaCuadrillas)
     Call cargarCuadrillas
 End Sub
 
 Private Sub btnNuevaCuadrilla_Click()
     frmCuadrillaNueva.Show 1, Me
     Call cargarCuadrillas
+    ' Actualizarla tambien en el formulario principal
+    Call main.cargarCuadrillas
 End Sub
 
 Private Sub cargarCuadrillas()
@@ -220,10 +223,24 @@ End Sub
 
 Private Sub modificarCuadrilla(ByVal Row As Long, ByVal Col As Long)
     Dim datoNuevo As String
-    datoNuevo = tablaCuadrillas.TextMatrix(Row, Col)
+    
+    ' Le saco los espacios iniciales y finales
+    datoNuevo = Trim$(tablaCuadrillas.TextMatrix(Row, Col))
+    
+    If datoViejo = datoNuevo Then
+        ' No actualizar de gusto para dejar la misma cosa
+        Exit Sub
+    End If
+    
+    If Col = 1 And datoNuevo = vbNullString Then
+        ' No permitir sacar los miembros!
+        tablaCuadrillas.TextMatrix(Row, Col) = datoViejo
+        Exit Sub
+    End If
     
     Dim msj As String
-    msj = "¿Está seguro de querer modificar " & datoViejo & " por " & datoNuevo & "?"
+    ' Detalle: encierro los datos entre comillas
+    msj = "¿Está seguro de querer modificar """ & datoViejo & """ por """ & datoNuevo & """?"
     
     If MsgBox(msj, vbYesNo, "Confirmación") = vbYes Then
         Dim idCuadrilla As Integer
@@ -241,6 +258,18 @@ Private Sub modificarCuadrilla(ByVal Row As Long, ByVal Col As Long)
                 End Select
                 
                 .Update
+                
+                If .status = 0 Then
+                    If Col = 1 Then
+                        ' Actualizar comboboxes si cambiaron los miembros
+                        ' (lo hice publico en main.....)
+                        Call main.cargarCuadrillas
+                    End If
+                Else
+                    ' si no se pudo actualizar por algun motivo, mostrar el dato viejo
+                    ' (puede darse por ej si le pone los miembros que a otra cuadrilla)
+                    tablaCuadrillas.TextMatrix(Row, Col) = datoViejo
+                End If
             End If
             
         End With

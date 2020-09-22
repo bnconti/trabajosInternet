@@ -77,14 +77,20 @@ Option Explicit
 Private Sub btnGuardarCuadrilla_Click()
     main.VCuadrillas.Clear ' Para borrar el ID
     
-    If txtMiembros <> vbNullString And txtCorreoCuadrilla <> vbNullString Then
+    ' Se tendria que poder cargar sin el correo??
+    
+    If txtMiembros.Text <> vbNullString And txtCorreoCuadrilla.Text <> vbNullString Then
         main.VCuadrillas.FieldValue("miembros") = txtMiembros
         main.VCuadrillas.FieldValue("email") = txtCorreoCuadrilla
         main.VCuadrillas.FieldValue("habilitado") = True
         main.VCuadrillas.Insert
+        
+        Unload Me
+    Else
+        ' Mostrar mensaje si no se cargo porque faltan datos
+        Call MsgBox("Debe completar todos los datos", vbOKOnly + vbInformation, Me.Caption)
+        txtMiembros.SetFocus
     End If
-    
-    Unload Me
 End Sub
 
 Private Sub btnVolver_Click()

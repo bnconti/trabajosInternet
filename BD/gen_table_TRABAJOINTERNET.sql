@@ -3,7 +3,7 @@ CREATE TABLE "TRABAJOINTERNET" (
  "nroorden" INTEGER NOT NULL,
  "estado" INTEGER NOT NULL,
  "fecha_pedido" DATE,
- "fecha_inst" DATE,
+ "fecha_inst" DATE NOT NULL,
  "hora_inst" TIME,
  "tipo_conexion" VARCHAR(30),
  "idcuadrilla" INTEGER,
