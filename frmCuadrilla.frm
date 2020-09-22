@@ -3,7 +3,7 @@ Object = "{C0A63B80-4B21-11D3-BD95-D426EF2C7949}#1.0#0"; "vsflex7l.ocx"
 Begin VB.Form frmCuadrilla 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Cuadrillas"
-   ClientHeight    =   3225
+   ClientHeight    =   3630
    ClientLeft      =   45
    ClientTop       =   330
    ClientWidth     =   9690
@@ -11,13 +11,15 @@ Begin VB.Form frmCuadrilla
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   3225
+   ScaleHeight     =   3630
    ScaleWidth      =   9690
    StartUpPosition =   3  'Windows Default
    Begin VB.CommandButton btnNuevaCuadrilla 
       Caption         =   "Nueva cuadrilla"
-      Height          =   375
-      Left            =   7920
+      Height          =   735
+      Left            =   120
+      Picture         =   "frmCuadrilla.frx":08CA
+      Style           =   1  'Graphical
       TabIndex        =   1
       Top             =   2760
       Width           =   1695
@@ -75,7 +77,7 @@ Begin VB.Form frmCuadrilla
       ColWidthMin     =   0
       ColWidthMax     =   0
       ExtendLastCol   =   0   'False
-      FormatString    =   $"frmCuadrilla.frx":08CA
+      FormatString    =   $"frmCuadrilla.frx":0BD4
       ScrollTrack     =   0   'False
       ScrollBars      =   3
       ScrollTips      =   0   'False
@@ -114,12 +116,13 @@ Begin VB.Form frmCuadrilla
       WallPaperAlignment=   9
    End
    Begin VB.Label Label1 
+      Alignment       =   1  'Right Justify
       Caption         =   "Para editar una cuadrilla, haga doble clic sobre la celda correspondiente y modifique el dato."
       Height          =   375
-      Left            =   120
+      Left            =   2760
       TabIndex        =   2
       Top             =   2760
-      Width           =   7335
+      Width           =   6735
    End
 End
 Attribute VB_Name = "frmCuadrilla"
@@ -167,20 +170,22 @@ Private Sub cargarCuadrillas()
 End Sub
 
 
-Private Sub tablaCuadrillas_BeforeEdit(ByVal Row As Long, ByVal Col As Long, Cancel As Boolean)
-    datoViejo = tablaCuadrillas.TextMatrix(Row, Col)
+
+
+Private Sub tablaCuadrillas_BeforeEdit(ByVal Row As Long, ByVal col As Long, Cancel As Boolean)
+    datoViejo = tablaCuadrillas.TextMatrix(Row, col)
 End Sub
 
 
-Private Sub tablaCuadrillas_AfterEdit(ByVal Row As Long, ByVal Col As Long)
-    If Col = COL_HABILITADO Then
-        modificarCuadrillaHabilitado Row, Col
+Private Sub tablaCuadrillas_AfterEdit(ByVal Row As Long, ByVal col As Long)
+    If col = COL_HABILITADO Then
+        modificarCuadrillaHabilitado Row, col
     Else
-        modificarCuadrilla Row, Col
+        modificarCuadrilla Row, col
     End If
 End Sub
 
-Private Sub modificarCuadrillaHabilitado(ByVal Row As Long, ByVal Col As Long)
+Private Sub modificarCuadrillaHabilitado(ByVal Row As Long, ByVal col As Long)
     Dim estaHabilitado As Boolean
     estaHabilitado = (tablaCuadrillas.Cell(flexcpChecked, Row, COL_HABILITADO, Row, COL_HABILITADO) = flexChecked)
     
@@ -208,14 +213,14 @@ Private Sub modificarCuadrillaHabilitado(ByVal Row As Long, ByVal Col As Long)
         
     ElseIf resp = vbNo Then
         ' Deja la celda como estaba antes de modificarla
-        tablaCuadrillas.Cell(flexcpChecked, Row, COL_HABILITADO, Row, COL_HABILITADO) = IIf(estaHabilitado, flexChecked, flexUnchecked)
+        tablaCuadrillas.Cell(flexcpChecked, Row, COL_HABILITADO, Row, COL_HABILITADO) = IIf(Not estaHabilitado, flexChecked, flexUnchecked)
     End If
     
 End Sub
 
-Private Sub modificarCuadrilla(ByVal Row As Long, ByVal Col As Long)
+Private Sub modificarCuadrilla(ByVal Row As Long, ByVal col As Long)
     Dim datoNuevo As String
-    datoNuevo = tablaCuadrillas.TextMatrix(Row, Col)
+    datoNuevo = tablaCuadrillas.TextMatrix(Row, col)
     
     Dim msj As String
     msj = "¿Está seguro de querer modificar " & datoViejo & " por " & datoNuevo & "?"
@@ -230,7 +235,7 @@ Private Sub modificarCuadrilla(ByVal Row As Long, ByVal Col As Long)
             .GetEqual
             
             If .status = 0 Then
-                Select Case Col
+                Select Case col
                     Case 1: .FieldValue("miembros") = datoNuevo
                     Case 2: .FieldValue("email") = datoNuevo
                 End Select
@@ -240,11 +245,8 @@ Private Sub modificarCuadrilla(ByVal Row As Long, ByVal Col As Long)
             
         End With
     Else
-        tablaCuadrillas.TextMatrix(Row, Col) = datoViejo
+        tablaCuadrillas.TextMatrix(Row, col) = datoViejo
     End If
-    
-    
-
 End Sub
 
 

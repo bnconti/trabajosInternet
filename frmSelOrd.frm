@@ -209,11 +209,8 @@ End Sub
 Private Sub regreso()
   If grilla.Row <= 0 Then
     mCodAlumbrado = 0
+    frmCambioFTTH.NroOrden = 0
   Else
-    mCodAlumbrado = Val(grilla.TextMatrix(grilla.Row, 2))
-    frmCambioFTTH.lblCodInternet = "Cód. Internet " & mCodAlumbrado
-    frmCambioFTTH.lblDomicilio = grilla.TextMatrix(grilla.Row, 3)
-
     With main.VOrdenes
       ' dejar el formulario posicionado
       .IndexNumber = 4
@@ -221,10 +218,24 @@ Private Sub regreso()
       .GetEqual
     End With
     
-    frmCambioFTTH.NroOrden = main.VOrdenes.FieldValue("NroOrden")
+    main.VAsumAlumInte.FieldValue("codalumbrado") = mCodAlumbrado
+    main.VAsumAlumInte.GetEqual
+    
+    main.VAsumAlum.FieldValue("codalumbrado") = mCodAlumbrado
+    main.VAsumAlum.GetEqual
+    
+    If main.VAsumAlum.status = 0 And main.VAsumAlumInte.status = 0 Then
+        frmCambioFTTH.NroOrden = main.VOrdenes.FieldValue("NroOrden")
+        mCodAlumbrado = Val(grilla.TextMatrix(grilla.Row, 2))
+        frmCambioFTTH.lblCodInternet = "Cód. Internet " & mCodAlumbrado
+        frmCambioFTTH.lblDomicilio = grilla.TextMatrix(grilla.Row, 3)
+    Else
+        MsgBox "El cliente no tiene un suministro de Internet - generarlo en la solapa de suministro del sistema de facturación.", vbExclamation + vbOKOnly, "Error"
+    End If
+    
+    Unload Me
     
   End If
-  Unload Me
 End Sub
 
 
