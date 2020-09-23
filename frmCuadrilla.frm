@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{C0A63B80-4B21-11D3-BD95-D426EF2C7949}#1.0#0"; "Vsflex7L.ocx"
+Object = "{C0A63B80-4B21-11D3-BD95-D426EF2C7949}#1.0#0"; "vsflex7l.ocx"
 Begin VB.Form frmCuadrilla 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Cuadrillas"
@@ -172,13 +172,9 @@ Private Sub cargarCuadrillas()
     tablaCuadrillas.AutoSize 1, 2
 End Sub
 
-
-
-
 Private Sub tablaCuadrillas_BeforeEdit(ByVal Row As Long, ByVal Col As Long, Cancel As Boolean)
     datoViejo = tablaCuadrillas.TextMatrix(Row, Col)
 End Sub
-
 
 Private Sub tablaCuadrillas_AfterEdit(ByVal Row As Long, ByVal Col As Long)
     If Col = COL_HABILITADO Then

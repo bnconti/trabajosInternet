@@ -1,7 +1,7 @@
 Attribute VB_Name = "moduloFunciones"
 Option Explicit
 
-Public Declare Function SetDefaultPrinter Lib "Winspool.drv" Alias "SetDefaultPrinterA" (ByVal pszPrinter As String) As Boolean
+Public Declare Function SetDefaultPrinter Lib "winspool.drv" Alias "SetDefaultPrinterA" (ByVal pszPrinter As String) As Boolean
 
 Public Function Izq(Texto As String, largo As Integer) As String
   Izq = left$(LTrim$(Texto), largo)
@@ -18,12 +18,16 @@ Public Sub ponerEncabezadoEnNegrita(tabla As VSFlexGrid)
 End Sub
 
 Public Sub imprimirOrden(idTrabajo As Long)
+
+    ' =======================================================
+    ' Variables para guardar los datos de la orden de trabajo
+    
     Dim nroUsuario As String
     Dim tipoConexion As String
     Dim fechaInstalacion As String
     Dim horaInstalacion As String
     
-    Dim Obs As String
+    Dim obs As String
     Dim nombre As String
     Dim dni As String
     Dim domicilioFacturacion As String
@@ -36,7 +40,9 @@ Public Sub imprimirOrden(idTrabajo As Long)
     Dim iva As String
     Dim cuadrilla As String
     
-    ' Traer datos
+    ' =================================
+    ' Cargar los datos en las variables
+    
     With main
         .vTrabInternet.IndexNumber = 0
         .vTrabInternet.FieldValue("id_trabajo") = idTrabajo
@@ -78,7 +84,7 @@ Public Sub imprimirOrden(idTrabajo As Long)
             tipoConexion = frmTrabajo.cmbTipoConexion.Text
             fechaInstalacion = .vTrabInternet.FieldValue("fecha_inst")
             horaInstalacion = .vTrabInternet.FieldValue("hora_inst")
-            Obs = .vTrabInternet.FieldValue("obs")
+            obs = .vTrabInternet.FieldValue("obs")
             
             nombre = .VAClientes.FieldValue("nombre") & " " & .VAClientes.FieldValue("apellido")
             dni = .VAClientes.FieldValue("NroDocIde") & vbNullString
@@ -111,7 +117,7 @@ Public Sub imprimirOrden(idTrabajo As Long)
         .LineH 25, 40, 165
         
         .Text 25, 45, "Todd Net - Nueva conexión", 10, True, "Arial"
-        .Text 25, 50, "Observaciones: " & Obs, 9, True, "Arial"
+        .Text 25, 50, "observaciones: " & obs, 9, True, "Arial"
         
         .Text 25, 55, "N.º de usuario: " & nroUsuario, 9, False, "Arial"
         .Text 70, 55, "Fecha de inst. programada: " & fechaInstalacion, 9, False, "Arial"
@@ -163,4 +169,3 @@ Public Sub imprimirOrden(idTrabajo As Long)
     End With
     
 End Sub
-

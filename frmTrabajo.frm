@@ -4,7 +4,7 @@ Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "comdlg32.ocx"
 Begin VB.Form frmTrabajo 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Datos del trabajo"
-   ClientHeight    =   8625
+   ClientHeight    =   8775
    ClientLeft      =   45
    ClientTop       =   330
    ClientWidth     =   6555
@@ -12,41 +12,86 @@ Begin VB.Form frmTrabajo
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   8625
+   ScaleHeight     =   8775
    ScaleWidth      =   6555
    StartUpPosition =   3  'Windows Default
    Begin VB.CommandButton btnVolverAInstalar 
       Caption         =   "Pasar a ""Para programar"""
-      Height          =   495
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   12
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   735
       Left            =   360
       TabIndex        =   26
+      ToolTipText     =   "La orden vuelve a la primera solapa del sistema"
       Top             =   5520
       Width           =   2295
    End
    Begin VB.Frame frmDatosUsuario 
-      Height          =   8475
+      Height          =   8715
       Left            =   120
       TabIndex        =   1
       Top             =   0
       Width           =   6255
+      Begin VB.CheckBox chkEnviarCorreoOrden 
+         Caption         =   "Enviar orden por correo"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   375
+         Left            =   2880
+         TabIndex        =   29
+         Top             =   5640
+         Width           =   3255
+      End
       Begin MSComDlg.CommonDialog cdImpresora 
-         Left            =   3120
-         Top             =   5520
+         Left            =   5520
+         Top             =   6000
          _ExtentX        =   847
          _ExtentY        =   847
          _Version        =   393216
       End
       Begin VB.CheckBox chkImprimirOrden 
          Caption         =   "Imprimir orden de trabajo"
-         Height          =   495
-         Left            =   3840
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   375
+         Left            =   2880
          TabIndex        =   28
-         Top             =   5520
-         Width           =   2175
+         Top             =   6120
+         Width           =   3135
       End
       Begin VB.CommandButton btnImprimirOrden 
          Caption         =   "Imprimir orden de trabajo"
-         Height          =   495
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   735
          Left            =   3720
          TabIndex        =   27
          Top             =   5520
@@ -66,7 +111,7 @@ Begin VB.Form frmTrabajo
          Left            =   240
          MaxLength       =   50
          TabIndex        =   24
-         Top             =   6480
+         Top             =   6960
          Width           =   5775
       End
       Begin VB.TextBox txtFechaPedido 
@@ -231,7 +276,7 @@ Begin VB.Form frmTrabajo
             Strikethrough   =   0   'False
          EndProperty
          CustomFormat    =   "hh:mm tt"
-         Format          =   96600067
+         Format          =   104792067
          UpDown          =   -1  'True
          CurrentDate     =   44076
       End
@@ -253,7 +298,7 @@ Begin VB.Form frmTrabajo
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   96600065
+         Format          =   104792065
          CurrentDate     =   44076
       End
       Begin VB.CommandButton btnEliminar 
@@ -262,7 +307,7 @@ Begin VB.Form frmTrabajo
             Name            =   "MS Sans Serif"
             Size            =   12
             Charset         =   0
-            Weight          =   400
+            Weight          =   700
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
@@ -272,7 +317,7 @@ Begin VB.Form frmTrabajo
          Picture         =   "frmTrabajo.frx":0354
          Style           =   1  'Graphical
          TabIndex        =   13
-         Top             =   7320
+         Top             =   7560
          Width           =   1245
       End
       Begin VB.CommandButton btnVolver 
@@ -281,7 +326,7 @@ Begin VB.Form frmTrabajo
             Name            =   "MS Sans Serif"
             Size            =   12
             Charset         =   0
-            Weight          =   400
+            Weight          =   700
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
@@ -291,39 +336,40 @@ Begin VB.Form frmTrabajo
          Picture         =   "frmTrabajo.frx":0C1E
          Style           =   1  'Graphical
          TabIndex        =   12
-         Top             =   7320
+         Top             =   7560
          Width           =   1125
       End
       Begin VB.CommandButton btnActualizar 
+         Caption         =   "Terminar"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
             Size            =   12
             Charset         =   0
-            Weight          =   400
+            Weight          =   700
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
          Height          =   1050
-         Left            =   240
+         Left            =   120
          Picture         =   "frmTrabajo.frx":0D30
          Style           =   1  'Graphical
          TabIndex        =   11
-         Top             =   7320
+         Top             =   7560
          Width           =   2475
       End
       Begin VB.Line Line2 
          X1              =   120
          X2              =   6120
-         Y1              =   7080
-         Y2              =   7080
+         Y1              =   7440
+         Y2              =   7440
       End
       Begin VB.Label lblObsConex 
          Caption         =   "Observaciones finales"
          Height          =   375
          Left            =   240
          TabIndex        =   25
-         Top             =   6240
+         Top             =   6720
          Width           =   2175
       End
       Begin VB.Label lblObs 
@@ -337,8 +383,8 @@ Begin VB.Form frmTrabajo
       Begin VB.Line linea 
          X1              =   120
          X2              =   6120
-         Y1              =   6120
-         Y2              =   6120
+         Y1              =   6600
+         Y2              =   6600
       End
       Begin VB.Line Line1 
          X1              =   120
@@ -472,8 +518,6 @@ Private Sub cargarFormProgramar()
 End Sub
 
 Private Sub cargarFormInstalar()
-    btnActualizar.Caption = "Terminar"
-    
     With main.tablaTrabajosAInstalar
         txtNombre = .TextMatrix(.Row, 1)
         txtDomi = .TextMatrix(.Row, 2)
@@ -488,10 +532,10 @@ Private Sub cargarFormInstalar()
     End With
     
     chkImprimirOrden.Visible = False
+    chkEnviarCorreoOrden.Visible = False
 End Sub
 
 Private Sub cargarFormTerminado()
-    btnActualizar.Caption = "Guardar como finalizado"
     btnActualizar.Enabled = False
     
     With main.tablaTrabajosTerminados
@@ -513,7 +557,9 @@ Private Sub cargarFormTerminado()
     txtObsConex.Enabled = False
     dtHoraInst.Enabled = False
     dtFechaInst.Enabled = False
+    
     chkImprimirOrden.Visible = False
+    chkEnviarCorreoOrden.Visible = False
 End Sub
 
 

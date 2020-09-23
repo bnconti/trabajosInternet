@@ -207,35 +207,40 @@ Private Sub MostrarOrdenes(Cli As Long)
 End Sub
 
 Private Sub regreso()
-  If grilla.Row <= 0 Then
-    mCodAlumbrado = 0
-    frmCambioFTTH.NroOrden = 0
-  Else
-    With main.VOrdenes
-      ' dejar el formulario posicionado
-      .IndexNumber = 4
-      .FieldValue("CodAlumbrado") = mCodAlumbrado
-      .GetEqual
-    End With
-    
-    main.VAsumAlumInte.FieldValue("codalumbrado") = mCodAlumbrado
-    main.VAsumAlumInte.GetEqual
-    
-    main.VAsumAlum.FieldValue("codalumbrado") = mCodAlumbrado
-    main.VAsumAlum.GetEqual
-    
-    If main.VAsumAlum.status = 0 And main.VAsumAlumInte.status = 0 Then
-        frmCambioFTTH.NroOrden = main.VOrdenes.FieldValue("NroOrden")
-        mCodAlumbrado = Val(grilla.TextMatrix(grilla.Row, 2))
-        frmCambioFTTH.lblCodInternet = "Cód. Internet " & mCodAlumbrado
-        frmCambioFTTH.lblDomicilio = grilla.TextMatrix(grilla.Row, 3)
+    If grilla.Row <= 0 Then
+        mCodAlumbrado = 0
+        frmCambioFTTH.NroOrden = 0
     Else
-        MsgBox "El cliente no tiene un suministro de Internet - generarlo en la solapa de suministro del sistema de facturación.", vbExclamation + vbOKOnly, "Error"
+    
+        ' Preguntarle al Torto por esto
+        mCodAlumbrado = Val(grilla.TextMatrix(grilla.Row, 2))
+  
+        With main
+            .VOrdenes.IndexNumber = 4
+            .VOrdenes.FieldValue("CodAlumbrado") = mCodAlumbrado
+            .VOrdenes.GetEqual
+
+            If .VOrdenes.status = 0 Then
+                .VAsumAlumInte.FieldValue("codalumbrado") = mCodAlumbrado
+                .VAsumAlumInte.GetEqual
+                
+                .VAsumAlum.FieldValue("codalumbrado") = mCodAlumbrado
+                .VAsumAlum.GetEqual
+        
+                If .VAsumAlum.status = 0 And .VAsumAlumInte.status = 0 Then
+                    frmCambioFTTH.NroOrden = main.VOrdenes.FieldValue("NroOrden")
+                    frmCambioFTTH.lblCodInternet = "Cód. Internet " & mCodAlumbrado
+                    frmCambioFTTH.lblDomicilio = grilla.TextMatrix(grilla.Row, 3)
+                Else
+                    MsgBox "El cliente no tiene un suministro de Internet - generarlo en la solapa de suministro del sistema de facturación.", vbExclamation + vbOKOnly, "Error"
+                    
+                End If
+            End If
+        End With
+        
+        Unload Me
+      
     End If
-    
-    Unload Me
-    
-  End If
 End Sub
 
 
