@@ -4,8 +4,12 @@ Option Explicit
 Public Declare Function SetDefaultPrinter Lib "winspool.drv" Alias "SetDefaultPrinterA" (ByVal pszPrinter As String) As Boolean
 
 Public Function Izq(Texto As String, largo As Integer) As String
-  Izq = left$(LTrim$(Texto), largo)
-  Izq = Izq & String$(largo - Len(Izq), " ")
+  If largo <= 0 Then
+    Izq = vbNullString
+  Else
+    Izq = left$(LTrim$(Texto), largo)
+    Izq = Izq & String$(largo - Len(Izq), " ")
+  End If
 End Function
 
 Public Function Der(Texto As String, largo As Integer) As String

@@ -277,7 +277,7 @@ Begin VB.Form frmTrabajo
             Strikethrough   =   0   'False
          EndProperty
          CustomFormat    =   "hh:mm tt"
-         Format          =   110166019
+         Format          =   110100483
          UpDown          =   -1  'True
          CurrentDate     =   44076
       End
@@ -299,7 +299,7 @@ Begin VB.Form frmTrabajo
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   110166017
+         Format          =   110100481
          CurrentDate     =   44076
       End
       Begin VB.CommandButton btnEliminar 
@@ -653,9 +653,8 @@ Private Sub btnEliminar_Click()
                 .Delete
             End If
         End With
+        Unload Me
     End If
-        
-    Unload Me
 End Sub
 
 Private Sub btnVolverAInstalar_Click()
