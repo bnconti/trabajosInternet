@@ -24,6 +24,7 @@ Begin VB.Form frmCuadrillaNueva
    Begin VB.CommandButton btnVolver 
       Cancel          =   -1  'True
       Caption         =   "&Volver"
+      CausesValidation=   0   'False
       Height          =   375
       Left            =   2520
       TabIndex        =   4
@@ -77,9 +78,7 @@ Option Explicit
 Private Sub btnGuardarCuadrilla_Click()
     main.VCuadrillas.Clear ' Para borrar el ID
     
-    ' Se tendria que poder cargar sin el correo??
-    
-    If txtMiembros.Text <> vbNullString And txtCorreoCuadrilla.Text <> vbNullString Then
+    If txtMiembros.Text <> vbNullString Then
         main.VCuadrillas.FieldValue("miembros") = txtMiembros
         main.VCuadrillas.FieldValue("email") = txtCorreoCuadrilla
         main.VCuadrillas.FieldValue("habilitado") = True
@@ -97,3 +96,30 @@ Private Sub btnVolver_Click()
     Unload Me
 End Sub
 
+Private Sub txtCorreoCuadrilla_Validate(Cancel As Boolean)
+    Dim correos() As String
+    Dim nCorreo As Byte
+    Dim pos As Integer
+    
+    Cancel = False
+    
+    ' sacar espacios iniciales y finales del textbox
+    txtCorreoCuadrilla.Text = Trim$(txtCorreoCuadrilla.Text)
+    If txtCorreoCuadrilla.Text = vbNullString Then
+        ' no puso nada, salir nomasss
+        Exit Sub
+    End If
+    
+    'txtCorreoCuadrilla.Text = Trim$(txtCorreoCuadrilla.Text)
+    correos = Split(txtCorreoCuadrilla.Text, ";")
+    For nCorreo = LBound(correos) To UBound(correos)
+        ' posicion del arroba
+        pos = InStr(2, correos(nCorreo), "@")
+        If (pos < 1) Or (pos > (Len(correos(nCorreo)) - 4)) Then
+            ' no tiene arroba a partir del 2do caracter, o tiene un sufijo menor a cuatro caracteres
+            Call MsgBox("Ingrese una dirección válida")
+            Cancel = True
+            Exit Sub
+        End If
+    Next
+End Sub

@@ -81,8 +81,7 @@ Public Sub imprimirOrden(idTrabajo As Long)
             .VAClientes.status = 0 And _
             .VAsumAlumInte.status = 0 And _
             .VAsumAlum.status = 0 And _
-            .VCuadrillas.status = 0 And _
-            .VTarifas.status = 0 Then
+            .VCuadrillas.status = 0 Then
             
             nroUsuario = .VAsumAlumInte.FieldValue("CodAlumbrado")
             tipoConexion = frmTrabajo.cmbTipoConexion.Text
@@ -97,7 +96,7 @@ Public Sub imprimirOrden(idTrabajo As Long)
             
             telefono = .VAClientes.FieldValue("reserva") & vbNullString
             nombreUsuario = .VAsumAlumInte.FieldValue("UsInt") & vbNullString
-            anchoDeBanda = .VTarifas.FieldValue("descrip")
+            anchoDeBanda = IIf(.VTarifas.status = 0, .VTarifas.FieldValue("descrip"), vbNullString)
             email = .VAsumAlum.FieldValue("direelec")
             iva = CIVADescrip(.VOrdenes.FieldValue("civa"))
             
@@ -124,8 +123,8 @@ Public Sub imprimirOrden(idTrabajo As Long)
         .Text 25, 50, "Observaciones: " & obs, 9, True, "Arial"
         
         .Text 25, 55, "N.º de usuario: " & nroUsuario, 9, False, "Arial"
-        .Text 70, 55, "Fecha de inst. programada: " & fechaInstalacion, 9, False, "Arial"
-        .Text 135, 55, "Hora de inst. programada: " & horaInstalacion, 9, False, "Arial"
+        .Text 70, 55, "Fecha de inst. programada: " & Format$(fechaInstalacion, "dd/MM/yyyy"), 9, False, "Arial"
+        .Text 135, 55, "Hora de inst. programada: " & Format$(horaInstalacion, "hh:mm AMPM"), 9, False, "Arial"
         .LineH 25, 65, 165
         
         .Text 25, 70, "Apellido y nombre: " & nombre, 9, False, "Arial"
