@@ -184,21 +184,27 @@ Begin VB.Form main
       TabCaption(0)   =   "Para programar"
       TabPicture(0)   =   "main.frx":7888
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "btnAProgramarRecuperar"
-      Tab(0).Control(1)=   "btnImprimirProgramar"
+      Tab(0).Control(0)=   "tablaTrabajosAProgramar"
+      Tab(0).Control(1)=   "frmFiltrar"
       Tab(0).Control(2)=   "btnExpExcelProgramar"
-      Tab(0).Control(3)=   "frmFiltrar"
-      Tab(0).Control(4)=   "tablaTrabajosAProgramar"
+      Tab(0).Control(3)=   "btnImprimirProgramar"
+      Tab(0).Control(4)=   "btnAProgramarRecuperar"
       Tab(0).ControlCount=   5
       TabCaption(1)   =   "Para instalar"
       TabPicture(1)   =   "main.frx":78A4
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "btnAInstalarRecuperar"
-      Tab(1).Control(1)=   "btnImprimirInstalar"
-      Tab(1).Control(2)=   "btnExpExcelInstalar"
-      Tab(1).Control(3)=   "btnGuardarFinalizados"
-      Tab(1).Control(4)=   "Frame1"
-      Tab(1).Control(5)=   "tablaTrabajosAInstalar"
+      Tab(1).Control(0)=   "tablaTrabajosAInstalar"
+      Tab(1).Control(0).Enabled=   0   'False
+      Tab(1).Control(1)=   "Frame1"
+      Tab(1).Control(1).Enabled=   0   'False
+      Tab(1).Control(2)=   "btnGuardarFinalizados"
+      Tab(1).Control(2).Enabled=   0   'False
+      Tab(1).Control(3)=   "btnExpExcelInstalar"
+      Tab(1).Control(3).Enabled=   0   'False
+      Tab(1).Control(4)=   "btnImprimirInstalar"
+      Tab(1).Control(4).Enabled=   0   'False
+      Tab(1).Control(5)=   "btnAInstalarRecuperar"
+      Tab(1).Control(5).Enabled=   0   'False
       Tab(1).ControlCount=   6
       TabCaption(2)   =   "Terminados"
       TabPicture(2)   =   "main.frx":78C0
@@ -1018,7 +1024,7 @@ Private Sub cargarTablaTrabajosAInstalar()
                                     vTrabInternet.FieldValue("fecha_pedido") & vbTab & _
                                     VAClientes.FieldValue("reserva") & vbTab & _
                                     vTrabInternet.FieldValue("fecha_inst") & vbTab & _
-                                    vTrabInternet.FieldValue("hora_inst") & vbTab & _
+                                    Format(vTrabInternet.FieldValue("hora_inst"), "hh:mm AMPM") & vbTab & _
                                     VCuadrillas.FieldValue("miembros") & vbTab & _
                                     vTrabInternet.FieldValue("id_trabajo")) & vbTab & _
                                     vTrabInternet.FieldValue("obs")
@@ -1083,7 +1089,7 @@ Private Sub cargartablaTrabajosTerminados()
                                          vTrabInternet.FieldValue("fecha_pedido") & vbTab & _
                                          VAClientes.FieldValue("reserva") & vbTab & _
                                          vTrabInternet.FieldValue("fecha_inst") & vbTab & _
-                                         vTrabInternet.FieldValue("hora_inst") & vbTab & _
+                                         Format(vTrabInternet.FieldValue("hora_inst"), "hh:mm AMPM") & vbTab & _
                                          VCuadrillas.FieldValue("miembros") & vbTab & _
                                          vTrabInternet.FieldValue("id_trabajo")) & vbTab & _
                                          vTrabInternet.FieldValue("obs")
@@ -1394,7 +1400,9 @@ Private Sub btnImprimirProgramar_Click()
 End Sub
 
 Private Sub btnImprimirInstalar_Click()
+    tablaTrabajosAInstalar.ColHidden(0) = True
     Call imprimirTabla(tablaTrabajosAInstalar)
+    tablaTrabajosAInstalar.ColHidden(0) = False
 End Sub
 
 Private Sub btnImprimirTerminados_Click()
