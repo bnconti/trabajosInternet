@@ -17,7 +17,7 @@ Begin VB.Form frmCuadrillaNueva
       Caption         =   "&Guardar"
       Height          =   375
       Left            =   360
-      TabIndex        =   5
+      TabIndex        =   4
       Top             =   2160
       Width           =   1815
    End
@@ -27,7 +27,7 @@ Begin VB.Form frmCuadrillaNueva
       CausesValidation=   0   'False
       Height          =   375
       Left            =   2520
-      TabIndex        =   4
+      TabIndex        =   5
       Top             =   2160
       Width           =   1815
    End
@@ -41,7 +41,7 @@ Begin VB.Form frmCuadrillaNueva
    Begin VB.TextBox txtMiembros 
       Height          =   375
       Left            =   360
-      TabIndex        =   2
+      TabIndex        =   1
       Top             =   480
       Width           =   4095
    End
@@ -55,7 +55,7 @@ Begin VB.Form frmCuadrillaNueva
       Caption         =   "Correo electrónico (separar direcciones por punto y coma)"
       Height          =   255
       Left            =   360
-      TabIndex        =   1
+      TabIndex        =   2
       Top             =   1080
       Width           =   4215
    End
@@ -97,29 +97,12 @@ Private Sub btnVolver_Click()
 End Sub
 
 Private Sub txtCorreoCuadrilla_Validate(Cancel As Boolean)
-    Dim correos() As String
-    Dim nCorreo As Byte
-    Dim pos As Integer
-    
     Cancel = False
     
-    ' sacar espacios iniciales y finales del textbox
-    txtCorreoCuadrilla.Text = Trim$(txtCorreoCuadrilla.Text)
-    If txtCorreoCuadrilla.Text = vbNullString Then
-        ' no puso nada, salir nomasss
-        Exit Sub
+    ' sacar espacios del textbox
+    txtCorreoCuadrilla.Text = Replace(txtCorreoCuadrilla.Text, " ", vbNullString)
+    If Not ValidarCorreos(txtCorreoCuadrilla.Text) Then
+        Call MsgBox("Ingrese una dirección válida", vbOKOnly + vbInformation, Me.Caption)
+        Cancel = True
     End If
-    
-    'txtCorreoCuadrilla.Text = Trim$(txtCorreoCuadrilla.Text)
-    correos = Split(txtCorreoCuadrilla.Text, ";")
-    For nCorreo = LBound(correos) To UBound(correos)
-        ' posicion del arroba
-        pos = InStr(2, correos(nCorreo), "@")
-        If (pos < 1) Or (pos > (Len(correos(nCorreo)) - 4)) Then
-            ' no tiene arroba a partir del 2do caracter, o tiene un sufijo menor a cuatro caracteres
-            Call MsgBox("Ingrese una dirección válida")
-            Cancel = True
-            Exit Sub
-        End If
-    Next
 End Sub

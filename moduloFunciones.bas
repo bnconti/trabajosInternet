@@ -172,3 +172,56 @@ Public Sub imprimirOrden(idTrabajo As Long)
     End With
     
 End Sub
+
+' Establecer impresora
+Private Function PrinterIndex(PrinterName As String) As Long
+  Dim i As Long
+ 
+  For i = 0 To Printers.Count - 1
+    If UCase$(Printers(i).DeviceName) = UCase$(PrinterName) Then
+      PrinterIndex = i
+      Exit For
+    End If
+  Next
+End Function
+
+
+Public Function EsCorreoValido(correo As String) As Boolean
+    Dim pos As Integer
+    Dim nCorreo As Integer
+    
+    ' posicion del arroba
+    pos = InStr(2, correo, "@")
+    If (pos < 1) Or (pos > (Len(correo) - 5)) Then
+        ' no tiene arroba a partir del 2do caracter, o tiene un sufijo menor a cuatro caracteres
+        EsCorreoValido = False
+    Else
+        EsCorreoValido = True
+    End If
+End Function
+
+' valida la lista de correos separada por punto y coma
+Public Function ValidarCorreos(listaCorreos As String) As Boolean
+    Dim correos() As String
+    Dim nCorreo As Byte
+    Dim valido As Boolean
+    
+    ' sacar espacios del textbox
+    listaCorreos = Replace(listaCorreos, " ", vbNullString)
+    If listaCorreos = vbNullString Then
+        ' no puso nada, salir nomasss
+        ValidarCorreos = True
+        Exit Function
+    End If
+    
+    correos = Split(listaCorreos, ";")
+    For nCorreo = LBound(correos) To UBound(correos)
+        valido = EsCorreoValido(correos(nCorreo))
+        If Not valido Then
+            Exit For
+        End If
+    Next
+    
+    ValidarCorreos = valido
+End Function
+
