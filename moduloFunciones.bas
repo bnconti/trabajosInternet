@@ -117,7 +117,7 @@ Public Sub imprimirOrden(idTrabajo As Long)
         .LineH 25, 40, 165
         
         .Text 25, 45, "Todd Net - Nueva conexión", 10, True, "Arial"
-        .Text 25, 50, "observaciones: " & obs, 9, True, "Arial"
+        .Text 25, 50, "Observaciones: " & obs, 9, True, "Arial"
         
         .Text 25, 55, "N.º de usuario: " & nroUsuario, 9, False, "Arial"
         .Text 70, 55, "Fecha de inst. programada: " & fechaInstalacion, 9, False, "Arial"

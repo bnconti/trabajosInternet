@@ -1,7 +1,7 @@
 VERSION 5.00
+Object = "{C0A63B80-4B21-11D3-BD95-D426EF2C7949}#1.0#0"; "vsflex7l.ocx"
 Object = "{47E7B6C9-8256-11CF-AB56-0000C04D1EB9}#7.0#0"; "ACBTR732.OCX"
 Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
-Object = "{C0A63B80-4B21-11D3-BD95-D426EF2C7949}#1.0#0"; "vsflex7l.ocx"
 Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
 Begin VB.Form main 
    BorderStyle     =   1  'Fixed Single
@@ -197,21 +197,32 @@ Begin VB.Form main
       TabCaption(1)   =   "Para instalar"
       TabPicture(1)   =   "main.frx":78A4
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "btnAInstalarRecuperar"
-      Tab(1).Control(1)=   "btnImprimirInstalar"
-      Tab(1).Control(2)=   "btnExpExcelInstalar"
-      Tab(1).Control(3)=   "btnGuardarFinalizados"
-      Tab(1).Control(4)=   "Frame1"
-      Tab(1).Control(5)=   "tablaTrabajosAInstalar"
+      Tab(1).Control(0)=   "tablaTrabajosAInstalar"
+      Tab(1).Control(0).Enabled=   0   'False
+      Tab(1).Control(1)=   "Frame1"
+      Tab(1).Control(1).Enabled=   0   'False
+      Tab(1).Control(2)=   "btnGuardarFinalizados"
+      Tab(1).Control(2).Enabled=   0   'False
+      Tab(1).Control(3)=   "btnExpExcelInstalar"
+      Tab(1).Control(3).Enabled=   0   'False
+      Tab(1).Control(4)=   "btnImprimirInstalar"
+      Tab(1).Control(4).Enabled=   0   'False
+      Tab(1).Control(5)=   "btnAInstalarRecuperar"
+      Tab(1).Control(5).Enabled=   0   'False
       Tab(1).ControlCount=   6
       TabCaption(2)   =   "Terminados"
       TabPicture(2)   =   "main.frx":78C0
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "btnInstaladosRecuperar"
-      Tab(2).Control(1)=   "btnImprimirTerminados"
+      Tab(2).Control(0)=   "tablaTrabajosTerminados"
+      Tab(2).Control(0).Enabled=   0   'False
+      Tab(2).Control(1)=   "frmFiltrado"
+      Tab(2).Control(1).Enabled=   0   'False
       Tab(2).Control(2)=   "btnExpExcelTerminados"
-      Tab(2).Control(3)=   "frmFiltrado"
-      Tab(2).Control(4)=   "tablaTrabajosTerminados"
+      Tab(2).Control(2).Enabled=   0   'False
+      Tab(2).Control(3)=   "btnImprimirTerminados"
+      Tab(2).Control(3).Enabled=   0   'False
+      Tab(2).Control(4)=   "btnInstaladosRecuperar"
+      Tab(2).Control(4).Enabled=   0   'False
       Tab(2).ControlCount=   5
       Begin VB.CommandButton btnInstaladosRecuperar 
          BackColor       =   &H00CCF2FF&
@@ -430,7 +441,7 @@ Begin VB.Form main
             _ExtentY        =   661
             _Version        =   393216
             CustomFormat    =   "dd/MM/yy"
-            Format          =   10420227
+            Format          =   110100483
             CurrentDate     =   44089
          End
          Begin VB.ComboBox cmbConexionTerminados 
@@ -459,7 +470,7 @@ Begin VB.Form main
             _ExtentY        =   661
             _Version        =   393216
             CustomFormat    =   "dd/MM/yy"
-            Format          =   10420227
+            Format          =   110100483
             CurrentDate     =   44089
          End
          Begin VB.Label lblFechaHastaInstalados 
@@ -573,7 +584,7 @@ Begin VB.Form main
          Enabled         =   -1  'True
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "MS Sans Serif"
-            Size            =   12
+            Size            =   9.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -604,7 +615,7 @@ Begin VB.Form main
          GridLinesFixed  =   2
          GridLineWidth   =   1
          Rows            =   1
-         Cols            =   7
+         Cols            =   8
          FixedRows       =   1
          FixedCols       =   0
          RowHeightMin    =   0
@@ -664,7 +675,7 @@ Begin VB.Form main
          Enabled         =   -1  'True
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "MS Sans Serif"
-            Size            =   12
+            Size            =   9.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -695,7 +706,7 @@ Begin VB.Form main
          GridLinesFixed  =   2
          GridLineWidth   =   1
          Rows            =   1
-         Cols            =   11
+         Cols            =   12
          FixedRows       =   1
          FixedCols       =   0
          RowHeightMin    =   0
@@ -703,7 +714,7 @@ Begin VB.Form main
          ColWidthMin     =   0
          ColWidthMax     =   0
          ExtendLastCol   =   0   'False
-         FormatString    =   $"main.frx":2D8FA
+         FormatString    =   $"main.frx":2D91C
          ScrollTrack     =   -1  'True
          ScrollBars      =   3
          ScrollTips      =   0   'False
@@ -755,7 +766,7 @@ Begin VB.Form main
          Enabled         =   -1  'True
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "MS Sans Serif"
-            Size            =   12
+            Size            =   9.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -786,7 +797,7 @@ Begin VB.Form main
          GridLinesFixed  =   2
          GridLineWidth   =   1
          Rows            =   1
-         Cols            =   10
+         Cols            =   11
          FixedRows       =   1
          FixedCols       =   0
          RowHeightMin    =   0
@@ -794,7 +805,7 @@ Begin VB.Form main
          ColWidthMin     =   0
          ColWidthMax     =   0
          ExtendLastCol   =   0   'False
-         FormatString    =   $"main.frx":2DA8C
+         FormatString    =   $"main.frx":2DAD3
          ScrollTrack     =   -1  'True
          ScrollBars      =   3
          ScrollTips      =   0   'False
@@ -954,7 +965,8 @@ Private Sub cargarTablaTrabajosAProgramar()
                                          arrConexiones(vTrabInternet.FieldValue("Tipo_Conexion") - 1) & vbTab & _
                                          vTrabInternet.FieldValue("fecha_pedido") & vbTab & _
                                          VAClientes.FieldValue("reserva") & vbTab & _
-                                         vTrabInternet.FieldValue("id_trabajo"))
+                                         vTrabInternet.FieldValue("id_trabajo")) & vbTab & _
+                                         vTrabInternet.FieldValue("obs")
                 
             End If
                                      
@@ -1018,7 +1030,8 @@ Private Sub cargarTablaTrabajosAInstalar()
                                     vTrabInternet.FieldValue("fecha_inst") & vbTab & _
                                     vTrabInternet.FieldValue("hora_inst") & vbTab & _
                                     VCuadrillas.FieldValue("miembros") & vbTab & _
-                                    vTrabInternet.FieldValue("id_trabajo"))
+                                    vTrabInternet.FieldValue("id_trabajo")) & vbTab & _
+                                    vTrabInternet.FieldValue("obs")
             tablaTrabajosAInstalar.Cell(flexcpChecked, tablaTrabajosAInstalar.Rows - 1, 0, tablaTrabajosAInstalar.Rows - 1, 0) = flexUnchecked
             
         End If
@@ -1082,7 +1095,8 @@ Private Sub cargartablaTrabajosTerminados()
                                          vTrabInternet.FieldValue("fecha_inst") & vbTab & _
                                          vTrabInternet.FieldValue("hora_inst") & vbTab & _
                                          VCuadrillas.FieldValue("miembros") & vbTab & _
-                                         vTrabInternet.FieldValue("id_trabajo"))
+                                         vTrabInternet.FieldValue("id_trabajo")) & vbTab & _
+                                         vTrabInternet.FieldValue("obs")
             End If
                                      
             st = .GetNext

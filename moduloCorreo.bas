@@ -5,7 +5,7 @@ Private pdf As PDFCreator.clsPDFCreator
 Private opt As clsPDFCreatorOptions
 
 Public Type tCorreo
-    direccion As String
+    Direccion As String
     contrasenia As String
     servidor As String
     puerto As String
@@ -24,7 +24,7 @@ Public Sub prepararCorreo(idTrabajo As Long)
     Call cargarDatosCorreo
     
     ' hacer for por si es más de un correo
-    correosDestino = "bruno.soportecoop@gmail.com"
+    ' correosDestino =
     
     ' Genera la orden temporalmente - desp borrar
     Call imprimirOrden
@@ -86,7 +86,7 @@ End Sub
 
 
 Private Sub cargarDatosCorreo()
-    correo.direccion = empresa.GetVar("empresa", "emailrte")
+    correo.Direccion = empresa.GetVar("empresa", "emailrte")
     correo.contrasenia = empresa.GetVar("empresa", "contraseniaEmail")
     correo.puerto = empresa.GetVar("empresa", "puertoSmtp")
     correo.servidor = empresa.GetVar("empresa", "servidorsmtp")
@@ -105,13 +105,13 @@ Private Sub enviarCorreo(destino As String, rutaAdjunto As String)
         .Item("http://schemas.microsoft.com/cdo/configuration/smtpusessl") = correo.seguridad 'True si es con seguridad, sino False
         .Item("http://schemas.microsoft.com/cdo/configuration/smtpconnectiontimeout") = 15
         .Item("http://schemas.microsoft.com/cdo/configuration/smtpauthenticate") = correo.autenticacion 'basic (clear-text) authentication
-        .Item("http://schemas.microsoft.com/cdo/configuration/sendusername") = "bruno.soportecoop@gmail.com" ' correo.direccion
-        .Item("http://schemas.microsoft.com/cdo/configuration/sendpassword") = "elchiqui20" ' correo.contrasenia
+        ' .Item("http://schemas.microsoft.com/cdo/configuration/sendusername") = "" ' correo.direccion
+        ' .Item("http://schemas.microsoft.com/cdo/configuration/sendpassword") = "" ' correo.contrasenia
         .Update
     End With
   
     cdoCorreo.To = Trim(destino)
-    cdoCorreo.From = correo.direccion
+    cdoCorreo.From = correo.Direccion
     cdoCorreo.Subject = "Orden de trabajo" & "" ' agregar algún dato para que quede mejor
     cdoCorreo.Sender = "Todd Net"
     cdoCorreo.AddAttachment rutaAdjunto

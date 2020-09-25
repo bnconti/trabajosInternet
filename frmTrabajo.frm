@@ -53,7 +53,8 @@ Begin VB.Form frmTrabajo
          Height          =   375
          Left            =   2880
          TabIndex        =   29
-         Top             =   5640
+         Top             =   6000
+         Visible         =   0   'False
          Width           =   3255
       End
       Begin MSComDlg.CommonDialog cdImpresora 
@@ -77,7 +78,7 @@ Begin VB.Form frmTrabajo
          Height          =   375
          Left            =   2880
          TabIndex        =   28
-         Top             =   6120
+         Top             =   5520
          Width           =   3135
       End
       Begin VB.CommandButton btnImprimirOrden 
@@ -276,7 +277,7 @@ Begin VB.Form frmTrabajo
             Strikethrough   =   0   'False
          EndProperty
          CustomFormat    =   "hh:mm tt"
-         Format          =   104792067
+         Format          =   110166019
          UpDown          =   -1  'True
          CurrentDate     =   44076
       End
@@ -298,7 +299,7 @@ Begin VB.Form frmTrabajo
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   104792065
+         Format          =   110166017
          CurrentDate     =   44076
       End
       Begin VB.CommandButton btnEliminar 
@@ -631,7 +632,7 @@ Private Sub btnActualizar_Click()
         End With
 
         If chkImprimirOrden.Value = 1 Then
-            cdImpresora.ShowOpen
+            Call dialogoImpresion
         End If
      
         Unload Me
