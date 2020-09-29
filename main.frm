@@ -197,21 +197,21 @@ Begin VB.Form main
       TabCaption(1)   =   "Para instalar"
       TabPicture(1)   =   "main.frx":78A4
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "btnAInstalarRecuperar"
-      Tab(1).Control(1)=   "btnImprimirInstalar"
-      Tab(1).Control(2)=   "btnExpExcelInstalar"
-      Tab(1).Control(3)=   "btnGuardarFinalizados"
-      Tab(1).Control(4)=   "Frame1"
-      Tab(1).Control(5)=   "tablaTrabajosAInstalar"
+      Tab(1).Control(0)=   "tablaTrabajosAInstalar"
+      Tab(1).Control(1)=   "Frame1"
+      Tab(1).Control(2)=   "btnGuardarFinalizados"
+      Tab(1).Control(3)=   "btnExpExcelInstalar"
+      Tab(1).Control(4)=   "btnImprimirInstalar"
+      Tab(1).Control(5)=   "btnAInstalarRecuperar"
       Tab(1).ControlCount=   6
       TabCaption(2)   =   "Terminados"
       TabPicture(2)   =   "main.frx":78C0
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "btnInstaladosRecuperar"
-      Tab(2).Control(1)=   "btnImprimirTerminados"
+      Tab(2).Control(0)=   "tablaTrabajosTerminados"
+      Tab(2).Control(1)=   "frmFiltrado"
       Tab(2).Control(2)=   "btnExpExcelTerminados"
-      Tab(2).Control(3)=   "frmFiltrado"
-      Tab(2).Control(4)=   "tablaTrabajosTerminados"
+      Tab(2).Control(3)=   "btnImprimirTerminados"
+      Tab(2).Control(4)=   "btnInstaladosRecuperar"
       Tab(2).ControlCount=   5
       Begin VB.CommandButton btnInstaladosRecuperar 
          BackColor       =   &H00CCF2FF&
@@ -430,7 +430,7 @@ Begin VB.Form main
             _ExtentY        =   661
             _Version        =   393216
             CustomFormat    =   "dd/MM/yy"
-            Format          =   38862851
+            Format          =   95551491
             CurrentDate     =   44089
          End
          Begin VB.ComboBox cmbConexionTerminados 
@@ -459,7 +459,7 @@ Begin VB.Form main
             _ExtentY        =   661
             _Version        =   393216
             CustomFormat    =   "dd/MM/yy"
-            Format          =   38862851
+            Format          =   95551491
             CurrentDate     =   44089
          End
          Begin VB.Label lblFechaHastaInstalados 
