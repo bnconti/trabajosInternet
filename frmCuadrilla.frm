@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{C0A63B80-4B21-11D3-BD95-D426EF2C7949}#1.0#0"; "vsflex7l.ocx"
+Object = "{C0A63B80-4B21-11D3-BD95-D426EF2C7949}#1.0#0"; "Vsflex7L.ocx"
 Begin VB.Form frmCuadrilla 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Cuadrillas"
@@ -134,10 +134,12 @@ Option Explicit
 
 Private Const COL_HABILITADO As Integer = 3
 Private datoViejo As String
+Private correoInvalido As Boolean
 
 Private Sub Form_Load()
     Call ponerEncabezadoEnNegrita(tablaCuadrillas)
     Call cargarCuadrillas
+    correoInvalido = False
 End Sub
 
 Private Sub btnNuevaCuadrilla_Click()
@@ -173,7 +175,9 @@ Private Sub cargarCuadrillas()
 End Sub
 
 Private Sub tablaCuadrillas_BeforeEdit(ByVal Row As Long, ByVal Col As Long, Cancel As Boolean)
-    datoViejo = tablaCuadrillas.TextMatrix(Row, Col)
+    If Not correoInvalido Then
+        datoViejo = tablaCuadrillas.TextMatrix(Row, Col)
+    End If
 End Sub
 
 Private Sub tablaCuadrillas_AfterEdit(ByVal Row As Long, ByVal Col As Long)
@@ -234,6 +238,21 @@ Private Sub modificarCuadrilla(ByVal Row As Long, ByVal Col As Long)
         Exit Sub
     End If
     
+    If Col = 2 Then
+        ' correos
+        ' sacar espacios
+        tablaCuadrillas.TextMatrix(Row, Col) = Replace(tablaCuadrillas.TextMatrix(Row, Col), " ", vbNullString)
+        If Not ValidarCorreos(tablaCuadrillas.TextMatrix(Row, Col)) Then
+            Call MsgBox("Ingrese una dirección válida", vbOKOnly + vbInformation, Me.Caption)
+            correoInvalido = True
+            tablaCuadrillas.Select Row, Col
+            tablaCuadrillas.EditCell
+            Exit Sub
+        End If
+    End If
+    
+    correoInvalido = False
+    
     Dim msj As String
     ' Detalle: encierro los datos entre comillas
     msj = "¿Está seguro de querer modificar """ & datoViejo & """ por """ & datoNuevo & """?"
@@ -276,3 +295,13 @@ End Sub
 
 
 
+Private Sub tablaCuadrillas_KeyPressEdit(ByVal Row As Long, ByVal Col As Long, KeyAscii As Integer)
+    If KeyAscii = vbKeyEscape Then
+        If Col = 2 Then
+            If correoInvalido Then
+                tablaCuadrillas.TextMatrix(Row, Col) = datoViejo
+                ' o algo asi
+            End If
+        End If
+    End If
+End Sub

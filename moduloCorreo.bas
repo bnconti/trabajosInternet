@@ -27,14 +27,14 @@ Public Sub prepararCorreo(idTrabajo As Long)
     ' correosDestino =
     
     ' Genera la orden temporalmente - desp borrar
-    Call imprimirOrden
-    Call enviarCorreo
+    'Call imprimirOrden(0) ' ACOMODAR ESTOOOOOO
+    'Call enviarCorreo
 End Sub
 
 Private Function traerCorreoCuadrilla(idTrabajo As Long) As String
     With main
         .vTrabInternet.IndexNumber = 0
-        .vTrabInternet.FieldValue ("id_trabajo")
+        .vTrabInternet.FieldValue("id_trabajo") = idTrabajo
         .vTrabInternet.GetEqual
         
         If .vTrabInternet.status = 0 Then
@@ -79,23 +79,26 @@ Private Sub prepararPDF()
     End With
     
     Set pdf.cOptions = opt
-    Set Printer = Printers(PrinterIndex("PDFCreator"))
+    'Set Printer = Printers(PrinterIndex("PDFCreator"))
     
     
 End Sub
 
 
 Private Sub cargarDatosCorreo()
-    correo.Direccion = empresa.GetVar("empresa", "emailrte")
-    correo.contrasenia = empresa.GetVar("empresa", "contraseniaEmail")
-    correo.puerto = empresa.GetVar("empresa", "puertoSmtp")
-    correo.servidor = empresa.GetVar("empresa", "servidorsmtp")
-    correo.adjunto = "C:\ORDENCORREO.pdf"
-    correo.seguridad = IIf(empresa.GetVar("empresa", "seguridadEmail") = "true", True, False)
-    correo.autenticacion = IIf(empresa.GetVar("empresa", "autenticacionEmail") = "true", True, False)
+    With main.ini
+        correo.Direccion = .GetVar("empresa", "emailrte")
+        correo.contrasenia = .GetVar("empresa", "contraseniaEmail")
+        correo.puerto = .GetVar("empresa", "puertoSmtp")
+        correo.servidor = .GetVar("empresa", "servidorsmtp")
+        correo.adjunto = "C:\ORDENCORREO.pdf"
+        correo.seguridad = IIf(.GetVar("empresa", "seguridadEmail") = "true", True, False)
+        correo.autenticacion = IIf(.GetVar("empresa", "autenticacionEmail") = "true", True, False)
+    End With
 End Sub
 
 Private Sub enviarCorreo(destino As String, rutaAdjunto As String)
+    Dim cdoCorreo As Object
     Set cdoCorreo = CreateObject("CDO.Message")
     
     With cdoCorreo.Configuration.Fields
