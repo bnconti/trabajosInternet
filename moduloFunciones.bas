@@ -32,7 +32,7 @@ Public Sub imprimirOrden(idTrabajo As Long)
     Dim horaInstalacion As String
     
     Dim obs As String
-    Dim nombre As String
+    Dim NOMBRE As String
     Dim dni As String
     Dim domicilioFacturacion As String
     Dim domicilioConexion As String
@@ -89,7 +89,7 @@ Public Sub imprimirOrden(idTrabajo As Long)
             horaInstalacion = .vTrabInternet.FieldValue("hora_inst")
             obs = .vTrabInternet.FieldValue("obs")
             
-            nombre = .VAClientes.FieldValue("nombre") & " " & .VAClientes.FieldValue("apellido")
+            NOMBRE = .VAClientes.FieldValue("nombre") & " " & .VAClientes.FieldValue("apellido")
             dni = .VAClientes.FieldValue("NroDocIde") & vbNullString
             domicilioFacturacion = .VOrdenes.FieldValue("domicilio") & vbNullString
             domicilioConexion = .VAsumAlum.FieldValue("cuenta") & vbNullString
@@ -127,7 +127,7 @@ Public Sub imprimirOrden(idTrabajo As Long)
         .Text 135, 55, "Hora de inst. programada: " & Format$(horaInstalacion, "hh:mm AMPM"), 9, False, "Arial"
         .LineH 25, 65, 165
         
-        .Text 25, 70, "Apellido y nombre: " & nombre, 9, False, "Arial"
+        .Text 25, 70, "Apellido y nombre: " & NOMBRE, 9, False, "Arial"
         .Text 25, 75, "DNI/CUIT: " & dni, 9, False, "Arial"
         .Text 25, 80, "Condición IVA: " & iva, 9, False, "Arial"
         .Text 25, 85, "Domicilio de facturación: " & domicilioFacturacion, 9, False, "Arial"
@@ -174,7 +174,7 @@ Public Sub imprimirOrden(idTrabajo As Long)
 End Sub
 
 ' Establecer impresora
-Private Function PrinterIndex(PrinterName As String) As Long
+Public Function PrinterIndex(PrinterName As String) As Long
   Dim i As Long
  
   For i = 0 To Printers.Count - 1

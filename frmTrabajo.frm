@@ -54,7 +54,6 @@ Begin VB.Form frmTrabajo
          Left            =   2880
          TabIndex        =   29
          Top             =   6000
-         Visible         =   0   'False
          Width           =   3255
       End
       Begin MSComDlg.CommonDialog cdImpresora 
@@ -277,7 +276,7 @@ Begin VB.Form frmTrabajo
             Strikethrough   =   0   'False
          EndProperty
          CustomFormat    =   "hh:mm tt"
-         Format          =   110100483
+         Format          =   88866819
          UpDown          =   -1  'True
          CurrentDate     =   44076
       End
@@ -299,7 +298,7 @@ Begin VB.Form frmTrabajo
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   110100481
+         Format          =   88866817
          CurrentDate     =   44076
       End
       Begin VB.CommandButton btnEliminar 
@@ -516,6 +515,8 @@ Private Sub cargarFormProgramar()
     btnVolverAInstalar.Visible = False
     linea.Visible = False
     
+    chkEnviarCorreoOrden.Value = 1
+    
 End Sub
 
 Private Sub cargarFormInstalar()
@@ -633,6 +634,10 @@ Private Sub btnActualizar_Click()
 
         If chkImprimirOrden.Value = 1 Then
             Call dialogoImpresion
+        End If
+        
+        If chkEnviarCorreoOrden.Value = 1 Then
+            Call prepararCorreo(idTrabajo)
         End If
      
         Unload Me
