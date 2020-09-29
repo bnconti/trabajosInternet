@@ -22,6 +22,10 @@ Dim correo As tCorreo
 Private Const DIRECTORIO = "C:\PDFTEMP\"
 Private Const NOMBRE = "PDFTEMP.pdf"
 
+
+Dim cdoCorreo
+
+
 Public Sub prepararCorreo(idTrabajo As Long)
 
     Dim correosDestino As String
@@ -109,7 +113,8 @@ Private Sub cargarDatosCorreo()
 End Sub
 
 Private Sub enviarCorreo(destino As String)
-    Dim cdoCorreo As New CDO.Message
+    'Dim cdoCorreo As New CDO.Message
+    Set cdoCorreo = CreateObject("CDO.Message")
     
     With cdoCorreo.Configuration.Fields
         .Item("http://schemas.microsoft.com/cdo/configuration/sendusing") = 2  'Send the message using the network (SMTP over the network).
@@ -128,8 +133,10 @@ Private Sub enviarCorreo(destino As String)
     cdoCorreo.Subject = "Orden de trabajo" & "" ' agregar algún dato para que quede mejor
     cdoCorreo.Sender = "Todd Net"
     cdoCorreo.AddAttachment correo.Adjunto
-    Sleep 2000
+    
+    cdoCorreo.HTMLBody = "<div>" & "Buenas" & "</div>"
+    cdoCorreo.TextBodyPart.Charset = "utf-8"
     
     cdoCorreo.Send
-    Sleep 2000
+    
 End Sub
