@@ -138,5 +138,4 @@ Private Sub enviarCorreo(destino As String)
     cdoCorreo.TextBodyPart.Charset = "utf-8"
     
     cdoCorreo.Send
-    
 End Sub

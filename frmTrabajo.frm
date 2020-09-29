@@ -1,10 +1,11 @@
 VERSION 5.00
 Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
-Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "comdlg32.ocx"
+Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "ComDlg32.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Begin VB.Form frmTrabajo 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Datos del trabajo"
-   ClientHeight    =   8775
+   ClientHeight    =   9045
    ClientLeft      =   45
    ClientTop       =   330
    ClientWidth     =   6555
@@ -12,9 +13,28 @@ Begin VB.Form frmTrabajo
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   8775
+   ScaleHeight     =   9045
    ScaleWidth      =   6555
    StartUpPosition =   3  'Windows Default
+   Begin VB.Timer Timer1 
+      Enabled         =   0   'False
+      Interval        =   100
+      Left            =   60
+      Top             =   7680
+   End
+   Begin MSComctlLib.ProgressBar ProgressBar1 
+      Height          =   315
+      Left            =   180
+      TabIndex        =   30
+      Top             =   8760
+      Visible         =   0   'False
+      Width           =   6315
+      _ExtentX        =   11139
+      _ExtentY        =   556
+      _Version        =   393216
+      Appearance      =   1
+      Max             =   50
+   End
    Begin VB.CommandButton btnVolverAInstalar 
       Caption         =   "Pasar a ""Para programar"""
       BeginProperty Font 
@@ -276,7 +296,7 @@ Begin VB.Form frmTrabajo
             Strikethrough   =   0   'False
          EndProperty
          CustomFormat    =   "hh:mm tt"
-         Format          =   88866819
+         Format          =   73531395
          UpDown          =   -1  'True
          CurrentDate     =   44076
       End
@@ -298,7 +318,7 @@ Begin VB.Form frmTrabajo
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   88866817
+         Format          =   73531393
          CurrentDate     =   44076
       End
       Begin VB.CommandButton btnEliminar 
@@ -637,7 +657,12 @@ Private Sub btnActualizar_Click()
         End If
         
         If chkEnviarCorreoOrden.Value = 1 Then
+            ProgressBar1.Value = 1
+            ProgressBar1.Visible = True
+            Timer1.Enabled = True
             Call prepararCorreo(idTrabajo)
+            ProgressBar1.Visible = False
+            Timer1.Enabled = False
         End If
      
         Unload Me
@@ -703,3 +728,10 @@ Private Sub btnImprimirOrden_Click()
     Call dialogoImpresion
 End Sub
 
+Private Sub Timer1_Timer()
+    If ProgressBar1.Value = ProgressBar1.Max Then
+        ProgressBar1.Value = ProgressBar1.Min
+    End If
+    
+    ProgressBar1.Value = ProgressBar1.Value + 1
+End Sub
