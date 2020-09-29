@@ -170,6 +170,7 @@ Begin VB.Form main
       _ExtentX        =   30692
       _ExtentY        =   14975
       _Version        =   393216
+      Tab             =   2
       TabHeight       =   520
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "MS Sans Serif"
@@ -182,7 +183,7 @@ Begin VB.Form main
       EndProperty
       TabCaption(0)   =   "Para programar"
       TabPicture(0)   =   "main.frx":7888
-      Tab(0).ControlEnabled=   -1  'True
+      Tab(0).ControlEnabled=   0   'False
       Tab(0).Control(0)=   "tablaTrabajosAProgramar"
       Tab(0).Control(0).Enabled=   0   'False
       Tab(0).Control(1)=   "frmFiltrar"
@@ -198,20 +199,31 @@ Begin VB.Form main
       TabPicture(1)   =   "main.frx":78A4
       Tab(1).ControlEnabled=   0   'False
       Tab(1).Control(0)=   "tablaTrabajosAInstalar"
+      Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "Frame1"
+      Tab(1).Control(1).Enabled=   0   'False
       Tab(1).Control(2)=   "btnGuardarFinalizados"
+      Tab(1).Control(2).Enabled=   0   'False
       Tab(1).Control(3)=   "btnExpExcelInstalar"
+      Tab(1).Control(3).Enabled=   0   'False
       Tab(1).Control(4)=   "btnImprimirInstalar"
+      Tab(1).Control(4).Enabled=   0   'False
       Tab(1).Control(5)=   "btnAInstalarRecuperar"
+      Tab(1).Control(5).Enabled=   0   'False
       Tab(1).ControlCount=   6
       TabCaption(2)   =   "Terminados"
       TabPicture(2)   =   "main.frx":78C0
-      Tab(2).ControlEnabled=   0   'False
+      Tab(2).ControlEnabled=   -1  'True
       Tab(2).Control(0)=   "tablaTrabajosTerminados"
+      Tab(2).Control(0).Enabled=   0   'False
       Tab(2).Control(1)=   "frmFiltrado"
+      Tab(2).Control(1).Enabled=   0   'False
       Tab(2).Control(2)=   "btnExpExcelTerminados"
+      Tab(2).Control(2).Enabled=   0   'False
       Tab(2).Control(3)=   "btnImprimirTerminados"
+      Tab(2).Control(3).Enabled=   0   'False
       Tab(2).Control(4)=   "btnInstaladosRecuperar"
+      Tab(2).Control(4).Enabled=   0   'False
       Tab(2).ControlCount=   5
       Begin VB.CommandButton btnInstaladosRecuperar 
          BackColor       =   &H00CCF2FF&
@@ -226,7 +238,7 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   855
-         Left            =   -74640
+         Left            =   360
          Picture         =   "main.frx":78DC
          Style           =   1  'Graphical
          TabIndex        =   21
@@ -266,7 +278,7 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   855
-         Left            =   360
+         Left            =   -74640
          Picture         =   "main.frx":13100
          Style           =   1  'Graphical
          TabIndex        =   1
@@ -286,7 +298,7 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   975
-         Left            =   12960
+         Left            =   -62040
          Picture         =   "main.frx":18D12
          Style           =   1  'Graphical
          TabIndex        =   6
@@ -326,7 +338,7 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   975
-         Left            =   -62040
+         Left            =   12960
          Picture         =   "main.frx":25226
          Style           =   1  'Graphical
          TabIndex        =   33
@@ -346,7 +358,7 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   975
-         Left            =   -60600
+         Left            =   14400
          Picture         =   "main.frx":2B4B0
          Style           =   1  'Graphical
          TabIndex        =   32
@@ -386,7 +398,7 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   975
-         Left            =   14400
+         Left            =   -60600
          Picture         =   "main.frx":2CA24
          Style           =   1  'Graphical
          TabIndex        =   7
@@ -416,7 +428,7 @@ Begin VB.Form main
       Begin VB.Frame frmFiltrado 
          Caption         =   "Filtrar por"
          Height          =   1875
-         Left            =   -72120
+         Left            =   2880
          TabIndex        =   22
          Top             =   6360
          Width           =   4455
@@ -430,7 +442,7 @@ Begin VB.Form main
             _ExtentY        =   661
             _Version        =   393216
             CustomFormat    =   "dd/MM/yy"
-            Format          =   95551491
+            Format          =   88866819
             CurrentDate     =   44089
          End
          Begin VB.ComboBox cmbConexionTerminados 
@@ -459,7 +471,7 @@ Begin VB.Form main
             _ExtentY        =   661
             _Version        =   393216
             CustomFormat    =   "dd/MM/yy"
-            Format          =   95551491
+            Format          =   88866819
             CurrentDate     =   44089
          End
          Begin VB.Label lblFechaHastaInstalados 
@@ -538,7 +550,7 @@ Begin VB.Form main
       Begin VB.Frame frmFiltrar 
          Caption         =   "Filtrar por"
          Height          =   1155
-         Left            =   2880
+         Left            =   -72120
          TabIndex        =   2
          Top             =   6360
          Width           =   2535
@@ -561,7 +573,7 @@ Begin VB.Form main
       End
       Begin VSFlex7LCtl.VSFlexGrid tablaTrabajosAProgramar 
          Height          =   5295
-         Left            =   360
+         Left            =   -74640
          TabIndex        =   31
          Top             =   960
          Width           =   16695
@@ -627,7 +639,7 @@ Begin VB.Form main
          OutlineBar      =   0
          OutlineCol      =   0
          Ellipsis        =   0
-         ExplorerBar     =   0
+         ExplorerBar     =   5
          PicturesOver    =   0   'False
          FillStyle       =   0
          RightToLeft     =   0   'False
@@ -718,7 +730,7 @@ Begin VB.Form main
          OutlineBar      =   0
          OutlineCol      =   0
          Ellipsis        =   0
-         ExplorerBar     =   0
+         ExplorerBar     =   5
          PicturesOver    =   0   'False
          FillStyle       =   0
          RightToLeft     =   0   'False
@@ -743,7 +755,7 @@ Begin VB.Form main
       End
       Begin VSFlex7LCtl.VSFlexGrid tablaTrabajosTerminados 
          Height          =   5295
-         Left            =   -74640
+         Left            =   360
          TabIndex        =   20
          Top             =   960
          Width           =   16695
