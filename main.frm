@@ -170,7 +170,7 @@ Begin VB.Form main
       _ExtentX        =   30692
       _ExtentY        =   14975
       _Version        =   393216
-      Tab             =   2
+      Tab             =   1
       TabHeight       =   520
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "MS Sans Serif"
@@ -197,7 +197,7 @@ Begin VB.Form main
       Tab(0).ControlCount=   5
       TabCaption(1)   =   "Para instalar"
       TabPicture(1)   =   "main.frx":78A4
-      Tab(1).ControlEnabled=   0   'False
+      Tab(1).ControlEnabled=   -1  'True
       Tab(1).Control(0)=   "tablaTrabajosAInstalar"
       Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "Frame1"
@@ -213,7 +213,7 @@ Begin VB.Form main
       Tab(1).ControlCount=   6
       TabCaption(2)   =   "Terminados"
       TabPicture(2)   =   "main.frx":78C0
-      Tab(2).ControlEnabled=   -1  'True
+      Tab(2).ControlEnabled=   0   'False
       Tab(2).Control(0)=   "tablaTrabajosTerminados"
       Tab(2).Control(0).Enabled=   0   'False
       Tab(2).Control(1)=   "frmFiltrado"
@@ -238,7 +238,7 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   855
-         Left            =   360
+         Left            =   -74640
          Picture         =   "main.frx":78DC
          Style           =   1  'Graphical
          TabIndex        =   21
@@ -258,7 +258,7 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   855
-         Left            =   -74640
+         Left            =   360
          Picture         =   "main.frx":D4EE
          Style           =   1  'Graphical
          TabIndex        =   11
@@ -318,7 +318,7 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   975
-         Left            =   -62040
+         Left            =   12960
          Picture         =   "main.frx":1EF9C
          Style           =   1  'Graphical
          TabIndex        =   17
@@ -338,7 +338,7 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   975
-         Left            =   12960
+         Left            =   -62040
          Picture         =   "main.frx":25226
          Style           =   1  'Graphical
          TabIndex        =   33
@@ -358,7 +358,7 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   975
-         Left            =   14400
+         Left            =   -60600
          Picture         =   "main.frx":2B4B0
          Style           =   1  'Graphical
          TabIndex        =   32
@@ -378,7 +378,7 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   975
-         Left            =   -60600
+         Left            =   14400
          Picture         =   "main.frx":2BF6A
          Style           =   1  'Graphical
          TabIndex        =   18
@@ -418,7 +418,7 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   855
-         Left            =   -74640
+         Left            =   360
          Picture         =   "main.frx":2D4DE
          Style           =   1  'Graphical
          TabIndex        =   12
@@ -428,7 +428,7 @@ Begin VB.Form main
       Begin VB.Frame frmFiltrado 
          Caption         =   "Filtrar por"
          Height          =   1875
-         Left            =   2880
+         Left            =   -72120
          TabIndex        =   22
          Top             =   6360
          Width           =   4455
@@ -442,7 +442,7 @@ Begin VB.Form main
             _ExtentY        =   661
             _Version        =   393216
             CustomFormat    =   "dd/MM/yy"
-            Format          =   88866819
+            Format          =   88932355
             CurrentDate     =   44089
          End
          Begin VB.ComboBox cmbConexionTerminados 
@@ -471,7 +471,7 @@ Begin VB.Form main
             _ExtentY        =   661
             _Version        =   393216
             CustomFormat    =   "dd/MM/yy"
-            Format          =   88866819
+            Format          =   88932355
             CurrentDate     =   44089
          End
          Begin VB.Label lblFechaHastaInstalados 
@@ -510,7 +510,7 @@ Begin VB.Form main
       Begin VB.Frame Frame1 
          Caption         =   "Filtrar por"
          Height          =   1875
-         Left            =   -72120
+         Left            =   2880
          TabIndex        =   13
          Top             =   6360
          Width           =   2535
@@ -664,7 +664,7 @@ Begin VB.Form main
       End
       Begin VSFlex7LCtl.VSFlexGrid tablaTrabajosAInstalar 
          Height          =   5295
-         Left            =   -74640
+         Left            =   360
          TabIndex        =   10
          Top             =   960
          Width           =   16695
@@ -755,7 +755,7 @@ Begin VB.Form main
       End
       Begin VSFlex7LCtl.VSFlexGrid tablaTrabajosTerminados 
          Height          =   5295
-         Left            =   360
+         Left            =   -74640
          TabIndex        =   20
          Top             =   960
          Width           =   16695
