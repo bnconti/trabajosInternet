@@ -19,19 +19,17 @@ End Type
 Dim correo As tCorreo
 
 ' Definen dónde se guarda el .pdf
-Private Const DIRECTORIO = "C:\PDFTEMP\"
-Private Const NOMBRE = "PDFTEMP.pdf"
-
-
-Dim cdoCorreo
-
+Private Const DIRECTORIO As String = "C:\PDFTEMP\"
+Private Nombre As String
 
 Public Sub prepararCorreo(idTrabajo As Long)
-
     Dim correosDestino As String
 
-    Call prepararPDF(idTrabajo)
+    Nombre = "ORDEN " & Format(DateTime.Now, "dd-MM hh-mm-ss") & ".pdf"
     
+    Screen.MousePointer = vbHourglass
+    
+    Call prepararPDF(idTrabajo)
     Call cargarDatosCorreo
     
     ' el correo destino se saca de la tabla CUADRILLAS
@@ -40,6 +38,12 @@ Public Sub prepararCorreo(idTrabajo As Long)
     correosDestino = "bruno.soportecoop@gmail.com"
     
     Call enviarCorreo(correosDestino)
+    
+    On Error GoTo NoFunco
+    Kill correo.Adjunto
+    
+NoFunco:
+    On Error GoTo 0
 End Sub
 
 Private Function traerCorreoCuadrilla(idTrabajo As Long) As String
@@ -81,7 +85,7 @@ Private Sub prepararPDF(idTrabajo As Long)
     With opt
         ' Desp cambiar la ubicacion
         .AutosaveDirectory = DIRECTORIO
-        .AutosaveFilename = NOMBRE
+        .AutosaveFilename = Nombre
         .DisableUpdateCheck = True
         .StandardTitle = "Orden de trabajo"
         .UseAutosave = 1
@@ -106,15 +110,14 @@ Private Sub cargarDatosCorreo()
         correo.Contrasenia = .GetVar("empresa", "contraseniaEmail")
         correo.Puerto = .GetVar("empresa", "puertoSmtp")
         correo.Servidor = .GetVar("empresa", "servidorsmtp")
-        correo.Adjunto = DIRECTORIO & NOMBRE
+        correo.Adjunto = DIRECTORIO & Nombre
         correo.Seguridad = IIf(.GetVar("empresa", "seguridadEmail") = "true", True, False)
         correo.Autenticacion = IIf(.GetVar("empresa", "autenticacionEmail") = "true", True, False)
     End With
 End Sub
 
 Private Sub enviarCorreo(destino As String)
-    'Dim cdoCorreo As New CDO.Message
-    Set cdoCorreo = CreateObject("CDO.Message")
+    Dim cdoCorreo As New CDO.Message
     
     With cdoCorreo.Configuration.Fields
         .Item("http://schemas.microsoft.com/cdo/configuration/sendusing") = 2  'Send the message using the network (SMTP over the network).
@@ -134,8 +137,22 @@ Private Sub enviarCorreo(destino As String)
     cdoCorreo.Sender = "Todd Net"
     cdoCorreo.AddAttachment correo.Adjunto
     
-    cdoCorreo.HTMLBody = "<div>" & "Buenas" & "</div>"
+    cdoCorreo.HTMLBody = "<div>" & "Nueva orden de trabajo" & "</div>"
     cdoCorreo.TextBodyPart.Charset = "utf-8"
-    
+        
+    On Error GoTo ErrorAlEnviar
     cdoCorreo.Send
+<<<<<<< HEAD
+=======
+    
+    Screen.MousePointer = vbDefault
+    
+    MsgBox "Correo enviado exitosamente", vbInformation + vbOKOnly, "Éxito"
+    Exit Sub
+    
+ErrorAlEnviar:
+    MsgBox "Hubo un problema al enviar el correo", vbCritical + vbOKOnly, "Error"
+    On Error GoTo 0
+
+>>>>>>> 32043dd93f4b7036f9f6cc8385f87d8823ac77f2
 End Sub
