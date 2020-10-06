@@ -1,6 +1,6 @@
 VERSION 5.00
 Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
-Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "ComDlg32.OCX"
+Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "comdlg32.ocx"
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Begin VB.Form frmTrabajo 
    BorderStyle     =   1  'Fixed Single
@@ -74,6 +74,7 @@ Begin VB.Form frmTrabajo
          Left            =   2880
          TabIndex        =   29
          Top             =   6000
+         Visible         =   0   'False
          Width           =   3255
       End
       Begin MSComDlg.CommonDialog cdImpresora 
@@ -296,7 +297,7 @@ Begin VB.Form frmTrabajo
             Strikethrough   =   0   'False
          EndProperty
          CustomFormat    =   "hh:mm tt"
-         Format          =   73531395
+         Format          =   42270723
          UpDown          =   -1  'True
          CurrentDate     =   44076
       End
@@ -318,7 +319,7 @@ Begin VB.Form frmTrabajo
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   73531393
+         Format          =   42270721
          CurrentDate     =   44076
       End
       Begin VB.CommandButton btnEliminar 
@@ -535,7 +536,7 @@ Private Sub cargarFormProgramar()
     btnVolverAInstalar.Visible = False
     linea.Visible = False
     
-    chkEnviarCorreoOrden.Value = 1
+    ' chkEnviarCorreoOrden.Value = 1
     
 End Sub
 
@@ -602,7 +603,7 @@ Private Sub cargarObs()
     End With
 End Sub
 
-Private Sub dialogoImpresion()
+Private Sub dialogoImpresion(idTrabajo As Long)
     Dim copia As Integer
     Dim defPrinter As String
     defPrinter = Printer.DeviceName
@@ -650,20 +651,24 @@ Private Sub btnActualizar_Click()
                 .Update
             End If
             
+            If main.tabTrabajos.Tab = 1 Then
+                cambiarNoFacturar .FieldValue("nroOrden"), "SIFACTURAR"
+            End If
+            
         End With
-
+        
         If chkImprimirOrden.Value = 1 Then
-            Call dialogoImpresion
+            Call dialogoImpresion(idTrabajo)
         End If
         
-        If chkEnviarCorreoOrden.Value = 1 Then
-            ProgressBar1.Value = 1
-            ProgressBar1.Visible = True
-            Timer1.Enabled = True
-            Call prepararCorreo(idTrabajo)
-            ProgressBar1.Visible = False
-            Timer1.Enabled = False
-        End If
+'        If chkEnviarCorreoOrden.Value = 1 Then
+'            ProgressBar1.Value = 1
+'            ProgressBar1.Visible = True
+'            ' Timer1.Enabled = True
+'            Call prepararCorreo(idTrabajo)
+'            ProgressBar1.Visible = False
+'            Timer1.Enabled = False
+'        End If
      
         Unload Me
         
@@ -696,6 +701,8 @@ Private Sub btnVolverAInstalar_Click()
         If .status = 0 Then
             .FieldValue("estado") = Estados.NUEVO
             .Update
+            
+            cambiarNoFacturar .FieldValue("nroOrden"), "NOFACTURAR"
         End If
     End With
     

@@ -3,6 +3,28 @@ Option Explicit
 
 Public Declare Function SetDefaultPrinter Lib "winspool.drv" Alias "SetDefaultPrinterA" (ByVal pszPrinter As String) As Boolean
 
+Public Sub cambiarNoFacturar(nroOrden As Long, estadoNuevo As String)
+    ' estadoNuevo deberá ser 0 para activado y 1 para activado
+    
+    Dim estado As Byte
+    
+    If estadoNuevo = "NOFACTURAR" Then
+        estado = 1
+    ElseIf estadoNuevo = "SIFACTURAR" Then
+        estado = 0
+    End If
+    
+    With main.VOrdenes
+        .IndexNumber = 0
+        .FieldValue("nroOrden") = nroOrden
+    
+        If .GetEqual = 0 Then
+            .FieldValue("NOFACTURAR") = estado
+            .Update
+        End If
+    End With
+End Sub
+
 Public Function Izq(Texto As String, largo As Integer) As String
   If largo <= 0 Then
     Izq = vbNullString
@@ -32,7 +54,7 @@ Public Sub imprimirOrden(idTrabajo As Long)
     Dim horaInstalacion As String
     
     Dim obs As String
-    Dim NOMBRE As String
+    Dim Nombre As String
     Dim dni As String
     Dim domicilioFacturacion As String
     Dim domicilioConexion As String
@@ -89,7 +111,7 @@ Public Sub imprimirOrden(idTrabajo As Long)
             horaInstalacion = .vTrabInternet.FieldValue("hora_inst")
             obs = .vTrabInternet.FieldValue("obs")
             
-            NOMBRE = .VAClientes.FieldValue("nombre") & " " & .VAClientes.FieldValue("apellido")
+            Nombre = .VAClientes.FieldValue("nombre") & " " & .VAClientes.FieldValue("apellido")
             dni = .VAClientes.FieldValue("NroDocIde") & vbNullString
             domicilioFacturacion = .VOrdenes.FieldValue("domicilio") & vbNullString
             domicilioConexion = .VAsumAlum.FieldValue("cuenta") & vbNullString
@@ -127,7 +149,7 @@ Public Sub imprimirOrden(idTrabajo As Long)
         .Text 135, 55, "Hora de inst. programada: " & Format$(horaInstalacion, "hh:mm AMPM"), 9, False, "Arial"
         .LineH 25, 65, 165
         
-        .Text 25, 70, "Apellido y nombre: " & NOMBRE, 9, False, "Arial"
+        .Text 25, 70, "Apellido y nombre: " & Nombre, 9, False, "Arial"
         .Text 25, 75, "DNI/CUIT: " & dni, 9, False, "Arial"
         .Text 25, 80, "Condición IVA: " & iva, 9, False, "Arial"
         .Text 25, 85, "Domicilio de facturación: " & domicilioFacturacion, 9, False, "Arial"
@@ -225,3 +247,35 @@ Public Function ValidarCorreos(listaCorreos As String) As Boolean
     ValidarCorreos = valido
 End Function
 
+
+Public Function numeroOrden(idTrabajo As Long) As Long
+    With main.vTrabInternet
+        .IndexNumber = 0
+        .FieldValue("idtrabajo") = idTrabajo
+        .GetEqual
+        
+        If .status = 0 Then
+            numeroOrden = .FieldValue("nroorden")
+        Else
+            numeroOrden = 0
+        End If
+    End With
+End Function
+
+Public Function idTipoConexion(idTrabajo As Long) As Byte
+    With main.vTrabInternet
+        .IndexNumber = 0
+        .FieldValue("tipo_conexion") = idTrabajo
+        .GetEqual
+        
+        If .status = 0 Then
+            idTipoConexion = .FieldValue("nroorden")
+        Else
+            idTipoConexion = 0
+        End If
+    End With
+End Function
+
+Public Function stringTipoConexion(idTipoCon As Byte) As String
+    stringTipoConexion = IIf(idTipoCon < 1, "Algo salió mal", main.arrConexiones(idTipoCon - 1))
+End Function
