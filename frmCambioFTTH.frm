@@ -53,6 +53,7 @@ Begin VB.Form frmCambioFTTH
          Sorted          =   -1  'True
          Style           =   2  'Dropdown List
          TabIndex        =   14
+         ToolTipText     =   "Si no selecciona nada, se mantendrá la tarifa anterior"
          Top             =   600
          Width           =   3975
       End
@@ -90,7 +91,7 @@ Begin VB.Form frmCambioFTTH
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   95944705
+         Format          =   40435713
          CurrentDate     =   44083
       End
       Begin VB.Label Label1 

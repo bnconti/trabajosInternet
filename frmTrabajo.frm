@@ -297,7 +297,7 @@ Begin VB.Form frmTrabajo
             Strikethrough   =   0   'False
          EndProperty
          CustomFormat    =   "hh:mm tt"
-         Format          =   42270723
+         Format          =   95879171
          UpDown          =   -1  'True
          CurrentDate     =   44076
       End
@@ -319,7 +319,7 @@ Begin VB.Form frmTrabajo
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   42270721
+         Format          =   95879169
          CurrentDate     =   44076
       End
       Begin VB.CommandButton btnEliminar 
@@ -732,7 +732,7 @@ Private Sub cargarCuadrillas()
 End Sub
 
 Private Sub btnImprimirOrden_Click()
-    Call dialogoImpresion
+    Call dialogoImpresion(idTrabajo)
 End Sub
 
 Private Sub Timer1_Timer()

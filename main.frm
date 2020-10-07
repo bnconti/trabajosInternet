@@ -183,11 +183,11 @@ Begin VB.Form main
       TabCaption(0)   =   "Para programar"
       TabPicture(0)   =   "main.frx":7888
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "tablaTrabajosAProgramar"
-      Tab(0).Control(1)=   "frmFiltrar"
+      Tab(0).Control(0)=   "btnAProgramarRecuperar"
+      Tab(0).Control(1)=   "btnImprimirProgramar"
       Tab(0).Control(2)=   "btnExpExcelProgramar"
-      Tab(0).Control(3)=   "btnImprimirProgramar"
-      Tab(0).Control(4)=   "btnAProgramarRecuperar"
+      Tab(0).Control(3)=   "frmFiltrar"
+      Tab(0).Control(4)=   "tablaTrabajosAProgramar"
       Tab(0).ControlCount=   5
       TabCaption(1)   =   "Para instalar"
       TabPicture(1)   =   "main.frx":78A4
@@ -210,15 +210,15 @@ Begin VB.Form main
       TabCaption(2)   =   "Terminados"
       TabPicture(2)   =   "main.frx":78C0
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "tablaTrabajosTerminados"
+      Tab(2).Control(0)=   "btnInstaladosRecuperar"
       Tab(2).Control(0).Enabled=   0   'False
-      Tab(2).Control(1)=   "frmFiltrado"
+      Tab(2).Control(1)=   "btnImprimirTerminados"
       Tab(2).Control(1).Enabled=   0   'False
       Tab(2).Control(2)=   "btnExpExcelTerminados"
       Tab(2).Control(2).Enabled=   0   'False
-      Tab(2).Control(3)=   "btnImprimirTerminados"
+      Tab(2).Control(3)=   "frmFiltrado"
       Tab(2).Control(3).Enabled=   0   'False
-      Tab(2).Control(4)=   "btnInstaladosRecuperar"
+      Tab(2).Control(4)=   "tablaTrabajosTerminados"
       Tab(2).Control(4).Enabled=   0   'False
       Tab(2).ControlCount=   5
       Begin VB.CommandButton btnEnviarOrdenPorCorreo 
@@ -459,7 +459,7 @@ Begin VB.Form main
             _ExtentY        =   661
             _Version        =   393216
             CustomFormat    =   "dd/MM/yy"
-            Format          =   96075779
+            Format          =   95879171
             CurrentDate     =   44089
          End
          Begin VB.ComboBox cmbConexionTerminados 
@@ -488,7 +488,7 @@ Begin VB.Form main
             _ExtentY        =   661
             _Version        =   393216
             CustomFormat    =   "dd/MM/yy"
-            Format          =   96075779
+            Format          =   95879171
             CurrentDate     =   44089
          End
          Begin VB.Label lblFechaHastaInstalados 
@@ -1479,7 +1479,7 @@ Private Sub imprimirTabla(tabla As VSFlexGrid)
             .grilla = tabla
             .RazonSocial = ini.GetVar("Empresa", "RazonSocial")
             
-            .Titulo = getNombreTabla(tabla.Name)
+            .Titulo = getTituloExcel(tabla.Name)
             .Subtitulo = "Listado generado el " & Format$(DateTime.Now, "dd/MM/yyyy") & " a las " & Format$(DateTime.Now, "hh:mm AMPM")
             
             Call .Imprimir(, vbPRORLandscape, 6)
