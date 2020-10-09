@@ -7,10 +7,13 @@ CREATE TABLE "TRABAJOINTERNET" (
  "hora_inst" TIME,
  "tipo_conexion" VARCHAR(30),
  "idcuadrilla" INTEGER,
+ "ancho_banda" VARCHAR(50),
  "obs" VARCHAR(50),
  "reserva" VARCHAR(50)
 )#
 
+
+-- Esto hace falta en algunas versiones de Pervasive, sino no te pone el ID como autoincremental. Y en otras no hace falta y si lo pones te genera error.
 --CREATE UNIQUE NOT MODIFIABLE INDEX "index_0" ON "TRABAJOINTERNET" ( "id_trabajo" )#
 CREATE INDEX "index_1" ON "TRABAJOINTERNET" ( "nroorden" )#
 CREATE INDEX "index_2" ON "TRABAJOINTERNET" ( "estado" )#

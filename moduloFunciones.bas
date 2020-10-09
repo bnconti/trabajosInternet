@@ -25,6 +25,88 @@ Public Sub cambiarNoFacturar(nroOrden As Long, estadoNuevo As String)
     End With
 End Sub
 
+Public Sub actualizarTarifa(nroOrden As Long, idTarifa As Long)
+    ' Cambia la tarifa a la seleccionada por el operador
+    
+    With main
+        .VOrdenes.IndexNumber = 0
+        .VOrdenes.FieldValue("nroOrden") = nroOrden
+        
+        If .VOrdenes.GetEqual = 0 Then
+        
+            If Not (IsNull(.VOrdenes.FieldValue("CodAlumbrado"))) Then
+                .VAsumAlum.IndexNumber = 0
+                .VAsumAlum.FieldValue("CodAlumbrado") = .VOrdenes.FieldValue("CodAlumbrado")
+                
+                If .VAsumAlum.GetEqual = 0 Then
+                    .VAsumAlum.FieldValue("ID_Tarifa") = idTarifa
+                    .VAsumAlum.Update
+                End If
+                
+            End If
+        End If
+    End With
+End Sub
+
+
+Public Function getIdTarifa(idTrabajo As Long) As Long
+    With main
+        .vTrabInternet.IndexNumber = 0
+        .vTrabInternet.FieldValue("id_trabajo") = idTrabajo
+        
+        If .vTrabInternet.GetEqual = 0 Then
+            getIdTarifa = .vTrabInternet.FieldValue("ancho_banda")
+        End If
+    End With
+End Function
+
+
+Public Function getAnchoBandaDescrip(idTrabajo As Long) As Long
+    With main
+        .vTrabInternet.IndexNumber = 0
+        .vTrabInternet.FieldValue("id_trabajo") = idTrabajo
+        
+        If .vTrabInternet.GetEqual = 0 Then
+            .VTarifas.FieldValue("id_tarifa") = .vTrabInternet.FieldValue("ancho_banda")
+            If .VTarifas.GetEqual = 0 Then
+                getAnchoBanda = .VTarifas.FieldValue("descrip")
+            End If
+        End If
+    End With
+End Function
+
+
+Public Sub seleccionarPorItemData(id As Long, combo As ComboBox)
+    Dim i As Long
+    For i = 0 To combo.ListCount - 1
+        If combo.ItemData(i) = id Then
+            combo.ListIndex = i
+            Exit For
+        End If
+    Next
+End Sub
+
+Public Sub cargarTarifasFTTH(cmbTarifas As ComboBox)
+    With main.VTarifas
+        Dim st As Integer
+    
+        .IndexNumber = 2
+        .FieldValue("Id_Servicio") = 3
+        .FieldValue("Id_Tipo") = 0
+        
+        st = .GetGreaterOrEqual
+        
+        Do While st = 0 And .FieldValue("Id_Servicio") = 3
+            If InStr(UCase(.FieldValue("descrip")), "FTTH") > 0 Then
+                cmbTarifas.AddItem Format(.FieldValue("Id_Tarifa"), "0000") & " - " & (UCase(.FieldValue("descrip")))
+                cmbTarifas.ItemData(cmbTarifas.NewIndex) = .FieldValue("Id_Tarifa")
+            End If
+            st = .GetNext
+        Loop
+
+    End With
+End Sub
+
 Public Function Izq(Texto As String, largo As Integer) As String
   If largo <= 0 Then
     Izq = vbNullString
@@ -65,6 +147,7 @@ Public Sub imprimirOrden(idTrabajo As Long)
     Dim anchoDeBanda As String
     Dim iva As String
     Dim cuadrilla As String
+    Dim ancho_banda As String
     
     ' =================================
     ' Cargar los datos en las variables
@@ -96,7 +179,7 @@ Public Sub imprimirOrden(idTrabajo As Long)
         .VCuadrillas.FieldValue("idcuadrilla") = .vTrabInternet.FieldValue("idcuadrilla")
         .VCuadrillas.GetEqual
         
-        .VTarifas.FieldValue("id_tarifa") = .VAsumAlum.FieldValue("id_tarifa")
+        .VTarifas.FieldValue("id_tarifa") = .vTrabInternet.FieldValue("ancho_banda")
         .VTarifas.GetEqual
         
         If .VOrdenes.status = 0 And _
@@ -118,8 +201,8 @@ Public Sub imprimirOrden(idTrabajo As Long)
             
             telefono = .VAClientes.FieldValue("reserva") & vbNullString
             nombreUsuario = .VAsumAlumInte.FieldValue("UsInt") & vbNullString
-            anchoDeBanda = IIf(.VTarifas.status = 0, .VTarifas.FieldValue("descrip"), vbNullString)
-            email = .VAsumAlum.FieldValue("direelec")
+            anchoDeBanda = IIf(.VTarifas.status = 0, .VTarifas.FieldValue("descrip") & " (" & .VTarifas.FieldValue("id_tarifa") & ")", vbNullString)
+            email = IIf(.VAsumAlum.FieldValue("direelec") = vbNullString, "-", .VAsumAlum.FieldValue("direelec"))
             iva = CIVADescrip(.VOrdenes.FieldValue("civa"))
             
             cuadrilla = .VCuadrillas.FieldValue("miembros")

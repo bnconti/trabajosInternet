@@ -16,23 +16,54 @@ Begin VB.Form frmCambioFTTH
    ScaleWidth      =   6405
    StartUpPosition =   3  'Windows Default
    Begin VB.CommandButton cmdVolver 
+      BackColor       =   &H00D9D9D9&
       Caption         =   "&Volver"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
-      Left            =   3375
+      Left            =   3495
+      Style           =   1  'Graphical
       TabIndex        =   7
       Top             =   4080
       Width           =   1815
    End
    Begin VB.CommandButton cmdGuardarTrabajo 
+      BackColor       =   &H00DAEFE2&
       Caption         =   "&Guardar trabajo"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
-      Left            =   1215
+      Left            =   1095
+      Style           =   1  'Graphical
       TabIndex        =   6
       Top             =   4080
-      Width           =   1815
+      Width           =   2055
    End
    Begin VB.Frame frmDatosTrabajo 
       Caption         =   "Datos del trabajo"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   1935
       Left            =   120
       TabIndex        =   3
@@ -91,11 +122,20 @@ Begin VB.Form frmCambioFTTH
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   40435713
+         Format          =   95879169
          CurrentDate     =   44083
       End
-      Begin VB.Label Label1 
-         Caption         =   "Actualizar tarifa"
+      Begin VB.Label lblAnchoDeBanda 
+         Caption         =   "Ancho de banda a instalar"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   375
          Left            =   2040
          TabIndex        =   13
@@ -104,6 +144,15 @@ Begin VB.Form frmCambioFTTH
       End
       Begin VB.Label lblObs 
          Caption         =   "Observaciones"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   375
          Left            =   240
          TabIndex        =   5
@@ -112,6 +161,15 @@ Begin VB.Form frmCambioFTTH
       End
       Begin VB.Label lblFechaDePedido 
          Caption         =   "Fecha de pedido"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   375
          Left            =   240
          TabIndex        =   4
@@ -121,6 +179,15 @@ Begin VB.Form frmCambioFTTH
    End
    Begin VB.Frame frmSelCliente 
       Caption         =   "Seleccionar usuario y orden"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   1575
       Left            =   120
       TabIndex        =   0
@@ -138,7 +205,7 @@ Begin VB.Form frmCambioFTTH
       Begin VB.Label lblDomicilio 
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   12
+            Size            =   9.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -154,7 +221,7 @@ Begin VB.Form frmCambioFTTH
       Begin VB.Label lblNombre 
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   12
+            Size            =   9.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -170,7 +237,7 @@ Begin VB.Form frmCambioFTTH
       Begin VB.Label lblCodCli 
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   12
+            Size            =   9.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -186,7 +253,7 @@ Begin VB.Form frmCambioFTTH
       Begin VB.Label lblCodInternet 
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   12
+            Size            =   9.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -212,7 +279,8 @@ Private mNroOrden As Long
 
 Private Sub Form_Load()
     dtpInstInt = DateTime.Now
-    Call cargarTarifasFTTH
+    Call cargarTarifasFTTH(cmbTarifas)
+    cmbTarifas.ListIndex = 0
 End Sub
 
 Property Get nroOrden() As Long
@@ -224,78 +292,26 @@ Property Let nroOrden(NroOrdenNuevo As Long)
 End Property
 
 Private Sub cmdGuardarTrabajo_Click()
-
     If lblCodInternet.Caption = vbNullString Then
         MsgBox "Seleccione un usuario antes de generar la orden.", vbOKOnly + vbInformation, "Faltan datos"
     Else
-    
-        Dim st As Integer
         With main.vTrabInternet
             .Clear
-            .FieldValue("NroOrden") = mNroOrden
-            .FieldValue("Estado") = Estados.NUEVO
-            .FieldValue("Fecha_Pedido") = dtpInstInt.Value
+            .FieldValue("nroOrden") = mNroOrden
+            .FieldValue("estado") = Estados.NUEVO
+            .FieldValue("fecha_pedido") = dtpInstInt.Value
             .FieldValue("tipo_conexion") = 4
+            .FieldValue("ancho_banda") = cmbTarifas.ItemData(cmbTarifas.ListIndex) ' idTarifa
             .FieldValue("obs") = txtObs.Text
-            st = .Insert
+            If .Insert = 0 Then
+                Call cerrar
+            Else
+                Call MsgBox("Hubo un problema al guardar el trabajo.", vbCritical, "Resultado incorrecto")
+            End If
         End With
-        
-        cambiarNoFacturar mNroOrden, "NOFACTURAR"
-        
-        If cmbTarifas.Text <> vbNullString Then
-            Dim idTarifa As Long
-            idTarifa = cmbTarifas.ItemData(cmbTarifas.ListIndex)
-            Call actualizarTarifa(idTarifa)
-        End If
-        
-        Call cerrar
-        
     End If
 End Sub
 
-Private Sub actualizarTarifa(idTarifa As Long)
-    ' Cambia la tarifa a la de fibra seleccionada por el operador
-    
-    With main
-        .VOrdenes.IndexNumber = 0
-        .VOrdenes.FieldValue("nroOrden") = nroOrden
-        
-        If .VOrdenes.GetEqual = 0 Then
-        
-            If Not (IsNull(.VOrdenes.FieldValue("CodAlumbrado"))) Then
-                .VAsumAlum.IndexNumber = 0
-                .VAsumAlum.FieldValue("CodAlumbrado") = .VOrdenes.FieldValue("CodAlumbrado")
-                
-                If .VAsumAlum.GetEqual = 0 Then
-                    .VAsumAlum.FieldValue("ID_Tarifa") = idTarifa
-                    .VAsumAlum.Update
-                End If
-                
-            End If
-        End If
-    End With
-End Sub
-
-Private Sub cargarTarifasFTTH()
-    With main.VTarifas
-        Dim st As Integer
-    
-        .IndexNumber = 2
-        .FieldValue("Id_Servicio") = 3
-        .FieldValue("Id_Tipo") = 0
-        
-        st = .GetGreaterOrEqual
-        
-        Do While st = 0 And .FieldValue("Id_Servicio") = 3
-            If InStr(UCase(.FieldValue("descrip")), "FTTH") > 0 Then
-                cmbTarifas.AddItem Format(.FieldValue("Id_Tarifa"), "0000") & " - " & (UCase(.FieldValue("descrip")))
-                cmbTarifas.ItemData(cmbTarifas.NewIndex) = .FieldValue("Id_Tarifa")
-            End If
-            .GetNext
-        Loop
-
-    End With
-End Sub
 
 Private Sub cmdSelCli_Click()
     frmSelCli.Show 1, Me
