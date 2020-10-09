@@ -1,6 +1,6 @@
 Type=Exe
 Reference=*\G{00020430-0000-0000-C000-000000000046}#2.0#0#C:\Windows\system32\stdole2.tlb#OLE Automation
-Object={1C0489F8-9EFD-423D-887A-315387F18C8F}#1.0#0; vsFlex8l.ocx
+Object={C0A63B80-4B21-11D3-BD95-D426EF2C7949}#1.0#0; vsFlex7l.ocx
 Reference=*\G{CD000000-8B95-11D1-82DB-00C04FB1625D}#1.0#0#C:\Windows\system32\cdosys.dll#Microsoft CDO for Windows 2000 Library
 Reference=*\G{ECF69623-0648-4FEF-BD17-5DE580007EFE}#1.0#0#C:\Program Files\PDFCreator\PDFCreator.exe#PDFCreator
 Object={47E7B6C9-8256-11CF-AB56-0000C04D1EB9}#7.0#0; ACBTR732.OCX
