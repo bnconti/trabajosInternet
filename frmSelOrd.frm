@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{1C0489F8-9EFD-423D-887A-315387F18C8F}#1.0#0"; "vsFlex8l.ocx"
+Object = "{C0A63B80-4B21-11D3-BD95-D426EF2C7949}#1.0#0"; "vsFlex7l.ocx"
 Begin VB.Form frmSelOrd 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Ordenes de Facturación de Servicios"
@@ -32,7 +32,7 @@ Begin VB.Form frmSelOrd
       Top             =   2880
       Width           =   1575
    End
-   Begin VSFlex8LCtl.VSFlexGrid grilla 
+   Begin VSFlex7LCtl.VSFlexGrid grilla 
       Height          =   2220
       Left            =   120
       TabIndex        =   0

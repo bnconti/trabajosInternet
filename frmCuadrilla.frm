@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{1C0489F8-9EFD-423D-887A-315387F18C8F}#1.0#0"; "vsFlex8l.ocx"
+Object = "{C0A63B80-4B21-11D3-BD95-D426EF2C7949}#1.0#0"; "vsFlex7l.ocx"
 Begin VB.Form frmCuadrilla 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Cuadrillas"
@@ -24,7 +24,7 @@ Begin VB.Form frmCuadrilla
       Top             =   2760
       Width           =   1695
    End
-   Begin VSFlex8LCtl.VSFlexGrid tablaCuadrillas 
+   Begin VSFlex7LCtl.VSFlexGrid tablaCuadrillas 
       Height          =   2535
       Left            =   120
       TabIndex        =   0

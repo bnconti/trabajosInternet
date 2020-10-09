@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{1C0489F8-9EFD-423D-887A-315387F18C8F}#1.0#0"; "vsFlex8l.ocx"
+Object = "{C0A63B80-4B21-11D3-BD95-D426EF2C7949}#1.0#0"; "vsFlex7l.ocx"
 Object = "{47E7B6C9-8256-11CF-AB56-0000C04D1EB9}#7.0#0"; "ACBTR732.OCX"
 Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
 Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
@@ -588,7 +588,7 @@ Begin VB.Form main
             Width           =   1335
          End
       End
-      Begin VSFlex8LCtl.VSFlexGrid tablaTrabajosAProgramar 
+      Begin VSFlex7LCtl.VSFlexGrid tablaTrabajosAProgramar 
          Height          =   5295
          Left            =   -74640
          TabIndex        =   31
@@ -682,7 +682,7 @@ Begin VB.Form main
          AccessibleValue =   ""
          AccessibleRole  =   24
       End
-      Begin VSFlex8LCtl.VSFlexGrid tablaTrabajosAInstalar 
+      Begin VSFlex7LCtl.VSFlexGrid tablaTrabajosAInstalar 
          Height          =   5295
          Left            =   360
          TabIndex        =   10
@@ -776,7 +776,7 @@ Begin VB.Form main
          AccessibleValue =   ""
          AccessibleRole  =   24
       End
-      Begin VSFlex8LCtl.VSFlexGrid tablaTrabajosTerminados 
+      Begin VSFlex7LCtl.VSFlexGrid tablaTrabajosTerminados 
          Height          =   5295
          Left            =   -74640
          TabIndex        =   20
