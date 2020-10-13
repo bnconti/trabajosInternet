@@ -20,3 +20,7 @@ CREATE INDEX "index_2" ON "TRABAJOINTERNET" ( "estado" )#
 CREATE INDEX "index_3" ON "TRABAJOINTERNET" ( "fecha_pedido" )#
 CREATE INDEX "index_4" ON "TRABAJOINTERNET" ( "fecha_inst" )#
 CREATE INDEX "index_5" ON "TRABAJOINTERNET" ( "idcuadrilla" )#
+
+
+-- Ejecutar esto si esta tabla no tiene la referencia a la tabla DATOSCONEXINET
+ALTER TABLE "TRABAJOSINTERNET" ADD FOREIGN KEY (id_datosconexinet) REFERENCES DATOSCONEXINET(id_datosconexinet)#

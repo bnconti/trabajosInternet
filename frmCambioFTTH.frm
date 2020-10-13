@@ -122,7 +122,7 @@ Begin VB.Form frmCambioFTTH
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   95879169
+         Format          =   95748097
          CurrentDate     =   44083
       End
       Begin VB.Label lblAnchoDeBanda 
@@ -140,7 +140,7 @@ Begin VB.Form frmCambioFTTH
          Left            =   2040
          TabIndex        =   13
          Top             =   360
-         Width           =   1935
+         Width           =   3855
       End
       Begin VB.Label lblObs 
          Caption         =   "Observaciones"
@@ -275,12 +275,14 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
+Private Const FTTH_20MB As Integer = 1002
+
 Private mNroOrden As Long
 
 Private Sub Form_Load()
     dtpInstInt = DateTime.Now
     Call cargarTarifasFTTH(cmbTarifas)
-    cmbTarifas.ListIndex = 0
+    Call seleccionarPorItemData(FTTH_20MB, cmbTarifas)
 End Sub
 
 Property Get nroOrden() As Long
