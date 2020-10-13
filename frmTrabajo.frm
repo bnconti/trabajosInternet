@@ -280,7 +280,7 @@ Begin VB.Form frmTrabajo
                Strikethrough   =   0   'False
             EndProperty
             CustomFormat    =   "hh:mm tt"
-            Format          =   95748099
+            Format          =   81592323
             UpDown          =   -1  'True
             CurrentDate     =   44076
          End
@@ -302,7 +302,7 @@ Begin VB.Form frmTrabajo
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   95748097
+            Format          =   81592321
             CurrentDate     =   44076
          End
          Begin VB.Label lblTipoDeConexion 
@@ -834,13 +834,14 @@ End Sub
 
 Private Sub cargarFormInstalar()
     With main.tablaTrabajosAInstalar
+        idTrabajo = Val(.TextMatrix(.Row, 10))
+        
         txtNombre = .TextMatrix(.Row, 1)
         txtDomi = .TextMatrix(.Row, 2)
         txtUsInternet = .TextMatrix(.Row, 3)
         txtTlfn = .TextMatrix(.Row, 6)
         txtFechaPedido = .TextMatrix(.Row, 5)
         cmbTipoConexion.Text = .TextMatrix(.Row, 4)
-        idTrabajo = Val(.TextMatrix(.Row, 10))
         dtFechaInst = .TextMatrix(.Row, 7)
         dtHoraInst = .TextMatrix(.Row, 8)
         cmbCuadrilla.Text = main.tablaTrabajosAInstalar.TextMatrix(main.tablaTrabajosAInstalar.Row, 9)
@@ -873,9 +874,29 @@ Private Sub cargarFormTerminado()
     ' Seleccionar en cmbTarifas la tarifa que ya tiene asignado el trabajo.
     Call seleccionarPorItemData(getIdTarifa(idTrabajo), cmbTarifas)
     
+    With main
+        .vTrabInternet.IndexNumber = 0
+        .vTrabInternet.FieldValue("id_trabajo") = idTrabajo
+        
+        If .vTrabInternet.GetEqual = 0 Then
+            Dim codAlumbrado As Long
+            codAlumbrado = getCodAlumbrado(.vTrabInternet.FieldValue("NroOrden"))
+            
+            .VDatosConexInet.IndexNumber = 0
+            .VDatosConexInet.FieldValue("codAlumbrado") = codAlumbrado
+            
+            If .VDatosConexInet.GetEqual = 0 Then
+                txtDirMAC.Text = .VDatosConexInet.FieldValue("direc_MAC") & vbNullString
+                txtUbFis.Text = .VDatosConexInet.FieldValue("ubic_fisica") & vbNullString
+                txtUbLog.Text = .VDatosConexInet.FieldValue("ubic_logica") & vbNullString
+            End If
+            
+        End If
+    End With
+    
     frmDatosAbonado.Enabled = False
     frmDatosTrabajo.Enabled = False
-    frmDatosAbonado.Enabled = False
+    frmDatosConexion.Enabled = False
     
     chkImprimirOrden.Visible = False
     chkEnviarCorreoOrden.Visible = False
@@ -972,10 +993,10 @@ Private Sub btnActualizar_Click()
 
 End Sub
 
-Private Sub actualizarDatosConexInet(CodAlumbrado As Long)
+Private Sub actualizarDatosConexInet(codAlumbrado As Long)
     With main.VDatosConexInet
         .IndexNumber = 0
-        .FieldValue("CodAlumbrado") = CodAlumbrado
+        .FieldValue("CodAlumbrado") = codAlumbrado
         
         If .GetEqual = 0 Then
             ' Hay que actualizar
@@ -985,7 +1006,7 @@ Private Sub actualizarDatosConexInet(CodAlumbrado As Long)
             .Update
         Else
             ' Hay que agregarlo nuevo
-            .FieldValue("CodAlumbrado") = CodAlumbrado
+            .FieldValue("CodAlumbrado") = codAlumbrado
             .FieldValue("direc_MAC") = txtDirMAC.Text
             .FieldValue("ubic_fisica") = txtUbFis.Text
             .FieldValue("ubic_logica") = txtUbLog.Text

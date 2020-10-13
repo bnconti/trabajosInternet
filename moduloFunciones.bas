@@ -73,7 +73,6 @@ Public Function getIdTarifa(idTrabajo As Long) As Long
     End With
 End Function
 
-
 Public Function getAnchoBandaDescrip(idTrabajo As Long) As Long
     With main
         .vTrabInternet.IndexNumber = 0
@@ -82,12 +81,11 @@ Public Function getAnchoBandaDescrip(idTrabajo As Long) As Long
         If .vTrabInternet.GetEqual = 0 Then
             .VTarifas.FieldValue("id_tarifa") = .vTrabInternet.FieldValue("ancho_banda")
             If .VTarifas.GetEqual = 0 Then
-                getAnchoBanda = .VTarifas.FieldValue("descrip")
+                getAnchoBandaDescrip = .VTarifas.FieldValue("descrip")
             End If
         End If
     End With
 End Function
-
 
 Public Sub seleccionarPorItemData(id As Long, combo As ComboBox)
     Dim i As Long
