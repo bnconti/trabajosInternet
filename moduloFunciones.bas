@@ -25,6 +25,18 @@ Public Sub cambiarNoFacturar(nroOrden As Long, estadoNuevo As String)
     End With
 End Sub
 
+Public Function getCodAlumbrado(nroOrden As Long) As Long
+    With main
+        .VOrdenes.IndexNumber = 0
+        .VOrdenes.FieldValue("NroOrden") = nroOrden
+        
+        If .VOrdenes.GetEqual = 0 Then
+            getCodAlumbrado = .VOrdenes.FieldValue("CodAlumbrado")
+        End If
+
+    End With
+End Function
+
 Public Sub actualizarTarifa(nroOrden As Long, idTarifa As Long)
     ' Cambia la tarifa a la seleccionada por el operador
     
@@ -55,7 +67,8 @@ Public Function getIdTarifa(idTrabajo As Long) As Long
         .vTrabInternet.FieldValue("id_trabajo") = idTrabajo
         
         If .vTrabInternet.GetEqual = 0 Then
-            getIdTarifa = .vTrabInternet.FieldValue("ancho_banda")
+            ' Si el trabajo no tiene ancho de banda definido, le asigno por defecto el de la tarifa 1002 (20 MB FTTH).
+            getIdTarifa = IIf(IsNull(.vTrabInternet.FieldValue("ancho_banda")), 1002, .vTrabInternet.FieldValue("ancho_banda"))
         End If
     End With
 End Function
@@ -101,6 +114,25 @@ Public Sub cargarTarifasFTTH(cmbTarifas As ComboBox)
                 cmbTarifas.AddItem Format(.FieldValue("Id_Tarifa"), "0000") & " - " & (UCase(.FieldValue("descrip")))
                 cmbTarifas.ItemData(cmbTarifas.NewIndex) = .FieldValue("Id_Tarifa")
             End If
+            st = .GetNext
+        Loop
+
+    End With
+End Sub
+
+Public Sub cargarTarifasTodas(cmbTarifas As ComboBox)
+    With main.VTarifas
+        Dim st As Integer
+    
+        .IndexNumber = 2
+        .FieldValue("Id_Servicio") = 3
+        .FieldValue("Id_Tipo") = 0
+        
+        st = .GetGreaterOrEqual
+        
+        Do While st = 0 And .FieldValue("Id_Servicio") = 3
+            cmbTarifas.AddItem Format(.FieldValue("Id_Tarifa"), "0000") & " - " & (UCase(.FieldValue("descrip")))
+            cmbTarifas.ItemData(cmbTarifas.NewIndex) = .FieldValue("Id_Tarifa")
             st = .GetNext
         Loop
 

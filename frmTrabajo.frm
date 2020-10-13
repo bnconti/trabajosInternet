@@ -280,7 +280,7 @@ Begin VB.Form frmTrabajo
                Strikethrough   =   0   'False
             EndProperty
             CustomFormat    =   "hh:mm tt"
-            Format          =   95879171
+            Format          =   95748099
             UpDown          =   -1  'True
             CurrentDate     =   44076
          End
@@ -302,7 +302,7 @@ Begin VB.Form frmTrabajo
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   95879169
+            Format          =   95748097
             CurrentDate     =   44076
          End
          Begin VB.Label lblTipoDeConexion 
@@ -436,12 +436,22 @@ Begin VB.Form frmTrabajo
             EndProperty
             Height          =   360
             Left            =   240
+            Sorted          =   -1  'True
             Style           =   2  'Dropdown List
             TabIndex        =   5
             Top             =   600
             Width           =   3735
          End
          Begin VB.TextBox txtDirMAC 
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   375
             Left            =   4200
             TabIndex        =   6
@@ -449,6 +459,15 @@ Begin VB.Form frmTrabajo
             Width           =   3975
          End
          Begin VB.TextBox txtUbFis 
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   375
             Left            =   240
             TabIndex        =   7
@@ -456,6 +475,15 @@ Begin VB.Form frmTrabajo
             Width           =   3735
          End
          Begin VB.TextBox txtUbLog 
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   375
             Left            =   4200
             TabIndex        =   8
@@ -757,7 +785,7 @@ Private idTrabajo As Long
 Private Sub Form_Load()
 
     Call cargarCuadrillas
-    Call cargarTarifasFTTH(cmbTarifas)
+    Call cargarTarifasTodas(cmbTarifas)
     
     If main.tabTrabajos.Tab = 0 Then
         Call cargarFormProgramar
@@ -805,9 +833,6 @@ Private Sub cargarFormProgramar()
 End Sub
 
 Private Sub cargarFormInstalar()
-    ' Seleccionar en cmbTarifas la tarifa que ya tiene asignado el trabajo.
-    Call seleccionarPorItemData(getIdTarifa(idTrabajo), cmbTarifas)
-    
     With main.tablaTrabajosAInstalar
         txtNombre = .TextMatrix(.Row, 1)
         txtDomi = .TextMatrix(.Row, 2)
@@ -820,6 +845,9 @@ Private Sub cargarFormInstalar()
         dtHoraInst = .TextMatrix(.Row, 8)
         cmbCuadrilla.Text = main.tablaTrabajosAInstalar.TextMatrix(main.tablaTrabajosAInstalar.Row, 9)
     End With
+    
+    ' Seleccionar en cmbTarifas la tarifa que ya tiene asignado el trabajo.
+    Call seleccionarPorItemData(getIdTarifa(idTrabajo), cmbTarifas)
     
     chkImprimirOrden.Visible = False
     chkEnviarCorreoOrden.Visible = False
@@ -905,26 +933,24 @@ Private Sub btnActualizar_Click()
             .IndexNumber = 0
             .FieldValue("id_trabajo") = idTrabajo
             
-            st = .GetEqual
-            
-            If st = 0 Then
+            If .GetEqual = 0 Then
                 .FieldValue("tipo_conexion") = cmbTipoConexion.ItemData(cmbTipoConexion.ListIndex)
                 .FieldValue("fecha_inst") = dtFechaInst.Value
                 .FieldValue("hora_inst") = dtHoraInst.Value
                 .FieldValue("idcuadrilla") = cmbCuadrilla.ItemData(cmbCuadrilla.ListIndex)
                 .FieldValue("estado") = IIf(main.tabTrabajos.Tab = 0, Estados.PROGRAMADO, Estados.TERMINADO)
-                
                 .FieldValue("obs") = txtObs.Text
                 .FieldValue("reserva") = txtObsConex.Text
+                
+                If main.tabTrabajos.Tab = 1 Then ' Si el trabajo pasa a terminado entonces...
+                    .FieldValue("ancho_banda") = cmbTarifas.ItemData(cmbTarifas.ListIndex)
+                    Call cambiarNoFacturar(.FieldValue("nroOrden"), "SIFACTURAR")
+                    Call actualizarTarifa(.FieldValue("nroOrden"), .FieldValue("ancho_banda"))
+                    Call actualizarDatosConexInet(getCodAlumbrado(.FieldValue("nroOrden")))
+                End If
+                
                 .Update
             End If
-            
-            If main.tabTrabajos.Tab = 1 Then
-                .FieldValue("ancho_banda") = cmbTarifas.ItemData(cmbTarifas.ListIndex)
-                Call cambiarNoFacturar(.FieldValue("nroOrden"), "SIFACTURAR")
-                Call actualizarTarifa(.FieldValue("nroOrden"), .FieldValue("ancho_banda"))
-            End If
-            
         End With
         
         If chkImprimirOrden.Value = 1 Then
@@ -945,6 +971,29 @@ Private Sub btnActualizar_Click()
     End If
 
 End Sub
+
+Private Sub actualizarDatosConexInet(CodAlumbrado As Long)
+    With main.VDatosConexInet
+        .IndexNumber = 0
+        .FieldValue("CodAlumbrado") = CodAlumbrado
+        
+        If .GetEqual = 0 Then
+            ' Hay que actualizar
+            .FieldValue("direc_MAC") = txtDirMAC.Text
+            .FieldValue("ubic_fisic") = txtUbFis.Text
+            .FieldValue("ubic_logic") = txtUbLog.Text
+            .Update
+        Else
+            ' Hay que agregarlo nuevo
+            .FieldValue("CodAlumbrado") = CodAlumbrado
+            .FieldValue("direc_MAC") = txtDirMAC.Text
+            .FieldValue("ubic_fisica") = txtUbFis.Text
+            .FieldValue("ubic_logica") = txtUbLog.Text
+            .Insert
+        End If
+    End With
+End Sub
+
 
 Private Sub btnEliminar_Click()
     If MsgBox("Se eliminará este trabajo de la base de datos, ¿está seguro?", vbYesNo + vbQuestion, "Eliminar trabajo") = vbYes Then
