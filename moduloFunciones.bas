@@ -73,16 +73,25 @@ Public Function getIdTarifa(idTrabajo As Long) As Long
     End With
 End Function
 
-Public Function getAnchoBandaDescrip(idTrabajo As Long) As Long
+Public Function getDescripTarifa(idTrabajo As Long) As String
     With main
         .vTrabInternet.IndexNumber = 0
-        .vTrabInternet.FieldValue("id_trabajo") = idTrabajo
+        .VOrdenes.IndexNumber = 0
         
+        .vTrabInternet.FieldValue("id_trabajo") = idTrabajo
         If .vTrabInternet.GetEqual = 0 Then
-            .VTarifas.FieldValue("id_tarifa") = .vTrabInternet.FieldValue("ancho_banda")
-            If .VTarifas.GetEqual = 0 Then
-                getAnchoBandaDescrip = .VTarifas.FieldValue("descrip")
+        
+            .VOrdenes.FieldValue("NroOrden") = .vTrabInternet.FieldValue("NroOrden")
+            If .VOrdenes.GetEqual = 0 Then
+                .VAsumAlum.FieldValue("CodAlumbrado") = .VOrdenes.FieldValue("CodAlumbrado")
+                If .VAsumAlum.GetEqual = 0 Then
+                    .VTarifas.FieldValue("Id_Tarifa") = .VAsumAlum.FieldValue("Id_Tarifa")
+                    If .VTarifas.GetEqual = 0 Then
+                        getDescripTarifa = .VTarifas.FieldValue("descrip")
+                    End If
+                End If
             End If
+            
         End If
     End With
 End Function
@@ -136,6 +145,20 @@ Public Sub cargarTarifasTodas(cmbTarifas As ComboBox)
 
     End With
 End Sub
+
+Public Function getNroTfno(CODCLI) As String
+    With main.VAClientes
+        .IndexNumber = 0
+        .FieldValue("CodCli") = CODCLI
+        
+        If .GetEqual = 0 Then
+            getNroTfno = .FieldValue("reserva")
+        Else
+            getNroTfno = "-"
+        End If
+
+    End With
+End Function
 
 Public Function Izq(Texto As String, largo As Integer) As String
   If largo <= 0 Then
@@ -250,58 +273,63 @@ Public Sub imprimirOrden(idTrabajo As Long)
         .Init 2, 0
         
         .LineH 25, 20, 165
-        .Text 25, 25, "Cooperativa Eléctrica Integral de Provisión de Servicios Públicos", 12, True, "Arial"
-        .Text 25, 30, "y Sociales de Todd Ltda.", 12, True, "Arial"
+        .Text 25, 25, "Cooperativa Eléctrica Integral de Provisión de Servicios Públicos", 14, True, "Arial"
+        .Text 25, 30, "y Sociales de Todd Ltda.", 14, True, "Arial"
         .LineH 25, 40, 165
         
-        .Text 25, 45, "Todd Net - Nueva conexión", 10, True, "Arial"
-        .Text 25, 50, "Observaciones: " & obs, 9, True, "Arial"
+        .Text 25, 45, "Todd Net - Nueva conexión", 12, True, "Arial"
+        .Text 25, 50, "Observaciones: " & obs, 11, True, "Arial"
         
-        .Text 25, 55, "N.º de usuario: " & nroUsuario, 9, False, "Arial"
-        .Text 70, 55, "Fecha de inst. programada: " & Format$(fechaInstalacion, "dd/MM/yyyy"), 9, False, "Arial"
-        .Text 135, 55, "Hora de inst. programada: " & Format$(horaInstalacion, "hh:mm AMPM"), 9, False, "Arial"
+        .Text 25, 55, "N.º de usuario: " & nroUsuario, 10, False, "Arial"
+        .Text 70, 55, "Fecha de inst. programada: " & Format$(fechaInstalacion, "dd/MM/yyyy"), 10, False, "Arial"
+        .Text 135, 55, "Hora de inst. programada: " & Format$(horaInstalacion, "hh:mm AMPM"), 10, False, "Arial"
         .LineH 25, 65, 165
         
-        .Text 25, 70, "Apellido y nombre: " & Nombre, 9, False, "Arial"
-        .Text 25, 75, "DNI/CUIT: " & dni, 9, False, "Arial"
-        .Text 25, 80, "Condición IVA: " & iva, 9, False, "Arial"
-        .Text 25, 85, "Domicilio de facturación: " & domicilioFacturacion, 9, False, "Arial"
-        .Text 25, 90, "Domicilio de conexión: " & domicilioConexion, 9, False, "Arial"
-        .Text 25, 95, "Teléfono: " & telefono, 9, False, "Arial"
-        .Text 25, 100, "Correo eléctronico: " & email, 9, False, "Arial"
-        .Text 25, 105, "Nombre de usuario de Internet: " & nombreUsuario, 9, False, "Arial"
-        .Text 25, 110, "Ancho de Banda: " & anchoDeBanda, 9, False, "Arial"
-        .LineH 25, 120, 165
+        .Text 25, 70, "Apellido y nombre: " & Nombre, 11, False, "Arial"
+        .Text 25, 75, "DNI/CUIT: " & dni, 11, False, "Arial"
+        .Text 25, 80, "Condición IVA: " & iva, 11, False, "Arial"
+        .Text 25, 85, "Domicilio de facturación: " & domicilioFacturacion, 11, False, "Arial"
+        .Text 25, 90, "Domicilio de conexión: " & domicilioConexion, 11, False, "Arial"
+        .Text 25, 95, "Teléfono: " & telefono, 11, False, "Arial"
+        .Text 25, 100, "Correo eléctronico: " & email, 11, False, "Arial"
+        .Text 25, 105, "Nombre de usuario de Internet: " & nombreUsuario, 11, False, "Arial"
+        .Text 25, 110, "Ancho de Banda a instalar: " & anchoDeBanda, 11, False, "Arial"
         
-        .Text 25, 125, "Datos de la instalación", 10, True, "Arial"
+        If tipoConexion = "CAMBIO A FTTH" Then
+            .Text 25, 115, "Ancho de Banda anterior: " & getDescripTarifa(idTrabajo), 11, False, "Arial"
+        End If
         
-        .Text 25, 130, "Cuadrilla: " & cuadrilla, 9, True, "Arial"
-        .Text 100, 130, "Tipo de trabajo: " & tipoConexion, 9, True, "Arial"
-        .Text 25, 135, "Fecha de inst.: ______________", 9, True, "Arial"
-        .Text 100, 135, "Hora de inst.: __________", 9, True, "Arial"
+        .LineH 25, 125, 165
         
-        .Text 25, 140, "N.º de fibra: ____________", 9, False, "Arial"
-        .Text 25, 145, "Nombre y ubicación de la caja: ____________", 9, False, "Arial"
-        .Text 25, 150, "Cant. de cables (mts.): ____________", 9, False, "Arial"
-        .Text 25, 155, "Cant. de conectores: ____________", 9, False, "Arial"
-        .Text 25, 160, "Cant. de anilla de distr.: ____________", 9, False, "Arial"
-        .Text 25, 165, "Cant. de anilla de paso: ____________", 9, False, "Arial"
-        .Text 25, 170, "Cant. de mordazas: ____________", 9, False, "Arial"
-        .Text 25, 175, "Cant. de cadenas: ____________", 9, False, "Arial"
-        .Text 25, 180, "Patchcord: ____________", 9, False, "Arial"
-        .Text 25, 185, "Potencia en abonado: ____________", 9, False, "Arial"
-        .Text 25, 190, "IP: ____________", 9, False, "Arial"
-        .Text 25, 195, "Cant. de cable UTP: ____________", 9, False, "Arial"
-        .Text 25, 200, "Cant. de fichas RJ45: ____________", 9, False, "Arial"
+        .Text 25, 130, "Datos de la instalación", 12, True, "Arial"
         
-        .LineH 25, 210, 165
+        .Text 25, 135, "Cuadrilla: " & cuadrilla, 11, True, "Arial"
+        .Text 100, 135, "Tipo de trabajo: " & tipoConexion, 11, True, "Arial"
+        .Text 25, 140, "Fecha de inst.: ______________", 11, True, "Arial"
+        .Text 100, 140, "Hora de inst.: __________", 11, True, "Arial"
         
-        .Text 25, 220, "Conformidad del usuario", 9, False, "Arial"
-        .Text 150, 220, "Nombre del instalador", 9, False, "Arial"
-        .Text 25, 230, "____________________", 9, False, "Arial"
-        .Text 150, 230, "____________________", 9, False, "Arial"
+        .Text 25, 145, "N.º de fibra: ____________", 11, False, "Arial"
+        .Text 25, 150, "Nombre y ubicación de la caja: ____________", 11, False, "Arial"
+        .Text 25, 155, "Cant. de cables (mts.): ____________", 11, False, "Arial"
+        .Text 25, 160, "Cant. de conectores: ____________", 11, False, "Arial"
+        .Text 25, 165, "Cant. de anilla de distr.: ____________", 11, False, "Arial"
+        .Text 25, 170, "Cant. de anilla de paso: ____________", 11, False, "Arial"
+        .Text 25, 175, "Cant. de mordazas: ____________", 11, False, "Arial"
+        .Text 25, 180, "Cant. de cadenas: ____________", 11, False, "Arial"
+        .Text 25, 185, "Patchcord: ____________", 11, False, "Arial"
+        .Text 25, 190, "Potencia en abonado: ____________", 11, False, "Arial"
+        .Text 25, 195, "IP: ____________", 11, False, "Arial"
+        .Text 25, 200, "Cant. de cable UTP: ____________", 11, False, "Arial"
+        .Text 25, 205, "Cant. de fichas RJ45: ____________", 11, False, "Arial"
         
-        .Text 25, 245, "Acepto bases y condiciones del servicio de Internet indicadas en la página web www.todd.com.ar", 7, False, "Arial"
+        .LineH 25, 215, 165
+        
+        .Text 25, 225, "Conformidad del usuario", 11, False, "Arial"
+        .Text 150, 225, "Nombre del instalador", 11, False, "Arial"
+        .Text 25, 235, "____________________", 11, False, "Arial"
+        .Text 150, 235, "____________________", 11, False, "Arial"
+        
+        .Text 25, 245, "Acepto bases y condiciones del servicio de Internet indicadas en la página web www.todd.com.ar", 8, False, "Arial"
         
         .SendToPrinter
     End With

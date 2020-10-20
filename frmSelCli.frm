@@ -71,6 +71,15 @@ Begin VB.Form frmSelCli
       _ExtentY        =   6032
       _StockProps     =   77
       BackColor       =   16777215
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "MS Sans Serif"
+         Size            =   12
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       VAccessName     =   "VAClientes"
       VAFieldName     =   "CODCLI,APELLIDO,NOMBRE"
       VARecordList    =   -1  'True

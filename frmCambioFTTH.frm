@@ -3,90 +3,110 @@ Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
 Begin VB.Form frmCambioFTTH 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Cambio a FTTH"
-   ClientHeight    =   4815
+   ClientHeight    =   6375
    ClientLeft      =   45
    ClientTop       =   330
-   ClientWidth     =   6405
+   ClientWidth     =   6810
    Icon            =   "frmCambioFTTH.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   4800
+   ScaleHeight     =   6355.141
    ScaleMode       =   0  'User
-   ScaleWidth      =   6405
+   ScaleWidth      =   6810
    StartUpPosition =   3  'Windows Default
    Begin VB.CommandButton cmdVolver 
       BackColor       =   &H00D9D9D9&
       Caption         =   "&Volver"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
-         Size            =   9.75
+         Size            =   12
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   495
-      Left            =   3495
+      Height          =   615
+      Left            =   3645
       Style           =   1  'Graphical
-      TabIndex        =   7
-      Top             =   4080
-      Width           =   1815
+      TabIndex        =   5
+      Top             =   5640
+      Width           =   2040
    End
    Begin VB.CommandButton cmdGuardarTrabajo 
       BackColor       =   &H00DAEFE2&
       Caption         =   "&Guardar trabajo"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
-         Size            =   9.75
+         Size            =   12
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   495
-      Left            =   1095
+      Height          =   615
+      Left            =   1125
       Style           =   1  'Graphical
-      TabIndex        =   6
-      Top             =   4080
-      Width           =   2055
+      TabIndex        =   4
+      Top             =   5640
+      Width           =   2175
    End
    Begin VB.Frame frmDatosTrabajo 
       Caption         =   "Datos del trabajo"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
-         Size            =   9.75
+         Size            =   12
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   1935
+      Height          =   3135
       Left            =   120
-      TabIndex        =   3
-      Top             =   1920
-      Width           =   6135
-      Begin VB.ComboBox cmbTarifas 
+      TabIndex        =   9
+      Top             =   2280
+      Width           =   6495
+      Begin VB.ComboBox cmbPrioridad 
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   9.75
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   360
-         Left            =   2040
+         Height          =   420
+         ItemData        =   "frmCambioFTTH.frx":08CA
+         Left            =   2760
+         List            =   "frmCambioFTTH.frx":08CC
+         Style           =   2  'Dropdown List
+         TabIndex        =   1
+         ToolTipText     =   "Si no selecciona nada, se mantendrá la tarifa anterior"
+         Top             =   720
+         Width           =   3495
+      End
+      Begin VB.ComboBox cmbTarifas 
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   420
+         Left            =   240
          Sorted          =   -1  'True
          Style           =   2  'Dropdown List
-         TabIndex        =   14
+         TabIndex        =   2
          ToolTipText     =   "Si no selecciona nada, se mantendrá la tarifa anterior"
-         Top             =   600
-         Width           =   3975
+         Top             =   1680
+         Width           =   6015
       End
       Begin VB.TextBox txtObs 
          BeginProperty Font 
@@ -100,70 +120,87 @@ Begin VB.Form frmCambioFTTH
          EndProperty
          Height          =   375
          Left            =   240
-         TabIndex        =   9
-         Top             =   1320
-         Width           =   5775
+         TabIndex        =   3
+         Top             =   2640
+         Width           =   6015
       End
       Begin MSComCtl2.DTPicker dtpInstInt 
          Height          =   375
          Left            =   240
-         TabIndex        =   8
-         Top             =   600
-         Width           =   1575
-         _ExtentX        =   2778
+         TabIndex        =   0
+         Top             =   720
+         Width           =   2295
+         _ExtentX        =   4048
          _ExtentY        =   661
          _Version        =   393216
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "MS Sans Serif"
-            Size            =   9.75
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   95748097
+         Format          =   96010241
          CurrentDate     =   44083
+      End
+      Begin VB.Label lblPrioridad 
+         Caption         =   "Prioridad"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Left            =   2760
+         TabIndex        =   15
+         Top             =   360
+         Width           =   1335
       End
       Begin VB.Label lblAnchoDeBanda 
          Caption         =   "Ancho de banda a instalar"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   9.75
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   375
-         Left            =   2040
-         TabIndex        =   13
-         Top             =   360
-         Width           =   3855
+         Height          =   255
+         Left            =   240
+         TabIndex        =   14
+         Top             =   1320
+         Width           =   2895
       End
       Begin VB.Label lblObs 
          Caption         =   "Observaciones"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   9.75
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   375
+         Height          =   255
          Left            =   240
-         TabIndex        =   5
-         Top             =   1080
-         Width           =   1935
+         TabIndex        =   11
+         Top             =   2280
+         Width           =   1695
       End
       Begin VB.Label lblFechaDePedido 
          Caption         =   "Fecha de pedido"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   9.75
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -172,7 +209,7 @@ Begin VB.Form frmCambioFTTH
          EndProperty
          Height          =   375
          Left            =   240
-         TabIndex        =   4
+         TabIndex        =   10
          Top             =   360
          Width           =   1935
       End
@@ -181,31 +218,31 @@ Begin VB.Form frmCambioFTTH
       Caption         =   "Seleccionar usuario y orden"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
-         Size            =   9.75
+         Size            =   12
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   1575
+      Height          =   1935
       Left            =   120
-      TabIndex        =   0
+      TabIndex        =   6
       Top             =   120
-      Width           =   6135
+      Width           =   6495
       Begin VB.CommandButton cmdSelCli 
          Height          =   732
          Left            =   240
-         Picture         =   "frmCambioFTTH.frx":08CA
+         Picture         =   "frmCambioFTTH.frx":08CE
          Style           =   1  'Graphical
-         TabIndex        =   12
-         Top             =   480
+         TabIndex        =   16
+         Top             =   600
          Width           =   945
       End
-      Begin VB.Label lblDomicilio 
+      Begin VB.Label lblTelefono 
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   9.75
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -214,14 +251,30 @@ Begin VB.Form frmCambioFTTH
          EndProperty
          Height          =   375
          Left            =   1320
-         TabIndex        =   11
+         TabIndex        =   17
+         Top             =   1440
+         Width           =   4695
+      End
+      Begin VB.Label lblDomicilio 
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   375
+         Left            =   1320
+         TabIndex        =   13
          Top             =   1080
          Width           =   4695
       End
       Begin VB.Label lblNombre 
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   9.75
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -230,14 +283,14 @@ Begin VB.Form frmCambioFTTH
          EndProperty
          Height          =   375
          Left            =   1320
-         TabIndex        =   10
+         TabIndex        =   12
          Top             =   720
          Width           =   4695
       End
       Begin VB.Label lblCodCli 
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   9.75
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -245,15 +298,15 @@ Begin VB.Form frmCambioFTTH
             Strikethrough   =   0   'False
          EndProperty
          Height          =   375
-         Left            =   3720
-         TabIndex        =   2
+         Left            =   3960
+         TabIndex        =   8
          Top             =   360
          Width           =   2295
       End
       Begin VB.Label lblCodInternet 
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   9.75
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -262,7 +315,7 @@ Begin VB.Form frmCambioFTTH
          EndProperty
          Height          =   375
          Left            =   1320
-         TabIndex        =   1
+         TabIndex        =   7
          Top             =   360
          Width           =   2175
       End
@@ -283,6 +336,7 @@ Private Sub Form_Load()
     dtpInstInt = DateTime.Now
     Call cargarTarifasFTTH(cmbTarifas)
     Call seleccionarPorItemData(FTTH_20MB, cmbTarifas)
+    Call cargarComboPrioridad
 End Sub
 
 Property Get nroOrden() As Long
@@ -302,9 +356,10 @@ Private Sub cmdGuardarTrabajo_Click()
             .FieldValue("nroOrden") = mNroOrden
             .FieldValue("estado") = Estados.NUEVO
             .FieldValue("fecha_pedido") = dtpInstInt.Value
-            .FieldValue("tipo_conexion") = 4
+            .FieldValue("tipo_conexion") = 4 ' Cambio a FTTH
             .FieldValue("ancho_banda") = cmbTarifas.ItemData(cmbTarifas.ListIndex) ' idTarifa
             .FieldValue("obs") = txtObs.Text
+            .FieldValue("prioridad") = cmbPrioridad.ItemData(cmbPrioridad.ListIndex)
             If .Insert = 0 Then
                 Call cerrar
             Else
@@ -314,6 +369,19 @@ Private Sub cmdGuardarTrabajo_Click()
     End If
 End Sub
 
+
+Private Sub cargarComboPrioridad()
+    cmbPrioridad.AddItem ("BAJA")
+    cmbPrioridad.ItemData(0) = 3
+    
+    cmbPrioridad.AddItem ("MEDIA")
+    cmbPrioridad.ItemData(1) = 2
+    
+    cmbPrioridad.AddItem ("ALTA")
+    cmbPrioridad.ItemData(2) = 1
+    
+    cmbPrioridad.ListIndex = 0
+End Sub
 
 Private Sub cmdSelCli_Click()
     frmSelCli.Show 1, Me

@@ -8,6 +8,7 @@ CREATE TABLE "TRABAJOINTERNET" (
  "tipo_conexion" VARCHAR(30),
  "idcuadrilla" INTEGER,
  "ancho_banda" VARCHAR(50),
+ "prioridad" INTEGER,
  "obs" VARCHAR(50),
  "reserva" VARCHAR(50)
 )#
@@ -20,6 +21,8 @@ CREATE INDEX "index_2" ON "TRABAJOINTERNET" ( "estado" )#
 CREATE INDEX "index_3" ON "TRABAJOINTERNET" ( "fecha_pedido" )#
 CREATE INDEX "index_4" ON "TRABAJOINTERNET" ( "fecha_inst" )#
 CREATE INDEX "index_5" ON "TRABAJOINTERNET" ( "idcuadrilla" )#
+CREATE INDEX "index_6" ON "TRABAJOINTERNET" ( "prioridad" )#
 
--- Si es la tabla vieja que no tiene el ancho de banda
+-- Si es la tabla vieja que no tiene estos campos
 ALTER TABLE "TRABAJOINTERNET" ADD ancho_banda VARCHAR(50)#
+ALTER TABLE "TRABAJOINTERNET" ADD prioridad INTEGER#

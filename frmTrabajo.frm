@@ -5,7 +5,7 @@ Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Begin VB.Form frmTrabajo 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Datos del trabajo"
-   ClientHeight    =   10650
+   ClientHeight    =   10830
    ClientLeft      =   45
    ClientTop       =   330
    ClientWidth     =   9210
@@ -13,20 +13,20 @@ Begin VB.Form frmTrabajo
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   10650
+   ScaleHeight     =   10830
    ScaleWidth      =   9210
    StartUpPosition =   3  'Windows Default
    Begin VB.Timer Timer1 
       Enabled         =   0   'False
       Interval        =   100
       Left            =   8760
-      Top             =   10320
+      Top             =   10440
    End
    Begin MSComctlLib.ProgressBar ProgressBar1 
       Height          =   315
       Left            =   360
       TabIndex        =   18
-      Top             =   10320
+      Top             =   10560
       Visible         =   0   'False
       Width           =   8355
       _ExtentX        =   14737
@@ -52,12 +52,12 @@ Begin VB.Form frmTrabajo
       Style           =   1  'Graphical
       TabIndex        =   16
       ToolTipText     =   "La orden vuelve a la primera solapa del sistema"
-      Top             =   4200
+      Top             =   4560
       Width           =   2175
    End
    Begin VB.Frame frmDatos 
       BorderStyle     =   0  'None
-      Height          =   10275
+      Height          =   10515
       Left            =   120
       TabIndex        =   15
       Top             =   0
@@ -72,11 +72,11 @@ Begin VB.Form frmTrabajo
       Begin VB.Frame frmBotones 
          BorderStyle     =   0  'None
          Caption         =   "Acciones"
-         Height          =   1095
+         Height          =   1455
          Left            =   240
          TabIndex        =   42
          Top             =   9120
-         Width           =   8415
+         Width           =   8535
          Begin VB.CommandButton btnActualizar 
             BackColor       =   &H00DAEFE2&
             Caption         =   "Terminar"
@@ -94,7 +94,7 @@ Begin VB.Form frmTrabajo
             Picture         =   "frmTrabajo.frx":030A
             Style           =   1  'Graphical
             TabIndex        =   12
-            Top             =   0
+            Top             =   120
             Width           =   2475
          End
          Begin VB.CommandButton btnVolver 
@@ -110,11 +110,11 @@ Begin VB.Form frmTrabajo
                Strikethrough   =   0   'False
             EndProperty
             Height          =   1050
-            Left            =   7200
+            Left            =   7320
             Picture         =   "frmTrabajo.frx":0BD4
             Style           =   1  'Graphical
             TabIndex        =   14
-            Top             =   0
+            Top             =   120
             Width           =   1125
          End
          Begin VB.CommandButton btnEliminar 
@@ -130,18 +130,18 @@ Begin VB.Form frmTrabajo
                Strikethrough   =   0   'False
             EndProperty
             Height          =   1050
-            Left            =   5520
+            Left            =   5880
             Picture         =   "frmTrabajo.frx":0CE6
             Style           =   1  'Graphical
             TabIndex        =   13
-            Top             =   0
+            Top             =   120
             Width           =   1245
          End
          Begin VB.CheckBox chkImprimirOrden 
             Caption         =   "Imprimir orden de trabajo"
             BeginProperty Font 
                Name            =   "MS Sans Serif"
-               Size            =   9.75
+               Size            =   12
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -151,14 +151,14 @@ Begin VB.Form frmTrabajo
             Height          =   375
             Left            =   2640
             TabIndex        =   10
-            Top             =   0
-            Width           =   2775
+            Top             =   120
+            Width           =   3015
          End
          Begin VB.CheckBox chkEnviarCorreoOrden 
             Caption         =   "Enviar orden por correo"
             BeginProperty Font 
                Name            =   "MS Sans Serif"
-               Size            =   9.75
+               Size            =   12
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -170,7 +170,7 @@ Begin VB.Form frmTrabajo
             TabIndex        =   11
             Top             =   480
             Visible         =   0   'False
-            Width           =   2775
+            Width           =   3135
          End
       End
       Begin VB.CommandButton btnImprimirOrden 
@@ -189,21 +189,21 @@ Begin VB.Form frmTrabajo
          Left            =   6240
          Style           =   1  'Graphical
          TabIndex        =   17
-         Top             =   5040
+         Top             =   5280
          Width           =   2175
       End
       Begin VB.Frame frmDatosTrabajo 
          Caption         =   "Datos del trabajo"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   9.75
+            Size            =   12
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   2775
+         Height          =   2895
          Left            =   240
          TabIndex        =   36
          Top             =   3120
@@ -211,43 +211,43 @@ Begin VB.Form frmTrabajo
          Begin VB.ComboBox cmbCuadrilla 
             BeginProperty Font 
                Name            =   "MS Sans Serif"
-               Size            =   9.75
+               Size            =   12
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Height          =   360
+            Height          =   420
             Left            =   3120
             Style           =   2  'Dropdown List
             TabIndex        =   0
-            Top             =   1320
+            Top             =   1560
             Width           =   2775
          End
          Begin VB.ComboBox cmbTipoConexion 
             BeginProperty Font 
                Name            =   "MS Sans Serif"
-               Size            =   9.75
+               Size            =   12
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Height          =   360
+            Height          =   420
             ItemData        =   "frmTrabajo.frx":15B0
             Left            =   240
             List            =   "frmTrabajo.frx":15C0
             Style           =   2  'Dropdown List
             TabIndex        =   2
-            Top             =   1320
+            Top             =   1560
             Width           =   2775
          End
          Begin VB.TextBox txtObs 
             BeginProperty Font 
                Name            =   "MS Sans Serif"
-               Size            =   9.75
+               Size            =   12
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -258,21 +258,21 @@ Begin VB.Form frmTrabajo
             Left            =   240
             MaxLength       =   50
             TabIndex        =   1
-            Top             =   600
+            Top             =   720
             Width           =   7935
          End
          Begin MSComCtl2.DTPicker dtHoraInst 
             Height          =   375
             Left            =   3120
             TabIndex        =   4
-            Top             =   2040
+            Top             =   2400
             Width           =   2775
             _ExtentX        =   4895
             _ExtentY        =   661
             _Version        =   393216
             BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                Name            =   "MS Sans Serif"
-               Size            =   9.75
+               Size            =   12
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -280,7 +280,7 @@ Begin VB.Form frmTrabajo
                Strikethrough   =   0   'False
             EndProperty
             CustomFormat    =   "hh:mm tt"
-            Format          =   81592323
+            Format          =   42663939
             UpDown          =   -1  'True
             CurrentDate     =   44076
          End
@@ -288,28 +288,28 @@ Begin VB.Form frmTrabajo
             Height          =   375
             Left            =   240
             TabIndex        =   3
-            Top             =   2040
+            Top             =   2400
             Width           =   2775
             _ExtentX        =   4895
             _ExtentY        =   661
             _Version        =   393216
             BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                Name            =   "MS Sans Serif"
-               Size            =   9.75
+               Size            =   12
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   81592321
+            Format          =   42663937
             CurrentDate     =   44076
          End
          Begin VB.Label lblTipoDeConexion 
             Caption         =   "Tipo de conexión"
             BeginProperty Font 
                Name            =   "MS Sans Serif"
-               Size            =   9.75
+               Size            =   12
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -319,14 +319,14 @@ Begin VB.Form frmTrabajo
             Height          =   375
             Left            =   240
             TabIndex        =   41
-            Top             =   1080
+            Top             =   1200
             Width           =   2175
          End
          Begin VB.Label lblFechaDeInstalacion 
             Caption         =   "Fecha de instalación"
             BeginProperty Font 
                Name            =   "MS Sans Serif"
-               Size            =   9.75
+               Size            =   12
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -336,14 +336,14 @@ Begin VB.Form frmTrabajo
             Height          =   255
             Left            =   240
             TabIndex        =   40
-            Top             =   1800
+            Top             =   2040
             Width           =   2775
          End
          Begin VB.Label lblHora 
             Caption         =   "Hora de instalación"
             BeginProperty Font 
                Name            =   "MS Sans Serif"
-               Size            =   9.75
+               Size            =   12
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -353,14 +353,14 @@ Begin VB.Form frmTrabajo
             Height          =   255
             Left            =   3120
             TabIndex        =   39
-            Top             =   1800
+            Top             =   2040
             Width           =   2655
          End
          Begin VB.Label lblCuadrilla 
             Caption         =   "Cuadrilla"
             BeginProperty Font 
                Name            =   "MS Sans Serif"
-               Size            =   9.75
+               Size            =   12
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -370,14 +370,14 @@ Begin VB.Form frmTrabajo
             Height          =   375
             Left            =   3120
             TabIndex        =   38
-            Top             =   1080
+            Top             =   1200
             Width           =   2175
          End
          Begin VB.Label lblObs 
             Caption         =   "Observaciones"
             BeginProperty Font 
                Name            =   "MS Sans Serif"
-               Size            =   9.75
+               Size            =   12
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -395,14 +395,14 @@ Begin VB.Form frmTrabajo
          Caption         =   "Datos de la conexión"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   9.75
+            Size            =   12
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   2655
+         Height          =   2895
          Left            =   240
          TabIndex        =   30
          Top             =   6120
@@ -421,31 +421,31 @@ Begin VB.Form frmTrabajo
             Left            =   240
             MaxLength       =   50
             TabIndex        =   9
-            Top             =   2040
+            Top             =   2400
             Width           =   7935
          End
          Begin VB.ComboBox cmbTarifas 
             BeginProperty Font 
                Name            =   "MS Sans Serif"
-               Size            =   9.75
+               Size            =   12
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Height          =   360
+            Height          =   420
             Left            =   240
             Sorted          =   -1  'True
             Style           =   2  'Dropdown List
             TabIndex        =   5
-            Top             =   600
+            Top             =   720
             Width           =   3735
          End
          Begin VB.TextBox txtDirMAC 
             BeginProperty Font 
                Name            =   "MS Sans Serif"
-               Size            =   9.75
+               Size            =   12
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -455,7 +455,7 @@ Begin VB.Form frmTrabajo
             Height          =   375
             Left            =   4200
             TabIndex        =   6
-            Top             =   600
+            Top             =   720
             Width           =   3975
          End
          Begin VB.TextBox txtUbFis 
@@ -471,7 +471,7 @@ Begin VB.Form frmTrabajo
             Height          =   375
             Left            =   240
             TabIndex        =   7
-            Top             =   1320
+            Top             =   1560
             Width           =   3735
          End
          Begin VB.TextBox txtUbLog 
@@ -487,14 +487,14 @@ Begin VB.Form frmTrabajo
             Height          =   375
             Left            =   4200
             TabIndex        =   8
-            Top             =   1320
+            Top             =   1560
             Width           =   3975
          End
          Begin VB.Label lblObsConex 
             Caption         =   "Observaciones finales"
             BeginProperty Font 
                Name            =   "MS Sans Serif"
-               Size            =   9.75
+               Size            =   12
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -504,14 +504,14 @@ Begin VB.Form frmTrabajo
             Height          =   255
             Left            =   240
             TabIndex        =   35
-            Top             =   1800
+            Top             =   2040
             Width           =   2175
          End
          Begin VB.Label lblTarifas 
             Caption         =   "Nueva tarifa"
             BeginProperty Font 
                Name            =   "MS Sans Serif"
-               Size            =   9.75
+               Size            =   12
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -522,13 +522,13 @@ Begin VB.Form frmTrabajo
             Left            =   240
             TabIndex        =   34
             Top             =   360
-            Width           =   1215
+            Width           =   1935
          End
          Begin VB.Label lblDirMAC 
             Caption         =   "Dirección MAC"
             BeginProperty Font 
                Name            =   "MS Sans Serif"
-               Size            =   9.75
+               Size            =   12
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -539,13 +539,13 @@ Begin VB.Form frmTrabajo
             Left            =   4200
             TabIndex        =   33
             Top             =   360
-            Width           =   1455
+            Width           =   2295
          End
          Begin VB.Label lblUbFis 
             Caption         =   "Ubicación física"
             BeginProperty Font 
                Name            =   "MS Sans Serif"
-               Size            =   9.75
+               Size            =   12
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -555,14 +555,14 @@ Begin VB.Form frmTrabajo
             Height          =   255
             Left            =   240
             TabIndex        =   32
-            Top             =   1080
-            Width           =   1575
+            Top             =   1200
+            Width           =   2295
          End
          Begin VB.Label lblUbLog 
             Caption         =   "Ubicación lógica"
             BeginProperty Font 
                Name            =   "MS Sans Serif"
-               Size            =   9.75
+               Size            =   12
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -572,15 +572,15 @@ Begin VB.Form frmTrabajo
             Height          =   255
             Left            =   4200
             TabIndex        =   31
-            Top             =   1080
-            Width           =   1575
+            Top             =   1200
+            Width           =   2295
          End
       End
       Begin VB.Frame frmDatosAbonado 
          Caption         =   "Datos del abonado"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   9.75
+            Size            =   12
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
@@ -597,9 +597,9 @@ Begin VB.Form frmTrabajo
             BorderStyle     =   0  'None
             BeginProperty Font 
                Name            =   "MS Sans Serif"
-               Size            =   9.75
+               Size            =   12
                Charset         =   0
-               Weight          =   400
+               Weight          =   700
                Underline       =   0   'False
                Italic          =   0   'False
                Strikethrough   =   0   'False
@@ -616,9 +616,9 @@ Begin VB.Form frmTrabajo
             BorderStyle     =   0  'None
             BeginProperty Font 
                Name            =   "MS Sans Serif"
-               Size            =   9.75
+               Size            =   12
                Charset         =   0
-               Weight          =   400
+               Weight          =   700
                Underline       =   0   'False
                Italic          =   0   'False
                Strikethrough   =   0   'False
@@ -635,9 +635,9 @@ Begin VB.Form frmTrabajo
             BorderStyle     =   0  'None
             BeginProperty Font 
                Name            =   "MS Sans Serif"
-               Size            =   9.75
+               Size            =   12
                Charset         =   0
-               Weight          =   400
+               Weight          =   700
                Underline       =   0   'False
                Italic          =   0   'False
                Strikethrough   =   0   'False
@@ -654,9 +654,9 @@ Begin VB.Form frmTrabajo
             BorderStyle     =   0  'None
             BeginProperty Font 
                Name            =   "MS Sans Serif"
-               Size            =   9.75
+               Size            =   12
                Charset         =   0
-               Weight          =   400
+               Weight          =   700
                Underline       =   0   'False
                Italic          =   0   'False
                Strikethrough   =   0   'False
@@ -673,9 +673,9 @@ Begin VB.Form frmTrabajo
             BorderStyle     =   0  'None
             BeginProperty Font 
                Name            =   "MS Sans Serif"
-               Size            =   9.75
+               Size            =   12
                Charset         =   0
-               Weight          =   400
+               Weight          =   700
                Underline       =   0   'False
                Italic          =   0   'False
                Strikethrough   =   0   'False
@@ -691,7 +691,7 @@ Begin VB.Form frmTrabajo
             Caption         =   "Apellido y nombre"
             BeginProperty Font 
                Name            =   "MS Sans Serif"
-               Size            =   9.75
+               Size            =   12
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -702,13 +702,13 @@ Begin VB.Form frmTrabajo
             Left            =   240
             TabIndex        =   29
             Top             =   360
-            Width           =   1815
+            Width           =   2295
          End
          Begin VB.Label lblDomicilio 
             Caption         =   "Domicilio de instalación"
             BeginProperty Font 
                Name            =   "MS Sans Serif"
-               Size            =   9.75
+               Size            =   12
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -725,7 +725,7 @@ Begin VB.Form frmTrabajo
             Caption         =   "Cuenta de Internet"
             BeginProperty Font 
                Name            =   "MS Sans Serif"
-               Size            =   9.75
+               Size            =   12
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -736,13 +736,13 @@ Begin VB.Form frmTrabajo
             Left            =   240
             TabIndex        =   27
             Top             =   1320
-            Width           =   1815
+            Width           =   2295
          End
          Begin VB.Label lblFechaDePedido 
             Caption         =   "Fecha de pedido"
             BeginProperty Font 
                Name            =   "MS Sans Serif"
-               Size            =   9.75
+               Size            =   12
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -759,7 +759,7 @@ Begin VB.Form frmTrabajo
             Caption         =   "Teléfono"
             BeginProperty Font 
                Name            =   "MS Sans Serif"
-               Size            =   9.75
+               Size            =   12
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -879,11 +879,11 @@ Private Sub cargarFormTerminado()
         .vTrabInternet.FieldValue("id_trabajo") = idTrabajo
         
         If .vTrabInternet.GetEqual = 0 Then
-            Dim codAlumbrado As Long
-            codAlumbrado = getCodAlumbrado(.vTrabInternet.FieldValue("NroOrden"))
+            Dim CodAlumbrado As Long
+            CodAlumbrado = getCodAlumbrado(.vTrabInternet.FieldValue("NroOrden"))
             
             .VDatosConexInet.IndexNumber = 0
-            .VDatosConexInet.FieldValue("codAlumbrado") = codAlumbrado
+            .VDatosConexInet.FieldValue("codAlumbrado") = CodAlumbrado
             
             If .VDatosConexInet.GetEqual = 0 Then
                 txtDirMAC.Text = .VDatosConexInet.FieldValue("direc_MAC") & vbNullString
@@ -993,10 +993,10 @@ Private Sub btnActualizar_Click()
 
 End Sub
 
-Private Sub actualizarDatosConexInet(codAlumbrado As Long)
+Private Sub actualizarDatosConexInet(CodAlumbrado As Long)
     With main.VDatosConexInet
         .IndexNumber = 0
-        .FieldValue("CodAlumbrado") = codAlumbrado
+        .FieldValue("CodAlumbrado") = CodAlumbrado
         
         If .GetEqual = 0 Then
             ' Hay que actualizar
@@ -1006,7 +1006,7 @@ Private Sub actualizarDatosConexInet(codAlumbrado As Long)
             .Update
         Else
             ' Hay que agregarlo nuevo
-            .FieldValue("CodAlumbrado") = codAlumbrado
+            .FieldValue("CodAlumbrado") = CodAlumbrado
             .FieldValue("direc_MAC") = txtDirMAC.Text
             .FieldValue("ubic_fisica") = txtUbFis.Text
             .FieldValue("ubic_logica") = txtUbLog.Text

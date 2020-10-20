@@ -1,18 +1,18 @@
 VERSION 5.00
-Object = "{C0A63B80-4B21-11D3-BD95-D426EF2C7949}#1.0#0"; "vsFlex7l.ocx"
+Object = "{C0A63B80-4B21-11D3-BD95-D426EF2C7949}#1.0#0"; "vsflex7l.ocx"
 Begin VB.Form frmSelOrd 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Ordenes de Facturación de Servicios"
    ClientHeight    =   3345
    ClientLeft      =   480
    ClientTop       =   345
-   ClientWidth     =   7830
+   ClientWidth     =   9915
    Icon            =   "frmSelOrd.frx":0000
    KeyPreview      =   -1  'True
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   3345
-   ScaleWidth      =   7830
+   ScaleWidth      =   9915
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Begin VB.CommandButton cmdAceptar 
@@ -37,15 +37,16 @@ Begin VB.Form frmSelOrd
       Left            =   120
       TabIndex        =   0
       Top             =   540
-      Width           =   7575
-      _cx             =   13361
+      Width           =   9735
+      _cx             =   17171
       _cy             =   3916
+      _ConvInfo       =   1
       Appearance      =   1
       BorderStyle     =   1
       Enabled         =   -1  'True
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Size            =   12
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
@@ -76,7 +77,7 @@ Begin VB.Form frmSelOrd
       GridLinesFixed  =   1
       GridLineWidth   =   1
       Rows            =   1
-      Cols            =   4
+      Cols            =   5
       FixedRows       =   1
       FixedCols       =   2
       RowHeightMin    =   0
@@ -183,6 +184,8 @@ Private Sub MostrarOrdenes(Cli As Long)
   
   With main
     .VOrdenes.IndexNumber = 1
+    .VAsumAlum.IndexNumber = 0
+    
     .VOrdenes.FieldValue("CodCli") = Cli
     .VOrdenes.GetEqual
   
@@ -190,10 +193,19 @@ Private Sub MostrarOrdenes(Cli As Long)
     Do While (.VOrdenes.status = 0) And (.VOrdenes.FieldValue("CodCli") = Cli)
       If Not IsNull(.VOrdenes.FieldValue("CodAlumbrado")) Then
         If .VOrdenes.FieldValue("CodAlumbrado") > 0 Then
+            .VAsumAlum.FieldValue("CodAlumbrado") = .VOrdenes.FieldValue("CodAlumbrado")
+            .VAsumAlum.GetEqual
+            
+            Dim domConexion As String
+            domConexion = IIf(IsNull(.VAsumAlum.FieldValue("cuenta")), "No se encontró domicilio de conexión", .VAsumAlum.FieldValue("cuenta"))
+            
             grilla.AddItem .VOrdenes.FieldValue("NroOrden") & vbTab & _
               Format$(.VOrdenes.FieldValue("Ruta"), String$(2, "0")) & "-" & Format$(.VOrdenes.FieldValue("SubRuta"), String$(6, "0")) & vbTab & _
               .VOrdenes.FieldValue("CodAlumbrado") & vbTab & _
-              .VOrdenes.FieldValue("domicilio")
+              .VOrdenes.FieldValue("domicilio") & vbTab & _
+              domConexion
+              
+              
           grilla.RowData(grilla.Rows - 1) = .VOrdenes.Position
         End If
       End If
@@ -208,10 +220,9 @@ End Sub
 Private Sub regreso()
     If grilla.Row <= 0 Then
         mCodAlumbrado = 0
-        frmCambioFTTH.NroOrden = 0
+        frmCambioFTTH.nroOrden = 0
     Else
     
-        ' Preguntarle al Torto por esto
         mCodAlumbrado = Val(grilla.TextMatrix(grilla.Row, 2))
   
         With main
@@ -227,9 +238,10 @@ Private Sub regreso()
                 .VAsumAlum.GetEqual
         
                 If .VAsumAlum.status = 0 And .VAsumAlumInte.status = 0 Then
-                    frmCambioFTTH.NroOrden = main.VOrdenes.FieldValue("NroOrden")
+                    frmCambioFTTH.nroOrden = main.VOrdenes.FieldValue("NroOrden")
                     frmCambioFTTH.lblCodInternet = "Cód. Internet " & mCodAlumbrado
-                    frmCambioFTTH.lblDomicilio = grilla.TextMatrix(grilla.Row, 3)
+                    frmCambioFTTH.lblDomicilio = grilla.TextMatrix(grilla.Row, 4)
+                    frmCambioFTTH.lblTelefono = getNroTfno(main.VOrdenes.FieldValue("CodCli"))
                 Else
                     MsgBox "El cliente no tiene un suministro de Internet - generarlo en la solapa de suministro del sistema de facturación.", vbExclamation + vbOKOnly, "Error"
                     
@@ -241,6 +253,7 @@ Private Sub regreso()
       
     End If
 End Sub
+
 
 
 

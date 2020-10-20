@@ -6,16 +6,16 @@ Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
 Begin VB.Form main 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Trabajos de Internet"
-   ClientHeight    =   8490
+   ClientHeight    =   8550
    ClientLeft      =   150
    ClientTop       =   720
-   ClientWidth     =   17415
+   ClientWidth     =   21210
    Icon            =   "main.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   8490
-   ScaleWidth      =   17415
+   ScaleHeight     =   8550
+   ScaleWidth      =   21210
    StartUpPosition =   3  'Windows Default
    Begin VB.CommandButton cmdSalir 
       BackColor       =   &H00E6E6E7&
@@ -23,7 +23,7 @@ Begin VB.Form main
       Caption         =   "Salir"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Size            =   9.75
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
@@ -31,7 +31,7 @@ Begin VB.Form main
          Strikethrough   =   0   'False
       EndProperty
       Height          =   945
-      Left            =   15900
+      Left            =   19680
       Picture         =   "main.frx":27A2
       Style           =   1  'Graphical
       TabIndex        =   8
@@ -43,7 +43,7 @@ Begin VB.Form main
       Caption         =   "Cambiar a FTTH"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Size            =   9.75
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
@@ -51,17 +51,17 @@ Begin VB.Form main
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   14760
+      Left            =   360
       Style           =   1  'Graphical
       TabIndex        =   9
       Top             =   480
       Width           =   2295
    End
    Begin VB.Frame frmBD 
-      Height          =   1455
-      Left            =   9120
+      Height          =   1215
+      Left            =   14280
       TabIndex        =   5
-      Top             =   6480
+      Top             =   7440
       Visible         =   0   'False
       Width           =   2775
       Begin VAccessLib.VAccess VDatosConexInet 
@@ -170,7 +170,7 @@ Begin VB.Form main
          TableName       =   "CUADRILLASINTERNET"
          Location        =   "\\servidor\D\Compu\SFS2000\Datos\CUADRILLASINTERNET.mkd"
          DdfPath         =   "\\servidor\D\Compu\SFS2000\Datos"
-         VAUDDDFInfo     =   "main.frx":78D4
+         VAUDDDFInfo     =   "main.frx":78FA
       End
    End
    Begin TabDlg.SSTab tabTrabajos 
@@ -178,8 +178,8 @@ Begin VB.Form main
       Left            =   0
       TabIndex        =   0
       Top             =   0
-      Width           =   17400
-      _ExtentX        =   30692
+      Width           =   21120
+      _ExtentX        =   37253
       _ExtentY        =   14975
       _Version        =   393216
       Tab             =   2
@@ -194,27 +194,43 @@ Begin VB.Form main
          Strikethrough   =   0   'False
       EndProperty
       TabCaption(0)   =   "Para programar"
-      TabPicture(0)   =   "main.frx":826F
+      TabPicture(0)   =   "main.frx":8295
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "btnAProgramarRecuperar"
-      Tab(0).Control(1)=   "btnImprimirProgramar"
+      Tab(0).Control(0)=   "tablaTrabajosAProgramar"
+      Tab(0).Control(0).Enabled=   0   'False
+      Tab(0).Control(1)=   "frmFiltrar"
+      Tab(0).Control(1).Enabled=   0   'False
       Tab(0).Control(2)=   "btnExpExcelProgramar"
-      Tab(0).Control(3)=   "frmFiltrar"
-      Tab(0).Control(4)=   "tablaTrabajosAProgramar"
-      Tab(0).ControlCount=   5
+      Tab(0).Control(2).Enabled=   0   'False
+      Tab(0).Control(3)=   "btnImprimirProgramar"
+      Tab(0).Control(3).Enabled=   0   'False
+      Tab(0).Control(4)=   "btnAProgramarRecuperar"
+      Tab(0).Control(4).Enabled=   0   'False
+      Tab(0).Control(5)=   "Frame2"
+      Tab(0).Control(5).Enabled=   0   'False
+      Tab(0).ControlCount=   6
       TabCaption(1)   =   "Para instalar"
-      TabPicture(1)   =   "main.frx":828B
+      TabPicture(1)   =   "main.frx":82B1
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "btnEnviarOrdenPorCorreo"
-      Tab(1).Control(1)=   "btnAInstalarRecuperar"
-      Tab(1).Control(2)=   "btnImprimirInstalar"
+      Tab(1).Control(0)=   "tablaTrabajosAInstalar"
+      Tab(1).Control(0).Enabled=   0   'False
+      Tab(1).Control(1)=   "Frame1"
+      Tab(1).Control(1).Enabled=   0   'False
+      Tab(1).Control(2)=   "btnGuardarFinalizados"
+      Tab(1).Control(2).Enabled=   0   'False
       Tab(1).Control(3)=   "btnExpExcelInstalar"
-      Tab(1).Control(4)=   "btnGuardarFinalizados"
-      Tab(1).Control(5)=   "Frame1"
-      Tab(1).Control(6)=   "tablaTrabajosAInstalar"
-      Tab(1).ControlCount=   7
+      Tab(1).Control(3).Enabled=   0   'False
+      Tab(1).Control(4)=   "btnImprimirInstalar"
+      Tab(1).Control(4).Enabled=   0   'False
+      Tab(1).Control(5)=   "btnAInstalarRecuperar"
+      Tab(1).Control(5).Enabled=   0   'False
+      Tab(1).Control(6)=   "btnEnviarOrdenPorCorreo"
+      Tab(1).Control(6).Enabled=   0   'False
+      Tab(1).Control(7)=   "frmTotalesAInstalar"
+      Tab(1).Control(7).Enabled=   0   'False
+      Tab(1).ControlCount=   8
       TabCaption(2)   =   "Terminados"
-      TabPicture(2)   =   "main.frx":82A7
+      TabPicture(2)   =   "main.frx":82CD
       Tab(2).ControlEnabled=   -1  'True
       Tab(2).Control(0)=   "tablaTrabajosTerminados"
       Tab(2).Control(0).Enabled=   0   'False
@@ -226,27 +242,619 @@ Begin VB.Form main
       Tab(2).Control(3).Enabled=   0   'False
       Tab(2).Control(4)=   "btnInstaladosRecuperar"
       Tab(2).Control(4).Enabled=   0   'False
-      Tab(2).ControlCount=   5
+      Tab(2).Control(5)=   "Frame3"
+      Tab(2).Control(5).Enabled=   0   'False
+      Tab(2).ControlCount=   6
+      Begin VB.Frame Frame3 
+         Caption         =   "Totales de trabajos terminados"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   1935
+         Left            =   7560
+         TabIndex        =   57
+         Top             =   6360
+         Width           =   6255
+         Begin VB.Label Label19 
+            Caption         =   "Total:"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   375
+            Left            =   120
+            TabIndex        =   67
+            Top             =   360
+            Width           =   1215
+         End
+         Begin VB.Label Label18 
+            Caption         =   "Alta FTTH:"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   375
+            Left            =   120
+            TabIndex        =   66
+            Top             =   840
+            Width           =   1215
+         End
+         Begin VB.Label Label17 
+            Caption         =   "Alta Altena:"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   375
+            Left            =   120
+            TabIndex        =   65
+            Top             =   1320
+            Width           =   1335
+         End
+         Begin VB.Label Label16 
+            Caption         =   "Alta Edificio:"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   375
+            Left            =   3000
+            TabIndex        =   64
+            Top             =   840
+            Width           =   1455
+         End
+         Begin VB.Label Label15 
+            Caption         =   "Cambio a FTTH:"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   375
+            Left            =   3000
+            TabIndex        =   63
+            Top             =   1320
+            Width           =   1815
+         End
+         Begin VB.Label lbCambioFTTHTotalTerminados 
+            BorderStyle     =   1  'Fixed Single
+            Caption         =   "0"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H000000FF&
+            Height          =   375
+            Left            =   4800
+            TabIndex        =   62
+            Top             =   1320
+            Width           =   1335
+         End
+         Begin VB.Label lblAltaEdificioTotalTerminados 
+            BorderStyle     =   1  'Fixed Single
+            Caption         =   "0"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H000000FF&
+            Height          =   375
+            Left            =   4800
+            TabIndex        =   61
+            Top             =   840
+            Width           =   1335
+         End
+         Begin VB.Label lblAltaAntenaTotalTerminados 
+            BorderStyle     =   1  'Fixed Single
+            Caption         =   "0"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H000000FF&
+            Height          =   375
+            Left            =   1440
+            TabIndex        =   60
+            Top             =   1320
+            Width           =   1335
+         End
+         Begin VB.Label lblAltaFTTHTotalTerminados 
+            BorderStyle     =   1  'Fixed Single
+            Caption         =   "0"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H000000FF&
+            Height          =   375
+            Left            =   1440
+            TabIndex        =   59
+            Top             =   840
+            Width           =   1335
+         End
+         Begin VB.Label lblTrabajosTerminadosTotal 
+            BorderStyle     =   1  'Fixed Single
+            Caption         =   "0"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H000000FF&
+            Height          =   375
+            Left            =   1440
+            TabIndex        =   58
+            Top             =   360
+            Width           =   1335
+         End
+      End
+      Begin VB.Frame Frame2 
+         Caption         =   "Totales de trabajos para programar"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   1935
+         Left            =   -69120
+         TabIndex        =   46
+         Top             =   6360
+         Width           =   6255
+         Begin VB.Label Label14 
+            Caption         =   "Total:"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   375
+            Left            =   120
+            TabIndex        =   56
+            Top             =   360
+            Width           =   1215
+         End
+         Begin VB.Label Label13 
+            Caption         =   "Alta FTTH:"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   375
+            Left            =   120
+            TabIndex        =   55
+            Top             =   840
+            Width           =   1215
+         End
+         Begin VB.Label Label12 
+            Caption         =   "Alta Altena:"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   375
+            Left            =   120
+            TabIndex        =   54
+            Top             =   1320
+            Width           =   1335
+         End
+         Begin VB.Label Label11 
+            Caption         =   "Alta Edificio:"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   375
+            Left            =   3000
+            TabIndex        =   53
+            Top             =   840
+            Width           =   1455
+         End
+         Begin VB.Label Label10 
+            Caption         =   "Cambio a FTTH:"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   375
+            Left            =   3000
+            TabIndex        =   52
+            Top             =   1320
+            Width           =   1815
+         End
+         Begin VB.Label lbCambioFTTHTotalParaProgramar 
+            BorderStyle     =   1  'Fixed Single
+            Caption         =   "0"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H000000FF&
+            Height          =   375
+            Left            =   4800
+            TabIndex        =   51
+            Top             =   1320
+            Width           =   1335
+         End
+         Begin VB.Label lblAltaEdificioTotalParaProgramar 
+            BorderStyle     =   1  'Fixed Single
+            Caption         =   "0"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H000000FF&
+            Height          =   375
+            Left            =   4800
+            TabIndex        =   50
+            Top             =   840
+            Width           =   1335
+         End
+         Begin VB.Label lblAltaAntenaTotalParaProgramar 
+            BorderStyle     =   1  'Fixed Single
+            Caption         =   "0"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H000000FF&
+            Height          =   375
+            Left            =   1440
+            TabIndex        =   49
+            Top             =   1320
+            Width           =   1335
+         End
+         Begin VB.Label lblAltaFTTHTotalParaProgramar 
+            BorderStyle     =   1  'Fixed Single
+            Caption         =   "0"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H000000FF&
+            Height          =   375
+            Left            =   1440
+            TabIndex        =   48
+            Top             =   840
+            Width           =   1335
+         End
+         Begin VB.Label lblTrabajosParaProgramarTotal 
+            BorderStyle     =   1  'Fixed Single
+            Caption         =   "0"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H000000FF&
+            Height          =   375
+            Left            =   1440
+            TabIndex        =   47
+            Top             =   360
+            Width           =   1335
+         End
+      End
+      Begin VB.Frame frmTotalesAInstalar 
+         Caption         =   "Totales de trabajos para instalar"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   1935
+         Left            =   -69120
+         TabIndex        =   35
+         Top             =   6360
+         Width           =   6255
+         Begin VB.Label lblTrabajosParaInstalarTotal 
+            BorderStyle     =   1  'Fixed Single
+            Caption         =   "0"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H000000FF&
+            Height          =   375
+            Left            =   1440
+            TabIndex        =   45
+            Top             =   360
+            Width           =   1335
+         End
+         Begin VB.Label lblAltaFTTHTotalParaInstalar 
+            BorderStyle     =   1  'Fixed Single
+            Caption         =   "0"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H000000FF&
+            Height          =   375
+            Left            =   1440
+            TabIndex        =   44
+            Top             =   840
+            Width           =   1335
+         End
+         Begin VB.Label lblAltaAntenaTotalParaInstalar 
+            BorderStyle     =   1  'Fixed Single
+            Caption         =   "0"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H000000FF&
+            Height          =   375
+            Left            =   1440
+            TabIndex        =   43
+            Top             =   1320
+            Width           =   1335
+         End
+         Begin VB.Label lblAltaEdificioTotalParaInstalar 
+            BorderStyle     =   1  'Fixed Single
+            Caption         =   "0"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H000000FF&
+            Height          =   375
+            Left            =   4800
+            TabIndex        =   42
+            Top             =   840
+            Width           =   1335
+         End
+         Begin VB.Label lbCambioFTTHTotalParaInstalar 
+            BorderStyle     =   1  'Fixed Single
+            Caption         =   "0"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H000000FF&
+            Height          =   375
+            Left            =   4800
+            TabIndex        =   41
+            Top             =   1320
+            Width           =   1335
+         End
+         Begin VB.Label lblCambioFTTHParaInstalar 
+            Caption         =   "Cambio a FTTH:"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   375
+            Left            =   3000
+            TabIndex        =   40
+            Top             =   1320
+            Width           =   1815
+         End
+         Begin VB.Label lblAltaEdificioParaInstalar 
+            Caption         =   "Alta Edificio:"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   375
+            Left            =   3000
+            TabIndex        =   39
+            Top             =   840
+            Width           =   1455
+         End
+         Begin VB.Label lblAltaAntenaParaInstalar 
+            Caption         =   "Alta Altena:"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   375
+            Left            =   120
+            TabIndex        =   38
+            Top             =   1320
+            Width           =   1335
+         End
+         Begin VB.Label lblAltaFTTHParaInstalar 
+            Caption         =   "Alta FTTH:"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   375
+            Left            =   120
+            TabIndex        =   37
+            Top             =   840
+            Width           =   1215
+         End
+         Begin VB.Label lblTotalParaInstalar 
+            Caption         =   "Total:"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   375
+            Left            =   120
+            TabIndex        =   36
+            Top             =   360
+            Width           =   1215
+         End
+      End
       Begin VB.CommandButton btnEnviarOrdenPorCorreo 
          BackColor       =   &H00F7EBDD&
          Caption         =   "Enviar correo a la cuadrilla"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Size            =   9.75
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   1335
-         Left            =   -69360
-         Picture         =   "main.frx":82C3
-         Style           =   1  'Graphical
+         Height          =   975
+         Left            =   -59760
+         Picture         =   "main.frx":82E9
          TabIndex        =   34
          Top             =   6480
          Visible         =   0   'False
-         Width           =   1695
+         Width           =   1335
       End
       Begin VB.CommandButton btnInstaladosRecuperar 
          BackColor       =   &H00CCF2FF&
@@ -262,7 +870,7 @@ Begin VB.Form main
          EndProperty
          Height          =   855
          Left            =   360
-         Picture         =   "main.frx":918D
+         Picture         =   "main.frx":91B3
          Style           =   1  'Graphical
          TabIndex        =   21
          Top             =   6480
@@ -273,7 +881,7 @@ Begin VB.Form main
          Caption         =   "Recuperar"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Size            =   9.75
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
@@ -282,7 +890,7 @@ Begin VB.Form main
          EndProperty
          Height          =   855
          Left            =   -74640
-         Picture         =   "main.frx":ED9F
+         Picture         =   "main.frx":EDC5
          Style           =   1  'Graphical
          TabIndex        =   11
          Top             =   6480
@@ -293,7 +901,7 @@ Begin VB.Form main
          Caption         =   "Recuperar"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Size            =   9.75
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
@@ -302,7 +910,7 @@ Begin VB.Form main
          EndProperty
          Height          =   855
          Left            =   -74640
-         Picture         =   "main.frx":149B1
+         Picture         =   "main.frx":149D7
          Style           =   1  'Graphical
          TabIndex        =   1
          Top             =   6480
@@ -313,7 +921,7 @@ Begin VB.Form main
          Caption         =   "Imprimir"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Size            =   9.75
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
@@ -321,8 +929,8 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   975
-         Left            =   -62040
-         Picture         =   "main.frx":1A5C3
+         Left            =   -58200
+         Picture         =   "main.frx":1A5E9
          Style           =   1  'Graphical
          TabIndex        =   6
          Top             =   6480
@@ -333,7 +941,7 @@ Begin VB.Form main
          Caption         =   "Imprimir"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Size            =   9.75
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
@@ -341,8 +949,8 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   975
-         Left            =   -62040
-         Picture         =   "main.frx":2084D
+         Left            =   -58200
+         Picture         =   "main.frx":20873
          Style           =   1  'Graphical
          TabIndex        =   17
          Top             =   6480
@@ -361,8 +969,8 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   975
-         Left            =   12960
-         Picture         =   "main.frx":26AD7
+         Left            =   16800
+         Picture         =   "main.frx":26AFD
          Style           =   1  'Graphical
          TabIndex        =   33
          Top             =   6480
@@ -381,8 +989,8 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   975
-         Left            =   14400
-         Picture         =   "main.frx":2CD61
+         Left            =   18240
+         Picture         =   "main.frx":2CD87
          Style           =   1  'Graphical
          TabIndex        =   32
          Top             =   6480
@@ -393,7 +1001,7 @@ Begin VB.Form main
          Caption         =   "Exportar a Excel"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Size            =   9.75
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
@@ -401,8 +1009,8 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   975
-         Left            =   -60600
-         Picture         =   "main.frx":2D81B
+         Left            =   -56760
+         Picture         =   "main.frx":2D841
          Style           =   1  'Graphical
          TabIndex        =   18
          Top             =   6480
@@ -413,7 +1021,7 @@ Begin VB.Form main
          Caption         =   "Exportar a Excel"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Size            =   9.75
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
@@ -421,8 +1029,8 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   975
-         Left            =   -60600
-         Picture         =   "main.frx":2E2D5
+         Left            =   -56760
+         Picture         =   "main.frx":2E2FB
          Style           =   1  'Graphical
          TabIndex        =   7
          Top             =   6480
@@ -433,7 +1041,7 @@ Begin VB.Form main
          Caption         =   "Guardar finalizados"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Size            =   9.75
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
@@ -442,7 +1050,7 @@ Begin VB.Form main
          EndProperty
          Height          =   855
          Left            =   -74640
-         Picture         =   "main.frx":2ED8F
+         Picture         =   "main.frx":2EDB5
          Style           =   1  'Graphical
          TabIndex        =   12
          Top             =   7440
@@ -450,6 +1058,15 @@ Begin VB.Form main
       End
       Begin VB.Frame frmFiltrado 
          Caption         =   "Filtrar por"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   1875
          Left            =   2880
          TabIndex        =   22
@@ -464,12 +1081,30 @@ Begin VB.Form main
             _ExtentX        =   2990
             _ExtentY        =   661
             _Version        =   393216
+            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             CustomFormat    =   "dd/MM/yy"
-            Format          =   31588355
+            Format          =   94437379
             CurrentDate     =   44089
          End
          Begin VB.ComboBox cmbConexionTerminados 
-            Height          =   315
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Left            =   120
             Style           =   2  'Dropdown List
             TabIndex        =   26
@@ -477,7 +1112,16 @@ Begin VB.Form main
             Width           =   2055
          End
          Begin VB.ComboBox cmbCuadrillaTerminados 
-            Height          =   315
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Left            =   120
             Style           =   2  'Dropdown List
             TabIndex        =   24
@@ -493,12 +1137,30 @@ Begin VB.Form main
             _ExtentX        =   2990
             _ExtentY        =   661
             _Version        =   393216
+            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             CustomFormat    =   "dd/MM/yy"
-            Format          =   31588355
+            Format          =   94437379
             CurrentDate     =   44089
          End
          Begin VB.Label lblFechaHastaInstalados 
             Caption         =   "Fecha hasta"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   345
             Left            =   2400
             TabIndex        =   29
@@ -507,6 +1169,15 @@ Begin VB.Form main
          End
          Begin VB.Label lblFechaDesdeInstalados 
             Caption         =   "Fecha desde"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   345
             Left            =   2400
             TabIndex        =   27
@@ -515,14 +1186,32 @@ Begin VB.Form main
          End
          Begin VB.Label Label4 
             Caption         =   "Tipo de conexión"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   345
             Left            =   120
             TabIndex        =   25
             Top             =   1080
-            Width           =   1335
+            Width           =   1815
          End
          Begin VB.Label Label3 
             Caption         =   "Cuadrilla"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   345
             Left            =   120
             TabIndex        =   23
@@ -532,37 +1221,82 @@ Begin VB.Form main
       End
       Begin VB.Frame Frame1 
          Caption         =   "Filtrar por"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   1875
          Left            =   -72120
          TabIndex        =   13
          Top             =   6360
-         Width           =   2535
+         Width           =   2775
          Begin VB.ComboBox cmbConexionAInstalar 
-            Height          =   315
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Left            =   120
             Style           =   2  'Dropdown List
             TabIndex        =   19
             Top             =   1320
-            Width           =   2055
+            Width           =   2535
          End
          Begin VB.ComboBox cmbCuadrillaAInstalar 
-            Height          =   315
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Left            =   120
             Style           =   2  'Dropdown List
             TabIndex        =   15
             Top             =   600
-            Width           =   2055
+            Width           =   2535
          End
          Begin VB.Label Label2 
             Caption         =   "Tipo de conexión"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   345
             Left            =   120
             TabIndex        =   16
             Top             =   1080
-            Width           =   1335
+            Width           =   1815
          End
          Begin VB.Label Label1 
             Caption         =   "Cuadrilla"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   345
             Left            =   120
             TabIndex        =   14
@@ -572,26 +1306,53 @@ Begin VB.Form main
       End
       Begin VB.Frame frmFiltrar 
          Caption         =   "Filtrar por"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   1155
          Left            =   -72120
          TabIndex        =   2
          Top             =   6360
-         Width           =   2535
+         Width           =   2775
          Begin VB.ComboBox cmbConexionAProgramar 
-            Height          =   315
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Left            =   120
             Style           =   2  'Dropdown List
             TabIndex        =   4
             Top             =   600
-            Width           =   2055
+            Width           =   2295
          End
          Begin VB.Label lblTipoDeConexion 
             Caption         =   "Tipo de conexión"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   345
             Left            =   120
             TabIndex        =   3
             Top             =   360
-            Width           =   1335
+            Width           =   1815
          End
       End
       Begin VSFlex7LCtl.VSFlexGrid tablaTrabajosAProgramar 
@@ -599,16 +1360,16 @@ Begin VB.Form main
          Left            =   -74640
          TabIndex        =   31
          Top             =   960
-         Width           =   16695
-         _cx             =   1975022344
-         _cy             =   1975002236
+         Width           =   20415
+         _cx             =   36010
+         _cy             =   9340
          _ConvInfo       =   1
          Appearance      =   1
          BorderStyle     =   1
          Enabled         =   -1  'True
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "MS Sans Serif"
-            Size            =   9.75
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -647,7 +1408,7 @@ Begin VB.Form main
          ColWidthMin     =   0
          ColWidthMax     =   0
          ExtendLastCol   =   0   'False
-         FormatString    =   $"main.frx":2F099
+         FormatString    =   $"main.frx":2F0BF
          ScrollTrack     =   -1  'True
          ScrollBars      =   3
          ScrollTips      =   0   'False
@@ -690,16 +1451,16 @@ Begin VB.Form main
          Left            =   -74640
          TabIndex        =   10
          Top             =   960
-         Width           =   16695
-         _cx             =   1975022344
-         _cy             =   1975002236
+         Width           =   20415
+         _cx             =   36010
+         _cy             =   9340
          _ConvInfo       =   1
          Appearance      =   1
          BorderStyle     =   1
          Enabled         =   -1  'True
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "MS Sans Serif"
-            Size            =   9.75
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -738,7 +1499,7 @@ Begin VB.Form main
          ColWidthMin     =   0
          ColWidthMax     =   0
          ExtendLastCol   =   0   'False
-         FormatString    =   $"main.frx":2F1CD
+         FormatString    =   $"main.frx":2F1F3
          ScrollTrack     =   -1  'True
          ScrollBars      =   3
          ScrollTips      =   0   'False
@@ -781,16 +1542,16 @@ Begin VB.Form main
          Left            =   360
          TabIndex        =   20
          Top             =   960
-         Width           =   16695
-         _cx             =   1975022344
-         _cy             =   1975002236
+         Width           =   20415
+         _cx             =   36010
+         _cy             =   9340
          _ConvInfo       =   1
          Appearance      =   1
          BorderStyle     =   1
          Enabled         =   -1  'True
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "MS Sans Serif"
-            Size            =   9.75
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -829,7 +1590,7 @@ Begin VB.Form main
          ColWidthMin     =   0
          ColWidthMax     =   0
          ExtendLastCol   =   0   'False
-         FormatString    =   $"main.frx":2F384
+         FormatString    =   $"main.frx":2F3AA
          ScrollTrack     =   -1  'True
          ScrollBars      =   3
          ScrollTips      =   0   'False
@@ -898,6 +1659,12 @@ Public Enum Estados
     TERMINADO = 0      ' La instalación fue realizada
 End Enum
 
+Public Enum Prioridad
+    ALTA = 1
+    MEDIA = 2
+    BAJA = 3
+End Enum
+
 Public ini As New ArchIni
 
 Private Const CHEQUEADO As Integer = 1
@@ -915,7 +1682,6 @@ Private Sub btnEnviarOrdenPorCorreo_Click()
         If tablaTrabajosAInstalar.Row > 1 Then
             ' Dim idTrabajo =
             ' Call prepararCorreo(idTrabajo)
-        
         Else
             MsgBox "Tiene que seleccionar el trabajo del cual se enviará la orden.", vbInformation + vbOKOnly, "No se seleccionó un trabajo"
         End If
@@ -1003,6 +1769,18 @@ Private Sub cargarTablaTrabajosAProgramar()
                                          vTrabInternet.FieldValue("id_trabajo")) & vbTab & _
                                          vTrabInternet.FieldValue("obs")
                 
+                
+                On Error Resume Next
+                    If vTrabInternet.FieldValue("prioridad") = Prioridad.ALTA Then
+                        ' Pintar fila rojo
+                        tablaTrabajosAProgramar.Cell(flexcpBackColor, tablaTrabajosAProgramar.Rows - 1, 0, tablaTrabajosAProgramar.Rows - 1, tablaTrabajosAProgramar.Cols - 1) = RGB(255, 122, 122)
+                    ElseIf vTrabInternet.FieldValue("prioridad") = Prioridad.MEDIA Then
+                        ' Pintar fila amarillo
+                        tablaTrabajosAProgramar.Cell(flexcpBackColor, tablaTrabajosAProgramar.Rows - 1, 0, tablaTrabajosAProgramar.Rows - 1, tablaTrabajosAProgramar.Cols - 1) = RGB(255, 255, 122)
+                    End If
+                On Error GoTo 0
+                
+                
             End If
                                      
             st = .GetNext
@@ -1069,6 +1847,14 @@ Private Sub cargarTablaTrabajosAInstalar()
                                     vTrabInternet.FieldValue("obs")
             tablaTrabajosAInstalar.Cell(flexcpChecked, tablaTrabajosAInstalar.Rows - 1, 0, tablaTrabajosAInstalar.Rows - 1, 0) = flexUnchecked
             
+            If vTrabInternet.FieldValue("prioridad") = Prioridad.ALTA Then
+                ' Pintar fila rojo
+                tablaTrabajosAInstalar.Cell(flexcpBackColor, tablaTrabajosAInstalar.Rows - 1, 0, tablaTrabajosAInstalar.Rows - 1, tablaTrabajosAInstalar.Cols - 1) = RGB(255, 122, 122)
+            ElseIf vTrabInternet.FieldValue("prioridad") = Prioridad.MEDIA Then
+                ' Pintar fila amarillo
+                tablaTrabajosAInstalar.Cell(flexcpBackColor, tablaTrabajosAInstalar.Rows - 1, 0, tablaTrabajosAInstalar.Rows - 1, tablaTrabajosAInstalar.Cols - 1) = RGB(255, 255, 122)
+            End If
+            
         End If
                                  
         st = vTrabInternet.GetNext
@@ -1076,9 +1862,107 @@ Private Sub cargarTablaTrabajosAInstalar()
     Wend
     
     Call filtrarTablaAInstalar
+    
     tablaTrabajosAInstalar.AutoSize 0, tablaTrabajosAInstalar.Cols - 1
     Screen.MousePointer = 0
 
+End Sub
+
+Private Sub actualizarLabelsTablaParaInstalar()
+
+    lblTrabajosParaInstalarTotal.Caption = 0
+    lblAltaFTTHTotalParaInstalar.Caption = 0
+    lblAltaAntenaTotalParaInstalar.Caption = 0
+    lblAltaEdificioTotalParaInstalar.Caption = 0
+    lbCambioFTTHTotalParaInstalar.Caption = 0
+    
+    Dim i As Long
+    
+    With tablaTrabajosAInstalar
+        If .Rows > 1 Then
+            
+            For i = 1 To .Rows - 1
+                If Not (.RowHidden(i)) Then
+                    lblTrabajosParaInstalarTotal.Caption = Val(lblTrabajosParaInstalarTotal.Caption) + 1
+                    
+                    Dim tipoConexion As String
+                    tipoConexion = .TextMatrix(i, 4)
+                    
+                    Select Case tipoConexion
+                        Case "ALTA FTTH": lblAltaFTTHTotalParaInstalar.Caption = Val(lblAltaFTTHTotalParaInstalar.Caption) + 1
+                        Case "ALTA ANTENA": lblAltaAntenaTotalParaInstalar.Caption = Val(lblAltaAntenaTotalParaInstalar.Caption) + 1
+                        Case "ALTA EDIFICIO": lblAltaEdificioTotalParaInstalar.Caption = Val(lblAltaEdificioTotalParaInstalar.Caption) + 1
+                        Case "CAMBIO A FTTH": lbCambioFTTHTotalParaInstalar.Caption = Val(lbCambioFTTHTotalParaInstalar.Caption) + 1
+                    End Select
+                End If
+            Next
+        End If
+    End With
+    
+End Sub
+
+Private Sub actualizarLabelsTablaParaProgramar()
+    lblTrabajosParaProgramarTotal.Caption = 0
+    lblAltaFTTHTotalParaProgramar.Caption = 0
+    lblAltaAntenaTotalParaProgramar.Caption = 0
+    lblAltaEdificioTotalParaProgramar.Caption = 0
+    lbCambioFTTHTotalParaProgramar.Caption = 0
+    
+    Dim i As Long
+    
+    With tablaTrabajosAProgramar
+        If .Rows > 1 Then
+            
+            For i = 1 To .Rows - 1
+                If Not (.RowHidden(i)) Then
+                    lblTrabajosParaProgramarTotal.Caption = Val(lblTrabajosParaProgramarTotal.Caption) + 1
+                    
+                    Dim tipoConexion As String
+                    tipoConexion = .TextMatrix(i, 3)
+                    
+                    Select Case tipoConexion
+                        Case "ALTA FTTH": lblAltaFTTHTotalParaProgramar.Caption = Val(lblAltaFTTHTotalParaProgramar.Caption) + 1
+                        Case "ALTA ANTENA": lblAltaAntenaTotalParaProgramar.Caption = Val(lblAltaAntenaTotalParaProgramar.Caption) + 1
+                        Case "ALTA EDIFICIO": lblAltaEdificioTotalParaProgramar.Caption = Val(lblAltaEdificioTotalParaProgramar.Caption) + 1
+                        Case "CAMBIO A FTTH": lbCambioFTTHTotalParaProgramar.Caption = Val(lbCambioFTTHTotalParaProgramar.Caption) + 1
+                    End Select
+                End If
+            Next
+        End If
+    End With
+    
+End Sub
+
+Private Sub actualizarLabelsTablaTerminados()
+    lblTrabajosTerminadosTotal.Caption = 0
+    lblAltaFTTHTotalTerminados.Caption = 0
+    lblAltaAntenaTotalTerminados.Caption = 0
+    lblAltaEdificioTotalTerminados.Caption = 0
+    lbCambioFTTHTotalTerminados.Caption = 0
+    
+    Dim i As Long
+    
+    With tablaTrabajosTerminados
+        If .Rows > 1 Then
+            
+            For i = 1 To .Rows - 1
+                If Not (.RowHidden(i)) Then
+                    lblTrabajosTerminadosTotal.Caption = Val(lblTrabajosTerminadosTotal.Caption) + 1
+                    
+                    Dim tipoConexion As String
+                    tipoConexion = .TextMatrix(i, 3)
+                    
+                    Select Case tipoConexion
+                        Case "ALTA FTTH": lblAltaFTTHTotalTerminados.Caption = Val(lblAltaFTTHTotalTerminados.Caption) + 1
+                        Case "ALTA ANTENA": lblAltaAntenaTotalTerminados.Caption = Val(lblAltaAntenaTotalTerminados.Caption) + 1
+                        Case "ALTA EDIFICIO": lblAltaEdificioTotalTerminados.Caption = Val(lblAltaEdificioTotalTerminados.Caption) + 1
+                        Case "CAMBIO A FTTH": lbCambioFTTHTotalTerminados.Caption = Val(lbCambioFTTHTotalTerminados.Caption) + 1
+                    End Select
+                End If
+            Next
+        End If
+    End With
+    
 End Sub
 
 Private Sub cargartablaTrabajosTerminados()
@@ -1132,6 +2016,15 @@ Private Sub cargartablaTrabajosTerminados()
                                          VCuadrillas.FieldValue("miembros") & vbTab & _
                                          vTrabInternet.FieldValue("id_trabajo")) & vbTab & _
                                          vTrabInternet.FieldValue("obs")
+                                         
+                If vTrabInternet.FieldValue("prioridad") = Prioridad.ALTA Then
+                    ' Pintar fila rojo
+                    tablaTrabajosTerminados.Cell(flexcpBackColor, tablaTrabajosTerminados.Rows - 1, 0, tablaTrabajosTerminados.Rows - 1, tablaTrabajosTerminados.Cols - 1) = RGB(255, 122, 122)
+                ElseIf vTrabInternet.FieldValue("prioridad") = Prioridad.MEDIA Then
+                    ' Pintar fila amarillo
+                    tablaTrabajosTerminados.Cell(flexcpBackColor, tablaTrabajosTerminados.Rows - 1, 0, tablaTrabajosTerminados.Rows - 1, tablaTrabajosTerminados.Cols - 1) = RGB(255, 255, 122)
+                End If
+            
             End If
                                      
             st = .GetNext
@@ -1210,6 +2103,9 @@ Private Sub filtrarTablaAProgramar()
                 .RowHidden(fila) = True
             End If
         Next fila
+        
+        Call actualizarLabelsTablaParaProgramar
+        
         Screen.MousePointer = 0
     End With
 End Sub
@@ -1244,6 +2140,9 @@ Private Sub filtrarTablaAInstalar()
                 .RowHidden(fila) = True
             End If
         Next fila
+        
+        Call actualizarLabelsTablaParaInstalar
+        
         Screen.MousePointer = 0
     End With
 End Sub
@@ -1288,6 +2187,9 @@ Private Sub filtrarTablaTerminados()
                 .RowHidden(fila) = True
             End If
         Next fila
+        
+        Call actualizarLabelsTablaTerminados
+        
     End With
 End Sub
 
@@ -1343,6 +2245,7 @@ Private Sub Form_Unload(Cancel As Integer)
     ' Por si queda algo abierto o procesando algo, que se carga de vuelta el formulario y queda el proceso como zombie...
     End
 End Sub
+
 
 Private Sub mnuCuadrilla_Click()
     frmCuadrilla.Show 1, Me
@@ -1437,7 +2340,7 @@ Private Sub exportarExcel(tabla As VSFlexGrid)
                         If tabla.Name = "tablaTrabajosAProgramar" Then
                             Write #1, .TextMatrix(fila, 0), .TextMatrix(fila, 1), .TextMatrix(fila, 2), .TextMatrix(fila, 3), .TextMatrix(fila, 4), .TextMatrix(fila, 5)
                         ElseIf tabla.Name = "tablaTrabajosAInstalar" Then
-                            Write #1, .TextMatrix(fila, 1), .TextMatrix(fila, 2), .TextMatrix(fila, 3), .TextMatrix(fila, 4), .TextMatrix(fila, 7), .TextMatrix(fila, 8)
+                            Write #1, .TextMatrix(fila, 1), .TextMatrix(fila, 2), .TextMatrix(fila, 3), .TextMatrix(fila, 4), .TextMatrix(fila, 6), .TextMatrix(fila, 7), .TextMatrix(fila, 8), .TextMatrix(fila, 11)
                         ElseIf tabla.Name = "tablaTrabajosTerminados" Then
                             Write #1, .TextMatrix(fila, 1), .TextMatrix(fila, 2), .TextMatrix(fila, 3), .TextMatrix(fila, 4), .TextMatrix(fila, 5), .TextMatrix(fila, 6), .TextMatrix(fila, 7), .TextMatrix(fila, 8), .TextMatrix(fila, 10)
                         End If
