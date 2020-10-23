@@ -208,6 +208,23 @@ Begin VB.Form frmTrabajo
          TabIndex        =   36
          Top             =   3120
          Width           =   8415
+         Begin VB.ComboBox cmbPrioridad 
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   12
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   420
+            Left            =   3600
+            Style           =   2  'Dropdown List
+            TabIndex        =   44
+            Top             =   2400
+            Width           =   2295
+         End
          Begin VB.ComboBox cmbCuadrilla 
             BeginProperty Font 
                Name            =   "MS Sans Serif"
@@ -263,11 +280,11 @@ Begin VB.Form frmTrabajo
          End
          Begin MSComCtl2.DTPicker dtHoraInst 
             Height          =   375
-            Left            =   3120
+            Left            =   2040
             TabIndex        =   4
             Top             =   2400
-            Width           =   2775
-            _ExtentX        =   4895
+            Width           =   1455
+            _ExtentX        =   2566
             _ExtentY        =   661
             _Version        =   393216
             BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -280,7 +297,7 @@ Begin VB.Form frmTrabajo
                Strikethrough   =   0   'False
             EndProperty
             CustomFormat    =   "hh:mm tt"
-            Format          =   42663939
+            Format          =   81592323
             UpDown          =   -1  'True
             CurrentDate     =   44076
          End
@@ -289,8 +306,8 @@ Begin VB.Form frmTrabajo
             Left            =   240
             TabIndex        =   3
             Top             =   2400
-            Width           =   2775
-            _ExtentX        =   4895
+            Width           =   1695
+            _ExtentX        =   2990
             _ExtentY        =   661
             _Version        =   393216
             BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -302,8 +319,25 @@ Begin VB.Form frmTrabajo
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   42663937
+            Format          =   81592321
             CurrentDate     =   44076
+         End
+         Begin VB.Label Label1 
+            Caption         =   "Prioridad"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   12
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   255
+            Left            =   3600
+            TabIndex        =   43
+            Top             =   2040
+            Width           =   1455
          End
          Begin VB.Label lblTipoDeConexion 
             Caption         =   "Tipo de conexión"
@@ -323,7 +357,7 @@ Begin VB.Form frmTrabajo
             Width           =   2175
          End
          Begin VB.Label lblFechaDeInstalacion 
-            Caption         =   "Fecha de instalación"
+            Caption         =   "Fecha de inst."
             BeginProperty Font 
                Name            =   "MS Sans Serif"
                Size            =   12
@@ -337,10 +371,10 @@ Begin VB.Form frmTrabajo
             Left            =   240
             TabIndex        =   40
             Top             =   2040
-            Width           =   2775
+            Width           =   1575
          End
          Begin VB.Label lblHora 
-            Caption         =   "Hora de instalación"
+            Caption         =   "Hora de inst."
             BeginProperty Font 
                Name            =   "MS Sans Serif"
                Size            =   12
@@ -351,10 +385,10 @@ Begin VB.Form frmTrabajo
                Strikethrough   =   0   'False
             EndProperty
             Height          =   255
-            Left            =   3120
+            Left            =   2040
             TabIndex        =   39
             Top             =   2040
-            Width           =   2655
+            Width           =   1455
          End
          Begin VB.Label lblCuadrilla 
             Caption         =   "Cuadrilla"
@@ -461,7 +495,7 @@ Begin VB.Form frmTrabajo
          Begin VB.TextBox txtUbFis 
             BeginProperty Font 
                Name            =   "MS Sans Serif"
-               Size            =   9.75
+               Size            =   12
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -477,7 +511,7 @@ Begin VB.Form frmTrabajo
          Begin VB.TextBox txtUbLog 
             BeginProperty Font 
                Name            =   "MS Sans Serif"
-               Size            =   9.75
+               Size            =   12
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -786,6 +820,7 @@ Private Sub Form_Load()
 
     Call cargarCuadrillas
     Call cargarTarifasTodas(cmbTarifas)
+    Call cargarComboPrioridad(cmbPrioridad)
     
     If main.tabTrabajos.Tab = 0 Then
         Call cargarFormProgramar
@@ -808,16 +843,19 @@ Private Sub cargarFormProgramar()
     btnActualizar.Caption = "Ingresar"
     
     With main.tablaTrabajosAProgramar
+        idTrabajo = Val(.TextMatrix(.Row, 6))
+        
         txtNombre = .TextMatrix(.Row, 0)
         txtDomi = .TextMatrix(.Row, 1)
         txtUsInternet = .TextMatrix(.Row, 2)
         txtTlfn = .TextMatrix(.Row, 5)
         txtFechaPedido = .TextMatrix(.Row, 4)
         cmbTipoConexion.Text = .TextMatrix(.Row, 3)
-        idTrabajo = Val(.TextMatrix(.Row, 6))
         dtFechaInst.Value = DateTime.Now
         dtHoraInst = DateTime.Now
     End With
+    
+    Call seleccionarPrioridad
     
     ' Modificar dimensiones porque sino queda mucho espacio vacío
     Me.Height = 8000
@@ -847,6 +885,8 @@ Private Sub cargarFormInstalar()
         cmbCuadrilla.Text = main.tablaTrabajosAInstalar.TextMatrix(main.tablaTrabajosAInstalar.Row, 9)
     End With
     
+    Call seleccionarPrioridad
+    
     ' Seleccionar en cmbTarifas la tarifa que ya tiene asignado el trabajo.
     Call seleccionarPorItemData(getIdTarifa(idTrabajo), cmbTarifas)
     
@@ -870,6 +910,8 @@ Private Sub cargarFormTerminado()
         dtHoraInst = .TextMatrix(.Row, 7)
         cmbCuadrilla.Text = .TextMatrix(.Row, 8)
     End With
+    
+    Call seleccionarPrioridad
     
     ' Seleccionar en cmbTarifas la tarifa que ya tiene asignado el trabajo.
     Call seleccionarPorItemData(getIdTarifa(idTrabajo), cmbTarifas)
@@ -900,6 +942,20 @@ Private Sub cargarFormTerminado()
     
     chkImprimirOrden.Visible = False
     chkEnviarCorreoOrden.Visible = False
+End Sub
+
+Private Sub seleccionarPrioridad()
+    With main.vTrabInternet
+        .IndexNumber = 0
+        .FieldValue("id_trabajo") = idTrabajo
+        .GetEqual
+        
+        Dim prioridad As Long
+        prioridad = IIf(IsNull(.FieldValue("prioridad")), 0, .FieldValue("prioridad"))
+        
+        Call seleccionarPorItemData(prioridad, cmbPrioridad)
+    End With
+    
 End Sub
 
 Private Sub cargarObs()
@@ -962,6 +1018,7 @@ Private Sub btnActualizar_Click()
                 .FieldValue("estado") = IIf(main.tabTrabajos.Tab = 0, Estados.PROGRAMADO, Estados.TERMINADO)
                 .FieldValue("obs") = txtObs.Text
                 .FieldValue("reserva") = txtObsConex.Text
+                .FieldValue("prioridad") = cmbPrioridad.ItemData(cmbPrioridad.ListIndex)
                 
                 If main.tabTrabajos.Tab = 1 Then ' Si el trabajo pasa a terminado entonces...
                     .FieldValue("ancho_banda") = cmbTarifas.ItemData(cmbTarifas.ListIndex)

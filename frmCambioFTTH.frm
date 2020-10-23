@@ -142,7 +142,7 @@ Begin VB.Form frmCambioFTTH
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   96010241
+         Format          =   109510657
          CurrentDate     =   44083
       End
       Begin VB.Label lblPrioridad 
@@ -336,7 +336,7 @@ Private Sub Form_Load()
     dtpInstInt = DateTime.Now
     Call cargarTarifasFTTH(cmbTarifas)
     Call seleccionarPorItemData(FTTH_20MB, cmbTarifas)
-    Call cargarComboPrioridad
+    Call cargarComboPrioridad(cmbPrioridad)
 End Sub
 
 Property Get nroOrden() As Long
@@ -367,20 +367,6 @@ Private Sub cmdGuardarTrabajo_Click()
             End If
         End With
     End If
-End Sub
-
-
-Private Sub cargarComboPrioridad()
-    cmbPrioridad.AddItem ("BAJA")
-    cmbPrioridad.ItemData(0) = 3
-    
-    cmbPrioridad.AddItem ("MEDIA")
-    cmbPrioridad.ItemData(1) = 2
-    
-    cmbPrioridad.AddItem ("ALTA")
-    cmbPrioridad.ItemData(2) = 1
-    
-    cmbPrioridad.ListIndex = 0
 End Sub
 
 Private Sub cmdSelCli_Click()

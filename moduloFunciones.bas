@@ -25,6 +25,19 @@ Public Sub cambiarNoFacturar(nroOrden As Long, estadoNuevo As String)
     End With
 End Sub
 
+Public Sub cargarComboPrioridad(cmbPrioridad As ComboBox)
+    cmbPrioridad.AddItem ("BAJA")
+    cmbPrioridad.ItemData(0) = 3
+    
+    cmbPrioridad.AddItem ("MEDIA")
+    cmbPrioridad.ItemData(1) = 2
+    
+    cmbPrioridad.AddItem ("ALTA")
+    cmbPrioridad.ItemData(2) = 1
+    
+    cmbPrioridad.ListIndex = 0
+End Sub
+
 Public Function getCodAlumbrado(nroOrden As Long) As Long
     With main
         .VOrdenes.IndexNumber = 0

@@ -6,16 +6,16 @@ Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
 Begin VB.Form main 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Trabajos de Internet"
-   ClientHeight    =   8550
+   ClientHeight    =   8475
    ClientLeft      =   150
    ClientTop       =   720
-   ClientWidth     =   21210
+   ClientWidth     =   21135
    Icon            =   "main.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   8550
-   ScaleWidth      =   21210
+   ScaleHeight     =   8475
+   ScaleWidth      =   21135
    StartUpPosition =   3  'Windows Default
    Begin VB.CommandButton cmdSalir 
       BackColor       =   &H00E6E6E7&
@@ -197,37 +197,23 @@ Begin VB.Form main
       TabPicture(0)   =   "main.frx":8295
       Tab(0).ControlEnabled=   0   'False
       Tab(0).Control(0)=   "tablaTrabajosAProgramar"
-      Tab(0).Control(0).Enabled=   0   'False
       Tab(0).Control(1)=   "frmFiltrar"
-      Tab(0).Control(1).Enabled=   0   'False
       Tab(0).Control(2)=   "btnExpExcelProgramar"
-      Tab(0).Control(2).Enabled=   0   'False
       Tab(0).Control(3)=   "btnImprimirProgramar"
-      Tab(0).Control(3).Enabled=   0   'False
       Tab(0).Control(4)=   "btnAProgramarRecuperar"
-      Tab(0).Control(4).Enabled=   0   'False
       Tab(0).Control(5)=   "Frame2"
-      Tab(0).Control(5).Enabled=   0   'False
       Tab(0).ControlCount=   6
       TabCaption(1)   =   "Para instalar"
       TabPicture(1)   =   "main.frx":82B1
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "tablaTrabajosAInstalar"
-      Tab(1).Control(0).Enabled=   0   'False
-      Tab(1).Control(1)=   "Frame1"
-      Tab(1).Control(1).Enabled=   0   'False
-      Tab(1).Control(2)=   "btnGuardarFinalizados"
-      Tab(1).Control(2).Enabled=   0   'False
-      Tab(1).Control(3)=   "btnExpExcelInstalar"
-      Tab(1).Control(3).Enabled=   0   'False
-      Tab(1).Control(4)=   "btnImprimirInstalar"
-      Tab(1).Control(4).Enabled=   0   'False
-      Tab(1).Control(5)=   "btnAInstalarRecuperar"
-      Tab(1).Control(5).Enabled=   0   'False
-      Tab(1).Control(6)=   "btnEnviarOrdenPorCorreo"
-      Tab(1).Control(6).Enabled=   0   'False
-      Tab(1).Control(7)=   "frmTotalesAInstalar"
-      Tab(1).Control(7).Enabled=   0   'False
+      Tab(1).Control(0)=   "frmTotalesAInstalar"
+      Tab(1).Control(1)=   "btnEnviarOrdenPorCorreo"
+      Tab(1).Control(2)=   "btnAInstalarRecuperar"
+      Tab(1).Control(3)=   "btnImprimirInstalar"
+      Tab(1).Control(4)=   "btnExpExcelInstalar"
+      Tab(1).Control(5)=   "btnGuardarFinalizados"
+      Tab(1).Control(6)=   "Frame1"
+      Tab(1).Control(7)=   "tablaTrabajosAInstalar"
       Tab(1).ControlCount=   8
       TabCaption(2)   =   "Terminados"
       TabPicture(2)   =   "main.frx":82CD
@@ -861,7 +847,7 @@ Begin VB.Form main
          Caption         =   "Recuperar"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Size            =   9.75
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
@@ -961,7 +947,7 @@ Begin VB.Form main
          Caption         =   "Imprimir"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Size            =   9.75
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
@@ -981,7 +967,7 @@ Begin VB.Form main
          Caption         =   "Exportar a Excel"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Size            =   9.75
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
@@ -1091,7 +1077,7 @@ Begin VB.Form main
                Strikethrough   =   0   'False
             EndProperty
             CustomFormat    =   "dd/MM/yy"
-            Format          =   94437379
+            Format          =   81592323
             CurrentDate     =   44089
          End
          Begin VB.ComboBox cmbConexionTerminados 
@@ -1147,7 +1133,7 @@ Begin VB.Form main
                Strikethrough   =   0   'False
             EndProperty
             CustomFormat    =   "dd/MM/yy"
-            Format          =   94437379
+            Format          =   81592323
             CurrentDate     =   44089
          End
          Begin VB.Label lblFechaHastaInstalados 
@@ -2306,11 +2292,14 @@ Private Sub exportarExcel(tabla As VSFlexGrid)
     
         Dim rutaArchivo As String
         
-        If Dir("C:\ExcelTrabajosInternet\", vbDirectory) = "" Then
-          MkDir "C:\ExcelTrabajosInternet\"
+        Dim rutaBase As String
+        rutaBase = "C:\ExcelTrabajosInternet\"
+        
+        If Dir(rutaBase, vbDirectory) = "" Then
+          MkDir rutaBase
         End If
         
-        rutaArchivo = InputBox("Indique el destino del archivo ", "Exportar a Excel ", "C:\ExcelTrabajosInternet\" & tabla.Name & Format(DateTime.Now, "ddMMyyhhss") & ".csv")
+        rutaArchivo = InputBox("Indique el destino del archivo ", "Exportar a Excel ", rutaBase & "LibroIVA" & Format(DateTime.Now, "ddMMyyhhss") & ".csv")
         
         If rutaArchivo <> vbNullString Then
             Screen.MousePointer = 11
