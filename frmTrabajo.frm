@@ -297,7 +297,7 @@ Begin VB.Form frmTrabajo
                Strikethrough   =   0   'False
             EndProperty
             CustomFormat    =   "hh:mm tt"
-            Format          =   81592323
+            Format          =   40763395
             UpDown          =   -1  'True
             CurrentDate     =   44076
          End
@@ -319,7 +319,7 @@ Begin VB.Form frmTrabajo
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   81592321
+            Format          =   40763393
             CurrentDate     =   44076
          End
          Begin VB.Label Label1 
@@ -1058,11 +1058,12 @@ Private Sub actualizarDatosConexInet(CodAlumbrado As Long)
         If .GetEqual = 0 Then
             ' Hay que actualizar
             .FieldValue("direc_MAC") = txtDirMAC.Text
-            .FieldValue("ubic_fisic") = txtUbFis.Text
-            .FieldValue("ubic_logic") = txtUbLog.Text
+            .FieldValue("ubic_fisica") = txtUbFis.Text
+            .FieldValue("ubic_logica") = txtUbLog.Text
             .Update
         Else
             ' Hay que agregarlo nuevo
+            .Clear
             .FieldValue("CodAlumbrado") = CodAlumbrado
             .FieldValue("direc_MAC") = txtDirMAC.Text
             .FieldValue("ubic_fisica") = txtUbFis.Text
