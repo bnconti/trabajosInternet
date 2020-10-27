@@ -223,7 +223,7 @@ Begin VB.Form frmTrabajo
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   2895
+         Height          =   2955
          Left            =   240
          TabIndex        =   36
          Top             =   3120
@@ -317,7 +317,7 @@ Begin VB.Form frmTrabajo
                Strikethrough   =   0   'False
             EndProperty
             CustomFormat    =   "hh:mm tt"
-            Format          =   94502915
+            Format          =   40763395
             UpDown          =   -1  'True
             CurrentDate     =   44076
          End
@@ -339,7 +339,7 @@ Begin VB.Form frmTrabajo
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   94502913
+            Format          =   40763393
             CurrentDate     =   44076
          End
          Begin VB.Label Label1 
@@ -459,7 +459,7 @@ Begin VB.Form frmTrabajo
          Height          =   2955
          Left            =   240
          TabIndex        =   30
-         Top             =   6120
+         Top             =   6180
          Width           =   8415
          Begin VB.TextBox txtObsConex 
             BeginProperty Font 
@@ -874,7 +874,7 @@ Private Sub cargarFormProgramar()
     dtFechaInst.Value = DateTime.Now
     dtHoraInst = DateTime.Now
     
-    
+    Call cargarCuadrilla(idTrabajo)
   End With
 
   Call seleccionarPrioridad
@@ -890,6 +890,20 @@ Private Sub cargarFormProgramar()
 
   ' chkEnviarCorreoOrden.Value = 1
 
+End Sub
+
+Private Sub cargarCuadrilla(idTrabajo As Long)
+  With main.vTrabInternet
+  
+    .FieldValue("id_trabajo") = idTrabajo
+    
+    If .GetEqual = 0 Then
+      If Not (IsNull(.FieldValue("idCuadrilla"))) Then
+        Call seleccionarPorItemData(.FieldValue("idCuadrilla"), cmbCuadrilla)
+      End If
+    End If
+  
+  End With
 End Sub
 
 Private Sub cargarFormInstalar()
@@ -911,6 +925,7 @@ Private Sub cargarFormInstalar()
 
   ' Seleccionar en cmbTarifas la tarifa que ya tiene asignado el trabajo.
   Call seleccionarPorItemData(getIdTarifa(idTrabajo), cmbTarifas)
+  Call cargarDatosConexion
 
   chkImprimirOrden.Visible = False
   chkEnviarCorreoOrden.Visible = False
@@ -937,7 +952,17 @@ Private Sub cargarFormTerminado()
 
   ' Seleccionar en cmbTarifas la tarifa que ya tiene asignado el trabajo.
   Call seleccionarPorItemData(getIdTarifa(idTrabajo), cmbTarifas)
+  Call cargarDatosConexion
 
+  frmDatosAbonado.Enabled = False
+  frmDatosTrabajo.Enabled = False
+  frmDatosConexion.Enabled = False
+
+  chkImprimirOrden.Visible = False
+  chkEnviarCorreoOrden.Visible = False
+End Sub
+
+Private Sub cargarDatosConexion()
   With main
     .vTrabInternet.IndexNumber = 0
     .vTrabInternet.FieldValue("id_trabajo") = idTrabajo
@@ -957,13 +982,6 @@ Private Sub cargarFormTerminado()
 
     End If
   End With
-
-  frmDatosAbonado.Enabled = False
-  frmDatosTrabajo.Enabled = False
-  frmDatosConexion.Enabled = False
-
-  chkImprimirOrden.Visible = False
-  chkEnviarCorreoOrden.Visible = False
 End Sub
 
 Private Sub seleccionarPrioridad()
@@ -1094,6 +1112,8 @@ Private Sub btnModificar_Click()
       .Update
     End If
   End With
+  
+  Unload Me
 End Sub
 
 Private Sub actualizarDatosConexInet(CodAlumbrado As Long)
