@@ -142,7 +142,7 @@ Begin VB.Form frmCambioFTTH
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   109510657
+         Format          =   94502913
          CurrentDate     =   44083
       End
       Begin VB.Label lblPrioridad 
@@ -333,51 +333,51 @@ Private Const FTTH_20MB As Integer = 1002
 Private mNroOrden As Long
 
 Private Sub Form_Load()
-    dtpInstInt = DateTime.Now
-    Call cargarTarifasFTTH(cmbTarifas)
-    Call seleccionarPorItemData(FTTH_20MB, cmbTarifas)
-    Call cargarComboPrioridad(cmbPrioridad)
+  dtpInstInt = DateTime.Now
+  Call cargarTarifasFTTH(cmbTarifas)
+  Call seleccionarPorItemData(FTTH_20MB, cmbTarifas)
+  Call cargarComboPrioridad(cmbPrioridad)
 End Sub
 
 Property Get nroOrden() As Long
-    nroOrden = mNroOrden
+  nroOrden = mNroOrden
 End Property
 
 Property Let nroOrden(NroOrdenNuevo As Long)
-    mNroOrden = NroOrdenNuevo
+  mNroOrden = NroOrdenNuevo
 End Property
 
 Private Sub cmdGuardarTrabajo_Click()
-    If lblCodInternet.Caption = vbNullString Then
-        MsgBox "Seleccione un usuario antes de generar la orden.", vbOKOnly + vbInformation, "Faltan datos"
-    Else
-        With main.vTrabInternet
-            .Clear
-            .FieldValue("nroOrden") = mNroOrden
-            .FieldValue("estado") = Estados.NUEVO
-            .FieldValue("fecha_pedido") = dtpInstInt.Value
-            .FieldValue("tipo_conexion") = 4 ' Cambio a FTTH
-            .FieldValue("ancho_banda") = cmbTarifas.ItemData(cmbTarifas.ListIndex) ' idTarifa
-            .FieldValue("obs") = txtObs.Text
-            .FieldValue("prioridad") = cmbPrioridad.ItemData(cmbPrioridad.ListIndex)
-            If .Insert = 0 Then
-                Call cerrar
-            Else
-                Call MsgBox("Hubo un problema al guardar el trabajo.", vbCritical, "Resultado incorrecto")
-            End If
-        End With
-    End If
+  If lblCodInternet.Caption = vbNullString Then
+    MsgBox "Seleccione un usuario antes de generar la orden.", vbOKOnly + vbInformation, "Faltan datos"
+  Else
+    With main.vTrabInternet
+      .Clear
+      .FieldValue("nroOrden") = mNroOrden
+      .FieldValue("estado") = Estados.NUEVO
+      .FieldValue("fecha_pedido") = dtpInstInt.Value
+      .FieldValue("tipo_conexion") = 4  ' Cambio a FTTH
+      .FieldValue("ancho_banda") = cmbTarifas.ItemData(cmbTarifas.ListIndex)  ' idTarifa
+      .FieldValue("obs") = txtObs.Text
+      .FieldValue("prioridad") = cmbPrioridad.ItemData(cmbPrioridad.ListIndex)
+      If .Insert = 0 Then
+        Call cerrar
+      Else
+        Call MsgBox("Hubo un problema al guardar el trabajo.", vbCritical, "Resultado incorrecto")
+      End If
+    End With
+  End If
 End Sub
 
 Private Sub cmdSelCli_Click()
-    frmSelCli.Show 1, Me
+  frmSelCli.Show 1, Me
 End Sub
 
 Private Sub cerrar()
-    Unload Me
+  Unload Me
 End Sub
 
 Private Sub cmdVolver_Click()
-    Call cerrar
+  Call cerrar
 End Sub
 

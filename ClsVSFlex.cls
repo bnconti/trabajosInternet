@@ -80,32 +80,32 @@ Private Sub Inicializar()
   With grilla
     ' dejar encabezado en negrita
     .Cell(flexcpFontBold, 0, 0, 0, .Cols - 1) = True
-    
+
     ' tipo de refresco
     .Redraw = flexRDBuffered
   End With
 End Sub
 
 
-Public Sub NegritaFila(nroFila As Long, valor As Boolean)
+Public Sub NegritaFila(nroFila As Long, Valor As Boolean)
   With grilla
-    .Cell(flexcpFontBold, nroFila, 0, nroFila, .Cols - 1) = valor
+    .Cell(flexcpFontBold, nroFila, 0, nroFila, .Cols - 1) = Valor
   End With
 End Sub
 
-Public Sub ItalicaFila(nroFila As Long, valor As Boolean)
+Public Sub ItalicaFila(nroFila As Long, Valor As Boolean)
   With grilla
-    .Cell(flexcpFontItalic, nroFila, 0, nroFila, .Cols - 1) = valor
+    .Cell(flexcpFontItalic, nroFila, 0, nroFila, .Cols - 1) = Valor
   End With
 End Sub
 
-Public Sub ResaltarFila(nroFila As Long, valor As Boolean, Optional color As Long = vbYellow)
+Public Sub ResaltarFila(nroFila As Long, Valor As Boolean, Optional color As Long = vbYellow)
   With grilla
     If .FixedCols > 0 Then
-      .Cell(flexcpBackColor, nroFila, 0, nroFila, .FixedCols - 1) = IIf(valor, color, 0)
+      .Cell(flexcpBackColor, nroFila, 0, nroFila, .FixedCols - 1) = IIf(Valor, color, 0)
     End If
     If .FixedCols < .Cols Then
-      .Cell(flexcpBackColor, nroFila, .FixedCols, nroFila, .Cols - 1) = IIf(valor, color, 0)
+      .Cell(flexcpBackColor, nroFila, .FixedCols, nroFila, .Cols - 1) = IIf(Valor, color, 0)
     End If
   End With
 End Sub
@@ -116,19 +116,19 @@ Public Function FilaResaltada(nroFila As Long) As Boolean
   End With
 End Function
 
-Public Sub MarcarFila(nroFila As Long, valor As Boolean, Optional col As Integer = 0)
-  grilla.Cell(flexcpChecked, nroFila, col, nroFila, col) = IIf(valor, flexChecked, flexUnchecked)
+Public Sub MarcarFila(nroFila As Long, Valor As Boolean, Optional Col As Integer = 0)
+  grilla.Cell(flexcpChecked, nroFila, Col, nroFila, Col) = IIf(Valor, flexChecked, flexUnchecked)
 End Sub
 
-Public Function FilaMarcada(nroFila As Long, Optional col As Integer = 0) As Boolean
-  Select Case grilla.Cell(flexcpChecked, nroFila, col, nroFila, col)
-    Case flexChecked
-      FilaMarcada = True
-    Case flexUnchecked
-      FilaMarcada = False
-    Case Else
-      ' no tiene para marcar
-      FilaMarcada = True
+Public Function FilaMarcada(nroFila As Long, Optional Col As Integer = 0) As Boolean
+  Select Case grilla.Cell(flexcpChecked, nroFila, Col, nroFila, Col)
+  Case flexChecked
+    FilaMarcada = True
+  Case flexUnchecked
+    FilaMarcada = False
+  Case Else
+    ' no tiene para marcar
+    FilaMarcada = True
   End Select
 End Function
 
@@ -147,28 +147,28 @@ Private Function MostrarFila(nroFila As Long, filasAMostrar As Byte) As Boolean
     MostrarFila = False
     Exit Function
   End If
-  
+
   If nroFila < grilla.FixedCols Then
     ' siempre mostrar encabezados
     MostrarFila = True
     Exit Function
   End If
-  
+
   Select Case filasAMostrar
-    Case vsExpTodo
-      MostrarFila = True
-    Case vsExpConMarca
-      MostrarFila = FilaMarcada(nroFila)
-    Case vsExpSinMarca
-      MostrarFila = (Not FilaMarcada(nroFila))
-    Case Else
-      MostrarFila = True
+  Case vsExpTodo
+    MostrarFila = True
+  Case vsExpConMarca
+    MostrarFila = FilaMarcada(nroFila)
+  Case vsExpSinMarca
+    MostrarFila = (Not FilaMarcada(nroFila))
+  Case Else
+    MostrarFila = True
   End Select
 End Function
 
 Public Sub ExportarCsv(nombreArch As String, Optional filasAMostrar As Byte = 0, Optional renglonFinal As String = vbNullString)
   Const SEP = ";"
-  
+
   Dim nArch As Integer
   Dim renglon() As String
   Dim nroFila As Long
@@ -176,10 +176,10 @@ Public Sub ExportarCsv(nombreArch As String, Optional filasAMostrar As Byte = 0,
   Dim nroCols As Integer
   Dim c As Integer
   Dim s As String
-  
+
   If grilla.Rows < 1 Then Exit Sub
   If nombreArch = vbNullString Then Exit Sub
-  
+
   On Error GoTo ErrExp
   If Dir(nombreArch) <> vbNullString Then
     If MsgBox("El archivo ya existe, ¿reemplazarlo?", vbYesNo + vbQuestion, Titulo) = vbYes Then
@@ -192,25 +192,25 @@ Public Sub ExportarCsv(nombreArch As String, Optional filasAMostrar As Byte = 0,
   nArch = FreeFile
   Open nombreArch For Output As #nArch
   On Error GoTo 0
-  
+
   Screen.MousePointer = vbHourglass
-  
+
   Print #nArch, "sep=" & SEP
   If mRazonSocial <> vbNullString Then Print #nArch, mRazonSocial
   If mTitulo <> vbNullString Then Print #nArch, mTitulo
   If mSubtitulo <> vbNullString Then Print #nArch, mSubtitulo
   Print #nArch, vbNullString
-  
+
   With grilla
     ' contar columnas visibles
     nroCols = 0
     For nroCol = 0 To .Cols - 1
       If Not ColumnaOculta(nroCol) Then nroCols = nroCols + 1
     Next
-    
+
     ' inicializar vector
     ReDim renglon(nroCols)
-    
+
     For nroFila = 0 To .Rows - 1
       If MostrarFila(nroFila, filasAMostrar) Then
         c = 0
@@ -227,19 +227,19 @@ Public Sub ExportarCsv(nombreArch As String, Optional filasAMostrar As Byte = 0,
       End If
     Next
   End With
-  
+
   If renglonFinal <> vbNullString Then
     Print #nArch, vbNullString
     Print #nArch, renglonFinal
   End If
-  
+
   Close #nArch
   Screen.MousePointer = vbDefault
-  
+
   MsgBox "Archivo " & nombreArch & " exportado exitosamente.", vbOKOnly, Titulo
   Shell "explorer.exe /select," & nombreArch, vbNormalFocus
   Exit Sub
-  
+
 ErrExp:
   If Err.Number = 70 Then
     s = "Permiso denegado. Verifique que el archivo no se encuentre abierto."
@@ -259,14 +259,14 @@ Private Sub CalcularAnchosImp(margenIzq As Integer, tamano As Integer)
   Dim cantCols As Integer
   Dim anchoTot As Currency
   Dim maxChar As Integer
-  
+
   anchoTot = 0
   cantCols = 0
-  
+
   With grilla
     ReDim anchoCols(.Cols)
     ReDim anchoTwips(.Cols)
-    
+
     ' guardar anchos en twips y calcular total
     For nroCol = 0 To .Cols - 1
       If ColumnaOculta(nroCol) Then
@@ -277,11 +277,11 @@ Private Sub CalcularAnchosImp(margenIzq As Integer, tamano As Integer)
         cantCols = cantCols + 1
       End If
     Next
-    
+
     ' cantidad de caracteres que entran con este tamano
     Printer.FontSize = tamano
     maxChar = Int((Printer.ScaleWidth - margenIzq * 2) / Printer.TextWidth("O")) + 1
-    
+
     ' dejarlo proporcional al total, en caracteres
     For nroCol = 0 To .Cols - 1
       anchoCols(nroCol) = (anchoTwips(nroCol) / anchoTot) * (maxChar - cantCols + 1)
@@ -302,9 +302,9 @@ End Function
 Private Function RenglonImp(nroFila As Long) As String
   Dim renglon As String
   Dim nroCol As Integer
-  
+
   renglon = vbNullString
-  
+
   With grilla
     For nroCol = 0 To .Cols - 1
       If Not ColumnaOculta(nroCol) Then
@@ -312,7 +312,7 @@ Private Function RenglonImp(nroFila As Long) As String
       End If
     Next
   End With
-  
+
   RenglonImp = renglon
 End Function
 
@@ -320,42 +320,42 @@ Public Sub Imprimir(Optional filasAMostrar As Byte = 0, Optional orientacion As 
   Dim list As New Listado
   Dim nroFila As Long
   Dim orientAnt As Byte
-  
+
   Screen.MousePointer = vbHourglass
   orientAnt = Printer.Orientation
   Printer.Orientation = orientacion
-  
+
   With list
     .empresa = mRazonSocial
     .Titulo = mTitulo
     .Subtitulo = mSubtitulo
-    
-    .Tipo = 0 ' con encabezamiento
+
+    .Tipo = 0  ' con encabezamiento
     .margenIzq = 300
     .MargenSup = 300
     .LetraListado = tamano
-    
+
     Call CalcularAnchosImp(.margenIzq, tamano)
     .Columnas = RenglonImp(0)
-    
+
     .Iniciar
-    
+
     For nroFila = 1 To grilla.Rows - 1
       If MostrarFila(nroFila, filasAMostrar) Then
         .renglon RenglonImp(nroFila)
       End If
     Next
-    
+
     If renglonFinal <> vbNullString Then
       .renglon "-"
       Printer.FontBold = True
       .renglon renglonFinal
       Printer.FontBold = False
     End If
-    
+
     .Fin
   End With
-  
+
   Printer.Orientation = orientAnt
   Screen.MousePointer = vbDefault
 End Sub

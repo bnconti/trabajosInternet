@@ -5,7 +5,7 @@ Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Begin VB.Form frmTrabajo 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Datos del trabajo"
-   ClientHeight    =   10830
+   ClientHeight    =   11535
    ClientLeft      =   45
    ClientTop       =   330
    ClientWidth     =   9210
@@ -13,20 +13,20 @@ Begin VB.Form frmTrabajo
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   10830
+   ScaleHeight     =   11535
    ScaleWidth      =   9210
    StartUpPosition =   3  'Windows Default
    Begin VB.Timer Timer1 
       Enabled         =   0   'False
       Interval        =   100
-      Left            =   8760
-      Top             =   10440
+      Left            =   8700
+      Top             =   11280
    End
    Begin MSComctlLib.ProgressBar ProgressBar1 
       Height          =   315
       Left            =   360
       TabIndex        =   18
-      Top             =   10560
+      Top             =   11280
       Visible         =   0   'False
       Width           =   8355
       _ExtentX        =   14737
@@ -57,7 +57,7 @@ Begin VB.Form frmTrabajo
    End
    Begin VB.Frame frmDatos 
       BorderStyle     =   0  'None
-      Height          =   10515
+      Height          =   11235
       Left            =   120
       TabIndex        =   15
       Top             =   0
@@ -72,11 +72,31 @@ Begin VB.Form frmTrabajo
       Begin VB.Frame frmBotones 
          BorderStyle     =   0  'None
          Caption         =   "Acciones"
-         Height          =   1455
-         Left            =   240
+         Height          =   1935
+         Left            =   180
          TabIndex        =   42
-         Top             =   9120
+         Top             =   9180
          Width           =   8535
+         Begin VB.CommandButton btnModificar 
+            BackColor       =   &H00F2E1D9&
+            Caption         =   "Actualizar"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   12
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   1050
+            Left            =   2700
+            Picture         =   "frmTrabajo.frx":030A
+            Style           =   1  'Graphical
+            TabIndex        =   45
+            Top             =   840
+            Width           =   1875
+         End
          Begin VB.CommandButton btnActualizar 
             BackColor       =   &H00DAEFE2&
             Caption         =   "Terminar"
@@ -90,11 +110,11 @@ Begin VB.Form frmTrabajo
                Strikethrough   =   0   'False
             EndProperty
             Height          =   1050
-            Left            =   0
-            Picture         =   "frmTrabajo.frx":030A
+            Left            =   60
+            Picture         =   "frmTrabajo.frx":0614
             Style           =   1  'Graphical
             TabIndex        =   12
-            Top             =   120
+            Top             =   840
             Width           =   2475
          End
          Begin VB.CommandButton btnVolver 
@@ -111,10 +131,10 @@ Begin VB.Form frmTrabajo
             EndProperty
             Height          =   1050
             Left            =   7320
-            Picture         =   "frmTrabajo.frx":0BD4
+            Picture         =   "frmTrabajo.frx":0EDE
             Style           =   1  'Graphical
             TabIndex        =   14
-            Top             =   120
+            Top             =   840
             Width           =   1125
          End
          Begin VB.CommandButton btnEliminar 
@@ -131,10 +151,10 @@ Begin VB.Form frmTrabajo
             EndProperty
             Height          =   1050
             Left            =   5880
-            Picture         =   "frmTrabajo.frx":0CE6
+            Picture         =   "frmTrabajo.frx":0FF0
             Style           =   1  'Graphical
             TabIndex        =   13
-            Top             =   120
+            Top             =   840
             Width           =   1245
          End
          Begin VB.CheckBox chkImprimirOrden 
@@ -149,9 +169,9 @@ Begin VB.Form frmTrabajo
                Strikethrough   =   0   'False
             EndProperty
             Height          =   375
-            Left            =   2640
+            Left            =   60
             TabIndex        =   10
-            Top             =   120
+            Top             =   0
             Width           =   3015
          End
          Begin VB.CheckBox chkEnviarCorreoOrden 
@@ -166,9 +186,9 @@ Begin VB.Form frmTrabajo
                Strikethrough   =   0   'False
             EndProperty
             Height          =   375
-            Left            =   2640
+            Left            =   60
             TabIndex        =   11
-            Top             =   480
+            Top             =   420
             Visible         =   0   'False
             Width           =   3135
          End
@@ -253,9 +273,9 @@ Begin VB.Form frmTrabajo
                Strikethrough   =   0   'False
             EndProperty
             Height          =   420
-            ItemData        =   "frmTrabajo.frx":15B0
+            ItemData        =   "frmTrabajo.frx":18BA
             Left            =   240
-            List            =   "frmTrabajo.frx":15C0
+            List            =   "frmTrabajo.frx":18CA
             Style           =   2  'Dropdown List
             TabIndex        =   2
             Top             =   1560
@@ -297,7 +317,7 @@ Begin VB.Form frmTrabajo
                Strikethrough   =   0   'False
             EndProperty
             CustomFormat    =   "hh:mm tt"
-            Format          =   40763395
+            Format          =   94502915
             UpDown          =   -1  'True
             CurrentDate     =   44076
          End
@@ -319,7 +339,7 @@ Begin VB.Form frmTrabajo
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   40763393
+            Format          =   94502913
             CurrentDate     =   44076
          End
          Begin VB.Label Label1 
@@ -436,7 +456,7 @@ Begin VB.Form frmTrabajo
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   2895
+         Height          =   2955
          Left            =   240
          TabIndex        =   30
          Top             =   6120
@@ -818,325 +838,351 @@ Private idTrabajo As Long
 
 Private Sub Form_Load()
 
-    Call cargarCuadrillas
-    Call cargarTarifasTodas(cmbTarifas)
-    Call cargarComboPrioridad(cmbPrioridad)
-    
-    If main.tabTrabajos.Tab = 0 Then
-        Call cargarFormProgramar
-    ElseIf main.tabTrabajos.Tab = 1 Then
-        Call cargarFormInstalar
-    ElseIf main.tabTrabajos.Tab = 2 Then
-        Call cargarFormTerminado
-    End If
-    
-    Call cargarObs
-    
-    ' Ver si se puede cargar directamente en las props.
-    cmbTipoConexion.ItemData(0) = 1
-    cmbTipoConexion.ItemData(1) = 2
-    cmbTipoConexion.ItemData(2) = 3
-    cmbTipoConexion.ItemData(3) = 4
+  Call cargarCuadrillas
+  Call cargarTarifasTodas(cmbTarifas)
+  Call cargarComboPrioridad(cmbPrioridad)
+
+  If main.tabTrabajos.Tab = 0 Then
+    Call cargarFormProgramar
+  ElseIf main.tabTrabajos.Tab = 1 Then
+    Call cargarFormInstalar
+  ElseIf main.tabTrabajos.Tab = 2 Then
+    Call cargarFormTerminado
+  End If
+
+  Call cargarObs
+
+  ' Ver si se puede cargar directamente en las props.
+  cmbTipoConexion.ItemData(0) = 1
+  cmbTipoConexion.ItemData(1) = 2
+  cmbTipoConexion.ItemData(2) = 3
+  cmbTipoConexion.ItemData(3) = 4
 End Sub
 
 Private Sub cargarFormProgramar()
-    btnActualizar.Caption = "Ingresar"
+  btnActualizar.Caption = "Ingresar"
+
+  With main.tablaTrabajosAProgramar
+    idTrabajo = Val(.TextMatrix(.Row, 6))
+
+    txtNombre = .TextMatrix(.Row, 0)
+    txtDomi = .TextMatrix(.Row, 1)
+    txtUsInternet = .TextMatrix(.Row, 2)
+    txtTlfn = .TextMatrix(.Row, 5)
+    txtFechaPedido = .TextMatrix(.Row, 4)
+    cmbTipoConexion.Text = .TextMatrix(.Row, 3)
+    dtFechaInst.Value = DateTime.Now
+    dtHoraInst = DateTime.Now
     
-    With main.tablaTrabajosAProgramar
-        idTrabajo = Val(.TextMatrix(.Row, 6))
-        
-        txtNombre = .TextMatrix(.Row, 0)
-        txtDomi = .TextMatrix(.Row, 1)
-        txtUsInternet = .TextMatrix(.Row, 2)
-        txtTlfn = .TextMatrix(.Row, 5)
-        txtFechaPedido = .TextMatrix(.Row, 4)
-        cmbTipoConexion.Text = .TextMatrix(.Row, 3)
-        dtFechaInst.Value = DateTime.Now
-        dtHoraInst = DateTime.Now
-    End With
     
-    Call seleccionarPrioridad
-    
-    ' Modificar dimensiones porque sino queda mucho espacio vacío
-    Me.Height = 8000
-    frmDatos.Height = 7400
-    frmBotones.top = 6100
-    
-    btnImprimirOrden.Visible = False
-    btnVolverAInstalar.Visible = False
-    frmDatosConexion.Visible = False
-    
-    ' chkEnviarCorreoOrden.Value = 1
-    
+  End With
+
+  Call seleccionarPrioridad
+
+  ' Modificar dimensiones porque sino queda mucho espacio vacío
+  Me.Height = 8500
+  frmDatos.Height = 8000
+  frmBotones.top = 6100
+
+  btnImprimirOrden.Visible = False
+  btnVolverAInstalar.Visible = False
+  frmDatosConexion.Visible = False
+
+  ' chkEnviarCorreoOrden.Value = 1
+
 End Sub
 
 Private Sub cargarFormInstalar()
-    With main.tablaTrabajosAInstalar
-        idTrabajo = Val(.TextMatrix(.Row, 10))
-        
-        txtNombre = .TextMatrix(.Row, 1)
-        txtDomi = .TextMatrix(.Row, 2)
-        txtUsInternet = .TextMatrix(.Row, 3)
-        txtTlfn = .TextMatrix(.Row, 6)
-        txtFechaPedido = .TextMatrix(.Row, 5)
-        cmbTipoConexion.Text = .TextMatrix(.Row, 4)
-        dtFechaInst = .TextMatrix(.Row, 7)
-        dtHoraInst = .TextMatrix(.Row, 8)
-        cmbCuadrilla.Text = main.tablaTrabajosAInstalar.TextMatrix(main.tablaTrabajosAInstalar.Row, 9)
-    End With
-    
-    Call seleccionarPrioridad
-    
-    ' Seleccionar en cmbTarifas la tarifa que ya tiene asignado el trabajo.
-    Call seleccionarPorItemData(getIdTarifa(idTrabajo), cmbTarifas)
-    
-    chkImprimirOrden.Visible = False
-    chkEnviarCorreoOrden.Visible = False
+  With main.tablaTrabajosAInstalar
+    idTrabajo = Val(.TextMatrix(.Row, 10))
+
+    txtNombre = .TextMatrix(.Row, 1)
+    txtDomi = .TextMatrix(.Row, 2)
+    txtUsInternet = .TextMatrix(.Row, 3)
+    txtTlfn = .TextMatrix(.Row, 6)
+    txtFechaPedido = .TextMatrix(.Row, 5)
+    cmbTipoConexion.Text = .TextMatrix(.Row, 4)
+    dtFechaInst = .TextMatrix(.Row, 7)
+    dtHoraInst = .TextMatrix(.Row, 8)
+    cmbCuadrilla.Text = main.tablaTrabajosAInstalar.TextMatrix(main.tablaTrabajosAInstalar.Row, 9)
+  End With
+
+  Call seleccionarPrioridad
+
+  ' Seleccionar en cmbTarifas la tarifa que ya tiene asignado el trabajo.
+  Call seleccionarPorItemData(getIdTarifa(idTrabajo), cmbTarifas)
+
+  chkImprimirOrden.Visible = False
+  chkEnviarCorreoOrden.Visible = False
 End Sub
 
 Private Sub cargarFormTerminado()
-    btnActualizar.Enabled = False
-    
-    With main.tablaTrabajosTerminados
-        idTrabajo = Val(.TextMatrix(.Row, 9))
-        
-        txtNombre = .TextMatrix(.Row, 0)
-        txtDomi = .TextMatrix(.Row, 1)
-        txtUsInternet = .TextMatrix(.Row, 2)
-        txtTlfn = .TextMatrix(.Row, 5)
-        txtFechaPedido = .TextMatrix(.Row, 4)
-        cmbTipoConexion.Text = .TextMatrix(.Row, 3)
-        dtFechaInst = .TextMatrix(.Row, 6)
-        dtHoraInst = .TextMatrix(.Row, 7)
-        cmbCuadrilla.Text = .TextMatrix(.Row, 8)
-    End With
-    
-    Call seleccionarPrioridad
-    
-    ' Seleccionar en cmbTarifas la tarifa que ya tiene asignado el trabajo.
-    Call seleccionarPorItemData(getIdTarifa(idTrabajo), cmbTarifas)
-    
-    With main
-        .vTrabInternet.IndexNumber = 0
-        .vTrabInternet.FieldValue("id_trabajo") = idTrabajo
-        
-        If .vTrabInternet.GetEqual = 0 Then
-            Dim CodAlumbrado As Long
-            CodAlumbrado = getCodAlumbrado(.vTrabInternet.FieldValue("NroOrden"))
-            
-            .VDatosConexInet.IndexNumber = 0
-            .VDatosConexInet.FieldValue("codAlumbrado") = CodAlumbrado
-            
-            If .VDatosConexInet.GetEqual = 0 Then
-                txtDirMAC.Text = .VDatosConexInet.FieldValue("direc_MAC") & vbNullString
-                txtUbFis.Text = .VDatosConexInet.FieldValue("ubic_fisica") & vbNullString
-                txtUbLog.Text = .VDatosConexInet.FieldValue("ubic_logica") & vbNullString
-            End If
-            
-        End If
-    End With
-    
-    frmDatosAbonado.Enabled = False
-    frmDatosTrabajo.Enabled = False
-    frmDatosConexion.Enabled = False
-    
-    chkImprimirOrden.Visible = False
-    chkEnviarCorreoOrden.Visible = False
+  btnActualizar.Enabled = False
+
+  With main.tablaTrabajosTerminados
+    idTrabajo = Val(.TextMatrix(.Row, 9))
+
+    txtNombre = .TextMatrix(.Row, 0)
+    txtDomi = .TextMatrix(.Row, 1)
+    txtUsInternet = .TextMatrix(.Row, 2)
+    txtTlfn = .TextMatrix(.Row, 5)
+    txtFechaPedido = .TextMatrix(.Row, 4)
+    cmbTipoConexion.Text = .TextMatrix(.Row, 3)
+    dtFechaInst = .TextMatrix(.Row, 6)
+    dtHoraInst = .TextMatrix(.Row, 7)
+    cmbCuadrilla.Text = .TextMatrix(.Row, 8)
+  End With
+
+  Call seleccionarPrioridad
+
+  ' Seleccionar en cmbTarifas la tarifa que ya tiene asignado el trabajo.
+  Call seleccionarPorItemData(getIdTarifa(idTrabajo), cmbTarifas)
+
+  With main
+    .vTrabInternet.IndexNumber = 0
+    .vTrabInternet.FieldValue("id_trabajo") = idTrabajo
+
+    If .vTrabInternet.GetEqual = 0 Then
+      Dim CodAlumbrado As Long
+      CodAlumbrado = getCodAlumbrado(.vTrabInternet.FieldValue("NroOrden"))
+
+      .VDatosConexInet.IndexNumber = 0
+      .VDatosConexInet.FieldValue("codAlumbrado") = CodAlumbrado
+
+      If .VDatosConexInet.GetEqual = 0 Then
+        txtDirMAC.Text = .VDatosConexInet.FieldValue("direc_MAC") & vbNullString
+        txtUbFis.Text = .VDatosConexInet.FieldValue("ubic_fisica") & vbNullString
+        txtUbLog.Text = .VDatosConexInet.FieldValue("ubic_logica") & vbNullString
+      End If
+
+    End If
+  End With
+
+  frmDatosAbonado.Enabled = False
+  frmDatosTrabajo.Enabled = False
+  frmDatosConexion.Enabled = False
+
+  chkImprimirOrden.Visible = False
+  chkEnviarCorreoOrden.Visible = False
 End Sub
 
 Private Sub seleccionarPrioridad()
-    With main.vTrabInternet
-        .IndexNumber = 0
-        .FieldValue("id_trabajo") = idTrabajo
-        .GetEqual
-        
-        Dim prioridad As Long
-        prioridad = IIf(IsNull(.FieldValue("prioridad")), 0, .FieldValue("prioridad"))
-        
-        Call seleccionarPorItemData(prioridad, cmbPrioridad)
-    End With
-    
+  With main.vTrabInternet
+    .IndexNumber = 0
+    .FieldValue("id_trabajo") = idTrabajo
+    .GetEqual
+
+    Dim prioridad As Long
+    prioridad = IIf(IsNull(.FieldValue("prioridad")), 0, .FieldValue("prioridad"))
+
+    Call seleccionarPorItemData(prioridad, cmbPrioridad)
+  End With
+
 End Sub
 
 Private Sub cargarObs()
-    With main.vTrabInternet
-        .IndexNumber = 0
-        .FieldValue("id_trabajo") = idTrabajo
-        .GetEqual
-        
-        If .status = 0 Then
-            If Not IsNull(.FieldValue("obs")) Then
-                txtObs.Text = .FieldValue("obs")
-            End If
-            If Not IsNull(.FieldValue("reserva")) Then
-                txtObsConex.Text = .FieldValue("reserva")
-            End If
-        End If
-    End With
+  With main.vTrabInternet
+    .IndexNumber = 0
+    .FieldValue("id_trabajo") = idTrabajo
+    .GetEqual
+
+    If .status = 0 Then
+      If Not IsNull(.FieldValue("obs")) Then
+        txtObs.Text = .FieldValue("obs")
+      End If
+      If Not IsNull(.FieldValue("reserva")) Then
+        txtObsConex.Text = .FieldValue("reserva")
+      End If
+    End If
+  End With
 End Sub
 
 Private Sub dialogoImpresion(idTrabajo As Long)
-    Dim copia As Integer
-    Dim defPrinter As String
-    defPrinter = Printer.DeviceName
-  
-    With frmTrabajo.cdImpresora
-      .Flags = cdlPDNoSelection Or cdlPDHidePrintToFile Or cdlPDUseDevModeCopies
-      On Error GoTo FinImpresion
-      .ShowPrinter
-      On Error GoTo 0
-      
-      For copia = 1 To .Copies
-        Call imprimirOrden(idTrabajo)
-      Next
-      
-    End With
-    
-    Call SetDefaultPrinter(defPrinter)
-        
-FinImpresion:
+  Dim copia As Integer
+  Dim defPrinter As String
+  defPrinter = Printer.DeviceName
+
+  With frmTrabajo.cdImpresora
+    .Flags = cdlPDNoSelection Or cdlPDHidePrintToFile Or cdlPDUseDevModeCopies
+    On Error GoTo FinImpresion
+    .ShowPrinter
     On Error GoTo 0
+
+    For copia = 1 To .Copies
+      Call imprimirOrden(idTrabajo)
+    Next
+
+  End With
+
+  Call SetDefaultPrinter(defPrinter)
+
+FinImpresion:
+  On Error GoTo 0
 End Sub
 
 Private Sub btnActualizar_Click()
 
-    Dim st As Integer
-    
-    If cmbCuadrilla.Text = vbNullString Then
-        MsgBox "¡Recordá seleccionar una cuadrilla!", vbOKOnly + vbExclamation, "Datos incompletos"
-    Else
-    
-        With main.vTrabInternet
-            .IndexNumber = 0
-            .FieldValue("id_trabajo") = idTrabajo
-            
-            If .GetEqual = 0 Then
-                .FieldValue("tipo_conexion") = cmbTipoConexion.ItemData(cmbTipoConexion.ListIndex)
-                .FieldValue("fecha_inst") = dtFechaInst.Value
-                .FieldValue("hora_inst") = dtHoraInst.Value
-                .FieldValue("idcuadrilla") = cmbCuadrilla.ItemData(cmbCuadrilla.ListIndex)
-                .FieldValue("estado") = IIf(main.tabTrabajos.Tab = 0, Estados.PROGRAMADO, Estados.TERMINADO)
-                .FieldValue("obs") = txtObs.Text
-                .FieldValue("reserva") = txtObsConex.Text
-                .FieldValue("prioridad") = cmbPrioridad.ItemData(cmbPrioridad.ListIndex)
-                
-                If main.tabTrabajos.Tab = 1 Then ' Si el trabajo pasa a terminado entonces...
-                    .FieldValue("ancho_banda") = cmbTarifas.ItemData(cmbTarifas.ListIndex)
-                    Call cambiarNoFacturar(.FieldValue("nroOrden"), "SIFACTURAR")
-                    Call actualizarTarifa(.FieldValue("nroOrden"), .FieldValue("ancho_banda"))
-                    Call actualizarDatosConexInet(getCodAlumbrado(.FieldValue("nroOrden")))
-                End If
-                
-                .Update
-            End If
-        End With
-        
-        If chkImprimirOrden.Value = 1 Then
-            Call dialogoImpresion(idTrabajo)
+  Dim st As Integer
+
+  If cmbCuadrilla.Text = vbNullString Then
+    MsgBox "¡Recordá seleccionar una cuadrilla!", vbOKOnly + vbExclamation, "Datos incompletos"
+  Else
+
+    With main.vTrabInternet
+      .IndexNumber = 0
+      .FieldValue("id_trabajo") = idTrabajo
+
+      If .GetEqual = 0 Then
+        .FieldValue("tipo_conexion") = cmbTipoConexion.ItemData(cmbTipoConexion.ListIndex)
+        .FieldValue("fecha_inst") = dtFechaInst.Value
+        .FieldValue("hora_inst") = dtHoraInst.Value
+        .FieldValue("idcuadrilla") = cmbCuadrilla.ItemData(cmbCuadrilla.ListIndex)
+        .FieldValue("estado") = IIf(main.tabTrabajos.Tab = 0, Estados.PROGRAMADO, Estados.TERMINADO)
+        .FieldValue("obs") = txtObs.Text
+        .FieldValue("reserva") = txtObsConex.Text
+        .FieldValue("prioridad") = cmbPrioridad.ItemData(cmbPrioridad.ListIndex)
+
+        If main.tabTrabajos.Tab = 1 Then  ' Si el trabajo pasa a terminado entonces...
+          .FieldValue("ancho_banda") = cmbTarifas.ItemData(cmbTarifas.ListIndex)
+          Call cambiarNoFacturar(.FieldValue("nroOrden"), "SIFACTURAR")
+          Call actualizarTarifa(.FieldValue("nroOrden"), .FieldValue("ancho_banda"))
+          Call actualizarDatosConexInet(getCodAlumbrado(.FieldValue("nroOrden")))
         End If
-        
-'        If chkEnviarCorreoOrden.Value = 1 Then
-'            ProgressBar1.Value = 1
-'            ProgressBar1.Visible = True
-'            ' Timer1.Enabled = True
-'            Call prepararCorreo(idTrabajo)
-'            ProgressBar1.Visible = False
-'            Timer1.Enabled = False
-'        End If
-     
-        Unload Me
-        
+
+        .Update
+      End If
+    End With
+
+    If chkImprimirOrden.Value = 1 Then
+      Call dialogoImpresion(idTrabajo)
     End If
+
+    '        If chkEnviarCorreoOrden.Value = 1 Then
+    '            ProgressBar1.Value = 1
+    '            ProgressBar1.Visible = True
+    '            ' Timer1.Enabled = True
+    '            Call prepararCorreo(idTrabajo)
+    '            ProgressBar1.Visible = False
+    '            Timer1.Enabled = False
+    '        End If
+
+    Unload Me
+
+  End If
 
 End Sub
 
+Private Sub btnModificar_Click()
+  With main.vTrabInternet
+    .IndexNumber = 0
+    .FieldValue("id_trabajo") = idTrabajo
+
+    If .GetEqual = 0 Then
+      .FieldValue("tipo_conexion") = cmbTipoConexion.ItemData(cmbTipoConexion.ListIndex)
+      .FieldValue("fecha_inst") = dtFechaInst.Value
+      .FieldValue("hora_inst") = dtHoraInst.Value
+      .FieldValue("idcuadrilla") = cmbCuadrilla.ItemData(cmbCuadrilla.ListIndex)
+      .FieldValue("obs") = txtObs.Text
+      .FieldValue("reserva") = txtObsConex.Text
+      .FieldValue("prioridad") = cmbPrioridad.ItemData(cmbPrioridad.ListIndex)
+
+      If main.tabTrabajos.Tab = 1 Or main.tabTrabajos.Tab = 2 Then
+        .FieldValue("ancho_banda") = cmbTarifas.ItemData(cmbTarifas.ListIndex)
+        Call actualizarDatosConexInet(getCodAlumbrado(.FieldValue("nroOrden")))
+      End If
+
+      .Update
+    End If
+  End With
+End Sub
+
 Private Sub actualizarDatosConexInet(CodAlumbrado As Long)
-    With main.VDatosConexInet
-        .IndexNumber = 0
-        .FieldValue("CodAlumbrado") = CodAlumbrado
-        
-        If .GetEqual = 0 Then
-            ' Hay que actualizar
-            .FieldValue("direc_MAC") = txtDirMAC.Text
-            .FieldValue("ubic_fisica") = txtUbFis.Text
-            .FieldValue("ubic_logica") = txtUbLog.Text
-            .Update
-        Else
-            ' Hay que agregarlo nuevo
-            .Clear
-            .FieldValue("CodAlumbrado") = CodAlumbrado
-            .FieldValue("direc_MAC") = txtDirMAC.Text
-            .FieldValue("ubic_fisica") = txtUbFis.Text
-            .FieldValue("ubic_logica") = txtUbLog.Text
-            .Insert
-        End If
-    End With
+  With main.VDatosConexInet
+    .IndexNumber = 0
+    .FieldValue("CodAlumbrado") = CodAlumbrado
+
+    If .GetEqual = 0 Then
+      ' Hay que actualizar
+      .FieldValue("direc_MAC") = txtDirMAC.Text
+      .FieldValue("ubic_fisica") = txtUbFis.Text
+      .FieldValue("ubic_logica") = txtUbLog.Text
+      .Update
+    Else
+      ' Hay que agregarlo nuevo
+      .Clear
+      .FieldValue("CodAlumbrado") = CodAlumbrado
+      .FieldValue("direc_MAC") = txtDirMAC.Text
+      .FieldValue("ubic_fisica") = txtUbFis.Text
+      .FieldValue("ubic_logica") = txtUbLog.Text
+      .Insert
+    End If
+  End With
 End Sub
 
 
 Private Sub btnEliminar_Click()
-    If MsgBox("Se eliminará este trabajo de la base de datos, ¿está seguro?", vbYesNo + vbQuestion, "Eliminar trabajo") = vbYes Then
-    
-        Dim st As Integer
-        
-        With main.vTrabInternet
-            .FieldValue("id_trabajo") = idTrabajo
-            st = .GetEqual
-            If st = 0 Then
-                .Delete
-            End If
-        End With
-        Unload Me
-    End If
+  If MsgBox("Se eliminará este trabajo de la base de datos, ¿está seguro?", vbYesNo + vbQuestion, "Eliminar trabajo") = vbYes Then
+
+    Dim st As Integer
+
+    With main.vTrabInternet
+      .FieldValue("id_trabajo") = idTrabajo
+      st = .GetEqual
+      If st = 0 Then
+        .Delete
+      End If
+    End With
+    Unload Me
+  End If
 End Sub
 
 Private Sub btnVolverAInstalar_Click()
-    With main.vTrabInternet
-        .IndexNumber = 0
-        .FieldValue("id_trabajo") = idTrabajo
-        .GetEqual
-        
-        If .status = 0 Then
-            .FieldValue("estado") = Estados.NUEVO
-            .Update
-            
-            cambiarNoFacturar .FieldValue("nroOrden"), "NOFACTURAR"
-        End If
-    End With
-    
-    Unload Me
+  With main.vTrabInternet
+    .IndexNumber = 0
+    .FieldValue("id_trabajo") = idTrabajo
+    .GetEqual
+
+    If .status = 0 Then
+      .FieldValue("estado") = Estados.NUEVO
+      .Update
+
+      cambiarNoFacturar .FieldValue("nroOrden"), "NOFACTURAR"
+    End If
+  End With
+
+  Unload Me
 End Sub
 
 Private Sub btnVolver_Click()
-    Unload Me
+  Unload Me
 End Sub
 
 Private Sub cargarCuadrillas()
-    Dim status As Integer
-    
-    With main.VCuadrillas
-        .IndexNumber = 0
-        status = .GetFirst
-        
-        While status = 0
-            If .FieldValue("habilitado") = 1 Or main.tabTrabajos.Tab = 1 Then
-                cmbCuadrilla.AddItem (.FieldValue("miembros"))
-                cmbCuadrilla.ItemData(cmbCuadrilla.NewIndex) = .FieldValue("idcuadrilla")
-            End If
-            
-            status = .GetNext
-        Wend
-    End With
+  Dim status As Integer
+
+  With main.VCuadrillas
+    .IndexNumber = 0
+    status = .GetFirst
+
+    While status = 0
+      If .FieldValue("habilitado") = 1 Or main.tabTrabajos.Tab = 1 Then
+        cmbCuadrilla.AddItem (.FieldValue("miembros"))
+        cmbCuadrilla.ItemData(cmbCuadrilla.NewIndex) = .FieldValue("idcuadrilla")
+      End If
+
+      status = .GetNext
+    Wend
+  End With
 End Sub
 
 Private Sub btnImprimirOrden_Click()
-    Call dialogoImpresion(idTrabajo)
+  Call dialogoImpresion(idTrabajo)
 End Sub
 
 Private Sub Timer1_Timer()
-    If ProgressBar1.Value = ProgressBar1.Max Then
-        ProgressBar1.Value = ProgressBar1.Min
-    End If
-    
-    ProgressBar1.Value = ProgressBar1.Value + 1
+  If ProgressBar1.Value = ProgressBar1.Max Then
+    ProgressBar1.Value = ProgressBar1.Min
+  End If
+
+  ProgressBar1.Value = ProgressBar1.Value + 1
 End Sub

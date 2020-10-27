@@ -153,23 +153,23 @@ Option Explicit
 Dim mCodAlumbrado As Long
 
 Property Get CodAlumbrado() As Long
-    CodAlumbrado = mCodAlumbrado
+  CodAlumbrado = mCodAlumbrado
 End Property
 
 Private Sub CmdAceptar_Click()
-     Call regreso
+  Call regreso
 End Sub
 
 Private Sub grilla_DblClick()
-    Call regreso
+  Call regreso
 End Sub
 
 Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
   Select Case KeyCode
-    Case vbKeyReturn
-      Call grilla_DblClick
-    Case vbKeyEscape
-      Unload Me
+  Case vbKeyReturn
+    Call grilla_DblClick
+  Case vbKeyEscape
+    Unload Me
   End Select
 End Sub
 
@@ -181,77 +181,77 @@ End Sub
 
 Private Sub MostrarOrdenes(Cli As Long)
   Dim st As Long
-  
+
   With main
     .VOrdenes.IndexNumber = 1
     .VAsumAlum.IndexNumber = 0
-    
+
     .VOrdenes.FieldValue("CodCli") = Cli
     .VOrdenes.GetEqual
-  
+
     grilla.Rows = 1
     Do While (.VOrdenes.status = 0) And (.VOrdenes.FieldValue("CodCli") = Cli)
       If Not IsNull(.VOrdenes.FieldValue("CodAlumbrado")) Then
         If .VOrdenes.FieldValue("CodAlumbrado") > 0 Then
-            .VAsumAlum.FieldValue("CodAlumbrado") = .VOrdenes.FieldValue("CodAlumbrado")
-            .VAsumAlum.GetEqual
-            
-            Dim domConexion As String
-            domConexion = IIf(IsNull(.VAsumAlum.FieldValue("cuenta")), "No se encontró domicilio de conexión", .VAsumAlum.FieldValue("cuenta"))
-            
-            grilla.AddItem .VOrdenes.FieldValue("NroOrden") & vbTab & _
-              Format$(.VOrdenes.FieldValue("Ruta"), String$(2, "0")) & "-" & Format$(.VOrdenes.FieldValue("SubRuta"), String$(6, "0")) & vbTab & _
-              .VOrdenes.FieldValue("CodAlumbrado") & vbTab & _
-              .VOrdenes.FieldValue("domicilio") & vbTab & _
-              domConexion
-              
-              
+          .VAsumAlum.FieldValue("CodAlumbrado") = .VOrdenes.FieldValue("CodAlumbrado")
+          .VAsumAlum.GetEqual
+
+          Dim domConexion As String
+          domConexion = IIf(IsNull(.VAsumAlum.FieldValue("cuenta")), "No se encontró domicilio de conexión", .VAsumAlum.FieldValue("cuenta"))
+
+          grilla.AddItem .VOrdenes.FieldValue("NroOrden") & vbTab & _
+                         Format$(.VOrdenes.FieldValue("Ruta"), String$(2, "0")) & "-" & Format$(.VOrdenes.FieldValue("SubRuta"), String$(6, "0")) & vbTab & _
+                         .VOrdenes.FieldValue("CodAlumbrado") & vbTab & _
+                         .VOrdenes.FieldValue("domicilio") & vbTab & _
+                         domConexion
+
+
           grilla.RowData(grilla.Rows - 1) = .VOrdenes.Position
         End If
       End If
-      
+
       .VOrdenes.GetNext
     Loop
   End With
-  
+
   grilla.AutoSize 0, grilla.Cols - 1
 End Sub
 
 Private Sub regreso()
-    If grilla.Row <= 0 Then
-        mCodAlumbrado = 0
-        frmCambioFTTH.nroOrden = 0
-    Else
-    
-        mCodAlumbrado = Val(grilla.TextMatrix(grilla.Row, 2))
-  
-        With main
-            .VOrdenes.IndexNumber = 4
-            .VOrdenes.FieldValue("CodAlumbrado") = mCodAlumbrado
-            .VOrdenes.GetEqual
+  If grilla.Row <= 0 Then
+    mCodAlumbrado = 0
+    frmCambioFTTH.nroOrden = 0
+  Else
 
-            If .VOrdenes.status = 0 Then
-                .VAsumAlumInte.FieldValue("codalumbrado") = mCodAlumbrado
-                .VAsumAlumInte.GetEqual
-                
-                .VAsumAlum.FieldValue("codalumbrado") = mCodAlumbrado
-                .VAsumAlum.GetEqual
-        
-                If .VAsumAlum.status = 0 And .VAsumAlumInte.status = 0 Then
-                    frmCambioFTTH.nroOrden = main.VOrdenes.FieldValue("NroOrden")
-                    frmCambioFTTH.lblCodInternet = "Cód. Internet " & mCodAlumbrado
-                    frmCambioFTTH.lblDomicilio = grilla.TextMatrix(grilla.Row, 4)
-                    frmCambioFTTH.lblTelefono = getNroTfno(main.VOrdenes.FieldValue("CodCli"))
-                Else
-                    MsgBox "El cliente no tiene un suministro de Internet - generarlo en la solapa de suministro del sistema de facturación.", vbExclamation + vbOKOnly, "Error"
-                    
-                End If
-            End If
-        End With
-        
-        Unload Me
-      
-    End If
+    mCodAlumbrado = Val(grilla.TextMatrix(grilla.Row, 2))
+
+    With main
+      .VOrdenes.IndexNumber = 4
+      .VOrdenes.FieldValue("CodAlumbrado") = mCodAlumbrado
+      .VOrdenes.GetEqual
+
+      If .VOrdenes.status = 0 Then
+        .VAsumAlumInte.FieldValue("codalumbrado") = mCodAlumbrado
+        .VAsumAlumInte.GetEqual
+
+        .VAsumAlum.FieldValue("codalumbrado") = mCodAlumbrado
+        .VAsumAlum.GetEqual
+
+        If .VAsumAlum.status = 0 And .VAsumAlumInte.status = 0 Then
+          frmCambioFTTH.nroOrden = main.VOrdenes.FieldValue("NroOrden")
+          frmCambioFTTH.lblCodInternet = "Cód. Internet " & mCodAlumbrado
+          frmCambioFTTH.lblDomicilio = grilla.TextMatrix(grilla.Row, 4)
+          frmCambioFTTH.lblTelefono = getNroTfno(main.VOrdenes.FieldValue("CodCli"))
+        Else
+          MsgBox "El cliente no tiene un suministro de Internet - generarlo en la solapa de suministro del sistema de facturación.", vbExclamation + vbOKOnly, "Error"
+
+        End If
+      End If
+    End With
+
+    Unload Me
+
+  End If
 End Sub
 
 

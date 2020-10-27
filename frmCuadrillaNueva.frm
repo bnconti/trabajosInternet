@@ -130,33 +130,33 @@ Attribute VB_Exposed = False
 Option Explicit
 
 Private Sub btnGuardarCuadrilla_Click()
-    main.VCuadrillas.Clear ' Para borrar el ID
-    
-    If txtMiembros.Text <> vbNullString Then
-        main.VCuadrillas.FieldValue("miembros") = txtMiembros
-        main.VCuadrillas.FieldValue("email") = txtCorreoCuadrilla
-        main.VCuadrillas.FieldValue("habilitado") = True
-        main.VCuadrillas.Insert
-        
-        Unload Me
-    Else
-        ' Mostrar mensaje si no se cargo porque faltan datos
-        Call MsgBox("Debe completar todos los datos", vbOKOnly + vbInformation, Me.Caption)
-        txtMiembros.SetFocus
-    End If
+  main.VCuadrillas.Clear  ' Para borrar el ID
+
+  If txtMiembros.Text <> vbNullString Then
+    main.VCuadrillas.FieldValue("miembros") = txtMiembros
+    main.VCuadrillas.FieldValue("email") = txtCorreoCuadrilla
+    main.VCuadrillas.FieldValue("habilitado") = True
+    main.VCuadrillas.Insert
+
+    Unload Me
+  Else
+    ' Mostrar mensaje si no se cargo porque faltan datos
+    Call MsgBox("Debe completar todos los datos", vbOKOnly + vbInformation, Me.Caption)
+    txtMiembros.SetFocus
+  End If
 End Sub
 
 Private Sub btnVolver_Click()
-    Unload Me
+  Unload Me
 End Sub
 
 Private Sub txtCorreoCuadrilla_Validate(Cancel As Boolean)
-    Cancel = False
-    
-    ' sacar espacios del textbox
-    txtCorreoCuadrilla.Text = Replace(txtCorreoCuadrilla.Text, " ", vbNullString)
-    If Not ValidarCorreos(txtCorreoCuadrilla.Text) Then
-        Call MsgBox("Ingrese una dirección válida", vbOKOnly + vbInformation, Me.Caption)
-        Cancel = True
-    End If
+  Cancel = False
+
+  ' sacar espacios del textbox
+  txtCorreoCuadrilla.Text = Replace(txtCorreoCuadrilla.Text, " ", vbNullString)
+  If Not ValidarCorreos(txtCorreoCuadrilla.Text) Then
+    Call MsgBox("Ingrese una dirección válida", vbOKOnly + vbInformation, Me.Caption)
+    Cancel = True
+  End If
 End Sub

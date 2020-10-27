@@ -182,7 +182,6 @@ Begin VB.Form main
       _ExtentX        =   37253
       _ExtentY        =   14975
       _Version        =   393216
-      Tab             =   2
       TabHeight       =   520
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "MS Sans Serif"
@@ -195,13 +194,19 @@ Begin VB.Form main
       EndProperty
       TabCaption(0)   =   "Para programar"
       TabPicture(0)   =   "main.frx":8295
-      Tab(0).ControlEnabled=   0   'False
+      Tab(0).ControlEnabled=   -1  'True
       Tab(0).Control(0)=   "tablaTrabajosAProgramar"
+      Tab(0).Control(0).Enabled=   0   'False
       Tab(0).Control(1)=   "frmFiltrar"
+      Tab(0).Control(1).Enabled=   0   'False
       Tab(0).Control(2)=   "btnExpExcelProgramar"
+      Tab(0).Control(2).Enabled=   0   'False
       Tab(0).Control(3)=   "btnImprimirProgramar"
+      Tab(0).Control(3).Enabled=   0   'False
       Tab(0).Control(4)=   "btnAProgramarRecuperar"
+      Tab(0).Control(4).Enabled=   0   'False
       Tab(0).Control(5)=   "Frame2"
+      Tab(0).Control(5).Enabled=   0   'False
       Tab(0).ControlCount=   6
       TabCaption(1)   =   "Para instalar"
       TabPicture(1)   =   "main.frx":82B1
@@ -217,7 +222,7 @@ Begin VB.Form main
       Tab(1).ControlCount=   8
       TabCaption(2)   =   "Terminados"
       TabPicture(2)   =   "main.frx":82CD
-      Tab(2).ControlEnabled=   -1  'True
+      Tab(2).ControlEnabled=   0   'False
       Tab(2).Control(0)=   "tablaTrabajosTerminados"
       Tab(2).Control(0).Enabled=   0   'False
       Tab(2).Control(1)=   "frmFiltrado"
@@ -243,7 +248,7 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   1935
-         Left            =   7560
+         Left            =   -67440
          TabIndex        =   57
          Top             =   6360
          Width           =   6255
@@ -440,7 +445,7 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   1935
-         Left            =   -69120
+         Left            =   5880
          TabIndex        =   46
          Top             =   6360
          Width           =   6255
@@ -855,7 +860,7 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   855
-         Left            =   360
+         Left            =   -74640
          Picture         =   "main.frx":91B3
          Style           =   1  'Graphical
          TabIndex        =   21
@@ -895,7 +900,7 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   855
-         Left            =   -74640
+         Left            =   360
          Picture         =   "main.frx":149D7
          Style           =   1  'Graphical
          TabIndex        =   1
@@ -915,7 +920,7 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   975
-         Left            =   -58200
+         Left            =   16800
          Picture         =   "main.frx":1A5E9
          Style           =   1  'Graphical
          TabIndex        =   6
@@ -955,7 +960,7 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   975
-         Left            =   16800
+         Left            =   -58200
          Picture         =   "main.frx":26AFD
          Style           =   1  'Graphical
          TabIndex        =   33
@@ -975,7 +980,7 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   975
-         Left            =   18240
+         Left            =   -56760
          Picture         =   "main.frx":2CD87
          Style           =   1  'Graphical
          TabIndex        =   32
@@ -1015,7 +1020,7 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   975
-         Left            =   -56760
+         Left            =   18240
          Picture         =   "main.frx":2E2FB
          Style           =   1  'Graphical
          TabIndex        =   7
@@ -1054,7 +1059,7 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   1875
-         Left            =   2880
+         Left            =   -72120
          TabIndex        =   22
          Top             =   6360
          Width           =   4455
@@ -1077,7 +1082,7 @@ Begin VB.Form main
                Strikethrough   =   0   'False
             EndProperty
             CustomFormat    =   "dd/MM/yy"
-            Format          =   81592323
+            Format          =   94371843
             CurrentDate     =   44089
          End
          Begin VB.ComboBox cmbConexionTerminados 
@@ -1133,7 +1138,7 @@ Begin VB.Form main
                Strikethrough   =   0   'False
             EndProperty
             CustomFormat    =   "dd/MM/yy"
-            Format          =   81592323
+            Format          =   94371843
             CurrentDate     =   44089
          End
          Begin VB.Label lblFechaHastaInstalados 
@@ -1302,7 +1307,7 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   1155
-         Left            =   -72120
+         Left            =   2880
          TabIndex        =   2
          Top             =   6360
          Width           =   2775
@@ -1343,7 +1348,7 @@ Begin VB.Form main
       End
       Begin VSFlex7LCtl.VSFlexGrid tablaTrabajosAProgramar 
          Height          =   5295
-         Left            =   -74640
+         Left            =   360
          TabIndex        =   31
          Top             =   960
          Width           =   20415
@@ -1525,7 +1530,7 @@ Begin VB.Form main
       End
       Begin VSFlex7LCtl.VSFlexGrid tablaTrabajosTerminados 
          Height          =   5295
-         Left            =   360
+         Left            =   -74640
          TabIndex        =   20
          Top             =   960
          Width           =   20415
@@ -1640,15 +1645,15 @@ Attribute VB_Exposed = False
 Option Explicit
 
 Public Enum Estados
-    NUEVO = 1          ' Recien se cargó la orden de trabajo
-    PROGRAMADO = 2     ' Se le asignó una fecha, hora y cuadrilla
-    TERMINADO = 0      ' La instalación fue realizada
+  NUEVO = 1          ' Recien se cargó la orden de trabajo
+  PROGRAMADO = 2     ' Se le asignó una fecha, hora y cuadrilla
+  TERMINADO = 0      ' La instalación fue realizada
 End Enum
 
-Public Enum Prioridad
-    ALTA = 1
-    MEDIA = 2
-    BAJA = 3
+Public Enum prioridad
+  ALTA = 1
+  MEDIA = 2
+  BAJA = 3
 End Enum
 
 Public ini As New ArchIni
@@ -1664,89 +1669,89 @@ Dim cVSFlex As New ClsVSFlex
 Dim FUENTEDATOS As String
 
 Private Sub btnEnviarOrdenPorCorreo_Click()
-    With tablaTrabajosAInstalar
-        If tablaTrabajosAInstalar.Row > 1 Then
-            ' Dim idTrabajo =
-            ' Call prepararCorreo(idTrabajo)
-        Else
-            MsgBox "Tiene que seleccionar el trabajo del cual se enviará la orden.", vbInformation + vbOKOnly, "No se seleccionó un trabajo"
-        End If
-    End With
+  With tablaTrabajosAInstalar
+    If tablaTrabajosAInstalar.Row > 1 Then
+      ' Dim idTrabajo =
+      ' Call prepararCorreo(idTrabajo)
+    Else
+      MsgBox "Tiene que seleccionar el trabajo del cual se enviará la orden.", vbInformation + vbOKOnly, "No se seleccionó un trabajo"
+    End If
+  End With
 End Sub
 
 Private Sub cmdSalir_Click()
-    Unload Me
+  Unload Me
 End Sub
 
 Private Sub Form_Load()
-    arrConexiones = Array("ALTA FTTH", "ALTA ANTENA", "ALTA EDIFICIO", "CAMBIO A FTTH")
-    FUENTEDATOS = GetSetting("SFS2000", "Sistema", "FuenteDeDatos", "\\Servidor\D\Compu\SFS2000\Datos\")
-    
-    Call cargarCuadrillas
-    Call cargarTiposConexion
-    
-    ini.Path_del_Ini = FUENTEDATOS & "SFS.ini"
-    
-    dtDesdeTerminados.Value = "01/01/2020"
-    dtHastaTerminados.Value = DateTime.Day(DateTime.Now) & "/" & DateTime.Month(DateTime.Now) & "/" & DateTime.Year(DateTime.Now) + 1
-    
-    Call formatearEncabezados
-    tabTrabajos.Tab = 0
+  arrConexiones = Array("ALTA FTTH", "ALTA ANTENA", "ALTA EDIFICIO", "CAMBIO A FTTH")
+  FUENTEDATOS = GetSetting("SFS2000", "Sistema", "FuenteDeDatos", "\\Servidor\D\Compu\SFS2000\Datos\")
+
+  Call cargarCuadrillas
+  Call cargarTiposConexion
+
+  ini.Path_del_Ini = FUENTEDATOS & "SFS.ini"
+
+  dtDesdeTerminados.Value = "01/01/2020"
+  dtHastaTerminados.Value = DateTime.Day(DateTime.Now) & "/" & DateTime.Month(DateTime.Now) & "/" & DateTime.Year(DateTime.Now) + 1
+
+  Call formatearEncabezados
+  tabTrabajos.Tab = 0
 End Sub
 
 Private Sub btnCambioFTTH_Click()
-    frmCambioFTTH.Show 1, Me
-    Call cargarTablaTrabajosAProgramar
+  frmCambioFTTH.Show 1, Me
+  Call cargarTablaTrabajosAProgramar
 End Sub
 
 Private Sub btnAProgramarRecuperar_Click()
-    Call cargarTablaTrabajosAProgramar
+  Call cargarTablaTrabajosAProgramar
 End Sub
 
 Private Sub btnAInstalarRecuperar_Click()
-    Call cargarTablaTrabajosAInstalar
+  Call cargarTablaTrabajosAInstalar
 End Sub
 
 Private Sub btnInstaladosRecuperar_Click()
-    Call cargartablaTrabajosTerminados
+  Call cargartablaTrabajosTerminados
 End Sub
 
 Private Sub cargarTablaTrabajosAProgramar()
-    Dim st As Integer
-    
-    tablaTrabajosAProgramar.Rows = 1
-    
-    With vTrabInternet
-        vTrabInternet.IndexNumber = 0
-        st = .GetFirst
-        
-        Screen.MousePointer = 11
-        While st = 0
-        
-            VOrdenes.IndexNumber = 0
-            VAClientes.IndexNumber = 0
-            VAsumAlumInte.IndexNumber = 0
-            VAsumAlum.IndexNumber = 0
-            
-            VOrdenes.FieldValue("NroOrden") = .FieldValue("Nroorden")
-            VOrdenes.GetEqual
-            
-            VAClientes.FieldValue("CodCli") = VOrdenes.FieldValue("CodCli")
-            VAClientes.GetEqual
-            
-            VAsumAlumInte.FieldValue("CodAlumbrado") = VOrdenes.FieldValue("CodAlumbrado")
-            VAsumAlumInte.GetEqual
-            
-            VAsumAlum.FieldValue("CodAlumbrado") = VOrdenes.FieldValue("CodAlumbrado")
-            VAsumAlum.GetEqual
-            
-            If VOrdenes.status = 0 And _
-                VAClientes.status = 0 And _
-                VAsumAlumInte.status = 0 And _
-                VAsumAlum.status = 0 And _
-                vTrabInternet.FieldValue("estado") = Estados.NUEVO Then
-            
-                tablaTrabajosAProgramar.AddItem (VAClientes.FieldValue("apellido") & ", " & VAClientes.FieldValue("nombre") & vbTab & _
+  Dim st As Integer
+
+  tablaTrabajosAProgramar.Rows = 1
+
+  With vTrabInternet
+    vTrabInternet.IndexNumber = 0
+    st = .GetFirst
+
+    Screen.MousePointer = 11
+    While st = 0
+
+      VOrdenes.IndexNumber = 0
+      VAClientes.IndexNumber = 0
+      VAsumAlumInte.IndexNumber = 0
+      VAsumAlum.IndexNumber = 0
+
+      VOrdenes.FieldValue("NroOrden") = .FieldValue("Nroorden")
+      VOrdenes.GetEqual
+
+      VAClientes.FieldValue("CodCli") = VOrdenes.FieldValue("CodCli")
+      VAClientes.GetEqual
+
+      VAsumAlumInte.FieldValue("CodAlumbrado") = VOrdenes.FieldValue("CodAlumbrado")
+      VAsumAlumInte.GetEqual
+
+      VAsumAlum.FieldValue("CodAlumbrado") = VOrdenes.FieldValue("CodAlumbrado")
+      VAsumAlum.GetEqual
+
+      If VOrdenes.status = 0 And _
+         VAClientes.status = 0 And _
+         VAsumAlumInte.status = 0 And _
+         VAsumAlum.status = 0 And _
+         vTrabInternet.FieldValue("estado") = Estados.NUEVO Then
+
+        tablaTrabajosAProgramar.AddItem (VAClientes.FieldValue("apellido") & ", " & VAClientes.FieldValue("nombre") & vbTab & _
                                          VAsumAlum.FieldValue("cuenta") & vbTab & _
                                          VAsumAlumInte.FieldValue("UsInt") & vbTab & _
                                          arrConexiones(vTrabInternet.FieldValue("Tipo_Conexion") - 1) & vbTab & _
@@ -1754,244 +1759,244 @@ Private Sub cargarTablaTrabajosAProgramar()
                                          VAClientes.FieldValue("reserva") & vbTab & _
                                          vTrabInternet.FieldValue("id_trabajo")) & vbTab & _
                                          vTrabInternet.FieldValue("obs")
-                
-                
-                On Error Resume Next
-                    If vTrabInternet.FieldValue("prioridad") = Prioridad.ALTA Then
-                        ' Pintar fila rojo
-                        tablaTrabajosAProgramar.Cell(flexcpBackColor, tablaTrabajosAProgramar.Rows - 1, 0, tablaTrabajosAProgramar.Rows - 1, tablaTrabajosAProgramar.Cols - 1) = RGB(255, 122, 122)
-                    ElseIf vTrabInternet.FieldValue("prioridad") = Prioridad.MEDIA Then
-                        ' Pintar fila amarillo
-                        tablaTrabajosAProgramar.Cell(flexcpBackColor, tablaTrabajosAProgramar.Rows - 1, 0, tablaTrabajosAProgramar.Rows - 1, tablaTrabajosAProgramar.Cols - 1) = RGB(255, 255, 122)
-                    End If
-                On Error GoTo 0
-                
-                
-            End If
-                                     
-            st = .GetNext
-        
-        Wend
-        
-        Call filtrarTablaAProgramar
-        tablaTrabajosAProgramar.AutoSize 0, tablaTrabajosAProgramar.Cols - 1
-        Screen.MousePointer = 0
-        
-    End With
+
+
+        On Error Resume Next
+        If vTrabInternet.FieldValue("prioridad") = prioridad.ALTA Then
+          ' Pintar fila rojo
+          tablaTrabajosAProgramar.Cell(flexcpBackColor, tablaTrabajosAProgramar.Rows - 1, 0, tablaTrabajosAProgramar.Rows - 1, tablaTrabajosAProgramar.Cols - 1) = RGB(255, 122, 122)
+        ElseIf vTrabInternet.FieldValue("prioridad") = prioridad.MEDIA Then
+          ' Pintar fila amarillo
+          tablaTrabajosAProgramar.Cell(flexcpBackColor, tablaTrabajosAProgramar.Rows - 1, 0, tablaTrabajosAProgramar.Rows - 1, tablaTrabajosAProgramar.Cols - 1) = RGB(255, 255, 122)
+        End If
+        On Error GoTo 0
+
+
+      End If
+
+      st = .GetNext
+
+    Wend
+
+    Call filtrarTablaAProgramar
+    tablaTrabajosAProgramar.AutoSize 0, tablaTrabajosAProgramar.Cols - 1
+    Screen.MousePointer = 0
+
+  End With
 End Sub
 
 Private Sub cargarTablaTrabajosAInstalar()
-    Dim st As Integer
-    
-    tablaTrabajosAInstalar.Rows = 1
-    
-    vTrabInternet.IndexNumber = 0
-    st = vTrabInternet.GetFirst
-    
-    Screen.MousePointer = 11
-    While st = 0
-    
-        VOrdenes.IndexNumber = 0
-        VAClientes.IndexNumber = 0
-        VAsumAlumInte.IndexNumber = 0
-        VCuadrillas.IndexNumber = 0
-        VAsumAlum.IndexNumber = 0
-        
-        VOrdenes.FieldValue("NroOrden") = vTrabInternet.FieldValue("Nroorden")
-        VOrdenes.GetEqual
-        
-        VAClientes.FieldValue("CodCli") = VOrdenes.FieldValue("CodCli")
-        VAClientes.GetEqual
-        
-        VAsumAlumInte.FieldValue("CodAlumbrado") = VOrdenes.FieldValue("CodAlumbrado")
-        VAsumAlumInte.GetEqual
-        
-        VCuadrillas.FieldValue("idcuadrilla") = vTrabInternet.FieldValue("idcuadrilla")
-        VCuadrillas.GetEqual
-        
-        VAsumAlum.FieldValue("CodAlumbrado") = VOrdenes.FieldValue("CodAlumbrado")
-        VAsumAlum.GetEqual
-        
-        If VOrdenes.status = 0 And _
-            VAClientes.status = 0 And _
-            VAsumAlumInte.status = 0 And _
-            VCuadrillas.status = 0 And _
-            VAsumAlum.status = 0 And _
-            vTrabInternet.FieldValue("estado") = Estados.PROGRAMADO Then
-        
-            tablaTrabajosAInstalar.AddItem (vbNullString & vbTab & _
-                                    VAClientes.FieldValue("apellido") & ", " & VAClientes.FieldValue("nombre") & vbTab & _
-                                    VAsumAlum.FieldValue("cuenta") & vbTab & _
-                                    VAsumAlumInte.FieldValue("UsInt") & vbTab & _
-                                    arrConexiones(vTrabInternet.FieldValue("Tipo_Conexion") - 1) & vbTab & _
-                                    vTrabInternet.FieldValue("fecha_pedido") & vbTab & _
-                                    VAClientes.FieldValue("reserva") & vbTab & _
-                                    vTrabInternet.FieldValue("fecha_inst") & vbTab & _
-                                    Format(vTrabInternet.FieldValue("hora_inst"), "hh:mm AMPM") & vbTab & _
-                                    VCuadrillas.FieldValue("miembros") & vbTab & _
-                                    vTrabInternet.FieldValue("id_trabajo")) & vbTab & _
-                                    vTrabInternet.FieldValue("obs")
-            tablaTrabajosAInstalar.Cell(flexcpChecked, tablaTrabajosAInstalar.Rows - 1, 0, tablaTrabajosAInstalar.Rows - 1, 0) = flexUnchecked
-            
-            If vTrabInternet.FieldValue("prioridad") = Prioridad.ALTA Then
-                ' Pintar fila rojo
-                tablaTrabajosAInstalar.Cell(flexcpBackColor, tablaTrabajosAInstalar.Rows - 1, 0, tablaTrabajosAInstalar.Rows - 1, tablaTrabajosAInstalar.Cols - 1) = RGB(255, 122, 122)
-            ElseIf vTrabInternet.FieldValue("prioridad") = Prioridad.MEDIA Then
-                ' Pintar fila amarillo
-                tablaTrabajosAInstalar.Cell(flexcpBackColor, tablaTrabajosAInstalar.Rows - 1, 0, tablaTrabajosAInstalar.Rows - 1, tablaTrabajosAInstalar.Cols - 1) = RGB(255, 255, 122)
-            End If
-            
-        End If
-                                 
-        st = vTrabInternet.GetNext
-    
-    Wend
-    
-    Call filtrarTablaAInstalar
-    
-    tablaTrabajosAInstalar.AutoSize 0, tablaTrabajosAInstalar.Cols - 1
-    Screen.MousePointer = 0
+  Dim st As Integer
+
+  tablaTrabajosAInstalar.Rows = 1
+
+  vTrabInternet.IndexNumber = 0
+  st = vTrabInternet.GetFirst
+
+  Screen.MousePointer = 11
+  While st = 0
+
+    VOrdenes.IndexNumber = 0
+    VAClientes.IndexNumber = 0
+    VAsumAlumInte.IndexNumber = 0
+    VCuadrillas.IndexNumber = 0
+    VAsumAlum.IndexNumber = 0
+
+    VOrdenes.FieldValue("NroOrden") = vTrabInternet.FieldValue("Nroorden")
+    VOrdenes.GetEqual
+
+    VAClientes.FieldValue("CodCli") = VOrdenes.FieldValue("CodCli")
+    VAClientes.GetEqual
+
+    VAsumAlumInte.FieldValue("CodAlumbrado") = VOrdenes.FieldValue("CodAlumbrado")
+    VAsumAlumInte.GetEqual
+
+    VCuadrillas.FieldValue("idcuadrilla") = vTrabInternet.FieldValue("idcuadrilla")
+    VCuadrillas.GetEqual
+
+    VAsumAlum.FieldValue("CodAlumbrado") = VOrdenes.FieldValue("CodAlumbrado")
+    VAsumAlum.GetEqual
+
+    If VOrdenes.status = 0 And _
+       VAClientes.status = 0 And _
+       VAsumAlumInte.status = 0 And _
+       VCuadrillas.status = 0 And _
+       VAsumAlum.status = 0 And _
+       vTrabInternet.FieldValue("estado") = Estados.PROGRAMADO Then
+
+      tablaTrabajosAInstalar.AddItem (vbNullString & vbTab & _
+                                      VAClientes.FieldValue("apellido") & ", " & VAClientes.FieldValue("nombre") & vbTab & _
+                                      VAsumAlum.FieldValue("cuenta") & vbTab & _
+                                      VAsumAlumInte.FieldValue("UsInt") & vbTab & _
+                                      arrConexiones(vTrabInternet.FieldValue("Tipo_Conexion") - 1) & vbTab & _
+                                      vTrabInternet.FieldValue("fecha_pedido") & vbTab & _
+                                      VAClientes.FieldValue("reserva") & vbTab & _
+                                      vTrabInternet.FieldValue("fecha_inst") & vbTab & _
+                                      Format(vTrabInternet.FieldValue("hora_inst"), "hh:mm AMPM") & vbTab & _
+                                      VCuadrillas.FieldValue("miembros") & vbTab & _
+                                      vTrabInternet.FieldValue("id_trabajo")) & vbTab & _
+                                      vTrabInternet.FieldValue("obs")
+      tablaTrabajosAInstalar.Cell(flexcpChecked, tablaTrabajosAInstalar.Rows - 1, 0, tablaTrabajosAInstalar.Rows - 1, 0) = flexUnchecked
+
+      If vTrabInternet.FieldValue("prioridad") = prioridad.ALTA Then
+        ' Pintar fila rojo
+        tablaTrabajosAInstalar.Cell(flexcpBackColor, tablaTrabajosAInstalar.Rows - 1, 0, tablaTrabajosAInstalar.Rows - 1, tablaTrabajosAInstalar.Cols - 1) = RGB(255, 122, 122)
+      ElseIf vTrabInternet.FieldValue("prioridad") = prioridad.MEDIA Then
+        ' Pintar fila amarillo
+        tablaTrabajosAInstalar.Cell(flexcpBackColor, tablaTrabajosAInstalar.Rows - 1, 0, tablaTrabajosAInstalar.Rows - 1, tablaTrabajosAInstalar.Cols - 1) = RGB(255, 255, 122)
+      End If
+
+    End If
+
+    st = vTrabInternet.GetNext
+
+  Wend
+
+  Call filtrarTablaAInstalar
+
+  tablaTrabajosAInstalar.AutoSize 0, tablaTrabajosAInstalar.Cols - 1
+  Screen.MousePointer = 0
 
 End Sub
 
 Private Sub actualizarLabelsTablaParaInstalar()
 
-    lblTrabajosParaInstalarTotal.Caption = 0
-    lblAltaFTTHTotalParaInstalar.Caption = 0
-    lblAltaAntenaTotalParaInstalar.Caption = 0
-    lblAltaEdificioTotalParaInstalar.Caption = 0
-    lbCambioFTTHTotalParaInstalar.Caption = 0
-    
-    Dim i As Long
-    
-    With tablaTrabajosAInstalar
-        If .Rows > 1 Then
-            
-            For i = 1 To .Rows - 1
-                If Not (.RowHidden(i)) Then
-                    lblTrabajosParaInstalarTotal.Caption = Val(lblTrabajosParaInstalarTotal.Caption) + 1
-                    
-                    Dim tipoConexion As String
-                    tipoConexion = .TextMatrix(i, 4)
-                    
-                    Select Case tipoConexion
-                        Case "ALTA FTTH": lblAltaFTTHTotalParaInstalar.Caption = Val(lblAltaFTTHTotalParaInstalar.Caption) + 1
-                        Case "ALTA ANTENA": lblAltaAntenaTotalParaInstalar.Caption = Val(lblAltaAntenaTotalParaInstalar.Caption) + 1
-                        Case "ALTA EDIFICIO": lblAltaEdificioTotalParaInstalar.Caption = Val(lblAltaEdificioTotalParaInstalar.Caption) + 1
-                        Case "CAMBIO A FTTH": lbCambioFTTHTotalParaInstalar.Caption = Val(lbCambioFTTHTotalParaInstalar.Caption) + 1
-                    End Select
-                End If
-            Next
+  lblTrabajosParaInstalarTotal.Caption = 0
+  lblAltaFTTHTotalParaInstalar.Caption = 0
+  lblAltaAntenaTotalParaInstalar.Caption = 0
+  lblAltaEdificioTotalParaInstalar.Caption = 0
+  lbCambioFTTHTotalParaInstalar.Caption = 0
+
+  Dim i As Long
+
+  With tablaTrabajosAInstalar
+    If .Rows > 1 Then
+
+      For i = 1 To .Rows - 1
+        If Not (.RowHidden(i)) Then
+          lblTrabajosParaInstalarTotal.Caption = Val(lblTrabajosParaInstalarTotal.Caption) + 1
+
+          Dim tipoConexion As String
+          tipoConexion = .TextMatrix(i, 4)
+
+          Select Case tipoConexion
+          Case "ALTA FTTH": lblAltaFTTHTotalParaInstalar.Caption = Val(lblAltaFTTHTotalParaInstalar.Caption) + 1
+          Case "ALTA ANTENA": lblAltaAntenaTotalParaInstalar.Caption = Val(lblAltaAntenaTotalParaInstalar.Caption) + 1
+          Case "ALTA EDIFICIO": lblAltaEdificioTotalParaInstalar.Caption = Val(lblAltaEdificioTotalParaInstalar.Caption) + 1
+          Case "CAMBIO A FTTH": lbCambioFTTHTotalParaInstalar.Caption = Val(lbCambioFTTHTotalParaInstalar.Caption) + 1
+          End Select
         End If
-    End With
-    
+      Next
+    End If
+  End With
+
 End Sub
 
 Private Sub actualizarLabelsTablaParaProgramar()
-    lblTrabajosParaProgramarTotal.Caption = 0
-    lblAltaFTTHTotalParaProgramar.Caption = 0
-    lblAltaAntenaTotalParaProgramar.Caption = 0
-    lblAltaEdificioTotalParaProgramar.Caption = 0
-    lbCambioFTTHTotalParaProgramar.Caption = 0
-    
-    Dim i As Long
-    
-    With tablaTrabajosAProgramar
-        If .Rows > 1 Then
-            
-            For i = 1 To .Rows - 1
-                If Not (.RowHidden(i)) Then
-                    lblTrabajosParaProgramarTotal.Caption = Val(lblTrabajosParaProgramarTotal.Caption) + 1
-                    
-                    Dim tipoConexion As String
-                    tipoConexion = .TextMatrix(i, 3)
-                    
-                    Select Case tipoConexion
-                        Case "ALTA FTTH": lblAltaFTTHTotalParaProgramar.Caption = Val(lblAltaFTTHTotalParaProgramar.Caption) + 1
-                        Case "ALTA ANTENA": lblAltaAntenaTotalParaProgramar.Caption = Val(lblAltaAntenaTotalParaProgramar.Caption) + 1
-                        Case "ALTA EDIFICIO": lblAltaEdificioTotalParaProgramar.Caption = Val(lblAltaEdificioTotalParaProgramar.Caption) + 1
-                        Case "CAMBIO A FTTH": lbCambioFTTHTotalParaProgramar.Caption = Val(lbCambioFTTHTotalParaProgramar.Caption) + 1
-                    End Select
-                End If
-            Next
+  lblTrabajosParaProgramarTotal.Caption = 0
+  lblAltaFTTHTotalParaProgramar.Caption = 0
+  lblAltaAntenaTotalParaProgramar.Caption = 0
+  lblAltaEdificioTotalParaProgramar.Caption = 0
+  lbCambioFTTHTotalParaProgramar.Caption = 0
+
+  Dim i As Long
+
+  With tablaTrabajosAProgramar
+    If .Rows > 1 Then
+
+      For i = 1 To .Rows - 1
+        If Not (.RowHidden(i)) Then
+          lblTrabajosParaProgramarTotal.Caption = Val(lblTrabajosParaProgramarTotal.Caption) + 1
+
+          Dim tipoConexion As String
+          tipoConexion = .TextMatrix(i, 3)
+
+          Select Case tipoConexion
+          Case "ALTA FTTH": lblAltaFTTHTotalParaProgramar.Caption = Val(lblAltaFTTHTotalParaProgramar.Caption) + 1
+          Case "ALTA ANTENA": lblAltaAntenaTotalParaProgramar.Caption = Val(lblAltaAntenaTotalParaProgramar.Caption) + 1
+          Case "ALTA EDIFICIO": lblAltaEdificioTotalParaProgramar.Caption = Val(lblAltaEdificioTotalParaProgramar.Caption) + 1
+          Case "CAMBIO A FTTH": lbCambioFTTHTotalParaProgramar.Caption = Val(lbCambioFTTHTotalParaProgramar.Caption) + 1
+          End Select
         End If
-    End With
-    
+      Next
+    End If
+  End With
+
 End Sub
 
 Private Sub actualizarLabelsTablaTerminados()
-    lblTrabajosTerminadosTotal.Caption = 0
-    lblAltaFTTHTotalTerminados.Caption = 0
-    lblAltaAntenaTotalTerminados.Caption = 0
-    lblAltaEdificioTotalTerminados.Caption = 0
-    lbCambioFTTHTotalTerminados.Caption = 0
-    
-    Dim i As Long
-    
-    With tablaTrabajosTerminados
-        If .Rows > 1 Then
-            
-            For i = 1 To .Rows - 1
-                If Not (.RowHidden(i)) Then
-                    lblTrabajosTerminadosTotal.Caption = Val(lblTrabajosTerminadosTotal.Caption) + 1
-                    
-                    Dim tipoConexion As String
-                    tipoConexion = .TextMatrix(i, 3)
-                    
-                    Select Case tipoConexion
-                        Case "ALTA FTTH": lblAltaFTTHTotalTerminados.Caption = Val(lblAltaFTTHTotalTerminados.Caption) + 1
-                        Case "ALTA ANTENA": lblAltaAntenaTotalTerminados.Caption = Val(lblAltaAntenaTotalTerminados.Caption) + 1
-                        Case "ALTA EDIFICIO": lblAltaEdificioTotalTerminados.Caption = Val(lblAltaEdificioTotalTerminados.Caption) + 1
-                        Case "CAMBIO A FTTH": lbCambioFTTHTotalTerminados.Caption = Val(lbCambioFTTHTotalTerminados.Caption) + 1
-                    End Select
-                End If
-            Next
+  lblTrabajosTerminadosTotal.Caption = 0
+  lblAltaFTTHTotalTerminados.Caption = 0
+  lblAltaAntenaTotalTerminados.Caption = 0
+  lblAltaEdificioTotalTerminados.Caption = 0
+  lbCambioFTTHTotalTerminados.Caption = 0
+
+  Dim i As Long
+
+  With tablaTrabajosTerminados
+    If .Rows > 1 Then
+
+      For i = 1 To .Rows - 1
+        If Not (.RowHidden(i)) Then
+          lblTrabajosTerminadosTotal.Caption = Val(lblTrabajosTerminadosTotal.Caption) + 1
+
+          Dim tipoConexion As String
+          tipoConexion = .TextMatrix(i, 3)
+
+          Select Case tipoConexion
+          Case "ALTA FTTH": lblAltaFTTHTotalTerminados.Caption = Val(lblAltaFTTHTotalTerminados.Caption) + 1
+          Case "ALTA ANTENA": lblAltaAntenaTotalTerminados.Caption = Val(lblAltaAntenaTotalTerminados.Caption) + 1
+          Case "ALTA EDIFICIO": lblAltaEdificioTotalTerminados.Caption = Val(lblAltaEdificioTotalTerminados.Caption) + 1
+          Case "CAMBIO A FTTH": lbCambioFTTHTotalTerminados.Caption = Val(lbCambioFTTHTotalTerminados.Caption) + 1
+          End Select
         End If
-    End With
-    
+      Next
+    End If
+  End With
+
 End Sub
 
 Private Sub cargartablaTrabajosTerminados()
-    Dim st As Integer
-    
-    tablaTrabajosTerminados.Rows = 1
-    
-    With vTrabInternet
-        vTrabInternet.IndexNumber = 0
-        st = .GetFirst
-        
-        Screen.MousePointer = 0
-        While st = 0
-        
-            VOrdenes.IndexNumber = 0
-            VAClientes.IndexNumber = 0
-            VAsumAlumInte.IndexNumber = 0
-            VCuadrillas.IndexNumber = 0
-            VAsumAlum.IndexNumber = 0
-            
-            VOrdenes.FieldValue("NroOrden") = .FieldValue("Nroorden")
-            VOrdenes.GetEqual
-            
-            VAClientes.FieldValue("CodCli") = VOrdenes.FieldValue("CodCli")
-            VAClientes.GetEqual
-            
-            VAsumAlumInte.FieldValue("CodAlumbrado") = VOrdenes.FieldValue("CodAlumbrado")
-            VAsumAlumInte.GetEqual
-            
-            VCuadrillas.FieldValue("idcuadrilla") = vTrabInternet.FieldValue("idcuadrilla")
-            VCuadrillas.GetEqual
-            
-            VAsumAlum.FieldValue("CodAlumbrado") = VOrdenes.FieldValue("CodAlumbrado")
-            VAsumAlum.GetEqual
-            
-            If VOrdenes.status = 0 And _
-                VAClientes.status = 0 And _
-                VAsumAlumInte.status = 0 And _
-                VCuadrillas.status = 0 And _
-                VAsumAlum.status = 0 And _
-                vTrabInternet.FieldValue("estado") = Estados.TERMINADO Then
-            
-                tablaTrabajosTerminados.AddItem (VAClientes.FieldValue("apellido") & ", " & VAClientes.FieldValue("nombre") & vbTab & _
+  Dim st As Integer
+
+  tablaTrabajosTerminados.Rows = 1
+
+  With vTrabInternet
+    vTrabInternet.IndexNumber = 0
+    st = .GetFirst
+
+    Screen.MousePointer = 0
+    While st = 0
+
+      VOrdenes.IndexNumber = 0
+      VAClientes.IndexNumber = 0
+      VAsumAlumInte.IndexNumber = 0
+      VCuadrillas.IndexNumber = 0
+      VAsumAlum.IndexNumber = 0
+
+      VOrdenes.FieldValue("NroOrden") = .FieldValue("Nroorden")
+      VOrdenes.GetEqual
+
+      VAClientes.FieldValue("CodCli") = VOrdenes.FieldValue("CodCli")
+      VAClientes.GetEqual
+
+      VAsumAlumInte.FieldValue("CodAlumbrado") = VOrdenes.FieldValue("CodAlumbrado")
+      VAsumAlumInte.GetEqual
+
+      VCuadrillas.FieldValue("idcuadrilla") = vTrabInternet.FieldValue("idcuadrilla")
+      VCuadrillas.GetEqual
+
+      VAsumAlum.FieldValue("CodAlumbrado") = VOrdenes.FieldValue("CodAlumbrado")
+      VAsumAlum.GetEqual
+
+      If VOrdenes.status = 0 And _
+         VAClientes.status = 0 And _
+         VAsumAlumInte.status = 0 And _
+         VCuadrillas.status = 0 And _
+         VAsumAlum.status = 0 And _
+         vTrabInternet.FieldValue("estado") = Estados.TERMINADO Then
+
+        tablaTrabajosTerminados.AddItem (VAClientes.FieldValue("apellido") & ", " & VAClientes.FieldValue("nombre") & vbTab & _
                                          VAsumAlum.FieldValue("cuenta") & vbTab & _
                                          VAsumAlumInte.FieldValue("UsInt") & vbTab & _
                                          arrConexiones(vTrabInternet.FieldValue("Tipo_Conexion") - 1) & vbTab & _
@@ -2002,396 +2007,396 @@ Private Sub cargartablaTrabajosTerminados()
                                          VCuadrillas.FieldValue("miembros") & vbTab & _
                                          vTrabInternet.FieldValue("id_trabajo")) & vbTab & _
                                          vTrabInternet.FieldValue("obs")
-                                         
-                If vTrabInternet.FieldValue("prioridad") = Prioridad.ALTA Then
-                    ' Pintar fila rojo
-                    tablaTrabajosTerminados.Cell(flexcpBackColor, tablaTrabajosTerminados.Rows - 1, 0, tablaTrabajosTerminados.Rows - 1, tablaTrabajosTerminados.Cols - 1) = RGB(255, 122, 122)
-                ElseIf vTrabInternet.FieldValue("prioridad") = Prioridad.MEDIA Then
-                    ' Pintar fila amarillo
-                    tablaTrabajosTerminados.Cell(flexcpBackColor, tablaTrabajosTerminados.Rows - 1, 0, tablaTrabajosTerminados.Rows - 1, tablaTrabajosTerminados.Cols - 1) = RGB(255, 255, 122)
-                End If
-            
-            End If
-                                     
-            st = .GetNext
-        
-        Wend
-        
-        Call filtrarTablaTerminados
-        tablaTrabajosTerminados.AutoSize 0, tablaTrabajosTerminados.Cols - 1
-        Screen.MousePointer = 0
-        
-    End With
+
+        If vTrabInternet.FieldValue("prioridad") = prioridad.ALTA Then
+          ' Pintar fila rojo
+          tablaTrabajosTerminados.Cell(flexcpBackColor, tablaTrabajosTerminados.Rows - 1, 0, tablaTrabajosTerminados.Rows - 1, tablaTrabajosTerminados.Cols - 1) = RGB(255, 122, 122)
+        ElseIf vTrabInternet.FieldValue("prioridad") = prioridad.MEDIA Then
+          ' Pintar fila amarillo
+          tablaTrabajosTerminados.Cell(flexcpBackColor, tablaTrabajosTerminados.Rows - 1, 0, tablaTrabajosTerminados.Rows - 1, tablaTrabajosTerminados.Cols - 1) = RGB(255, 255, 122)
+        End If
+
+      End If
+
+      st = .GetNext
+
+    Wend
+
+    Call filtrarTablaTerminados
+    tablaTrabajosTerminados.AutoSize 0, tablaTrabajosTerminados.Cols - 1
+    Screen.MousePointer = 0
+
+  End With
 End Sub
 
 Private Sub btnGuardarFinalizados_Click()
-    If tablaTrabajosAInstalar.Rows > 1 Then
-    
-        Dim idTrabajo As Integer
+  If tablaTrabajosAInstalar.Rows > 1 Then
 
-        Dim fila As Integer
-        Dim ultimaFila As Integer
-        ultimaFila = tablaTrabajosAInstalar.Rows - 1
+    Dim idTrabajo As Integer
 
-        With tablaTrabajosAInstalar
-            Screen.MousePointer = 0
-            For fila = 1 To ultimaFila
-                If .Cell(flexcpChecked, fila, 0, fila, 0) = CHEQUEADO Then
-                    idTrabajo = .TextMatrix(fila, 10)
-                    Call finalizarTrabajo(idTrabajo)
-                End If
-            Next fila
-            Screen.MousePointer = 11
-        End With
-        
-        Call cargarTablaTrabajosAInstalar
+    Dim fila As Integer
+    Dim ultimaFila As Integer
+    ultimaFila = tablaTrabajosAInstalar.Rows - 1
 
-    Else
-        MsgBox "Tiene que recuperar los trabajos antes de poder marcarlos como finalizados.", vbInformation + vbOKOnly, "No hay trabajos"
-    End If
+    With tablaTrabajosAInstalar
+      Screen.MousePointer = 0
+      For fila = 1 To ultimaFila
+        If .Cell(flexcpChecked, fila, 0, fila, 0) = CHEQUEADO Then
+          idTrabajo = .TextMatrix(fila, 10)
+          Call finalizarTrabajo(idTrabajo)
+        End If
+      Next fila
+      Screen.MousePointer = 11
+    End With
+
+    Call cargarTablaTrabajosAInstalar
+
+  Else
+    MsgBox "Tiene que recuperar los trabajos antes de poder marcarlos como finalizados.", vbInformation + vbOKOnly, "No hay trabajos"
+  End If
 End Sub
 
 Private Sub finalizarTrabajo(idTrabajo As Integer)
-    With main.vTrabInternet
-        .IndexNumber = 0
-        .FieldValue("id_trabajo") = idTrabajo
-        .GetEqual
-        
-        If .status = 0 Then
-            .FieldValue("estado") = Estados.TERMINADO
-            .Update
-        End If
-        
-        Call cambiarNoFacturar(.FieldValue("nroOrden"), "SIFACTURAR")
-            
-    End With
+  With main.vTrabInternet
+    .IndexNumber = 0
+    .FieldValue("id_trabajo") = idTrabajo
+    .GetEqual
+
+    If .status = 0 Then
+      .FieldValue("estado") = Estados.TERMINADO
+      .Update
+    End If
+
+    Call cambiarNoFacturar(.FieldValue("nroOrden"), "SIFACTURAR")
+
+  End With
 End Sub
 
 Private Sub cmbConexionAProgramar_Click()
-    Call filtrarTablaAProgramar
+  Call filtrarTablaAProgramar
 End Sub
 
 Private Sub filtrarTablaAProgramar()
 
-    Dim fila As Integer
-    Dim ultimaFila As Integer
-    ultimaFila = tablaTrabajosAProgramar.Rows - 1
-    
-    Dim conexion As String
+  Dim fila As Integer
+  Dim ultimaFila As Integer
+  ultimaFila = tablaTrabajosAProgramar.Rows - 1
 
-    With tablaTrabajosAProgramar
-        Screen.MousePointer = 11
-        For fila = 1 To ultimaFila
-            conexion = .TextMatrix(fila, 3)
-            If conexion = cmbConexionAProgramar.Text Or cmbConexionAProgramar.Text = "TODAS" Then
-                .RowHidden(fila) = False
-            Else
-                .RowHidden(fila) = True
-            End If
-        Next fila
-        
-        Call actualizarLabelsTablaParaProgramar
-        
-        Screen.MousePointer = 0
-    End With
+  Dim conexion As String
+
+  With tablaTrabajosAProgramar
+    Screen.MousePointer = 11
+    For fila = 1 To ultimaFila
+      conexion = .TextMatrix(fila, 3)
+      If conexion = cmbConexionAProgramar.Text Or cmbConexionAProgramar.Text = "TODAS" Then
+        .RowHidden(fila) = False
+      Else
+        .RowHidden(fila) = True
+      End If
+    Next fila
+
+    Call actualizarLabelsTablaParaProgramar
+
+    Screen.MousePointer = 0
+  End With
 End Sub
 
 
 Private Sub cmbConexionAInstalar_Click()
-    If tablaTrabajosAInstalar.Rows > 1 Then Call filtrarTablaAInstalar
+  If tablaTrabajosAInstalar.Rows > 1 Then Call filtrarTablaAInstalar
 End Sub
 
 Private Sub cmbCuadrillaAInstalar_Click()
-    If tablaTrabajosAInstalar.Rows > 1 Then Call filtrarTablaAInstalar
+  If tablaTrabajosAInstalar.Rows > 1 Then Call filtrarTablaAInstalar
 End Sub
 
 Private Sub filtrarTablaAInstalar()
-    Dim fila As Integer
-    Dim ultimaFila As Integer
-    ultimaFila = tablaTrabajosAInstalar.Rows - 1
-    
-    Dim conexion As String
-    Dim cuadrilla As String
+  Dim fila As Integer
+  Dim ultimaFila As Integer
+  ultimaFila = tablaTrabajosAInstalar.Rows - 1
 
-    With tablaTrabajosAInstalar
-    
-        Screen.MousePointer = 11
-        For fila = 1 To ultimaFila
-            conexion = .TextMatrix(fila, 4)
-            cuadrilla = .TextMatrix(fila, 9)
-            If (conexion = cmbConexionAInstalar.Text Or cmbConexionAInstalar.Text = "TODAS") _
-                And (cuadrilla = cmbCuadrillaAInstalar.Text Or cmbCuadrillaAInstalar.Text = "TODAS") Then
-                .RowHidden(fila) = False
-            Else
-                .RowHidden(fila) = True
-            End If
-        Next fila
-        
-        Call actualizarLabelsTablaParaInstalar
-        
-        Screen.MousePointer = 0
-    End With
+  Dim conexion As String
+  Dim cuadrilla As String
+
+  With tablaTrabajosAInstalar
+
+    Screen.MousePointer = 11
+    For fila = 1 To ultimaFila
+      conexion = .TextMatrix(fila, 4)
+      cuadrilla = .TextMatrix(fila, 9)
+      If (conexion = cmbConexionAInstalar.Text Or cmbConexionAInstalar.Text = "TODAS") _
+         And (cuadrilla = cmbCuadrillaAInstalar.Text Or cmbCuadrillaAInstalar.Text = "TODAS") Then
+        .RowHidden(fila) = False
+      Else
+        .RowHidden(fila) = True
+      End If
+    Next fila
+
+    Call actualizarLabelsTablaParaInstalar
+
+    Screen.MousePointer = 0
+  End With
 End Sub
 
 Private Sub cmbCuadrillaTerminados_Click()
-    Call filtrarTablaTerminados
+  Call filtrarTablaTerminados
 End Sub
 
 Private Sub cmbConexionTerminados_Click()
-    Call filtrarTablaTerminados
+  Call filtrarTablaTerminados
 End Sub
 
 Private Sub dtDesdeTerminados_Click()
-    Call filtrarTablaTerminados
+  Call filtrarTablaTerminados
 End Sub
 
 Private Sub dtHastaTerminados_Click()
-    Call filtrarTablaTerminados
+  Call filtrarTablaTerminados
 End Sub
 
 Private Sub filtrarTablaTerminados()
-    Dim fila As Integer
-    Dim ultimaFila As Integer
-    ultimaFila = tablaTrabajosTerminados.Rows - 1
-    
-    Dim conexion As String
-    Dim cuadrilla As String
-    Dim fechaInstalacion As Date
+  Dim fila As Integer
+  Dim ultimaFila As Integer
+  ultimaFila = tablaTrabajosTerminados.Rows - 1
 
-    With tablaTrabajosTerminados
-        For fila = 1 To ultimaFila
-            conexion = .TextMatrix(fila, 3)
-            cuadrilla = .TextMatrix(fila, 8)
-            fechaInstalacion = .TextMatrix(fila, 6)
-            If (conexion = cmbConexionTerminados.Text Or cmbConexionTerminados.Text = "TODAS") _
-                And (cuadrilla = cmbCuadrillaTerminados.Text Or cmbCuadrillaTerminados.Text = "TODAS") _
-                And (dtDesdeTerminados <= fechaInstalacion) _
-                And (dtHastaTerminados >= fechaInstalacion) _
-                Then
-                .RowHidden(fila) = False
-            Else
-                .RowHidden(fila) = True
-            End If
-        Next fila
-        
-        Call actualizarLabelsTablaTerminados
-        
-    End With
+  Dim conexion As String
+  Dim cuadrilla As String
+  Dim fechaInstalacion As Date
+
+  With tablaTrabajosTerminados
+    For fila = 1 To ultimaFila
+      conexion = .TextMatrix(fila, 3)
+      cuadrilla = .TextMatrix(fila, 8)
+      fechaInstalacion = .TextMatrix(fila, 6)
+      If (conexion = cmbConexionTerminados.Text Or cmbConexionTerminados.Text = "TODAS") _
+         And (cuadrilla = cmbCuadrillaTerminados.Text Or cmbCuadrillaTerminados.Text = "TODAS") _
+         And (dtDesdeTerminados <= fechaInstalacion) _
+         And (dtHastaTerminados >= fechaInstalacion) _
+         Then
+        .RowHidden(fila) = False
+      Else
+        .RowHidden(fila) = True
+      End If
+    Next fila
+
+    Call actualizarLabelsTablaTerminados
+
+  End With
 End Sub
 
 Private Sub cargarTiposConexion()
-    Dim i As Integer
-    
-    For i = 0 To UBound(arrConexiones)
-        cmbConexionAProgramar.AddItem (arrConexiones(i))
-        cmbConexionAInstalar.AddItem (arrConexiones(i))
-        cmbConexionTerminados.AddItem (arrConexiones(i))
-    Next i
-    
-    cmbConexionAProgramar.AddItem "TODAS"
-    cmbConexionAInstalar.AddItem "TODAS"
-    cmbConexionTerminados.AddItem "TODAS"
-    
-    cmbConexionAProgramar.ListIndex = cmbConexionAProgramar.ListCount - 1
-    cmbConexionAInstalar.ListIndex = cmbConexionAInstalar.ListCount - 1
-    cmbConexionTerminados.ListIndex = cmbConexionTerminados.ListCount - 1
-    
+  Dim i As Integer
+
+  For i = 0 To UBound(arrConexiones)
+    cmbConexionAProgramar.AddItem (arrConexiones(i))
+    cmbConexionAInstalar.AddItem (arrConexiones(i))
+    cmbConexionTerminados.AddItem (arrConexiones(i))
+  Next i
+
+  cmbConexionAProgramar.AddItem "TODAS"
+  cmbConexionAInstalar.AddItem "TODAS"
+  cmbConexionTerminados.AddItem "TODAS"
+
+  cmbConexionAProgramar.ListIndex = cmbConexionAProgramar.ListCount - 1
+  cmbConexionAInstalar.ListIndex = cmbConexionAInstalar.ListCount - 1
+  cmbConexionTerminados.ListIndex = cmbConexionTerminados.ListCount - 1
+
 End Sub
 
 Public Sub cargarCuadrillas()
-    Dim status As Integer
-    
-    ' Los borro por si llamo a la funcion de vuelta
-    cmbCuadrillaAInstalar.Clear
-    cmbCuadrillaTerminados.Clear
-    
-    With main.VCuadrillas
-        .IndexNumber = 0
-        status = .GetFirst
-        
-        While status = 0
-            cmbCuadrillaAInstalar.AddItem (.FieldValue("miembros"))
-            cmbCuadrillaAInstalar.ItemData(cmbCuadrillaAInstalar.NewIndex) = .FieldValue("idcuadrilla")
-            
-            cmbCuadrillaTerminados.AddItem (.FieldValue("miembros"))
-            cmbCuadrillaTerminados.ItemData(cmbCuadrillaTerminados.NewIndex) = .FieldValue("idcuadrilla")
-            status = .GetNext
-        Wend
-        
-        cmbCuadrillaAInstalar.AddItem "TODAS"
-        cmbCuadrillaAInstalar.ListIndex = cmbCuadrillaAInstalar.ListCount - 1
-    
-        cmbCuadrillaTerminados.AddItem "TODAS"
-        cmbCuadrillaTerminados.ListIndex = cmbCuadrillaTerminados.ListCount - 1
-    End With
+  Dim status As Integer
+
+  ' Los borro por si llamo a la funcion de vuelta
+  cmbCuadrillaAInstalar.Clear
+  cmbCuadrillaTerminados.Clear
+
+  With main.VCuadrillas
+    .IndexNumber = 0
+    status = .GetFirst
+
+    While status = 0
+      cmbCuadrillaAInstalar.AddItem (.FieldValue("miembros"))
+      cmbCuadrillaAInstalar.ItemData(cmbCuadrillaAInstalar.NewIndex) = .FieldValue("idcuadrilla")
+
+      cmbCuadrillaTerminados.AddItem (.FieldValue("miembros"))
+      cmbCuadrillaTerminados.ItemData(cmbCuadrillaTerminados.NewIndex) = .FieldValue("idcuadrilla")
+      status = .GetNext
+    Wend
+
+    cmbCuadrillaAInstalar.AddItem "TODAS"
+    cmbCuadrillaAInstalar.ListIndex = cmbCuadrillaAInstalar.ListCount - 1
+
+    cmbCuadrillaTerminados.AddItem "TODAS"
+    cmbCuadrillaTerminados.ListIndex = cmbCuadrillaTerminados.ListCount - 1
+  End With
 End Sub
 
 
 Private Sub Form_Unload(Cancel As Integer)
-    ' Por si queda algo abierto o procesando algo, que se carga de vuelta el formulario y queda el proceso como zombie...
-    End
+' Por si queda algo abierto o procesando algo, que se carga de vuelta el formulario y queda el proceso como zombie...
+  End
 End Sub
 
 
 Private Sub mnuCuadrilla_Click()
-    frmCuadrilla.Show 1, Me
+  frmCuadrilla.Show 1, Me
 End Sub
 
 Private Sub mnuSalir_Click()
-    Unload Me
+  Unload Me
 End Sub
 
 Private Sub tablaTrabajosAProgramar_DblClick()
-    If tablaTrabajosAProgramar.MouseRow > 0 And tablaTrabajosAProgramar.MouseCol >= 0 Then
-        Call abrirFrmTrabajo
-        Call cargarTablaTrabajosAProgramar
-    End If
+  If tablaTrabajosAProgramar.MouseRow > 0 And tablaTrabajosAProgramar.MouseCol >= 0 Then
+    Call abrirFrmTrabajo
+    Call cargarTablaTrabajosAProgramar
+  End If
 End Sub
 
 Private Sub tablaTrabajosAProgramar_BeforeEdit(ByVal Row As Long, ByVal Col As Long, Cancel As Boolean)
-    If Col <> 1 Then
-        Cancel = True
-    End If
+  If Col <> 1 Then
+    Cancel = True
+  End If
 End Sub
 
 Private Sub tablaTrabajosAInstalar_DblClick()
-    If tablaTrabajosAInstalar.MouseRow > 0 And tablaTrabajosAInstalar.MouseCol >= 1 Then
-        Call abrirFrmTrabajo
-        Call cargarTablaTrabajosAInstalar
-    End If
+  If tablaTrabajosAInstalar.MouseRow > 0 And tablaTrabajosAInstalar.MouseCol >= 1 Then
+    Call abrirFrmTrabajo
+    Call cargarTablaTrabajosAInstalar
+  End If
 End Sub
 
 Private Sub tablaTrabajosTerminados_DblClick()
-    If tablaTrabajosTerminados.MouseRow > 0 And tablaTrabajosTerminados.MouseCol >= 0 Then
-        Call abrirFrmTrabajo
-        Call cargartablaTrabajosTerminados
-    End If
+  If tablaTrabajosTerminados.MouseRow > 0 And tablaTrabajosTerminados.MouseCol >= 0 Then
+    Call abrirFrmTrabajo
+    Call cargartablaTrabajosTerminados
+  End If
 End Sub
 
 Private Sub abrirFrmTrabajo()
-    frmTrabajo.Show 1, Me
+  frmTrabajo.Show 1, Me
 End Sub
 
 Private Sub btnExpExcelProgramar_Click()
-    Call exportarExcel(tablaTrabajosAProgramar)
+  Call exportarExcel(tablaTrabajosAProgramar)
 End Sub
 
 Private Sub btnExpExcelInstalar_Click()
-    Call exportarExcel(tablaTrabajosAInstalar)
+  Call exportarExcel(tablaTrabajosAInstalar)
 End Sub
 
 Private Sub btnExpExcelTerminados_Click()
-    Call exportarExcel(tablaTrabajosTerminados)
+  Call exportarExcel(tablaTrabajosTerminados)
 End Sub
 
 
 Private Sub exportarExcel(tabla As VSFlexGrid)
-    If tabla.Rows < 2 Then
-        MsgBox "No hay datos que exportar, ¿recuperó la tabla?", vbOKOnly + vbInformation, "Fallo al exportar"
-    Else
-    
-        Dim rutaArchivo As String
-        
-        Dim rutaBase As String
-        rutaBase = "C:\ExcelTrabajosInternet\"
-        
-        If Dir(rutaBase, vbDirectory) = "" Then
-          MkDir rutaBase
-        End If
-        
-        rutaArchivo = InputBox("Indique el destino del archivo ", "Exportar a Excel ", rutaBase & "LibroIVA" & Format(DateTime.Now, "ddMMyyhhss") & ".csv")
-        
-        If rutaArchivo <> vbNullString Then
-            Screen.MousePointer = 11
+  If tabla.Rows < 2 Then
+    MsgBox "No hay datos que exportar, ¿recuperó la tabla?", vbOKOnly + vbInformation, "Fallo al exportar"
+  Else
 
-            Open rutaArchivo For Output As #1
+    Dim rutaArchivo As String
 
-            Write #1, "sep=,"
+    Dim rutaBase As String
+    rutaBase = "C:\ExcelTrabajosInternet\"
 
-            Dim Titulo As String
-            Titulo = getTituloExcel(tabla.Name)
-
-            Write #1, Titulo
-            Write #1, "Listado generado el " & Format$(DateTime.Now, "dd/MM/yyyy") & " a las " & Format$(DateTime.Now, "hh:mm AMPM")
-            
-            If cmbCuadrillaAInstalar.Text <> "TODAS" And tabla.Name = "tablaTrabajosAInstalar" Then
-                Write #1, "Trabajos filtrados para la cuadrilla " & UCase(cmbCuadrillaAInstalar.Text)
-            End If
-            
-            Write #1, vbNullString
-
-            With tabla
-                Dim fila As Integer
-                Dim ultimaFila As Integer
-                ultimaFila = .Rows - 1
-                For fila = 0 To ultimaFila
-                    If Not (tabla.RowHidden(fila)) Then
-                        If tabla.Name = "tablaTrabajosAProgramar" Then
-                            Write #1, .TextMatrix(fila, 0), .TextMatrix(fila, 1), .TextMatrix(fila, 2), .TextMatrix(fila, 3), .TextMatrix(fila, 4), .TextMatrix(fila, 5)
-                        ElseIf tabla.Name = "tablaTrabajosAInstalar" Then
-                            Write #1, .TextMatrix(fila, 1), .TextMatrix(fila, 2), .TextMatrix(fila, 3), .TextMatrix(fila, 4), .TextMatrix(fila, 6), .TextMatrix(fila, 7), .TextMatrix(fila, 8), .TextMatrix(fila, 11)
-                        ElseIf tabla.Name = "tablaTrabajosTerminados" Then
-                            Write #1, .TextMatrix(fila, 1), .TextMatrix(fila, 2), .TextMatrix(fila, 3), .TextMatrix(fila, 4), .TextMatrix(fila, 5), .TextMatrix(fila, 6), .TextMatrix(fila, 7), .TextMatrix(fila, 8), .TextMatrix(fila, 10)
-                        End If
-                    End If
-                Next fila
-            End With
-
-            Close #1
-            Screen.MousePointer = 0
-            
-            Shell "explorer.exe /select, " & rutaArchivo, vbNormalFocus
-        End If
+    If Dir(rutaBase, vbDirectory) = "" Then
+      MkDir rutaBase
     End If
+
+    rutaArchivo = InputBox("Indique el destino del archivo ", "Exportar a Excel ", rutaBase & "LibroIVA" & Format(DateTime.Now, "ddMMyyhhss") & ".csv")
+
+    If rutaArchivo <> vbNullString Then
+      Screen.MousePointer = 11
+
+      Open rutaArchivo For Output As #1
+
+      Write #1, "sep=,"
+
+      Dim Titulo As String
+      Titulo = getTituloExcel(tabla.Name)
+
+      Write #1, Titulo
+      Write #1, "Listado generado el " & Format$(DateTime.Now, "dd/MM/yyyy") & " a las " & Format$(DateTime.Now, "hh:mm AMPM")
+
+      If cmbCuadrillaAInstalar.Text <> "TODAS" And tabla.Name = "tablaTrabajosAInstalar" Then
+        Write #1, "Trabajos filtrados para la cuadrilla " & UCase(cmbCuadrillaAInstalar.Text)
+      End If
+
+      Write #1, vbNullString
+
+      With tabla
+        Dim fila As Integer
+        Dim ultimaFila As Integer
+        ultimaFila = .Rows - 1
+        For fila = 0 To ultimaFila
+          If Not (tabla.RowHidden(fila)) Then
+            If tabla.Name = "tablaTrabajosAProgramar" Then
+              Write #1, .TextMatrix(fila, 0), .TextMatrix(fila, 1), .TextMatrix(fila, 2), .TextMatrix(fila, 3), .TextMatrix(fila, 4), .TextMatrix(fila, 5), .TextMatrix(fila, 7)
+            ElseIf tabla.Name = "tablaTrabajosAInstalar" Then
+              Write #1, .TextMatrix(fila, 1), .TextMatrix(fila, 2), .TextMatrix(fila, 3), .TextMatrix(fila, 4), .TextMatrix(fila, 6), .TextMatrix(fila, 7), .TextMatrix(fila, 8), .TextMatrix(fila, 11)
+            ElseIf tabla.Name = "tablaTrabajosTerminados" Then
+              Write #1, .TextMatrix(fila, 1), .TextMatrix(fila, 2), .TextMatrix(fila, 3), .TextMatrix(fila, 4), .TextMatrix(fila, 5), .TextMatrix(fila, 6), .TextMatrix(fila, 7), .TextMatrix(fila, 8), .TextMatrix(fila, 10)
+            End If
+          End If
+        Next fila
+      End With
+
+      Close #1
+      Screen.MousePointer = 0
+
+      Shell "explorer.exe /select, " & rutaArchivo, vbNormalFocus
+    End If
+  End If
 
 End Sub
 
 Private Function getTituloExcel(nombreTabla As String) As String
-    If nombreTabla = "tablaTrabajosAProgramar" Then
-        getTituloExcel = "Trabajos sin programar"
-    ElseIf nombreTabla = "tablaTrabajosAInstalar" Then
-        getTituloExcel = "Trabajos pendientes"
-    ElseIf nombreTabla = "tablaTrabajosTerminados" Then
-        getTituloExcel = "Trabajos terminados"
-    End If
+  If nombreTabla = "tablaTrabajosAProgramar" Then
+    getTituloExcel = "Trabajos sin programar"
+  ElseIf nombreTabla = "tablaTrabajosAInstalar" Then
+    getTituloExcel = "Trabajos pendientes"
+  ElseIf nombreTabla = "tablaTrabajosTerminados" Then
+    getTituloExcel = "Trabajos terminados"
+  End If
 End Function
 
 Private Sub btnImprimirProgramar_Click()
-    Call imprimirTabla(tablaTrabajosAProgramar)
+  Call imprimirTabla(tablaTrabajosAProgramar)
 End Sub
 
 Private Sub btnImprimirInstalar_Click()
-    tablaTrabajosAInstalar.ColHidden(0) = True
-    Call imprimirTabla(tablaTrabajosAInstalar)
-    tablaTrabajosAInstalar.ColHidden(0) = False
+  tablaTrabajosAInstalar.ColHidden(0) = True
+  Call imprimirTabla(tablaTrabajosAInstalar)
+  tablaTrabajosAInstalar.ColHidden(0) = False
 End Sub
 
 Private Sub btnImprimirTerminados_Click()
-    Call imprimirTabla(tablaTrabajosTerminados)
+  Call imprimirTabla(tablaTrabajosTerminados)
 End Sub
 
 Private Sub imprimirTabla(tabla As VSFlexGrid)
-    If tabla.Rows > 1 Then
-        With cVSFlex
-            .grilla = tabla
-            .RazonSocial = ini.GetVar("Empresa", "RazonSocial")
-            
-            .Titulo = getTituloExcel(tabla.Name)
-            .Subtitulo = "Listado generado el " & Format$(DateTime.Now, "dd/MM/yyyy") & " a las " & Format$(DateTime.Now, "hh:mm AMPM")
-            
-            Call .Imprimir(, vbPRORLandscape, 6)
-        End With
-    Else
-        MsgBox "No hay datos que exportar, ¿recuperó la tabla?", vbOKOnly + vbInformation, "Fallo al exportar"
-    End If
+  If tabla.Rows > 1 Then
+    With cVSFlex
+      .grilla = tabla
+      .RazonSocial = ini.GetVar("Empresa", "RazonSocial")
+
+      .Titulo = getTituloExcel(tabla.Name)
+      .Subtitulo = "Listado generado el " & Format$(DateTime.Now, "dd/MM/yyyy") & " a las " & Format$(DateTime.Now, "hh:mm AMPM")
+
+      Call .Imprimir(, vbPRORLandscape, 6)
+    End With
+  Else
+    MsgBox "No hay datos que exportar, ¿recuperó la tabla?", vbOKOnly + vbInformation, "Fallo al exportar"
+  End If
 End Sub
 
 Private Sub formatearEncabezados()
-    Call ponerEncabezadoEnNegrita(tablaTrabajosAProgramar)
-    Call ponerEncabezadoEnNegrita(tablaTrabajosAInstalar)
-    Call ponerEncabezadoEnNegrita(tablaTrabajosTerminados)
-    tablaTrabajosAProgramar.AutoSize 0, tablaTrabajosAProgramar.Cols - 1
-    tablaTrabajosAInstalar.AutoSize 0, tablaTrabajosAInstalar.Cols - 1
-    tablaTrabajosTerminados.AutoSize 0, tablaTrabajosTerminados.Cols - 1
+  Call ponerEncabezadoEnNegrita(tablaTrabajosAProgramar)
+  Call ponerEncabezadoEnNegrita(tablaTrabajosAInstalar)
+  Call ponerEncabezadoEnNegrita(tablaTrabajosTerminados)
+  tablaTrabajosAProgramar.AutoSize 0, tablaTrabajosAProgramar.Cols - 1
+  tablaTrabajosAInstalar.AutoSize 0, tablaTrabajosAInstalar.Cols - 1
+  tablaTrabajosTerminados.AutoSize 0, tablaTrabajosTerminados.Cols - 1
 End Sub
 

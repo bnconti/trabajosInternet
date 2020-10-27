@@ -137,171 +137,171 @@ Private datoViejo As String
 Private correoInvalido As Boolean
 
 Private Sub Form_Load()
-    Call ponerEncabezadoEnNegrita(tablaCuadrillas)
-    Call cargarCuadrillas
-    correoInvalido = False
+  Call ponerEncabezadoEnNegrita(tablaCuadrillas)
+  Call cargarCuadrillas
+  correoInvalido = False
 End Sub
 
 Private Sub btnNuevaCuadrilla_Click()
-    frmCuadrillaNueva.Show 1, Me
-    Call cargarCuadrillas
-    ' Actualizarla tambien en el formulario principal
-    Call main.cargarCuadrillas
+  frmCuadrillaNueva.Show 1, Me
+  Call cargarCuadrillas
+  ' Actualizarla tambien en el formulario principal
+  Call main.cargarCuadrillas
 End Sub
 
 Private Sub cargarCuadrillas()
-    Dim status As Integer
-    tablaCuadrillas.Rows = 1
-    
-    With main.VCuadrillas
-        .IndexNumber = 0
-        status = .GetFirst
-        
-        While status = 0
-            tablaCuadrillas.AddItem (.FieldValue("idcuadrilla") & vbTab & _
-                                    .FieldValue("miembros") & vbTab & _
-                                    .FieldValue("email") & vbTab)
-            If .FieldValue("habilitado") Then
-                tablaCuadrillas.Cell(flexcpChecked, tablaCuadrillas.Rows - 1, COL_HABILITADO, tablaCuadrillas.Rows - 1, COL_HABILITADO) = flexChecked
-            Else
-                tablaCuadrillas.Cell(flexcpChecked, tablaCuadrillas.Rows - 1, COL_HABILITADO, tablaCuadrillas.Rows - 1, COL_HABILITADO) = flexUnchecked
-            End If
-            
-            status = .GetNext
-        Wend
-    End With
-    
-    tablaCuadrillas.AutoSize 1, 2
+  Dim status As Integer
+  tablaCuadrillas.Rows = 1
+
+  With main.VCuadrillas
+    .IndexNumber = 0
+    status = .GetFirst
+
+    While status = 0
+      tablaCuadrillas.AddItem (.FieldValue("idcuadrilla") & vbTab & _
+                               .FieldValue("miembros") & vbTab & _
+                               .FieldValue("email") & vbTab)
+      If .FieldValue("habilitado") Then
+        tablaCuadrillas.Cell(flexcpChecked, tablaCuadrillas.Rows - 1, COL_HABILITADO, tablaCuadrillas.Rows - 1, COL_HABILITADO) = flexChecked
+      Else
+        tablaCuadrillas.Cell(flexcpChecked, tablaCuadrillas.Rows - 1, COL_HABILITADO, tablaCuadrillas.Rows - 1, COL_HABILITADO) = flexUnchecked
+      End If
+
+      status = .GetNext
+    Wend
+  End With
+
+  tablaCuadrillas.AutoSize 1, 2
 End Sub
 
 Private Sub tablaCuadrillas_BeforeEdit(ByVal Row As Long, ByVal Col As Long, Cancel As Boolean)
-    If Not correoInvalido Then
-        datoViejo = tablaCuadrillas.TextMatrix(Row, Col)
-    End If
+  If Not correoInvalido Then
+    datoViejo = tablaCuadrillas.TextMatrix(Row, Col)
+  End If
 End Sub
 
 Private Sub tablaCuadrillas_AfterEdit(ByVal Row As Long, ByVal Col As Long)
-    If Col = COL_HABILITADO Then
-        modificarCuadrillaHabilitado Row, Col
-    Else
-        modificarCuadrilla Row, Col
-    End If
+  If Col = COL_HABILITADO Then
+    modificarCuadrillaHabilitado Row, Col
+  Else
+    modificarCuadrilla Row, Col
+  End If
 End Sub
 
 Private Sub modificarCuadrillaHabilitado(ByVal Row As Long, ByVal Col As Long)
-    Dim estaHabilitado As Boolean
-    estaHabilitado = (tablaCuadrillas.Cell(flexcpChecked, Row, COL_HABILITADO, Row, COL_HABILITADO) = flexChecked)
-    
-    Dim msj As String
-    msj = "¿Está seguro de querer " & IIf(estaHabilitado, "habilitar", "deshabilitar") & " esta cuadrilla?"
-    
-    Dim resp As String
-    resp = MsgBox(msj, vbYesNo, "Confirmación")
-    
-    If resp = vbYes Then
-        Dim id As Integer
-        id = tablaCuadrillas.TextMatrix(Row, 0)
-        
-        With main.VCuadrillas
-            .IndexNumber = 0
-            .FieldValue("idcuadrilla") = id
-            .GetEqual
-             
-            If .status = 0 Then
-                .FieldValue("habilitado") = estaHabilitado
-                .Update
-            End If
-            
-        End With
-        
-    ElseIf resp = vbNo Then
-        ' Deja la celda como estaba antes de modificarla
-        tablaCuadrillas.Cell(flexcpChecked, Row, COL_HABILITADO, Row, COL_HABILITADO) = IIf(Not estaHabilitado, flexChecked, flexUnchecked)
-    End If
-    
+  Dim estaHabilitado As Boolean
+  estaHabilitado = (tablaCuadrillas.Cell(flexcpChecked, Row, COL_HABILITADO, Row, COL_HABILITADO) = flexChecked)
+
+  Dim msj As String
+  msj = "¿Está seguro de querer " & IIf(estaHabilitado, "habilitar", "deshabilitar") & " esta cuadrilla?"
+
+  Dim resp As String
+  resp = MsgBox(msj, vbYesNo, "Confirmación")
+
+  If resp = vbYes Then
+    Dim id As Integer
+    id = tablaCuadrillas.TextMatrix(Row, 0)
+
+    With main.VCuadrillas
+      .IndexNumber = 0
+      .FieldValue("idcuadrilla") = id
+      .GetEqual
+
+      If .status = 0 Then
+        .FieldValue("habilitado") = estaHabilitado
+        .Update
+      End If
+
+    End With
+
+  ElseIf resp = vbNo Then
+    ' Deja la celda como estaba antes de modificarla
+    tablaCuadrillas.Cell(flexcpChecked, Row, COL_HABILITADO, Row, COL_HABILITADO) = IIf(Not estaHabilitado, flexChecked, flexUnchecked)
+  End If
+
 End Sub
 
 Private Sub modificarCuadrilla(ByVal Row As Long, ByVal Col As Long)
-    Dim datoNuevo As String
-    
-    ' Le saco los espacios iniciales y finales
-    datoNuevo = Trim$(tablaCuadrillas.TextMatrix(Row, Col))
-    
-    If datoViejo = datoNuevo Then
-        ' No actualizar de gusto para dejar la misma cosa
-        Exit Sub
+  Dim datoNuevo As String
+
+  ' Le saco los espacios iniciales y finales
+  datoNuevo = Trim$(tablaCuadrillas.TextMatrix(Row, Col))
+
+  If datoViejo = datoNuevo Then
+    ' No actualizar de gusto para dejar la misma cosa
+    Exit Sub
+  End If
+
+  If Col = 1 And datoNuevo = vbNullString Then
+    ' No permitir sacar los miembros!
+    tablaCuadrillas.TextMatrix(Row, Col) = datoViejo
+    Exit Sub
+  End If
+
+  If Col = 2 Then
+    ' correos
+    ' sacar espacios
+    tablaCuadrillas.TextMatrix(Row, Col) = Replace(tablaCuadrillas.TextMatrix(Row, Col), " ", vbNullString)
+    If Not ValidarCorreos(tablaCuadrillas.TextMatrix(Row, Col)) Then
+      Call MsgBox("Ingrese una dirección válida", vbOKOnly + vbInformation, Me.Caption)
+      correoInvalido = True
+      tablaCuadrillas.Select Row, Col
+      tablaCuadrillas.EditCell
+      Exit Sub
     End If
-    
-    If Col = 1 And datoNuevo = vbNullString Then
-        ' No permitir sacar los miembros!
-        tablaCuadrillas.TextMatrix(Row, Col) = datoViejo
-        Exit Sub
-    End If
-    
-    If Col = 2 Then
-        ' correos
-        ' sacar espacios
-        tablaCuadrillas.TextMatrix(Row, Col) = Replace(tablaCuadrillas.TextMatrix(Row, Col), " ", vbNullString)
-        If Not ValidarCorreos(tablaCuadrillas.TextMatrix(Row, Col)) Then
-            Call MsgBox("Ingrese una dirección válida", vbOKOnly + vbInformation, Me.Caption)
-            correoInvalido = True
-            tablaCuadrillas.Select Row, Col
-            tablaCuadrillas.EditCell
-            Exit Sub
+  End If
+
+  correoInvalido = False
+
+  Dim msj As String
+  ' Detalle: encierro los datos entre comillas
+  msj = "¿Está seguro de querer modificar """ & datoViejo & """ por """ & datoNuevo & """?"
+
+  If MsgBox(msj, vbYesNo, "Confirmación") = vbYes Then
+    Dim idCuadrilla As Integer
+    idCuadrilla = tablaCuadrillas.TextMatrix(Row, 0)
+
+    With main.VCuadrillas
+      .IndexNumber = 0
+      .FieldValue("idcuadrilla") = idCuadrilla
+      .GetEqual
+
+      If .status = 0 Then
+        Select Case Col
+        Case 1: .FieldValue("miembros") = datoNuevo
+        Case 2: .FieldValue("email") = datoNuevo
+        End Select
+
+        .Update
+
+        If .status = 0 Then
+          If Col = 1 Then
+            ' Actualizar comboboxes si cambiaron los miembros
+            ' (lo hice publico en main.....)
+            Call main.cargarCuadrillas
+          End If
+        Else
+          ' si no se pudo actualizar por algun motivo, mostrar el dato viejo
+          ' (puede darse por ej si le pone los miembros que a otra cuadrilla)
+          tablaCuadrillas.TextMatrix(Row, Col) = datoViejo
         End If
-    End If
-    
-    correoInvalido = False
-    
-    Dim msj As String
-    ' Detalle: encierro los datos entre comillas
-    msj = "¿Está seguro de querer modificar """ & datoViejo & """ por """ & datoNuevo & """?"
-    
-    If MsgBox(msj, vbYesNo, "Confirmación") = vbYes Then
-        Dim idCuadrilla As Integer
-        idCuadrilla = tablaCuadrillas.TextMatrix(Row, 0)
-        
-        With main.VCuadrillas
-            .IndexNumber = 0
-            .FieldValue("idcuadrilla") = idCuadrilla
-            .GetEqual
-            
-            If .status = 0 Then
-                Select Case Col
-                    Case 1: .FieldValue("miembros") = datoNuevo
-                    Case 2: .FieldValue("email") = datoNuevo
-                End Select
-                
-                .Update
-                
-                If .status = 0 Then
-                    If Col = 1 Then
-                        ' Actualizar comboboxes si cambiaron los miembros
-                        ' (lo hice publico en main.....)
-                        Call main.cargarCuadrillas
-                    End If
-                Else
-                    ' si no se pudo actualizar por algun motivo, mostrar el dato viejo
-                    ' (puede darse por ej si le pone los miembros que a otra cuadrilla)
-                    tablaCuadrillas.TextMatrix(Row, Col) = datoViejo
-                End If
-            End If
-            
-        End With
-    Else
-        tablaCuadrillas.TextMatrix(Row, Col) = datoViejo
-    End If
+      End If
+
+    End With
+  Else
+    tablaCuadrillas.TextMatrix(Row, Col) = datoViejo
+  End If
 End Sub
 
 
 
 Private Sub tablaCuadrillas_KeyPressEdit(ByVal Row As Long, ByVal Col As Long, KeyAscii As Integer)
-    If KeyAscii = vbKeyEscape Then
-        If Col = 2 Then
-            If correoInvalido Then
-                tablaCuadrillas.TextMatrix(Row, Col) = datoViejo
-                ' o algo asi
-            End If
-        End If
+  If KeyAscii = vbKeyEscape Then
+    If Col = 2 Then
+      If correoInvalido Then
+        tablaCuadrillas.TextMatrix(Row, Col) = datoViejo
+        ' o algo asi
+      End If
     End If
+  End If
 End Sub

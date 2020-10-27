@@ -158,16 +158,16 @@ Dim PosicionAnterior As Long
 Dim mCodLuz As Long
 
 Property Get codLuz() As Long
-    codLuz = mCodLuz
+  codLuz = mCodLuz
 End Property
 
 Private Sub Form_Load()
   With main.VAClientes
     PosicionAnterior = .Position
-    .IndexNumber = 1 ' Apellido + Nombre
+    .IndexNumber = 1  ' Apellido + Nombre
     .GetFirst
   End With
-  
+
   mCodLuz = 0
 End Sub
 
@@ -186,13 +186,13 @@ End Sub
 Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
   With main.VAClientes
     Select Case KeyCode
-     Case vbKeyEscape
-        .IndexNumber = 0
-        .Position = PosicionAnterior
-        .GetDirect
-        Unload Me
-     Case vbKeyReturn
-        lstClientes_DblClick
+    Case vbKeyEscape
+      .IndexNumber = 0
+      .Position = PosicionAnterior
+      .GetDirect
+      Unload Me
+    Case vbKeyReturn
+      lstClientes_DblClick
     End Select
   End With
 End Sub
