@@ -119,6 +119,7 @@ Begin VB.Form frmTrabajo
          End
          Begin VB.CommandButton btnVolver 
             BackColor       =   &H00D9D9D9&
+            Cancel          =   -1  'True
             Caption         =   "Volver"
             BeginProperty Font 
                Name            =   "MS Sans Serif"
@@ -317,7 +318,7 @@ Begin VB.Form frmTrabajo
                Strikethrough   =   0   'False
             EndProperty
             CustomFormat    =   "hh:mm tt"
-            Format          =   40763395
+            Format          =   95551491
             UpDown          =   -1  'True
             CurrentDate     =   44076
          End
@@ -339,7 +340,7 @@ Begin VB.Form frmTrabajo
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   40763393
+            Format          =   95551489
             CurrentDate     =   44076
          End
          Begin VB.Label Label1 
@@ -871,12 +872,11 @@ Private Sub cargarFormProgramar()
     txtTlfn = .TextMatrix(.Row, 5)
     txtFechaPedido = .TextMatrix(.Row, 4)
     cmbTipoConexion.Text = .TextMatrix(.Row, 3)
-    dtFechaInst.Value = DateTime.Now
-    dtHoraInst = DateTime.Now
-    
-    Call cargarCuadrilla(idTrabajo)
   End With
 
+  ' Ver si se pueden hacer todas estas funciones en una
+  Call cargarFechaYHora(idTrabajo)
+  Call cargarCuadrilla(idTrabajo)
   Call seleccionarPrioridad
 
   ' Modificar dimensiones porque sino queda mucho espacio vacío
@@ -890,20 +890,6 @@ Private Sub cargarFormProgramar()
 
   ' chkEnviarCorreoOrden.Value = 1
 
-End Sub
-
-Private Sub cargarCuadrilla(idTrabajo As Long)
-  With main.vTrabInternet
-  
-    .FieldValue("id_trabajo") = idTrabajo
-    
-    If .GetEqual = 0 Then
-      If Not (IsNull(.FieldValue("idCuadrilla"))) Then
-        Call seleccionarPorItemData(.FieldValue("idCuadrilla"), cmbCuadrilla)
-      End If
-    End If
-  
-  End With
 End Sub
 
 Private Sub cargarFormInstalar()
@@ -922,7 +908,7 @@ Private Sub cargarFormInstalar()
   End With
 
   Call seleccionarPrioridad
-
+  
   ' Seleccionar en cmbTarifas la tarifa que ya tiene asignado el trabajo.
   Call seleccionarPorItemData(getIdTarifa(idTrabajo), cmbTarifas)
   Call cargarDatosConexion
@@ -933,6 +919,7 @@ End Sub
 
 Private Sub cargarFormTerminado()
   btnActualizar.Enabled = False
+  btnModificar.Enabled = False
 
   With main.tablaTrabajosTerminados
     idTrabajo = Val(.TextMatrix(.Row, 9))
@@ -981,6 +968,31 @@ Private Sub cargarDatosConexion()
       End If
 
     End If
+  End With
+End Sub
+
+Private Sub cargarFechaYHora(idTrabajo As Long)
+  With main.vTrabInternet
+    .IndexNumber = 0
+    .FieldValue("id_trabajo") = idTrabajo
+    If .GetEqual = 0 Then
+      dtFechaInst.Value = IIf(.FieldValue("fecha_inst") = 0, DateTime.Now, .FieldValue("fecha_inst"))
+      dtHoraInst = IIf(IsNull(.FieldValue("hora_inst")), DateTime.Now, .FieldValue("hora_inst"))
+    End If
+  End With
+End Sub
+
+Private Sub cargarCuadrilla(idTrabajo As Long)
+  With main.vTrabInternet
+  
+    .FieldValue("id_trabajo") = idTrabajo
+    
+    If .GetEqual = 0 Then
+      If Not (IsNull(.FieldValue("idCuadrilla"))) Then
+        Call seleccionarPorItemData(.FieldValue("idCuadrilla"), cmbCuadrilla)
+      End If
+    End If
+  
   End With
 End Sub
 
