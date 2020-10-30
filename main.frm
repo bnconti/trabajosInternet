@@ -6,16 +6,16 @@ Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
 Begin VB.Form main 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Trabajos de Internet"
-   ClientHeight    =   9225
+   ClientHeight    =   8460
    ClientLeft      =   150
    ClientTop       =   720
-   ClientWidth     =   21660
+   ClientWidth     =   21045
    Icon            =   "main.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   9225
-   ScaleWidth      =   21660
+   ScaleHeight     =   8460
+   ScaleWidth      =   21045
    StartUpPosition =   3  'Windows Default
    Begin VB.CommandButton cmdSalir 
       BackColor       =   &H00E6E6E7&
@@ -182,7 +182,6 @@ Begin VB.Form main
       _ExtentX        =   37253
       _ExtentY        =   14975
       _Version        =   393216
-      Tab             =   2
       TabHeight       =   520
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "MS Sans Serif"
@@ -195,49 +194,41 @@ Begin VB.Form main
       EndProperty
       TabCaption(0)   =   "Para programar"
       TabPicture(0)   =   "main.frx":8295
-      Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "Frame2"
-      Tab(0).Control(1)=   "btnAProgramarRecuperar"
-      Tab(0).Control(2)=   "btnImprimirProgramar"
-      Tab(0).Control(3)=   "btnExpExcelProgramar"
-      Tab(0).Control(4)=   "frmFiltrar"
-      Tab(0).Control(5)=   "tablaTrabajosAProgramar"
+      Tab(0).ControlEnabled=   -1  'True
+      Tab(0).Control(0)=   "tablaTrabajosAProgramar"
+      Tab(0).Control(0).Enabled=   0   'False
+      Tab(0).Control(1)=   "frmFiltrar"
+      Tab(0).Control(1).Enabled=   0   'False
+      Tab(0).Control(2)=   "btnExpExcelProgramar"
+      Tab(0).Control(2).Enabled=   0   'False
+      Tab(0).Control(3)=   "btnImprimirProgramar"
+      Tab(0).Control(3).Enabled=   0   'False
+      Tab(0).Control(4)=   "btnAProgramarRecuperar"
+      Tab(0).Control(4).Enabled=   0   'False
+      Tab(0).Control(5)=   "Frame2"
+      Tab(0).Control(5).Enabled=   0   'False
       Tab(0).ControlCount=   6
       TabCaption(1)   =   "Para instalar"
       TabPicture(1)   =   "main.frx":82B1
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "tablaTrabajosAInstalar"
-      Tab(1).Control(0).Enabled=   0   'False
-      Tab(1).Control(1)=   "Frame1"
-      Tab(1).Control(1).Enabled=   0   'False
-      Tab(1).Control(2)=   "btnGuardarFinalizados"
-      Tab(1).Control(2).Enabled=   0   'False
-      Tab(1).Control(3)=   "btnExpExcelInstalar"
-      Tab(1).Control(3).Enabled=   0   'False
-      Tab(1).Control(4)=   "btnImprimirInstalar"
-      Tab(1).Control(4).Enabled=   0   'False
-      Tab(1).Control(5)=   "btnAInstalarRecuperar"
-      Tab(1).Control(5).Enabled=   0   'False
-      Tab(1).Control(6)=   "btnEnviarOrdenPorCorreo"
-      Tab(1).Control(6).Enabled=   0   'False
-      Tab(1).Control(7)=   "frmTotalesAInstalar"
-      Tab(1).Control(7).Enabled=   0   'False
+      Tab(1).Control(0)=   "frmTotalesAInstalar"
+      Tab(1).Control(1)=   "btnEnviarOrdenPorCorreo"
+      Tab(1).Control(2)=   "btnAInstalarRecuperar"
+      Tab(1).Control(3)=   "btnImprimirInstalar"
+      Tab(1).Control(4)=   "btnExpExcelInstalar"
+      Tab(1).Control(5)=   "btnGuardarFinalizados"
+      Tab(1).Control(6)=   "Frame1"
+      Tab(1).Control(7)=   "tablaTrabajosAInstalar"
       Tab(1).ControlCount=   8
       TabCaption(2)   =   "Terminados"
       TabPicture(2)   =   "main.frx":82CD
-      Tab(2).ControlEnabled=   -1  'True
-      Tab(2).Control(0)=   "tablaTrabajosTerminados"
-      Tab(2).Control(0).Enabled=   0   'False
-      Tab(2).Control(1)=   "frmFiltrado"
-      Tab(2).Control(1).Enabled=   0   'False
-      Tab(2).Control(2)=   "btnExpExcelTerminados"
-      Tab(2).Control(2).Enabled=   0   'False
-      Tab(2).Control(3)=   "btnImprimirTerminados"
-      Tab(2).Control(3).Enabled=   0   'False
-      Tab(2).Control(4)=   "btnInstaladosRecuperar"
-      Tab(2).Control(4).Enabled=   0   'False
-      Tab(2).Control(5)=   "Frame3"
-      Tab(2).Control(5).Enabled=   0   'False
+      Tab(2).ControlEnabled=   0   'False
+      Tab(2).Control(0)=   "Frame3"
+      Tab(2).Control(1)=   "btnInstaladosRecuperar"
+      Tab(2).Control(2)=   "btnImprimirTerminados"
+      Tab(2).Control(3)=   "btnExpExcelTerminados"
+      Tab(2).Control(4)=   "frmFiltrado"
+      Tab(2).Control(5)=   "tablaTrabajosTerminados"
       Tab(2).ControlCount=   6
       Begin VB.Frame Frame3 
          Caption         =   "Totales de trabajos terminados"
@@ -251,7 +242,7 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   1935
-         Left            =   7560
+         Left            =   -67440
          TabIndex        =   57
          Top             =   6360
          Width           =   6255
@@ -448,7 +439,7 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   1935
-         Left            =   -69120
+         Left            =   5880
          TabIndex        =   46
          Top             =   6360
          Width           =   6255
@@ -863,7 +854,7 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   855
-         Left            =   360
+         Left            =   -74640
          Picture         =   "main.frx":91B3
          Style           =   1  'Graphical
          TabIndex        =   21
@@ -903,7 +894,7 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   855
-         Left            =   -74640
+         Left            =   360
          Picture         =   "main.frx":149D7
          Style           =   1  'Graphical
          TabIndex        =   1
@@ -923,7 +914,7 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   975
-         Left            =   -58200
+         Left            =   16800
          Picture         =   "main.frx":1A5E9
          Style           =   1  'Graphical
          TabIndex        =   6
@@ -963,7 +954,7 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   975
-         Left            =   16800
+         Left            =   -58200
          Picture         =   "main.frx":26AFD
          Style           =   1  'Graphical
          TabIndex        =   33
@@ -983,7 +974,7 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   975
-         Left            =   18240
+         Left            =   -56760
          Picture         =   "main.frx":2CD87
          Style           =   1  'Graphical
          TabIndex        =   32
@@ -1023,7 +1014,7 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   975
-         Left            =   -56760
+         Left            =   18240
          Picture         =   "main.frx":2E2FB
          Style           =   1  'Graphical
          TabIndex        =   7
@@ -1062,7 +1053,7 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   1875
-         Left            =   2880
+         Left            =   -72120
          TabIndex        =   22
          Top             =   6360
          Width           =   4455
@@ -1310,7 +1301,7 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   1035
-         Left            =   -72120
+         Left            =   2880
          TabIndex        =   2
          Top             =   6360
          Width           =   2775
@@ -1351,7 +1342,7 @@ Begin VB.Form main
       End
       Begin VSFlex7LCtl.VSFlexGrid tablaTrabajosAProgramar 
          Height          =   5295
-         Left            =   -74640
+         Left            =   360
          TabIndex        =   31
          Top             =   960
          Width           =   20415
@@ -1533,7 +1524,7 @@ Begin VB.Form main
       End
       Begin VSFlex7LCtl.VSFlexGrid tablaTrabajosTerminados 
          Height          =   5295
-         Left            =   360
+         Left            =   -74640
          TabIndex        =   20
          Top             =   960
          Width           =   20415
@@ -1670,13 +1661,6 @@ Public arrConexiones As Variant
 Dim cVSFlex As New ClsVSFlex
 
 Dim FUENTEDATOS As String
-
-Private Sub Form_Resize()
-  If (Me.WindowState <> vbNormal) And (Me.WindowState <> vbMaximized) Then Exit Sub
-  
-  tabTrabajos.width = Me.width
-  tabTrabajos.Height = Me.Height
-End Sub
 
 Private Sub btnEnviarOrdenPorCorreo_Click()
   With tablaTrabajosAInstalar
@@ -2245,11 +2229,6 @@ End Sub
 Private Sub Form_Unload(Cancel As Integer)
 ' Por si queda algo abierto o procesando algo, que se carga de vuelta el formulario y queda el proceso como zombie...
   End
-End Sub
-
-
-Private Sub lblBuscarPorApellido_Click()
-
 End Sub
 
 Private Sub mnuCuadrilla_Click()

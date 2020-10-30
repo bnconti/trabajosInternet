@@ -318,7 +318,7 @@ Begin VB.Form frmTrabajo
                Strikethrough   =   0   'False
             EndProperty
             CustomFormat    =   "hh:mm tt"
-            Format          =   95551491
+            Format          =   94699523
             UpDown          =   -1  'True
             CurrentDate     =   44076
          End
@@ -340,7 +340,7 @@ Begin VB.Form frmTrabajo
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   95551489
+            Format          =   94699521
             CurrentDate     =   44076
          End
          Begin VB.Label Label1 
@@ -1108,20 +1108,25 @@ Private Sub btnModificar_Click()
     .FieldValue("id_trabajo") = idTrabajo
 
     If .GetEqual = 0 Then
-      .FieldValue("tipo_conexion") = cmbTipoConexion.ItemData(cmbTipoConexion.ListIndex)
-      .FieldValue("fecha_inst") = dtFechaInst.Value
-      .FieldValue("hora_inst") = dtHoraInst.Value
-      .FieldValue("idcuadrilla") = cmbCuadrilla.ItemData(cmbCuadrilla.ListIndex)
-      .FieldValue("obs") = txtObs.Text
-      .FieldValue("reserva") = txtObsConex.Text
-      .FieldValue("prioridad") = cmbPrioridad.ItemData(cmbPrioridad.ListIndex)
+    
+        If Not (cmbCuadrilla.Text = vbNullString) Then
+          .FieldValue("idcuadrilla") = cmbCuadrilla.ItemData(cmbCuadrilla.ListIndex)
+        End If
+    
+        .FieldValue("tipo_conexion") = cmbTipoConexion.ItemData(cmbTipoConexion.ListIndex)
+        .FieldValue("fecha_inst") = dtFechaInst.Value
+        .FieldValue("hora_inst") = dtHoraInst.Value
 
-      If main.tabTrabajos.Tab = 1 Or main.tabTrabajos.Tab = 2 Then
-        .FieldValue("ancho_banda") = cmbTarifas.ItemData(cmbTarifas.ListIndex)
-        Call actualizarDatosConexInet(getCodAlumbrado(.FieldValue("nroOrden")))
-      End If
-
-      .Update
+        .FieldValue("obs") = txtObs.Text
+        .FieldValue("reserva") = txtObsConex.Text
+        .FieldValue("prioridad") = cmbPrioridad.ItemData(cmbPrioridad.ListIndex)
+  
+        If main.tabTrabajos.Tab = 1 Or main.tabTrabajos.Tab = 2 Then
+          .FieldValue("ancho_banda") = cmbTarifas.ItemData(cmbTarifas.ListIndex)
+          Call actualizarDatosConexInet(getCodAlumbrado(.FieldValue("nroOrden")))
+        End If
+  
+        .Update
     End If
   End With
   
