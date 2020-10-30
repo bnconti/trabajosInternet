@@ -16,6 +16,7 @@ Begin VB.Form frmTrabajo
    ScaleHeight     =   11535
    ScaleWidth      =   9210
    StartUpPosition =   3  'Windows Default
+   Visible         =   0   'False
    Begin VB.Timer Timer1 
       Enabled         =   0   'False
       Interval        =   100
@@ -77,6 +78,27 @@ Begin VB.Form frmTrabajo
          TabIndex        =   42
          Top             =   9180
          Width           =   8535
+         Begin VB.CommandButton btnSinTerminar 
+            BackColor       =   &H00CCF2FF&
+            Caption         =   "Sin terminar"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   12
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   1050
+            Left            =   3540
+            Picture         =   "frmTrabajo.frx":030A
+            Style           =   1  'Graphical
+            TabIndex        =   46
+            Top             =   840
+            Visible         =   0   'False
+            Width           =   1600
+         End
          Begin VB.CommandButton btnModificar 
             BackColor       =   &H00F2E1D9&
             Caption         =   "Actualizar"
@@ -90,12 +112,12 @@ Begin VB.Form frmTrabajo
                Strikethrough   =   0   'False
             EndProperty
             Height          =   1050
-            Left            =   2700
-            Picture         =   "frmTrabajo.frx":030A
+            Left            =   1800
+            Picture         =   "frmTrabajo.frx":0614
             Style           =   1  'Graphical
             TabIndex        =   45
             Top             =   840
-            Width           =   1875
+            Width           =   1600
          End
          Begin VB.CommandButton btnActualizar 
             BackColor       =   &H00DAEFE2&
@@ -111,11 +133,11 @@ Begin VB.Form frmTrabajo
             EndProperty
             Height          =   1050
             Left            =   60
-            Picture         =   "frmTrabajo.frx":0614
+            Picture         =   "frmTrabajo.frx":091E
             Style           =   1  'Graphical
             TabIndex        =   12
             Top             =   840
-            Width           =   2475
+            Width           =   1600
          End
          Begin VB.CommandButton btnVolver 
             BackColor       =   &H00D9D9D9&
@@ -132,7 +154,7 @@ Begin VB.Form frmTrabajo
             EndProperty
             Height          =   1050
             Left            =   7320
-            Picture         =   "frmTrabajo.frx":0EDE
+            Picture         =   "frmTrabajo.frx":11E8
             Style           =   1  'Graphical
             TabIndex        =   14
             Top             =   840
@@ -152,7 +174,7 @@ Begin VB.Form frmTrabajo
             EndProperty
             Height          =   1050
             Left            =   5880
-            Picture         =   "frmTrabajo.frx":0FF0
+            Picture         =   "frmTrabajo.frx":12FA
             Style           =   1  'Graphical
             TabIndex        =   13
             Top             =   840
@@ -274,9 +296,9 @@ Begin VB.Form frmTrabajo
                Strikethrough   =   0   'False
             EndProperty
             Height          =   420
-            ItemData        =   "frmTrabajo.frx":18BA
+            ItemData        =   "frmTrabajo.frx":1BC4
             Left            =   240
-            List            =   "frmTrabajo.frx":18CA
+            List            =   "frmTrabajo.frx":1BD4
             Style           =   2  'Dropdown List
             TabIndex        =   2
             Top             =   1560
@@ -318,7 +340,7 @@ Begin VB.Form frmTrabajo
                Strikethrough   =   0   'False
             EndProperty
             CustomFormat    =   "hh:mm tt"
-            Format          =   94699523
+            Format          =   95551491
             UpDown          =   -1  'True
             CurrentDate     =   44076
          End
@@ -340,7 +362,7 @@ Begin VB.Form frmTrabajo
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   94699521
+            Format          =   95551489
             CurrentDate     =   44076
          End
          Begin VB.Label Label1 
@@ -849,6 +871,8 @@ Private Sub Form_Load()
     Call cargarFormInstalar
   ElseIf main.tabTrabajos.Tab = 2 Then
     Call cargarFormTerminado
+  ElseIf main.tabTrabajos.Tab = 3 Then
+    Call cargarFormSinTerminar
   End If
 
   Call cargarObs
@@ -874,10 +898,8 @@ Private Sub cargarFormProgramar()
     cmbTipoConexion.Text = .TextMatrix(.Row, 3)
   End With
 
-  ' Ver si se pueden hacer todas estas funciones en una
-  Call cargarFechaYHora(idTrabajo)
-  Call cargarCuadrilla(idTrabajo)
-  Call seleccionarPrioridad
+  ' Otros datos que no pueden sacarse de la grilla
+  Call cargarDatosExtrasFormProgramar(idTrabajo)
 
   ' Modificar dimensiones porque sino queda mucho espacio vacío
   Me.Height = 8500
@@ -904,7 +926,7 @@ Private Sub cargarFormInstalar()
     cmbTipoConexion.Text = .TextMatrix(.Row, 4)
     dtFechaInst = .TextMatrix(.Row, 7)
     dtHoraInst = .TextMatrix(.Row, 8)
-    cmbCuadrilla.Text = main.tablaTrabajosAInstalar.TextMatrix(main.tablaTrabajosAInstalar.Row, 9)
+    cmbCuadrilla.Text = .TextMatrix(.Row, 9)
   End With
 
   Call seleccionarPrioridad
@@ -915,6 +937,7 @@ Private Sub cargarFormInstalar()
 
   chkImprimirOrden.Visible = False
   chkEnviarCorreoOrden.Visible = False
+  btnSinTerminar.Visible = True
 End Sub
 
 Private Sub cargarFormTerminado()
@@ -949,6 +972,31 @@ Private Sub cargarFormTerminado()
   chkEnviarCorreoOrden.Visible = False
 End Sub
 
+Private Sub cargarFormSinTerminar()
+  With main.tablaTrabajosSinTerminar
+    idTrabajo = Val(.TextMatrix(.Row, 9))
+
+    txtNombre = .TextMatrix(.Row, 0)
+    txtDomi = .TextMatrix(.Row, 1)
+    txtUsInternet = .TextMatrix(.Row, 2)
+    txtTlfn = .TextMatrix(.Row, 5)
+    txtFechaPedido = .TextMatrix(.Row, 4)
+    cmbTipoConexion.Text = .TextMatrix(.Row, 3)
+    dtFechaInst = .TextMatrix(.Row, 6)
+    dtHoraInst = .TextMatrix(.Row, 7)
+    cmbCuadrilla.Text = .TextMatrix(.Row, 8)
+  End With
+
+  Call seleccionarPrioridad
+  
+  ' Seleccionar en cmbTarifas la tarifa que ya tiene asignado el trabajo.
+  Call seleccionarPorItemData(getIdTarifa(idTrabajo), cmbTarifas)
+  Call cargarDatosConexion
+
+  chkImprimirOrden.Visible = False
+  chkEnviarCorreoOrden.Visible = False
+End Sub
+
 Private Sub cargarDatosConexion()
   With main
     .vTrabInternet.IndexNumber = 0
@@ -971,28 +1019,24 @@ Private Sub cargarDatosConexion()
   End With
 End Sub
 
-Private Sub cargarFechaYHora(idTrabajo As Long)
+Private Sub cargarDatosExtrasFormProgramar(idTrabajo As Long)
   With main.vTrabInternet
     .IndexNumber = 0
     .FieldValue("id_trabajo") = idTrabajo
     If .GetEqual = 0 Then
+      ' Cargar fecha y hora
       dtFechaInst.Value = IIf(.FieldValue("fecha_inst") = 0, DateTime.Now, .FieldValue("fecha_inst"))
       dtHoraInst = IIf(IsNull(.FieldValue("hora_inst")), DateTime.Now, .FieldValue("hora_inst"))
-    End If
-  End With
-End Sub
-
-Private Sub cargarCuadrilla(idTrabajo As Long)
-  With main.vTrabInternet
-  
-    .FieldValue("id_trabajo") = idTrabajo
-    
-    If .GetEqual = 0 Then
+      
+      ' Seleccionar la cuadrilla en caso de que se haya modificado antes
       If Not (IsNull(.FieldValue("idCuadrilla"))) Then
         Call seleccionarPorItemData(.FieldValue("idCuadrilla"), cmbCuadrilla)
       End If
+      
+      ' Cargar la prioridad del trabajo
+      Call seleccionarPrioridad
+      
     End If
-  
   End With
 End Sub
 
@@ -1121,10 +1165,37 @@ Private Sub btnModificar_Click()
         .FieldValue("reserva") = txtObsConex.Text
         .FieldValue("prioridad") = cmbPrioridad.ItemData(cmbPrioridad.ListIndex)
   
-        If main.tabTrabajos.Tab = 1 Or main.tabTrabajos.Tab = 2 Then
+        If Not (main.tabTrabajos.Tab = 0) Then
           .FieldValue("ancho_banda") = cmbTarifas.ItemData(cmbTarifas.ListIndex)
           Call actualizarDatosConexInet(getCodAlumbrado(.FieldValue("nroOrden")))
         End If
+  
+        .Update
+    End If
+  End With
+  
+  Unload Me
+End Sub
+
+Private Sub btnSinTerminar_Click()
+  ' Este botón solo debería accederse por los trabajos en estado PROGRAMADO
+  With main.vTrabInternet
+    .IndexNumber = 0
+    .FieldValue("id_trabajo") = idTrabajo
+
+    If .GetEqual = 0 Then
+    
+        .FieldValue("estado") = Estados.SIN_TERMINAR
+    
+        .FieldValue("idcuadrilla") = cmbCuadrilla.ItemData(cmbCuadrilla.ListIndex)
+        .FieldValue("tipo_conexion") = cmbTipoConexion.ItemData(cmbTipoConexion.ListIndex)
+        .FieldValue("fecha_inst") = dtFechaInst.Value
+        .FieldValue("hora_inst") = dtHoraInst.Value
+
+        .FieldValue("obs") = txtObs.Text
+        .FieldValue("reserva") = txtObsConex.Text
+        .FieldValue("prioridad") = cmbPrioridad.ItemData(cmbPrioridad.ListIndex)
+        .FieldValue("ancho_banda") = cmbTarifas.ItemData(cmbTarifas.ListIndex)
   
         .Update
     End If
@@ -1155,7 +1226,6 @@ Private Sub actualizarDatosConexInet(CodAlumbrado As Long)
     End If
   End With
 End Sub
-
 
 Private Sub btnEliminar_Click()
   If MsgBox("Se eliminará este trabajo de la base de datos, ¿está seguro?", vbYesNo + vbQuestion, "Eliminar trabajo") = vbYes Then

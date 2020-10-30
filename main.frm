@@ -6,17 +6,33 @@ Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
 Begin VB.Form main 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Trabajos de Internet"
-   ClientHeight    =   8460
+   ClientHeight    =   8805
    ClientLeft      =   150
    ClientTop       =   720
-   ClientWidth     =   21045
+   ClientWidth     =   20340
    Icon            =   "main.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   8460
-   ScaleWidth      =   21045
+   ScaleHeight     =   8805
+   ScaleWidth      =   20340
    StartUpPosition =   3  'Windows Default
+   Begin VB.Frame frmBuscar 
+      BorderStyle     =   0  'None
+      Height          =   435
+      Left            =   2580
+      TabIndex        =   88
+      Top             =   480
+      Width           =   8475
+      Begin VB.Label lblBuscar 
+         Caption         =   "Para buscar en la grilla, haga clic en una entrada de la columna por la que se quiere filtrar y comience a escribir."
+         Height          =   315
+         Left            =   120
+         TabIndex        =   89
+         Top             =   60
+         Width           =   8295
+      End
+   End
    Begin VB.CommandButton cmdSalir 
       BackColor       =   &H00E6E6E7&
       Cancel          =   -1  'True
@@ -31,11 +47,11 @@ Begin VB.Form main
          Strikethrough   =   0   'False
       EndProperty
       Height          =   945
-      Left            =   19680
+      Left            =   18960
       Picture         =   "main.frx":27A2
       Style           =   1  'Graphical
       TabIndex        =   8
-      Top             =   6480
+      Top             =   6780
       Width           =   1125
    End
    Begin VB.CommandButton btnCambioFTTH 
@@ -51,7 +67,7 @@ Begin VB.Form main
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   360
+      Left            =   180
       Style           =   1  'Graphical
       TabIndex        =   9
       Top             =   480
@@ -174,14 +190,17 @@ Begin VB.Form main
       End
    End
    Begin TabDlg.SSTab tabTrabajos 
-      Height          =   8490
-      Left            =   -60
+      Height          =   8790
+      Left            =   0
       TabIndex        =   0
       Top             =   0
-      Width           =   21120
-      _ExtentX        =   37253
-      _ExtentY        =   14975
+      Width           =   20340
+      _ExtentX        =   35878
+      _ExtentY        =   15505
       _Version        =   393216
+      Tabs            =   4
+      Tab             =   3
+      TabsPerRow      =   4
       TabHeight       =   520
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "MS Sans Serif"
@@ -194,42 +213,400 @@ Begin VB.Form main
       EndProperty
       TabCaption(0)   =   "Para programar"
       TabPicture(0)   =   "main.frx":8295
-      Tab(0).ControlEnabled=   -1  'True
+      Tab(0).ControlEnabled=   0   'False
       Tab(0).Control(0)=   "tablaTrabajosAProgramar"
-      Tab(0).Control(0).Enabled=   0   'False
       Tab(0).Control(1)=   "frmFiltrar"
-      Tab(0).Control(1).Enabled=   0   'False
       Tab(0).Control(2)=   "btnExpExcelProgramar"
-      Tab(0).Control(2).Enabled=   0   'False
       Tab(0).Control(3)=   "btnImprimirProgramar"
-      Tab(0).Control(3).Enabled=   0   'False
       Tab(0).Control(4)=   "btnAProgramarRecuperar"
-      Tab(0).Control(4).Enabled=   0   'False
       Tab(0).Control(5)=   "Frame2"
-      Tab(0).Control(5).Enabled=   0   'False
       Tab(0).ControlCount=   6
       TabCaption(1)   =   "Para instalar"
       TabPicture(1)   =   "main.frx":82B1
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "frmTotalesAInstalar"
-      Tab(1).Control(1)=   "btnEnviarOrdenPorCorreo"
-      Tab(1).Control(2)=   "btnAInstalarRecuperar"
-      Tab(1).Control(3)=   "btnImprimirInstalar"
-      Tab(1).Control(4)=   "btnExpExcelInstalar"
-      Tab(1).Control(5)=   "btnGuardarFinalizados"
-      Tab(1).Control(6)=   "Frame1"
-      Tab(1).Control(7)=   "tablaTrabajosAInstalar"
+      Tab(1).Control(0)=   "tablaTrabajosAInstalar"
+      Tab(1).Control(1)=   "Frame1"
+      Tab(1).Control(2)=   "btnGuardarFinalizados"
+      Tab(1).Control(3)=   "btnExpExcelInstalar"
+      Tab(1).Control(4)=   "btnImprimirInstalar"
+      Tab(1).Control(5)=   "btnAInstalarRecuperar"
+      Tab(1).Control(6)=   "btnEnviarOrdenPorCorreo"
+      Tab(1).Control(7)=   "frmTotalesAInstalar"
       Tab(1).ControlCount=   8
       TabCaption(2)   =   "Terminados"
       TabPicture(2)   =   "main.frx":82CD
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "Frame3"
-      Tab(2).Control(1)=   "btnInstaladosRecuperar"
-      Tab(2).Control(2)=   "btnImprimirTerminados"
-      Tab(2).Control(3)=   "btnExpExcelTerminados"
-      Tab(2).Control(4)=   "frmFiltrado"
-      Tab(2).Control(5)=   "tablaTrabajosTerminados"
+      Tab(2).Control(0)=   "tablaTrabajosTerminados"
+      Tab(2).Control(0).Enabled=   0   'False
+      Tab(2).Control(1)=   "frmFiltrado"
+      Tab(2).Control(1).Enabled=   0   'False
+      Tab(2).Control(2)=   "btnExpExcelTerminados"
+      Tab(2).Control(2).Enabled=   0   'False
+      Tab(2).Control(3)=   "btnImprimirTerminados"
+      Tab(2).Control(3).Enabled=   0   'False
+      Tab(2).Control(4)=   "btnInstaladosRecuperar"
+      Tab(2).Control(4).Enabled=   0   'False
+      Tab(2).Control(5)=   "Frame3"
+      Tab(2).Control(5).Enabled=   0   'False
       Tab(2).ControlCount=   6
+      TabCaption(3)   =   "Sin terminar"
+      TabPicture(3)   =   "main.frx":82E9
+      Tab(3).ControlEnabled=   -1  'True
+      Tab(3).Control(0)=   "tablaTrabajosSinTerminar"
+      Tab(3).Control(0).Enabled=   0   'False
+      Tab(3).Control(1)=   "Frame4"
+      Tab(3).Control(1).Enabled=   0   'False
+      Tab(3).Control(2)=   "btnSinTerminarRecuperar"
+      Tab(3).Control(2).Enabled=   0   'False
+      Tab(3).Control(3)=   "btnImprimirSinTerminar"
+      Tab(3).Control(3).Enabled=   0   'False
+      Tab(3).Control(4)=   "btnExpExcelSinTerminar"
+      Tab(3).Control(4).Enabled=   0   'False
+      Tab(3).Control(5)=   "Frame5"
+      Tab(3).Control(5).Enabled=   0   'False
+      Tab(3).ControlCount=   6
+      Begin VB.Frame Frame5 
+         Caption         =   "Filtrar por"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   1875
+         Left            =   2640
+         TabIndex        =   82
+         Top             =   6660
+         Width           =   2775
+         Begin VB.ComboBox cmbCuadrillaSinTerminar 
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
+            Left            =   120
+            Style           =   2  'Dropdown List
+            TabIndex        =   84
+            Top             =   600
+            Width           =   2535
+         End
+         Begin VB.ComboBox cmbConexionSinTerminar 
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
+            Left            =   120
+            Style           =   2  'Dropdown List
+            TabIndex        =   83
+            Top             =   1320
+            Width           =   2535
+         End
+         Begin VB.Label Label26 
+            Caption         =   "Cuadrilla"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   345
+            Left            =   120
+            TabIndex        =   86
+            Top             =   360
+            Width           =   1335
+         End
+         Begin VB.Label Label25 
+            Caption         =   "Tipo de conexión"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   345
+            Left            =   120
+            TabIndex        =   85
+            Top             =   1080
+            Width           =   1815
+         End
+      End
+      Begin VB.CommandButton btnExpExcelSinTerminar 
+         BackColor       =   &H00D6E4FC&
+         Caption         =   "Exportar a Excel"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   975
+         Left            =   17520
+         Picture         =   "main.frx":8305
+         Style           =   1  'Graphical
+         TabIndex        =   81
+         Top             =   6780
+         Width           =   1215
+      End
+      Begin VB.CommandButton btnImprimirSinTerminar 
+         BackColor       =   &H00D6E4FC&
+         Caption         =   "Imprimir"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   975
+         Left            =   16200
+         Picture         =   "main.frx":8DBF
+         Style           =   1  'Graphical
+         TabIndex        =   80
+         Top             =   6780
+         Width           =   1215
+      End
+      Begin VB.CommandButton btnSinTerminarRecuperar 
+         BackColor       =   &H00D6E4FC&
+         Caption         =   "Recuperar"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   855
+         Left            =   180
+         Picture         =   "main.frx":F049
+         Style           =   1  'Graphical
+         TabIndex        =   79
+         Top             =   6780
+         Width           =   2175
+      End
+      Begin VB.Frame Frame4 
+         Caption         =   "Totales de trabajos sin terminar"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   1935
+         Left            =   5880
+         TabIndex        =   68
+         Top             =   6660
+         Width           =   6255
+         Begin VB.Label Label24 
+            Caption         =   "Total:"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   375
+            Left            =   120
+            TabIndex        =   78
+            Top             =   360
+            Width           =   1215
+         End
+         Begin VB.Label Label23 
+            Caption         =   "Alta FTTH:"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   375
+            Left            =   120
+            TabIndex        =   77
+            Top             =   840
+            Width           =   1215
+         End
+         Begin VB.Label Label22 
+            Caption         =   "Alta Altena:"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   375
+            Left            =   120
+            TabIndex        =   76
+            Top             =   1320
+            Width           =   1335
+         End
+         Begin VB.Label Label21 
+            Caption         =   "Alta Edificio:"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   375
+            Left            =   3000
+            TabIndex        =   75
+            Top             =   840
+            Width           =   1455
+         End
+         Begin VB.Label Label20 
+            Caption         =   "Cambio a FTTH:"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   375
+            Left            =   3000
+            TabIndex        =   74
+            Top             =   1320
+            Width           =   1815
+         End
+         Begin VB.Label lbCambioFTTHTotalSinTerminar 
+            BorderStyle     =   1  'Fixed Single
+            Caption         =   "0"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H000000FF&
+            Height          =   375
+            Left            =   4800
+            TabIndex        =   73
+            Top             =   1320
+            Width           =   1335
+         End
+         Begin VB.Label lblAltaEdificioTotalSinTerminar 
+            BorderStyle     =   1  'Fixed Single
+            Caption         =   "0"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H000000FF&
+            Height          =   375
+            Left            =   4800
+            TabIndex        =   72
+            Top             =   840
+            Width           =   1335
+         End
+         Begin VB.Label lblAltaAntenaTotalSinTerminar 
+            BorderStyle     =   1  'Fixed Single
+            Caption         =   "0"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H000000FF&
+            Height          =   375
+            Left            =   1440
+            TabIndex        =   71
+            Top             =   1320
+            Width           =   1335
+         End
+         Begin VB.Label lblAltaFTTHTotalSinTerminar 
+            BorderStyle     =   1  'Fixed Single
+            Caption         =   "0"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H000000FF&
+            Height          =   375
+            Left            =   1440
+            TabIndex        =   70
+            Top             =   840
+            Width           =   1335
+         End
+         Begin VB.Label lblTrabajosSinTerminarTotal 
+            BorderStyle     =   1  'Fixed Single
+            Caption         =   "0"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H000000FF&
+            Height          =   375
+            Left            =   1440
+            TabIndex        =   69
+            Top             =   360
+            Width           =   1335
+         End
+      End
       Begin VB.Frame Frame3 
          Caption         =   "Totales de trabajos terminados"
          BeginProperty Font 
@@ -244,7 +621,7 @@ Begin VB.Form main
          Height          =   1935
          Left            =   -67440
          TabIndex        =   57
-         Top             =   6360
+         Top             =   6660
          Width           =   6255
          Begin VB.Label Label19 
             Caption         =   "Total:"
@@ -439,9 +816,9 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   1935
-         Left            =   5880
+         Left            =   -69120
          TabIndex        =   46
-         Top             =   6360
+         Top             =   6660
          Width           =   6255
          Begin VB.Label Label14 
             Caption         =   "Total:"
@@ -638,7 +1015,7 @@ Begin VB.Form main
          Height          =   1935
          Left            =   -69120
          TabIndex        =   35
-         Top             =   6360
+         Top             =   6660
          Width           =   6255
          Begin VB.Label lblTrabajosParaInstalarTotal 
             BorderStyle     =   1  'Fixed Single
@@ -834,10 +1211,10 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   975
-         Left            =   -59760
-         Picture         =   "main.frx":82E9
+         Left            =   -60420
+         Picture         =   "main.frx":14C5B
          TabIndex        =   34
-         Top             =   6480
+         Top             =   6780
          Visible         =   0   'False
          Width           =   1335
       End
@@ -854,11 +1231,11 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   855
-         Left            =   -74640
-         Picture         =   "main.frx":91B3
+         Left            =   -74820
+         Picture         =   "main.frx":15B25
          Style           =   1  'Graphical
          TabIndex        =   21
-         Top             =   6480
+         Top             =   6780
          Width           =   2175
       End
       Begin VB.CommandButton btnAInstalarRecuperar 
@@ -874,11 +1251,11 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   855
-         Left            =   -74640
-         Picture         =   "main.frx":EDC5
+         Left            =   -74820
+         Picture         =   "main.frx":1B737
          Style           =   1  'Graphical
          TabIndex        =   11
-         Top             =   6480
+         Top             =   6780
          Width           =   2175
       End
       Begin VB.CommandButton btnAProgramarRecuperar 
@@ -894,11 +1271,11 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   855
-         Left            =   360
-         Picture         =   "main.frx":149D7
+         Left            =   -74820
+         Picture         =   "main.frx":21349
          Style           =   1  'Graphical
          TabIndex        =   1
-         Top             =   6480
+         Top             =   6780
          Width           =   2175
       End
       Begin VB.CommandButton btnImprimirProgramar 
@@ -914,11 +1291,11 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   975
-         Left            =   16800
-         Picture         =   "main.frx":1A5E9
+         Left            =   -58800
+         Picture         =   "main.frx":26F5B
          Style           =   1  'Graphical
          TabIndex        =   6
-         Top             =   6480
+         Top             =   6780
          Width           =   1215
       End
       Begin VB.CommandButton btnImprimirInstalar 
@@ -934,11 +1311,11 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   975
-         Left            =   -58200
-         Picture         =   "main.frx":20873
+         Left            =   -58800
+         Picture         =   "main.frx":2D1E5
          Style           =   1  'Graphical
          TabIndex        =   17
-         Top             =   6480
+         Top             =   6780
          Width           =   1215
       End
       Begin VB.CommandButton btnImprimirTerminados 
@@ -954,11 +1331,11 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   975
-         Left            =   -58200
-         Picture         =   "main.frx":26AFD
+         Left            =   -58800
+         Picture         =   "main.frx":3346F
          Style           =   1  'Graphical
          TabIndex        =   33
-         Top             =   6480
+         Top             =   6780
          Width           =   1215
       End
       Begin VB.CommandButton btnExpExcelTerminados 
@@ -974,11 +1351,11 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   975
-         Left            =   -56760
-         Picture         =   "main.frx":2CD87
+         Left            =   -57480
+         Picture         =   "main.frx":396F9
          Style           =   1  'Graphical
          TabIndex        =   32
-         Top             =   6480
+         Top             =   6780
          Width           =   1215
       End
       Begin VB.CommandButton btnExpExcelInstalar 
@@ -994,11 +1371,11 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   975
-         Left            =   -56760
-         Picture         =   "main.frx":2D841
+         Left            =   -57480
+         Picture         =   "main.frx":3A1B3
          Style           =   1  'Graphical
          TabIndex        =   18
-         Top             =   6480
+         Top             =   6780
          Width           =   1215
       End
       Begin VB.CommandButton btnExpExcelProgramar 
@@ -1014,11 +1391,11 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   975
-         Left            =   18240
-         Picture         =   "main.frx":2E2FB
+         Left            =   -57480
+         Picture         =   "main.frx":3AC6D
          Style           =   1  'Graphical
          TabIndex        =   7
-         Top             =   6480
+         Top             =   6780
          Width           =   1215
       End
       Begin VB.CommandButton btnGuardarFinalizados 
@@ -1034,11 +1411,11 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   855
-         Left            =   -74640
-         Picture         =   "main.frx":2EDB5
+         Left            =   -74820
+         Picture         =   "main.frx":3B727
          Style           =   1  'Graphical
          TabIndex        =   12
-         Top             =   7440
+         Top             =   7740
          Width           =   2175
       End
       Begin VB.Frame frmFiltrado 
@@ -1053,9 +1430,9 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   1875
-         Left            =   -72120
+         Left            =   -72360
          TabIndex        =   22
-         Top             =   6360
+         Top             =   6660
          Width           =   4455
          Begin MSComCtl2.DTPicker dtDesdeTerminados 
             Height          =   375
@@ -1076,7 +1453,7 @@ Begin VB.Form main
                Strikethrough   =   0   'False
             EndProperty
             CustomFormat    =   "dd/MM/yy"
-            Format          =   95551491
+            Format          =   95748099
             CurrentDate     =   44089
          End
          Begin VB.ComboBox cmbConexionTerminados 
@@ -1132,7 +1509,7 @@ Begin VB.Form main
                Strikethrough   =   0   'False
             EndProperty
             CustomFormat    =   "dd/MM/yy"
-            Format          =   95551491
+            Format          =   95748099
             CurrentDate     =   44089
          End
          Begin VB.Label lblFechaHastaInstalados 
@@ -1216,9 +1593,9 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   1875
-         Left            =   -72120
+         Left            =   -72360
          TabIndex        =   13
-         Top             =   6360
+         Top             =   6660
          Width           =   2775
          Begin VB.ComboBox cmbConexionAInstalar 
             BeginProperty Font 
@@ -1301,9 +1678,9 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   1035
-         Left            =   2880
+         Left            =   -72360
          TabIndex        =   2
-         Top             =   6360
+         Top             =   6660
          Width           =   2775
          Begin VB.ComboBox cmbConexionAProgramar 
             BeginProperty Font 
@@ -1341,13 +1718,13 @@ Begin VB.Form main
          End
       End
       Begin VSFlex7LCtl.VSFlexGrid tablaTrabajosAProgramar 
-         Height          =   5295
-         Left            =   360
+         Height          =   5475
+         Left            =   -74820
          TabIndex        =   31
-         Top             =   960
-         Width           =   20415
-         _cx             =   36010
-         _cy             =   9340
+         Top             =   1020
+         Width           =   19995
+         _cx             =   35269
+         _cy             =   9657
          _ConvInfo       =   1
          Appearance      =   1
          BorderStyle     =   1
@@ -1393,7 +1770,7 @@ Begin VB.Form main
          ColWidthMin     =   0
          ColWidthMax     =   0
          ExtendLastCol   =   0   'False
-         FormatString    =   $"main.frx":2F0BF
+         FormatString    =   $"main.frx":3BA31
          ScrollTrack     =   -1  'True
          ScrollBars      =   3
          ScrollTips      =   0   'False
@@ -1432,13 +1809,13 @@ Begin VB.Form main
          WallPaperAlignment=   9
       End
       Begin VSFlex7LCtl.VSFlexGrid tablaTrabajosAInstalar 
-         Height          =   5295
-         Left            =   -74640
+         Height          =   5475
+         Left            =   -74820
          TabIndex        =   10
-         Top             =   960
-         Width           =   20415
-         _cx             =   36010
-         _cy             =   9340
+         Top             =   1020
+         Width           =   19995
+         _cx             =   35269
+         _cy             =   9657
          _ConvInfo       =   1
          Appearance      =   1
          BorderStyle     =   1
@@ -1484,7 +1861,7 @@ Begin VB.Form main
          ColWidthMin     =   0
          ColWidthMax     =   0
          ExtendLastCol   =   0   'False
-         FormatString    =   $"main.frx":2F1F3
+         FormatString    =   $"main.frx":3BB5B
          ScrollTrack     =   -1  'True
          ScrollBars      =   3
          ScrollTips      =   0   'False
@@ -1523,13 +1900,13 @@ Begin VB.Form main
          WallPaperAlignment=   9
       End
       Begin VSFlex7LCtl.VSFlexGrid tablaTrabajosTerminados 
-         Height          =   5295
-         Left            =   -74640
+         Height          =   5475
+         Left            =   -74820
          TabIndex        =   20
-         Top             =   960
-         Width           =   20415
-         _cx             =   36010
-         _cy             =   9340
+         Top             =   1020
+         Width           =   19995
+         _cx             =   35269
+         _cy             =   9657
          _ConvInfo       =   1
          Appearance      =   1
          BorderStyle     =   1
@@ -1575,7 +1952,98 @@ Begin VB.Form main
          ColWidthMin     =   0
          ColWidthMax     =   0
          ExtendLastCol   =   0   'False
-         FormatString    =   $"main.frx":2F3AC
+         FormatString    =   $"main.frx":3BCFA
+         ScrollTrack     =   -1  'True
+         ScrollBars      =   3
+         ScrollTips      =   0   'False
+         MergeCells      =   0
+         MergeCompare    =   0
+         AutoResize      =   -1  'True
+         AutoSizeMode    =   0
+         AutoSearch      =   1
+         AutoSearchDelay =   2
+         MultiTotals     =   -1  'True
+         SubtotalPosition=   1
+         OutlineBar      =   0
+         OutlineCol      =   0
+         Ellipsis        =   0
+         ExplorerBar     =   5
+         PicturesOver    =   0   'False
+         FillStyle       =   0
+         RightToLeft     =   0   'False
+         PictureType     =   0
+         TabBehavior     =   0
+         OwnerDraw       =   0
+         Editable        =   0
+         ShowComboButton =   1
+         WordWrap        =   0   'False
+         TextStyle       =   0
+         TextStyleFixed  =   0
+         OleDragMode     =   0
+         OleDropMode     =   0
+         ComboSearch     =   3
+         AutoSizeMouse   =   -1  'True
+         FrozenRows      =   0
+         FrozenCols      =   0
+         AllowUserFreezing=   0
+         BackColorFrozen =   0
+         ForeColorFrozen =   0
+         WallPaperAlignment=   9
+      End
+      Begin VSFlex7LCtl.VSFlexGrid tablaTrabajosSinTerminar 
+         Height          =   5475
+         Left            =   180
+         TabIndex        =   87
+         Top             =   1020
+         Width           =   19995
+         _cx             =   35269
+         _cy             =   9657
+         _ConvInfo       =   1
+         Appearance      =   1
+         BorderStyle     =   1
+         Enabled         =   -1  'True
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         MousePointer    =   0
+         BackColor       =   -2147483643
+         ForeColor       =   -2147483640
+         BackColorFixed  =   -2147483633
+         ForeColorFixed  =   -2147483630
+         BackColorSel    =   -2147483635
+         ForeColorSel    =   -2147483634
+         BackColorBkg    =   -2147483636
+         BackColorAlternate=   -2147483643
+         GridColor       =   -2147483633
+         GridColorFixed  =   -2147483632
+         TreeColor       =   -2147483632
+         FloodColor      =   192
+         SheetBorder     =   -2147483642
+         FocusRect       =   1
+         HighLight       =   1
+         AllowSelection  =   -1  'True
+         AllowBigSelection=   -1  'True
+         AllowUserResizing=   0
+         SelectionMode   =   0
+         GridLines       =   1
+         GridLinesFixed  =   2
+         GridLineWidth   =   1
+         Rows            =   1
+         Cols            =   11
+         FixedRows       =   1
+         FixedCols       =   0
+         RowHeightMin    =   0
+         RowHeightMax    =   0
+         ColWidthMin     =   0
+         ColWidthMax     =   0
+         ExtendLastCol   =   0   'False
+         FormatString    =   $"main.frx":3BE7B
          ScrollTrack     =   -1  'True
          ScrollBars      =   3
          ScrollTips      =   0   'False
@@ -1641,6 +2109,7 @@ Option Explicit
 Public Enum Estados
   NUEVO = 1          ' Recien se cargó la orden de trabajo
   PROGRAMADO = 2     ' Se le asignó una fecha, hora y cuadrilla
+  SIN_TERMINAR = 3    ' El trabajo fue programado, pero por algún motivo no pudo terminarse y queda pendiente hasta que se termine
   TERMINADO = 0      ' La instalación fue realizada
 End Enum
 
@@ -1672,6 +2141,7 @@ Private Sub btnEnviarOrdenPorCorreo_Click()
     End If
   End With
 End Sub
+
 
 Private Sub cmdSalir_Click()
   Unload Me
@@ -1708,6 +2178,10 @@ End Sub
 
 Private Sub btnInstaladosRecuperar_Click()
   Call cargartablaTrabajosTerminados
+End Sub
+
+Private Sub btnSinTerminarRecuperar_Click()
+  Call cargarTablaTrabajosSinTerminar
 End Sub
 
 Private Sub cargarTablaTrabajosAProgramar()
@@ -1885,6 +2359,109 @@ Private Sub actualizarLabelsTablaParaInstalar()
   End With
 
 End Sub
+
+Private Sub actualizarLabelsTablaSinTerminar()
+  lblTrabajosSinTerminarTotal.Caption = 0
+  lblAltaFTTHTotalSinTerminar.Caption = 0
+  lblAltaAntenaTotalSinTerminar.Caption = 0
+  lblAltaEdificioTotalSinTerminar.Caption = 0
+  lbCambioFTTHTotalSinTerminar.Caption = 0
+
+  Dim i As Long
+
+  With tablaTrabajosSinTerminar
+    If .Rows > 1 Then
+
+      For i = 1 To .Rows - 1
+        If Not (.RowHidden(i)) Then
+          lblTrabajosSinTerminarTotal.Caption = Val(lblTrabajosSinTerminarTotal.Caption) + 1
+
+          Dim tipoConexion As String
+          tipoConexion = .TextMatrix(i, 3)
+
+          Select Case tipoConexion
+          Case "ALTA FTTH": lblAltaFTTHTotalSinTerminar.Caption = Val(lblAltaFTTHTotalSinTerminar.Caption) + 1
+          Case "ALTA ANTENA": lblAltaAntenaTotalSinTerminar.Caption = Val(lblAltaAntenaTotalSinTerminar.Caption) + 1
+          Case "ALTA EDIFICIO": lblAltaEdificioTotalSinTerminar.Caption = Val(lblAltaEdificioTotalSinTerminar.Caption) + 1
+          Case "CAMBIO A FTTH": lbCambioFTTHTotalSinTerminar.Caption = Val(lbCambioFTTHTotalSinTerminar.Caption) + 1
+          End Select
+        End If
+      Next
+    End If
+  End With
+End Sub
+
+Private Sub cargarTablaTrabajosSinTerminar()
+  Dim st As Integer
+
+  tablaTrabajosSinTerminar.Rows = 1
+
+  vTrabInternet.IndexNumber = 0
+  st = vTrabInternet.GetFirst
+
+  Screen.MousePointer = 11
+  While st = 0
+
+    VOrdenes.IndexNumber = 0
+    VAClientes.IndexNumber = 0
+    VAsumAlumInte.IndexNumber = 0
+    VCuadrillas.IndexNumber = 0
+    VAsumAlum.IndexNumber = 0
+
+    VOrdenes.FieldValue("NroOrden") = vTrabInternet.FieldValue("Nroorden")
+    VOrdenes.GetEqual
+
+    VAClientes.FieldValue("CodCli") = VOrdenes.FieldValue("CodCli")
+    VAClientes.GetEqual
+
+    VAsumAlumInte.FieldValue("CodAlumbrado") = VOrdenes.FieldValue("CodAlumbrado")
+    VAsumAlumInte.GetEqual
+
+    VCuadrillas.FieldValue("idcuadrilla") = vTrabInternet.FieldValue("idcuadrilla")
+    VCuadrillas.GetEqual
+
+    VAsumAlum.FieldValue("CodAlumbrado") = VOrdenes.FieldValue("CodAlumbrado")
+    VAsumAlum.GetEqual
+
+    If VOrdenes.status = 0 And _
+       VAClientes.status = 0 And _
+       VAsumAlumInte.status = 0 And _
+       VCuadrillas.status = 0 And _
+       VAsumAlum.status = 0 And _
+       vTrabInternet.FieldValue("estado") = Estados.SIN_TERMINAR Then
+
+      tablaTrabajosSinTerminar.AddItem (VAClientes.FieldValue("apellido") & ", " & VAClientes.FieldValue("nombre") & vbTab & _
+                                      VAsumAlum.FieldValue("cuenta") & vbTab & _
+                                      VAsumAlumInte.FieldValue("UsInt") & vbTab & _
+                                      arrConexiones(vTrabInternet.FieldValue("Tipo_Conexion") - 1) & vbTab & _
+                                      vTrabInternet.FieldValue("fecha_pedido") & vbTab & _
+                                      VAClientes.FieldValue("reserva") & vbTab & _
+                                      vTrabInternet.FieldValue("fecha_inst") & vbTab & _
+                                      Format(vTrabInternet.FieldValue("hora_inst"), "hh:mm AMPM") & vbTab & _
+                                      VCuadrillas.FieldValue("miembros") & vbTab & _
+                                      vTrabInternet.FieldValue("id_trabajo")) & vbTab & _
+                                      vTrabInternet.FieldValue("obs")
+
+      If vTrabInternet.FieldValue("prioridad") = prioridad.ALTA Then
+        ' Pintar fila rojo
+        tablaTrabajosSinTerminar.Cell(flexcpBackColor, tablaTrabajosSinTerminar.Rows - 1, 0, tablaTrabajosSinTerminar.Rows - 1, tablaTrabajosSinTerminar.Cols - 1) = RGB(255, 122, 122)
+      ElseIf vTrabInternet.FieldValue("prioridad") = prioridad.MEDIA Then
+        ' Pintar fila amarillo
+        tablaTrabajosSinTerminar.Cell(flexcpBackColor, tablaTrabajosSinTerminar.Rows - 1, 0, tablaTrabajosSinTerminar.Rows - 1, tablaTrabajosSinTerminar.Cols - 1) = RGB(255, 255, 122)
+      End If
+
+    End If
+
+    st = vTrabInternet.GetNext
+
+  Wend
+
+  Call filtrarTablaSinTerminar
+
+  tablaTrabajosSinTerminar.AutoSize 0, tablaTrabajosSinTerminar.Cols - 1
+  Screen.MousePointer = 0
+End Sub
+
 
 Private Sub actualizarLabelsTablaParaProgramar()
   lblTrabajosParaProgramarTotal.Caption = 0
@@ -2104,6 +2681,14 @@ Private Sub cmbCuadrillaAInstalar_Click()
   If tablaTrabajosAInstalar.Rows > 1 Then Call filtrarTablaAInstalar
 End Sub
 
+Private Sub cmbConexionSinTerminar_Click()
+  If tablaTrabajosSinTerminar.Rows > 1 Then Call filtrarTablaSinTerminar
+End Sub
+
+Private Sub cmbCuadrillaSinTerminar_Click()
+  If tablaTrabajosSinTerminar.Rows > 1 Then Call filtrarTablaSinTerminar
+End Sub
+
 Private Sub filtrarTablaAInstalar()
   Dim fila As Integer
   Dim ultimaFila As Integer
@@ -2127,6 +2712,34 @@ Private Sub filtrarTablaAInstalar()
     Next fila
 
     Call actualizarLabelsTablaParaInstalar
+
+    Screen.MousePointer = 0
+  End With
+End Sub
+
+Private Sub filtrarTablaSinTerminar()
+  Dim fila As Integer
+  Dim ultimaFila As Integer
+  ultimaFila = tablaTrabajosSinTerminar.Rows - 1
+
+  Dim conexion As String
+  Dim cuadrilla As String
+
+  With tablaTrabajosSinTerminar
+
+    Screen.MousePointer = 11
+    For fila = 1 To ultimaFila
+      conexion = .TextMatrix(fila, 3)
+      cuadrilla = .TextMatrix(fila, 8)
+      If (conexion = cmbConexionSinTerminar.Text Or cmbConexionSinTerminar.Text = "TODAS") _
+         And (cuadrilla = cmbCuadrillaSinTerminar.Text Or cmbCuadrillaSinTerminar.Text = "TODAS") Then
+        .RowHidden(fila) = False
+      Else
+        .RowHidden(fila) = True
+      End If
+    Next fila
+
+    Call actualizarLabelsTablaSinTerminar
 
     Screen.MousePointer = 0
   End With
@@ -2181,19 +2794,23 @@ End Sub
 Private Sub cargarTiposConexion()
   Dim i As Integer
 
+  ' Todo esto podría hacerse mucho más fácil con un arreglo...
   For i = 0 To UBound(arrConexiones)
     cmbConexionAProgramar.AddItem (arrConexiones(i))
     cmbConexionAInstalar.AddItem (arrConexiones(i))
     cmbConexionTerminados.AddItem (arrConexiones(i))
+    cmbConexionSinTerminar.AddItem (arrConexiones(i))
   Next i
 
   cmbConexionAProgramar.AddItem "TODAS"
   cmbConexionAInstalar.AddItem "TODAS"
   cmbConexionTerminados.AddItem "TODAS"
+  cmbConexionSinTerminar.AddItem "TODAS"
 
   cmbConexionAProgramar.ListIndex = cmbConexionAProgramar.ListCount - 1
   cmbConexionAInstalar.ListIndex = cmbConexionAInstalar.ListCount - 1
   cmbConexionTerminados.ListIndex = cmbConexionTerminados.ListCount - 1
+  cmbConexionSinTerminar.ListIndex = cmbConexionSinTerminar.ListCount - 1
 
 End Sub
 
@@ -2203,17 +2820,21 @@ Public Sub cargarCuadrillas()
   ' Los borro por si llamo a la funcion de vuelta
   cmbCuadrillaAInstalar.Clear
   cmbCuadrillaTerminados.Clear
+  cmbCuadrillaSinTerminar.Clear
 
   With main.VCuadrillas
     .IndexNumber = 0
     status = .GetFirst
-
+    
     While status = 0
       cmbCuadrillaAInstalar.AddItem (.FieldValue("miembros"))
       cmbCuadrillaAInstalar.ItemData(cmbCuadrillaAInstalar.NewIndex) = .FieldValue("idcuadrilla")
 
       cmbCuadrillaTerminados.AddItem (.FieldValue("miembros"))
       cmbCuadrillaTerminados.ItemData(cmbCuadrillaTerminados.NewIndex) = .FieldValue("idcuadrilla")
+      
+      cmbCuadrillaSinTerminar.AddItem (.FieldValue("miembros"))
+      cmbCuadrillaSinTerminar.ItemData(cmbCuadrillaSinTerminar.NewIndex) = .FieldValue("idcuadrilla")
       status = .GetNext
     Wend
 
@@ -2222,6 +2843,9 @@ Public Sub cargarCuadrillas()
 
     cmbCuadrillaTerminados.AddItem "TODAS"
     cmbCuadrillaTerminados.ListIndex = cmbCuadrillaTerminados.ListCount - 1
+    
+    cmbCuadrillaSinTerminar.AddItem "TODAS"
+    cmbCuadrillaSinTerminar.ListIndex = cmbCuadrillaSinTerminar.ListCount - 1
   End With
 End Sub
 
@@ -2231,6 +2855,7 @@ Private Sub Form_Unload(Cancel As Integer)
   End
 End Sub
 
+
 Private Sub mnuCuadrilla_Click()
   frmCuadrilla.Show 1, Me
 End Sub
@@ -2239,22 +2864,22 @@ Private Sub mnuSalir_Click()
   Unload Me
 End Sub
 
-Private Sub tablaTrabajosAProgramar_KeyDown(keycode As Integer, shift As Integer)
-  If keycode = vbKeyReturn Then
+Private Sub tablaTrabajosAProgramar_KeyDown(KeyCode As Integer, Shift As Integer)
+  If KeyCode = vbKeyReturn Then
     Call abrirFrmTrabajo
     Call cargarTablaTrabajosAProgramar
   End If
 End Sub
 
-Private Sub tablaTrabajosAInstalar_KeyDown(keycode As Integer, shift As Integer)
-  If keycode = vbKeyReturn Then
+Private Sub tablaTrabajosAInstalar_KeyDown(KeyCode As Integer, Shift As Integer)
+  If KeyCode = vbKeyReturn Then
     Call abrirFrmTrabajo
     Call cargarTablaTrabajosAInstalar
   End If
 End Sub
 
-Private Sub tablaTrabajosTerminados_KeyDown(keycode As Integer, shift As Integer)
-  If keycode = vbKeyReturn Then
+Private Sub tablaTrabajosTerminados_KeyDown(KeyCode As Integer, Shift As Integer)
+  If KeyCode = vbKeyReturn Then
     Call abrirFrmTrabajo
     Call cargartablaTrabajosTerminados
   End If
@@ -2264,6 +2889,13 @@ Private Sub tablaTrabajosAProgramar_DblClick()
   If tablaTrabajosAProgramar.MouseRow > 0 And tablaTrabajosAProgramar.MouseCol >= 0 Then
     Call abrirFrmTrabajo
     Call cargarTablaTrabajosAProgramar
+  End If
+End Sub
+
+Private Sub tablaTrabajosSinTerminar_DblClick()
+  If tablaTrabajosSinTerminar.MouseRow > 0 And tablaTrabajosSinTerminar.MouseCol >= 0 Then
+    Call abrirFrmTrabajo
+    Call cargarTablaTrabajosSinTerminar
   End If
 End Sub
 
@@ -2303,6 +2935,9 @@ Private Sub btnExpExcelTerminados_Click()
   Call exportarExcel(tablaTrabajosTerminados)
 End Sub
 
+Private Sub btnExpExcelSinTerminar_Click()
+  Call exportarExcel(tablaTrabajosSinTerminar)
+End Sub
 
 Private Sub exportarExcel(tabla As VSFlexGrid)
   If tabla.Rows < 2 Then
@@ -2317,8 +2952,12 @@ Private Sub exportarExcel(tabla As VSFlexGrid)
     If Dir(rutaBase, vbDirectory) = "" Then
       MkDir rutaBase
     End If
+    
+    Dim titulo, tituloFormateado As String
+    titulo = getTituloExcel(tabla.Name)
+    tituloFormateado = UCase(Replace(titulo, " ", ""))
 
-    rutaArchivo = InputBox("Indique el destino del archivo ", "Exportar a Excel ", rutaBase & "LibroIVA" & Format(DateTime.Now, "ddMMyyhhss") & ".csv")
+    rutaArchivo = InputBox("Indique el destino del archivo ", "Exportar a Excel ", rutaBase & tituloSinEspacios & Format(DateTime.Now, "ddMMyyhhss") & ".csv")
 
     If rutaArchivo <> vbNullString Then
       Screen.MousePointer = 11
@@ -2327,10 +2966,7 @@ Private Sub exportarExcel(tabla As VSFlexGrid)
 
       Write #1, "sep=,"
 
-      Dim Titulo As String
-      Titulo = getTituloExcel(tabla.Name)
-
-      Write #1, Titulo
+      Write #1, titulo
       Write #1, "Listado generado el " & Format$(DateTime.Now, "dd/MM/yyyy") & " a las " & Format$(DateTime.Now, "hh:mm AMPM")
 
       If cmbCuadrillaAInstalar.Text <> "TODAS" And tabla.Name = "tablaTrabajosAInstalar" Then
@@ -2372,6 +3008,8 @@ Private Function getTituloExcel(nombreTabla As String) As String
     getTituloExcel = "Trabajos pendientes"
   ElseIf nombreTabla = "tablaTrabajosTerminados" Then
     getTituloExcel = "Trabajos terminados"
+  ElseIf nombreTabla = "tablaTrabajosSinTerminar" Then
+    getTituloExcel = "Trabajos sin terminar"
   End If
 End Function
 
@@ -2389,13 +3027,17 @@ Private Sub btnImprimirTerminados_Click()
   Call imprimirTabla(tablaTrabajosTerminados)
 End Sub
 
+Private Sub btnImprimirSinTerminar_Click()
+  Call imprimirTabla(tablaTrabajosSinTerminar)
+End Sub
+
 Private Sub imprimirTabla(tabla As VSFlexGrid)
   If tabla.Rows > 1 Then
     With cVSFlex
       .grilla = tabla
       .RazonSocial = ini.GetVar("Empresa", "RazonSocial")
 
-      .Titulo = getTituloExcel(tabla.Name)
+      .titulo = getTituloExcel(tabla.Name)
       .Subtitulo = "Listado generado el " & Format$(DateTime.Now, "dd/MM/yyyy") & " a las " & Format$(DateTime.Now, "hh:mm AMPM")
 
       Call .Imprimir(, vbPRORLandscape, 6)
@@ -2409,11 +3051,9 @@ Private Sub formatearEncabezados()
   Call ponerEncabezadoEnNegrita(tablaTrabajosAProgramar)
   Call ponerEncabezadoEnNegrita(tablaTrabajosAInstalar)
   Call ponerEncabezadoEnNegrita(tablaTrabajosTerminados)
+  Call ponerEncabezadoEnNegrita(tablaTrabajosSinTerminar)
   tablaTrabajosAProgramar.AutoSize 0, tablaTrabajosAProgramar.Cols - 1
   tablaTrabajosAInstalar.AutoSize 0, tablaTrabajosAInstalar.Cols - 1
   tablaTrabajosTerminados.AutoSize 0, tablaTrabajosTerminados.Cols - 1
-End Sub
-
-Private Sub txtApellido_Change()
-  MsgBox "buenas"
+  tablaTrabajosSinTerminar.AutoSize 0, tablaTrabajosSinTerminar.Cols - 1
 End Sub
