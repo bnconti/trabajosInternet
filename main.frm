@@ -199,7 +199,6 @@ Begin VB.Form main
       _ExtentY        =   15505
       _Version        =   393216
       Tabs            =   4
-      Tab             =   3
       TabsPerRow      =   4
       TabHeight       =   520
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -213,13 +212,19 @@ Begin VB.Form main
       EndProperty
       TabCaption(0)   =   "Para programar"
       TabPicture(0)   =   "main.frx":8295
-      Tab(0).ControlEnabled=   0   'False
+      Tab(0).ControlEnabled=   -1  'True
       Tab(0).Control(0)=   "tablaTrabajosAProgramar"
+      Tab(0).Control(0).Enabled=   0   'False
       Tab(0).Control(1)=   "frmFiltrar"
+      Tab(0).Control(1).Enabled=   0   'False
       Tab(0).Control(2)=   "btnExpExcelProgramar"
+      Tab(0).Control(2).Enabled=   0   'False
       Tab(0).Control(3)=   "btnImprimirProgramar"
+      Tab(0).Control(3).Enabled=   0   'False
       Tab(0).Control(4)=   "btnAProgramarRecuperar"
+      Tab(0).Control(4).Enabled=   0   'False
       Tab(0).Control(5)=   "Frame2"
+      Tab(0).Control(5).Enabled=   0   'False
       Tab(0).ControlCount=   6
       TabCaption(1)   =   "Para instalar"
       TabPicture(1)   =   "main.frx":82B1
@@ -237,21 +242,15 @@ Begin VB.Form main
       TabPicture(2)   =   "main.frx":82CD
       Tab(2).ControlEnabled=   0   'False
       Tab(2).Control(0)=   "tablaTrabajosTerminados"
-      Tab(2).Control(0).Enabled=   0   'False
       Tab(2).Control(1)=   "frmFiltrado"
-      Tab(2).Control(1).Enabled=   0   'False
       Tab(2).Control(2)=   "btnExpExcelTerminados"
-      Tab(2).Control(2).Enabled=   0   'False
       Tab(2).Control(3)=   "btnImprimirTerminados"
-      Tab(2).Control(3).Enabled=   0   'False
       Tab(2).Control(4)=   "btnInstaladosRecuperar"
-      Tab(2).Control(4).Enabled=   0   'False
       Tab(2).Control(5)=   "Frame3"
-      Tab(2).Control(5).Enabled=   0   'False
       Tab(2).ControlCount=   6
       TabCaption(3)   =   "Sin terminar"
       TabPicture(3)   =   "main.frx":82E9
-      Tab(3).ControlEnabled=   -1  'True
+      Tab(3).ControlEnabled=   0   'False
       Tab(3).Control(0)=   "tablaTrabajosSinTerminar"
       Tab(3).Control(0).Enabled=   0   'False
       Tab(3).Control(1)=   "Frame4"
@@ -277,7 +276,7 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   1875
-         Left            =   2640
+         Left            =   -72360
          TabIndex        =   82
          Top             =   6660
          Width           =   2775
@@ -363,7 +362,7 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   975
-         Left            =   17520
+         Left            =   -57480
          Picture         =   "main.frx":8305
          Style           =   1  'Graphical
          TabIndex        =   81
@@ -383,7 +382,7 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   975
-         Left            =   16200
+         Left            =   -58800
          Picture         =   "main.frx":8DBF
          Style           =   1  'Graphical
          TabIndex        =   80
@@ -403,7 +402,7 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   855
-         Left            =   180
+         Left            =   -74820
          Picture         =   "main.frx":F049
          Style           =   1  'Graphical
          TabIndex        =   79
@@ -422,7 +421,7 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   1935
-         Left            =   5880
+         Left            =   -69120
          TabIndex        =   68
          Top             =   6660
          Width           =   6255
@@ -816,7 +815,7 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   1935
-         Left            =   -69120
+         Left            =   5880
          TabIndex        =   46
          Top             =   6660
          Width           =   6255
@@ -1271,7 +1270,7 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   855
-         Left            =   -74820
+         Left            =   180
          Picture         =   "main.frx":21349
          Style           =   1  'Graphical
          TabIndex        =   1
@@ -1291,7 +1290,7 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   975
-         Left            =   -58800
+         Left            =   16200
          Picture         =   "main.frx":26F5B
          Style           =   1  'Graphical
          TabIndex        =   6
@@ -1391,7 +1390,7 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   975
-         Left            =   -57480
+         Left            =   17520
          Picture         =   "main.frx":3AC6D
          Style           =   1  'Graphical
          TabIndex        =   7
@@ -1453,7 +1452,7 @@ Begin VB.Form main
                Strikethrough   =   0   'False
             EndProperty
             CustomFormat    =   "dd/MM/yy"
-            Format          =   95748099
+            Format          =   109838339
             CurrentDate     =   44089
          End
          Begin VB.ComboBox cmbConexionTerminados 
@@ -1509,7 +1508,7 @@ Begin VB.Form main
                Strikethrough   =   0   'False
             EndProperty
             CustomFormat    =   "dd/MM/yy"
-            Format          =   95748099
+            Format          =   109838339
             CurrentDate     =   44089
          End
          Begin VB.Label lblFechaHastaInstalados 
@@ -1678,7 +1677,7 @@ Begin VB.Form main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   1035
-         Left            =   -72360
+         Left            =   2640
          TabIndex        =   2
          Top             =   6660
          Width           =   2775
@@ -1719,7 +1718,7 @@ Begin VB.Form main
       End
       Begin VSFlex7LCtl.VSFlexGrid tablaTrabajosAProgramar 
          Height          =   5475
-         Left            =   -74820
+         Left            =   180
          TabIndex        =   31
          Top             =   1020
          Width           =   19995
@@ -1992,7 +1991,7 @@ Begin VB.Form main
       End
       Begin VSFlex7LCtl.VSFlexGrid tablaTrabajosSinTerminar 
          Height          =   5475
-         Left            =   180
+         Left            =   -74820
          TabIndex        =   87
          Top             =   1020
          Width           =   19995
@@ -2109,7 +2108,7 @@ Option Explicit
 Public Enum Estados
   NUEVO = 1          ' Recien se cargó la orden de trabajo
   PROGRAMADO = 2     ' Se le asignó una fecha, hora y cuadrilla
-  SIN_TERMINAR = 3    ' El trabajo fue programado, pero por algún motivo no pudo terminarse y queda pendiente hasta que se termine
+  SIN_TERMINAR = 3   ' El trabajo fue programado, pero por algún motivo no pudo terminarse y queda pendiente hasta que se termine
   TERMINADO = 0      ' La instalación fue realizada
 End Enum
 
@@ -2141,7 +2140,6 @@ Private Sub btnEnviarOrdenPorCorreo_Click()
     End If
   End With
 End Sub
-
 
 Private Sub cmdSalir_Click()
   Unload Me
@@ -2953,11 +2951,11 @@ Private Sub exportarExcel(tabla As VSFlexGrid)
       MkDir rutaBase
     End If
     
-    Dim titulo, tituloFormateado As String
-    titulo = getTituloExcel(tabla.Name)
-    tituloFormateado = UCase(Replace(titulo, " ", ""))
+    Dim Titulo, tituloFormateado As String
+    Titulo = getTituloExcel(tabla.Name)
+    tituloFormateado = UCase(Replace(Titulo, " ", ""))
 
-    rutaArchivo = InputBox("Indique el destino del archivo ", "Exportar a Excel ", rutaBase & tituloSinEspacios & Format(DateTime.Now, "ddMMyyhhss") & ".csv")
+    rutaArchivo = InputBox("Indique el destino del archivo ", "Exportar a Excel ", rutaBase & tituloFormateado & Format(DateTime.Now, "ddMMyyhhss") & ".csv")
 
     If rutaArchivo <> vbNullString Then
       Screen.MousePointer = 11
@@ -2966,7 +2964,7 @@ Private Sub exportarExcel(tabla As VSFlexGrid)
 
       Write #1, "sep=,"
 
-      Write #1, titulo
+      Write #1, Titulo
       Write #1, "Listado generado el " & Format$(DateTime.Now, "dd/MM/yyyy") & " a las " & Format$(DateTime.Now, "hh:mm AMPM")
 
       If cmbCuadrillaAInstalar.Text <> "TODAS" And tabla.Name = "tablaTrabajosAInstalar" Then
@@ -2987,6 +2985,8 @@ Private Sub exportarExcel(tabla As VSFlexGrid)
               Write #1, .TextMatrix(fila, 1), .TextMatrix(fila, 2), .TextMatrix(fila, 3), .TextMatrix(fila, 4), .TextMatrix(fila, 6), .TextMatrix(fila, 7), .TextMatrix(fila, 8), .TextMatrix(fila, 11)
             ElseIf tabla.Name = "tablaTrabajosTerminados" Then
               Write #1, .TextMatrix(fila, 1), .TextMatrix(fila, 2), .TextMatrix(fila, 3), .TextMatrix(fila, 4), .TextMatrix(fila, 5), .TextMatrix(fila, 6), .TextMatrix(fila, 7), .TextMatrix(fila, 8), .TextMatrix(fila, 10)
+            ElseIf tabla.Name = "tablaTrabajosSinTerminar" Then
+              Write #1, .TextMatrix(fila, 0), .TextMatrix(fila, 1), .TextMatrix(fila, 2), .TextMatrix(fila, 3), .TextMatrix(fila, 4), .TextMatrix(fila, 5), .TextMatrix(fila, 6), .TextMatrix(fila, 8), .TextMatrix(fila, 10)
             End If
           End If
         Next fila
@@ -3037,7 +3037,7 @@ Private Sub imprimirTabla(tabla As VSFlexGrid)
       .grilla = tabla
       .RazonSocial = ini.GetVar("Empresa", "RazonSocial")
 
-      .titulo = getTituloExcel(tabla.Name)
+      .Titulo = getTituloExcel(tabla.Name)
       .Subtitulo = "Listado generado el " & Format$(DateTime.Now, "dd/MM/yyyy") & " a las " & Format$(DateTime.Now, "hh:mm AMPM")
 
       Call .Imprimir(, vbPRORLandscape, 6)

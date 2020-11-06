@@ -3,6 +3,7 @@ Option Explicit
 
 Public Declare Function SetDefaultPrinter Lib "winspool.drv" Alias "SetDefaultPrinterA" (ByVal pszPrinter As String) As Boolean
 
+
 Public Sub cambiarNoFacturar(nroOrden As Long, estadoNuevo As String)
 ' estadoNuevo deberá ser 0 para activado y 1 para activado
 
@@ -159,6 +160,20 @@ Public Sub cargarTarifasTodas(cmbTarifas As ComboBox)
   End With
 End Sub
 
+Public Function getNombreCuadrilla(idTrabajo) As String
+  With main
+    .vTrabInternet.IndexNumber = 0
+    .vTrabInternet.FieldValue("id_trabajo") = idTrabajo
+    If .vTrabInternet.GetEqual = 0 Then
+      .VCuadrillas.IndexNumber = 0
+      .VCuadrillas.FieldValue("idcuadrilla") = .vTrabInternet.FieldValue("idcuadrilla")
+      If .VCuadrillas.GetEqual = 0 Then
+        getNombreCuadrilla = .VCuadrillas.FieldValue("miembros")
+      End If
+    End If
+  End With
+End Function
+
 Public Function getNroTfno(CODCLI) As String
   With main.VAClientes
     .IndexNumber = 0
@@ -202,7 +217,7 @@ Public Sub imprimirOrden(idTrabajo As Long)
   Dim horaInstalacion As String
 
   Dim obs As String
-  Dim Nombre As String
+  Dim nombre As String
   Dim dni As String
   Dim domicilioFacturacion As String
   Dim domicilioConexion As String
@@ -260,7 +275,7 @@ Public Sub imprimirOrden(idTrabajo As Long)
       horaInstalacion = .vTrabInternet.FieldValue("hora_inst")
       obs = .vTrabInternet.FieldValue("obs")
 
-      Nombre = .VAClientes.FieldValue("nombre") & " " & .VAClientes.FieldValue("apellido")
+      nombre = .VAClientes.FieldValue("nombre") & " " & .VAClientes.FieldValue("apellido")
       dni = .VAClientes.FieldValue("NroDocIde") & vbNullString
       domicilioFacturacion = .VOrdenes.FieldValue("domicilio") & vbNullString
       domicilioConexion = .VAsumAlum.FieldValue("cuenta") & vbNullString
@@ -277,7 +292,7 @@ Public Sub imprimirOrden(idTrabajo As Long)
 
   ' ===================
   ' Comienza a imprimir
-
+  
   Dim pdfOrden As New LinePrinter
   With pdfOrden
 
@@ -298,7 +313,7 @@ Public Sub imprimirOrden(idTrabajo As Long)
     .Text 135, 55, "Hora de inst. programada: " & Format$(horaInstalacion, "hh:mm AMPM"), 10, False, "Arial"
     .LineH 25, 65, 165
 
-    .Text 25, 70, "Apellido y nombre: " & Nombre, 11, False, "Arial"
+    .Text 25, 70, "Apellido y nombre: " & nombre, 11, False, "Arial"
     .Text 25, 75, "DNI/CUIT: " & dni, 11, False, "Arial"
     .Text 25, 80, "Condición IVA: " & iva, 11, False, "Arial"
     .Text 25, 85, "Domicilio de facturación: " & domicilioFacturacion, 11, False, "Arial"
@@ -348,6 +363,12 @@ Public Sub imprimirOrden(idTrabajo As Long)
   End With
 
 End Sub
+
+Public Function crearDirectorio(rutaDirectorio As String)
+  If Dir(rutaDirectorio, vbDirectory) = "" Then
+    MkDir rutaDirectorio
+  End If
+End Function
 
 ' Establecer impresora
 Public Function PrinterIndex(PrinterName As String) As Long
@@ -433,3 +454,16 @@ End Function
 Public Function stringTipoConexion(idTipoCon As Byte) As String
   stringTipoConexion = IIf(idTipoCon < 1, "Algo salió mal", main.arrConexiones(idTipoCon - 1))
 End Function
+
+Public Sub definirImpresora(nombreImpresora As String)
+  Dim Impresora As Printer
+  If Printers.Count > 0 Then
+    For Each Impresora In Printers
+      If Impresora.DeviceName = nombreImpresora Then
+        Set Printer = Impresora
+        Exit For
+      End If
+    Next Impresora
+  End If
+End Sub
+

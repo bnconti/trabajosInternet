@@ -53,7 +53,7 @@ Begin VB.Form frmTrabajo
       Style           =   1  'Graphical
       TabIndex        =   16
       ToolTipText     =   "La orden vuelve a la primera solapa del sistema"
-      Top             =   4560
+      Top             =   4380
       Width           =   2175
    End
    Begin VB.Frame frmDatos 
@@ -64,8 +64,8 @@ Begin VB.Form frmTrabajo
       Top             =   0
       Width           =   8895
       Begin MSComDlg.CommonDialog cdImpresora 
-         Left            =   8040
-         Top             =   5280
+         Left            =   6180
+         Top             =   5520
          _ExtentX        =   847
          _ExtentY        =   847
          _Version        =   393216
@@ -218,7 +218,6 @@ Begin VB.Form frmTrabajo
       End
       Begin VB.CommandButton btnImprimirOrden 
          BackColor       =   &H00E6C29B&
-         Caption         =   "Imprimir orden de trabajo"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
             Size            =   9.75
@@ -228,12 +227,13 @@ Begin VB.Form frmTrabajo
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   615
+         Height          =   795
          Left            =   6240
+         Picture         =   "frmTrabajo.frx":1BC4
          Style           =   1  'Graphical
          TabIndex        =   17
-         Top             =   5280
-         Width           =   2175
+         Top             =   5100
+         Width           =   975
       End
       Begin VB.Frame frmDatosTrabajo 
          Caption         =   "Datos del trabajo"
@@ -251,6 +251,25 @@ Begin VB.Form frmTrabajo
          TabIndex        =   36
          Top             =   3120
          Width           =   8415
+         Begin VB.CommandButton btnPDFTrabajo 
+            BackColor       =   &H00E6C29B&
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   795
+            Left            =   7200
+            Picture         =   "frmTrabajo.frx":77D6
+            Style           =   1  'Graphical
+            TabIndex        =   47
+            Top             =   1980
+            Width           =   975
+         End
          Begin VB.ComboBox cmbPrioridad 
             BeginProperty Font 
                Name            =   "MS Sans Serif"
@@ -296,9 +315,9 @@ Begin VB.Form frmTrabajo
                Strikethrough   =   0   'False
             EndProperty
             Height          =   420
-            ItemData        =   "frmTrabajo.frx":1BC4
+            ItemData        =   "frmTrabajo.frx":7AE0
             Left            =   240
-            List            =   "frmTrabajo.frx":1BD4
+            List            =   "frmTrabajo.frx":7AF0
             Style           =   2  'Dropdown List
             TabIndex        =   2
             Top             =   1560
@@ -340,7 +359,7 @@ Begin VB.Form frmTrabajo
                Strikethrough   =   0   'False
             EndProperty
             CustomFormat    =   "hh:mm tt"
-            Format          =   95551491
+            Format          =   42008579
             UpDown          =   -1  'True
             CurrentDate     =   44076
          End
@@ -362,7 +381,7 @@ Begin VB.Form frmTrabajo
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   95551489
+            Format          =   42008577
             CurrentDate     =   44076
          End
          Begin VB.Label Label1 
@@ -667,7 +686,7 @@ Begin VB.Form frmTrabajo
          Height          =   2775
          Left            =   240
          TabIndex        =   19
-         Top             =   240
+         Top             =   180
          Width           =   8415
          Begin VB.TextBox txtNombre 
             BackColor       =   &H8000000F&
@@ -859,6 +878,11 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Private idTrabajo As Long
 
+Private pdf As PDFCreator.clsPDFCreator
+Private opt As clsPDFCreatorOptions
+
+Private Const directorioOrdenes = "C:\OrdenesInternet\"
+
 Private Sub Form_Load()
 
   Call cargarCuadrillas
@@ -907,6 +931,7 @@ Private Sub cargarFormProgramar()
   frmBotones.top = 6100
 
   btnImprimirOrden.Visible = False
+  btnPDFTrabajo.Visible = False
   btnVolverAInstalar.Visible = False
   frmDatosConexion.Visible = False
 
@@ -1071,29 +1096,6 @@ Private Sub cargarObs()
   End With
 End Sub
 
-Private Sub dialogoImpresion(idTrabajo As Long)
-  Dim copia As Integer
-  Dim defPrinter As String
-  defPrinter = Printer.DeviceName
-
-  With frmTrabajo.cdImpresora
-    .Flags = cdlPDNoSelection Or cdlPDHidePrintToFile Or cdlPDUseDevModeCopies
-    On Error GoTo FinImpresion
-    .ShowPrinter
-    On Error GoTo 0
-
-    For copia = 1 To .Copies
-      Call imprimirOrden(idTrabajo)
-    Next
-
-  End With
-
-  Call SetDefaultPrinter(defPrinter)
-
-FinImpresion:
-  On Error GoTo 0
-End Sub
-
 Private Sub btnActualizar_Click()
 
   Dim st As Integer
@@ -1198,6 +1200,8 @@ Private Sub btnSinTerminar_Click()
         .FieldValue("ancho_banda") = cmbTarifas.ItemData(cmbTarifas.ListIndex)
   
         .Update
+        
+        Call actualizarDatosConexInet(getCodAlumbrado(.FieldValue("nroOrden")))
     End If
   End With
   
@@ -1252,8 +1256,6 @@ Private Sub btnVolverAInstalar_Click()
     If .status = 0 Then
       .FieldValue("estado") = Estados.NUEVO
       .Update
-
-      cambiarNoFacturar .FieldValue("nroOrden"), "NOFACTURAR"
     End If
   End With
 
@@ -1283,7 +1285,102 @@ Private Sub cargarCuadrillas()
 End Sub
 
 Private Sub btnImprimirOrden_Click()
+  Set pdf = New clsPDFCreator
+  Set opt = New clsPDFCreatorOptions
+  
+  With pdf
+    .cVisible = True
+    If .cStart("/NoProcessingAtStartup") = False Then
+      If .cStart("/NoProcessingAtStartup", True) = False Then
+        Exit Sub
+      End If
+      .cVisible = True
+    End If
+
+    Set opt = .cOptions
+    .cClearCache
+  End With
+  
+  With opt
+    .DisableUpdateCheck = True
+    .UseAutosave = 0
+  End With
+  
   Call dialogoImpresion(idTrabajo)
+End Sub
+
+Private Sub btnPDFTrabajo_Click()
+  Dim impresoraPorDefecto As String: impresoraPorDefecto = Printer.DeviceName
+  
+  Set Printer = Printers(PrinterIndex("PDFCreator"))
+  
+  Dim nombreOrden As String
+  nombreOrden = "Orden" & idTrabajo & getNombreCuadrilla(idTrabajo) & "-" & Format(DateTime.Now, "ddMMhhmmss") & ".pdf"
+  
+  Call crearDirectorio(directorioOrdenes)
+  
+  Set pdf = New clsPDFCreator
+  Set opt = New clsPDFCreatorOptions
+  
+  With pdf
+    .cVisible = True
+    If .cStart("/NoProcessingAtStartup") = False Then
+      If .cStart("/NoProcessingAtStartup", True) = False Then
+        Exit Sub
+      End If
+      .cVisible = True
+    End If
+
+    Set opt = .cOptions
+    .cClearCache
+  End With
+  
+  With opt
+    .AutosaveDirectory = directorioOrdenes
+    .AutosaveFilename = nombreOrden
+    .DisableUpdateCheck = True
+    .StandardTitle = nombreOrden
+    .UseAutosave = 1
+    .UseAutosaveDirectory = 1
+    .AutosaveFormat = 0  ' PDF
+  End With
+
+  Set pdf.cOptions = opt
+  
+  imprimirOrden (idTrabajo)
+  pdf.cPrinterStop = False
+  
+  definirImpresora (impresoraPorDefecto)
+  
+  Set pdf = Nothing
+  
+  
+  Dim rutaCompleta As String: rutaCompleta = directorioOrdenes & nombreOrden
+  Sleep 1000
+  Shell "explorer.exe /select, " & rutaCompleta, vbNormalFocus
+End Sub
+
+Private Sub dialogoImpresion(idTrabajo As Long)
+  Dim copia As Integer
+  Dim defPrinter As String
+  defPrinter = Printer.DeviceName
+
+  With frmTrabajo.cdImpresora
+    .Flags = cdlPDNoSelection Or cdlPDHidePrintToFile Or cdlPDUseDevModeCopies
+    On Error GoTo FinImpresion
+    .ShowPrinter
+    On Error GoTo 0
+
+    For copia = 1 To .Copies
+      Call imprimirOrden(idTrabajo)
+    Next
+
+  End With
+
+  Call SetDefaultPrinter(defPrinter)
+
+FinImpresion:
+  On Error GoTo 0
 End Sub
 
 Private Sub Timer1_Timer()
