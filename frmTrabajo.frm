@@ -1,11 +1,10 @@
 VERSION 5.00
-Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
+Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCT2.OCX"
 Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "comdlg32.ocx"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Begin VB.Form frmTrabajo 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Datos del trabajo"
-   ClientHeight    =   11535
+   ClientHeight    =   10245
    ClientLeft      =   45
    ClientTop       =   330
    ClientWidth     =   9210
@@ -13,70 +12,24 @@ Begin VB.Form frmTrabajo
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   11535
+   ScaleHeight     =   10245
    ScaleWidth      =   9210
    StartUpPosition =   3  'Windows Default
    Visible         =   0   'False
-   Begin VB.Timer Timer1 
-      Enabled         =   0   'False
-      Interval        =   100
-      Left            =   8700
-      Top             =   11280
-   End
-   Begin MSComctlLib.ProgressBar ProgressBar1 
-      Height          =   315
-      Left            =   360
-      TabIndex        =   18
-      Top             =   11280
-      Visible         =   0   'False
-      Width           =   8355
-      _ExtentX        =   14737
-      _ExtentY        =   556
-      _Version        =   393216
-      Appearance      =   1
-      Max             =   50
-   End
-   Begin VB.CommandButton btnVolverAInstalar 
-      BackColor       =   &H00CCF2FF&
-      Caption         =   "Pasar a ""Para programar"""
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   615
-      Left            =   6360
-      Style           =   1  'Graphical
-      TabIndex        =   16
-      ToolTipText     =   "La orden vuelve a la primera solapa del sistema"
-      Top             =   4380
-      Width           =   2175
-   End
    Begin VB.Frame frmDatos 
       BorderStyle     =   0  'None
-      Height          =   11235
+      Height          =   10155
       Left            =   120
       TabIndex        =   15
       Top             =   0
       Width           =   8895
-      Begin MSComDlg.CommonDialog cdImpresora 
-         Left            =   6180
-         Top             =   5520
-         _ExtentX        =   847
-         _ExtentY        =   847
-         _Version        =   393216
-      End
       Begin VB.Frame frmBotones 
          BorderStyle     =   0  'None
          Caption         =   "Acciones"
-         Height          =   1935
+         Height          =   1215
          Left            =   180
-         TabIndex        =   42
-         Top             =   9180
+         TabIndex        =   39
+         Top             =   9060
          Width           =   8535
          Begin VB.CommandButton btnSinTerminar 
             BackColor       =   &H00CCF2FF&
@@ -94,8 +47,8 @@ Begin VB.Form frmTrabajo
             Left            =   3540
             Picture         =   "frmTrabajo.frx":030A
             Style           =   1  'Graphical
-            TabIndex        =   46
-            Top             =   840
+            TabIndex        =   43
+            Top             =   0
             Visible         =   0   'False
             Width           =   1600
          End
@@ -115,8 +68,8 @@ Begin VB.Form frmTrabajo
             Left            =   1800
             Picture         =   "frmTrabajo.frx":0614
             Style           =   1  'Graphical
-            TabIndex        =   45
-            Top             =   840
+            TabIndex        =   42
+            Top             =   0
             Width           =   1600
          End
          Begin VB.CommandButton btnActualizar 
@@ -136,7 +89,7 @@ Begin VB.Form frmTrabajo
             Picture         =   "frmTrabajo.frx":091E
             Style           =   1  'Graphical
             TabIndex        =   12
-            Top             =   840
+            Top             =   0
             Width           =   1600
          End
          Begin VB.CommandButton btnVolver 
@@ -157,7 +110,7 @@ Begin VB.Form frmTrabajo
             Picture         =   "frmTrabajo.frx":11E8
             Style           =   1  'Graphical
             TabIndex        =   14
-            Top             =   840
+            Top             =   0
             Width           =   1125
          End
          Begin VB.CommandButton btnEliminar 
@@ -177,7 +130,7 @@ Begin VB.Form frmTrabajo
             Picture         =   "frmTrabajo.frx":12FA
             Style           =   1  'Graphical
             TabIndex        =   13
-            Top             =   840
+            Top             =   0
             Width           =   1245
          End
          Begin VB.CheckBox chkImprimirOrden 
@@ -191,11 +144,11 @@ Begin VB.Form frmTrabajo
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Height          =   375
-            Left            =   60
+            Height          =   555
+            Left            =   3540
             TabIndex        =   10
             Top             =   0
-            Width           =   3015
+            Width           =   2175
          End
          Begin VB.CheckBox chkEnviarCorreoOrden 
             Caption         =   "Enviar orden por correo"
@@ -208,32 +161,13 @@ Begin VB.Form frmTrabajo
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Height          =   375
-            Left            =   60
+            Height          =   555
+            Left            =   3540
             TabIndex        =   11
-            Top             =   420
+            Top             =   540
             Visible         =   0   'False
-            Width           =   3135
+            Width           =   2295
          End
-      End
-      Begin VB.CommandButton btnImprimirOrden 
-         BackColor       =   &H00E6C29B&
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   795
-         Left            =   6240
-         Picture         =   "frmTrabajo.frx":1BC4
-         Style           =   1  'Graphical
-         TabIndex        =   17
-         Top             =   5100
-         Width           =   975
       End
       Begin VB.Frame frmDatosTrabajo 
          Caption         =   "Datos del trabajo"
@@ -248,9 +182,48 @@ Begin VB.Form frmTrabajo
          EndProperty
          Height          =   2955
          Left            =   240
-         TabIndex        =   36
-         Top             =   3120
+         TabIndex        =   33
+         Top             =   2880
          Width           =   8415
+         Begin VB.CommandButton btnVolverAInstalar 
+            BackColor       =   &H00CCF2FF&
+            Caption         =   "Pasar a ""Para programar"""
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   615
+            Left            =   6000
+            Style           =   1  'Graphical
+            TabIndex        =   46
+            ToolTipText     =   "La orden vuelve a la primera solapa del sistema"
+            Top             =   1260
+            Width           =   2175
+         End
+         Begin VB.CommandButton btnImprimirOrden 
+            BackColor       =   &H00E6C29B&
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   795
+            Left            =   6000
+            Picture         =   "frmTrabajo.frx":1BC4
+            Style           =   1  'Graphical
+            TabIndex        =   45
+            Top             =   1980
+            Width           =   975
+         End
          Begin VB.CommandButton btnPDFTrabajo 
             BackColor       =   &H00E6C29B&
             BeginProperty Font 
@@ -266,7 +239,7 @@ Begin VB.Form frmTrabajo
             Left            =   7200
             Picture         =   "frmTrabajo.frx":77D6
             Style           =   1  'Graphical
-            TabIndex        =   47
+            TabIndex        =   44
             Top             =   1980
             Width           =   975
          End
@@ -283,7 +256,7 @@ Begin VB.Form frmTrabajo
             Height          =   420
             Left            =   3600
             Style           =   2  'Dropdown List
-            TabIndex        =   44
+            TabIndex        =   41
             Top             =   2400
             Width           =   2295
          End
@@ -359,7 +332,7 @@ Begin VB.Form frmTrabajo
                Strikethrough   =   0   'False
             EndProperty
             CustomFormat    =   "hh:mm tt"
-            Format          =   42008579
+            Format          =   97386499
             UpDown          =   -1  'True
             CurrentDate     =   44076
          End
@@ -381,8 +354,15 @@ Begin VB.Form frmTrabajo
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   42008577
+            Format          =   97386497
             CurrentDate     =   44076
+         End
+         Begin MSComDlg.CommonDialog cdImpresora 
+            Left            =   6600
+            Top             =   2400
+            _ExtentX        =   847
+            _ExtentY        =   847
+            _Version        =   393216
          End
          Begin VB.Label Label1 
             Caption         =   "Prioridad"
@@ -397,7 +377,7 @@ Begin VB.Form frmTrabajo
             EndProperty
             Height          =   255
             Left            =   3600
-            TabIndex        =   43
+            TabIndex        =   40
             Top             =   2040
             Width           =   1455
          End
@@ -414,7 +394,7 @@ Begin VB.Form frmTrabajo
             EndProperty
             Height          =   375
             Left            =   240
-            TabIndex        =   41
+            TabIndex        =   38
             Top             =   1200
             Width           =   2175
          End
@@ -431,7 +411,7 @@ Begin VB.Form frmTrabajo
             EndProperty
             Height          =   255
             Left            =   240
-            TabIndex        =   40
+            TabIndex        =   37
             Top             =   2040
             Width           =   1575
          End
@@ -448,7 +428,7 @@ Begin VB.Form frmTrabajo
             EndProperty
             Height          =   255
             Left            =   2040
-            TabIndex        =   39
+            TabIndex        =   36
             Top             =   2040
             Width           =   1455
          End
@@ -465,7 +445,7 @@ Begin VB.Form frmTrabajo
             EndProperty
             Height          =   375
             Left            =   3120
-            TabIndex        =   38
+            TabIndex        =   35
             Top             =   1200
             Width           =   2175
          End
@@ -482,7 +462,7 @@ Begin VB.Form frmTrabajo
             EndProperty
             Height          =   375
             Left            =   240
-            TabIndex        =   37
+            TabIndex        =   34
             Top             =   360
             Width           =   2175
          End
@@ -500,8 +480,8 @@ Begin VB.Form frmTrabajo
          EndProperty
          Height          =   2955
          Left            =   240
-         TabIndex        =   30
-         Top             =   6180
+         TabIndex        =   27
+         Top             =   5880
          Width           =   8415
          Begin VB.TextBox txtObsConex 
             BeginProperty Font 
@@ -599,7 +579,7 @@ Begin VB.Form frmTrabajo
             EndProperty
             Height          =   255
             Left            =   240
-            TabIndex        =   35
+            TabIndex        =   32
             Top             =   2040
             Width           =   2175
          End
@@ -616,7 +596,7 @@ Begin VB.Form frmTrabajo
             EndProperty
             Height          =   255
             Left            =   240
-            TabIndex        =   34
+            TabIndex        =   31
             Top             =   360
             Width           =   1935
          End
@@ -633,7 +613,7 @@ Begin VB.Form frmTrabajo
             EndProperty
             Height          =   255
             Left            =   4200
-            TabIndex        =   33
+            TabIndex        =   30
             Top             =   360
             Width           =   2295
          End
@@ -650,7 +630,7 @@ Begin VB.Form frmTrabajo
             EndProperty
             Height          =   255
             Left            =   240
-            TabIndex        =   32
+            TabIndex        =   29
             Top             =   1200
             Width           =   2295
          End
@@ -667,7 +647,7 @@ Begin VB.Form frmTrabajo
             EndProperty
             Height          =   255
             Left            =   4200
-            TabIndex        =   31
+            TabIndex        =   28
             Top             =   1200
             Width           =   2295
          End
@@ -685,8 +665,8 @@ Begin VB.Form frmTrabajo
          EndProperty
          Height          =   2775
          Left            =   240
-         TabIndex        =   19
-         Top             =   180
+         TabIndex        =   16
+         Top             =   60
          Width           =   8415
          Begin VB.TextBox txtNombre 
             BackColor       =   &H8000000F&
@@ -703,7 +683,7 @@ Begin VB.Form frmTrabajo
             Height          =   375
             Left            =   3000
             Locked          =   -1  'True
-            TabIndex        =   24
+            TabIndex        =   21
             Top             =   360
             Width           =   5295
          End
@@ -722,7 +702,7 @@ Begin VB.Form frmTrabajo
             Height          =   375
             Left            =   3000
             Locked          =   -1  'True
-            TabIndex        =   23
+            TabIndex        =   20
             Top             =   840
             Width           =   5295
          End
@@ -741,7 +721,7 @@ Begin VB.Form frmTrabajo
             Height          =   375
             Left            =   3000
             Locked          =   -1  'True
-            TabIndex        =   22
+            TabIndex        =   19
             Top             =   1320
             Width           =   5295
          End
@@ -760,7 +740,7 @@ Begin VB.Form frmTrabajo
             Height          =   375
             Left            =   3000
             Locked          =   -1  'True
-            TabIndex        =   21
+            TabIndex        =   18
             Top             =   1800
             Width           =   5295
          End
@@ -779,7 +759,7 @@ Begin VB.Form frmTrabajo
             Height          =   375
             Left            =   3000
             Locked          =   -1  'True
-            TabIndex        =   20
+            TabIndex        =   17
             Top             =   2280
             Width           =   5295
          End
@@ -796,7 +776,7 @@ Begin VB.Form frmTrabajo
             EndProperty
             Height          =   375
             Left            =   240
-            TabIndex        =   29
+            TabIndex        =   26
             Top             =   360
             Width           =   2295
          End
@@ -813,7 +793,7 @@ Begin VB.Form frmTrabajo
             EndProperty
             Height          =   375
             Left            =   240
-            TabIndex        =   28
+            TabIndex        =   25
             Top             =   840
             Width           =   2535
          End
@@ -830,7 +810,7 @@ Begin VB.Form frmTrabajo
             EndProperty
             Height          =   375
             Left            =   240
-            TabIndex        =   27
+            TabIndex        =   24
             Top             =   1320
             Width           =   2295
          End
@@ -847,7 +827,7 @@ Begin VB.Form frmTrabajo
             EndProperty
             Height          =   375
             Left            =   240
-            TabIndex        =   26
+            TabIndex        =   23
             Top             =   2280
             Width           =   1815
          End
@@ -864,7 +844,7 @@ Begin VB.Form frmTrabajo
             EndProperty
             Height          =   375
             Left            =   240
-            TabIndex        =   25
+            TabIndex        =   22
             Top             =   1800
             Width           =   1815
          End
@@ -877,11 +857,6 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Private idTrabajo As Long
-
-Private pdf As PDFCreator.clsPDFCreator
-Private opt As clsPDFCreatorOptions
-
-Private Const directorioOrdenes = "C:\OrdenesInternet\"
 
 Private Sub Form_Load()
 
@@ -926,7 +901,7 @@ Private Sub cargarFormProgramar()
   Call cargarDatosExtrasFormProgramar(idTrabajo)
 
   ' Modificar dimensiones porque sino queda mucho espacio vacío
-  Me.Height = 8500
+  Me.Height = 7800
   frmDatos.Height = 8000
   frmBotones.top = 6100
 
@@ -1285,79 +1260,21 @@ Private Sub cargarCuadrillas()
 End Sub
 
 Private Sub btnImprimirOrden_Click()
-  Set pdf = New clsPDFCreator
-  Set opt = New clsPDFCreatorOptions
-  
-  With pdf
-    .cVisible = True
-    If .cStart("/NoProcessingAtStartup") = False Then
-      If .cStart("/NoProcessingAtStartup", True) = False Then
-        Exit Sub
-      End If
-      .cVisible = True
-    End If
-
-    Set opt = .cOptions
-    .cClearCache
-  End With
-  
-  With opt
-    .DisableUpdateCheck = True
-    .UseAutosave = 0
-  End With
-  
   Call dialogoImpresion(idTrabajo)
 End Sub
 
 Private Sub btnPDFTrabajo_Click()
-  Dim impresoraPorDefecto As String: impresoraPorDefecto = Printer.DeviceName
+  On Error GoTo algoSalioMal
   
-  Set Printer = Printers(PrinterIndex("PDFCreator"))
+  Dim rutaCompleta As String
+  rutaCompleta = prepararPDFOrden(idTrabajo)
   
-  Dim nombreOrden As String
-  nombreOrden = "Orden" & idTrabajo & getNombreCuadrilla(idTrabajo) & "-" & Format(DateTime.Now, "ddMMhhmmss") & ".pdf"
-  
-  Call crearDirectorio(directorioOrdenes)
-  
-  Set pdf = New clsPDFCreator
-  Set opt = New clsPDFCreatorOptions
-  
-  With pdf
-    .cVisible = True
-    If .cStart("/NoProcessingAtStartup") = False Then
-      If .cStart("/NoProcessingAtStartup", True) = False Then
-        Exit Sub
-      End If
-      .cVisible = True
-    End If
-
-    Set opt = .cOptions
-    .cClearCache
-  End With
-  
-  With opt
-    .AutosaveDirectory = directorioOrdenes
-    .AutosaveFilename = nombreOrden
-    .DisableUpdateCheck = True
-    .StandardTitle = nombreOrden
-    .UseAutosave = 1
-    .UseAutosaveDirectory = 1
-    .AutosaveFormat = 0  ' PDF
-  End With
-
-  Set pdf.cOptions = opt
-  
-  imprimirOrden (idTrabajo)
-  pdf.cPrinterStop = False
-  
-  definirImpresora (impresoraPorDefecto)
-  
-  Set pdf = Nothing
-  
-  
-  Dim rutaCompleta As String: rutaCompleta = directorioOrdenes & nombreOrden
-  Sleep 1000
   Shell "explorer.exe /select, " & rutaCompleta, vbNormalFocus
+  Exit Sub
+  
+algoSalioMal:
+  MsgBox "Hubo un problema al generar el .pdf. Contáctenos para que lo ayudemos.", vbCritical, "No se puede generar el .pdf"
+  Exit Sub
 End Sub
 
 Private Sub dialogoImpresion(idTrabajo As Long)
@@ -1369,24 +1286,23 @@ Private Sub dialogoImpresion(idTrabajo As Long)
     .Flags = cdlPDNoSelection Or cdlPDHidePrintToFile Or cdlPDUseDevModeCopies
     On Error GoTo FinImpresion
     .ShowPrinter
-    On Error GoTo 0
+    On Error GoTo ErrorImpresion
 
     For copia = 1 To .Copies
+      Sleep 1000
       Call imprimirOrden(idTrabajo)
     Next
 
   End With
 
   Call SetDefaultPrinter(defPrinter)
+  Exit Sub
 
 FinImpresion:
   On Error GoTo 0
+  Exit Sub
+ErrorImpresion:
+  MsgBox "Algo salió mal al imprimir el documento", vbCritical, "Error"
+  Exit Sub
 End Sub
 
-Private Sub Timer1_Timer()
-  If ProgressBar1.Value = ProgressBar1.Max Then
-    ProgressBar1.Value = ProgressBar1.Min
-  End If
-
-  ProgressBar1.Value = ProgressBar1.Value + 1
-End Sub

@@ -1,8 +1,69 @@
 Attribute VB_Name = "moduloFunciones"
 Option Explicit
 
+Private pdf As PDFCreator.clsPDFCreator
+Private opt As clsPDFCreatorOptions
+
+Private Const directorioOrdenes = "C:\OrdenesInternet\"
+
 Public Declare Function SetDefaultPrinter Lib "winspool.drv" Alias "SetDefaultPrinterA" (ByVal pszPrinter As String) As Boolean
 
+Public Function prepararPDFOrden(idTrabajo As Long) As String
+
+  Call crearDirectorio(directorioOrdenes)
+  
+  On Error GoTo instalarPDFCreator
+  
+  Set pdf = New clsPDFCreator
+  Set opt = New clsPDFCreatorOptions
+  
+  With pdf
+    .cVisible = True
+    If .cStart("/NoProcessingAtStartup") = False Then
+      If .cStart("/NoProcessingAtStartup", True) = False Then
+        Exit Function
+      End If
+      .cVisible = True
+    End If
+
+    Set opt = .cOptions
+    .cClearCache
+  End With
+  
+  Dim nombreOrden As String
+  nombreOrden = "Orden" & idTrabajo & Trim(getNombreCuadrilla(idTrabajo)) & "-" & Format(DateTime.Now, "ddMMhhmmss") & ".pdf"
+  
+  With opt
+    .AutosaveDirectory = directorioOrdenes
+    .AutosaveFilename = nombreOrden
+    .DisableUpdateCheck = True
+    .StandardTitle = nombreOrden
+    .UseAutosave = 1
+    .UseAutosaveDirectory = 1
+    .AutosaveFormat = 0  ' PDF
+  End With
+
+  Set pdf.cOptions = opt
+  Set Printer = Printers(PrinterIndex("PDFCreator"))
+
+  Call imprimirOrden(idTrabajo)
+  
+  pdf.cPrinterStop = False
+  Sleep 1000
+  
+  pdf.cClose
+  Set pdf = Nothing
+  Set opt = Nothing
+  DoEvents
+  
+  prepararPDFOrden = directorioOrdenes & nombreOrden
+  Exit Function
+  
+instalarPDFCreator:
+  MsgBox "No podemos generar el PDF porque en este equipo no está instalado el programa PDFCreator. Por favor, contáctenos para que lo ayudemos.", vbCritical, "No se puede generar el .pdf"
+  Exit Function
+  
+End Function
 
 Public Sub cambiarNoFacturar(nroOrden As Long, estadoNuevo As String)
 ' estadoNuevo deberá ser 0 para activado y 1 para activado
@@ -73,7 +134,6 @@ Public Sub actualizarTarifa(nroOrden As Long, idTarifa As Long)
     End If
   End With
 End Sub
-
 
 Public Function getIdTarifa(idTrabajo As Long) As Long
   With main
@@ -217,7 +277,7 @@ Public Sub imprimirOrden(idTrabajo As Long)
   Dim horaInstalacion As String
 
   Dim obs As String
-  Dim nombre As String
+  Dim Nombre As String
   Dim dni As String
   Dim domicilioFacturacion As String
   Dim domicilioConexion As String
@@ -275,7 +335,7 @@ Public Sub imprimirOrden(idTrabajo As Long)
       horaInstalacion = .vTrabInternet.FieldValue("hora_inst")
       obs = .vTrabInternet.FieldValue("obs")
 
-      nombre = .VAClientes.FieldValue("nombre") & " " & .VAClientes.FieldValue("apellido")
+      Nombre = .VAClientes.FieldValue("nombre") & " " & .VAClientes.FieldValue("apellido")
       dni = .VAClientes.FieldValue("NroDocIde") & vbNullString
       domicilioFacturacion = .VOrdenes.FieldValue("domicilio") & vbNullString
       domicilioConexion = .VAsumAlum.FieldValue("cuenta") & vbNullString
@@ -313,7 +373,7 @@ Public Sub imprimirOrden(idTrabajo As Long)
     .Text 135, 55, "Hora de inst. programada: " & Format$(horaInstalacion, "hh:mm AMPM"), 10, False, "Arial"
     .LineH 25, 65, 165
 
-    .Text 25, 70, "Apellido y nombre: " & nombre, 11, False, "Arial"
+    .Text 25, 70, "Apellido y nombre: " & Nombre, 11, False, "Arial"
     .Text 25, 75, "DNI/CUIT: " & dni, 11, False, "Arial"
     .Text 25, 80, "Condición IVA: " & iva, 11, False, "Arial"
     .Text 25, 85, "Domicilio de facturación: " & domicilioFacturacion, 11, False, "Arial"
