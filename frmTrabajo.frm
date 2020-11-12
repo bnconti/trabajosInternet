@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCT2.OCX"
+Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
 Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "comdlg32.ocx"
 Begin VB.Form frmTrabajo 
    BorderStyle     =   1  'Fixed Single
@@ -241,6 +241,7 @@ Begin VB.Form frmTrabajo
             Style           =   1  'Graphical
             TabIndex        =   44
             Top             =   1980
+            Visible         =   0   'False
             Width           =   975
          End
          Begin VB.ComboBox cmbPrioridad 
@@ -332,7 +333,7 @@ Begin VB.Form frmTrabajo
                Strikethrough   =   0   'False
             EndProperty
             CustomFormat    =   "hh:mm tt"
-            Format          =   97386499
+            Format          =   95617027
             UpDown          =   -1  'True
             CurrentDate     =   44076
          End
@@ -354,7 +355,7 @@ Begin VB.Form frmTrabajo
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   97386497
+            Format          =   95617025
             CurrentDate     =   44076
          End
          Begin MSComDlg.CommonDialog cdImpresora 
@@ -967,6 +968,9 @@ Private Sub cargarFormTerminado()
   frmDatosAbonado.Enabled = False
   frmDatosTrabajo.Enabled = False
   frmDatosConexion.Enabled = False
+  
+  btnVolverAInstalar.Enabled = False
+  btnImprimirOrden.Enabled = False
 
   chkImprimirOrden.Visible = False
   chkEnviarCorreoOrden.Visible = False

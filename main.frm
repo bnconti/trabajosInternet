@@ -230,23 +230,37 @@ Begin VB.Form main
       TabPicture(1)   =   "main.frx":82B1
       Tab(1).ControlEnabled=   0   'False
       Tab(1).Control(0)=   "tablaTrabajosAInstalar"
+      Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "Frame1"
+      Tab(1).Control(1).Enabled=   0   'False
       Tab(1).Control(2)=   "btnGuardarFinalizados"
+      Tab(1).Control(2).Enabled=   0   'False
       Tab(1).Control(3)=   "btnExpExcelInstalar"
+      Tab(1).Control(3).Enabled=   0   'False
       Tab(1).Control(4)=   "btnImprimirInstalar"
+      Tab(1).Control(4).Enabled=   0   'False
       Tab(1).Control(5)=   "btnAInstalarRecuperar"
+      Tab(1).Control(5).Enabled=   0   'False
       Tab(1).Control(6)=   "btnEnviarOrdenPorCorreo"
+      Tab(1).Control(6).Enabled=   0   'False
       Tab(1).Control(7)=   "frmTotalesAInstalar"
+      Tab(1).Control(7).Enabled=   0   'False
       Tab(1).ControlCount=   8
       TabCaption(2)   =   "Terminados"
       TabPicture(2)   =   "main.frx":82CD
       Tab(2).ControlEnabled=   0   'False
       Tab(2).Control(0)=   "tablaTrabajosTerminados"
+      Tab(2).Control(0).Enabled=   0   'False
       Tab(2).Control(1)=   "frmFiltrado"
+      Tab(2).Control(1).Enabled=   0   'False
       Tab(2).Control(2)=   "btnExpExcelTerminados"
+      Tab(2).Control(2).Enabled=   0   'False
       Tab(2).Control(3)=   "btnImprimirTerminados"
+      Tab(2).Control(3).Enabled=   0   'False
       Tab(2).Control(4)=   "btnInstaladosRecuperar"
+      Tab(2).Control(4).Enabled=   0   'False
       Tab(2).Control(5)=   "Frame3"
+      Tab(2).Control(5).Enabled=   0   'False
       Tab(2).ControlCount=   6
       TabCaption(3)   =   "Sin terminar"
       TabPicture(3)   =   "main.frx":82E9
@@ -1452,7 +1466,7 @@ Begin VB.Form main
                Strikethrough   =   0   'False
             EndProperty
             CustomFormat    =   "dd/MM/yy"
-            Format          =   109838339
+            Format          =   42008579
             CurrentDate     =   44089
          End
          Begin VB.ComboBox cmbConexionTerminados 
@@ -1508,7 +1522,7 @@ Begin VB.Form main
                Strikethrough   =   0   'False
             EndProperty
             CustomFormat    =   "dd/MM/yy"
-            Format          =   109838339
+            Format          =   42008579
             CurrentDate     =   44089
          End
          Begin VB.Label lblFechaHastaInstalados 
