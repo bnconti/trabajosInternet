@@ -275,6 +275,7 @@ Public Sub imprimirOrden(idTrabajo As Long)
   Dim tipoConexion As String
   Dim fechaInstalacion As String
   Dim horaInstalacion As String
+  Dim ruta_ub As String
 
   Dim obs As String
   Dim Nombre As String
@@ -328,7 +329,9 @@ Public Sub imprimirOrden(idTrabajo As Long)
        .VAsumAlumInte.status = 0 And _
        .VAsumAlum.status = 0 And _
        .VCuadrillas.status = 0 Then
-
+      
+      ruta_ub = Format$(.VOrdenes.FieldValue("Ruta"), String$(2, "0")) & "-" & Format$(.VOrdenes.FieldValue("SubRuta"), String$(6, "0"))
+      
       nroUsuario = .VAsumAlumInte.FieldValue("CodAlumbrado")
       tipoConexion = frmTrabajo.cmbTipoConexion.Text
       fechaInstalacion = .vTrabInternet.FieldValue("fecha_inst")
@@ -353,6 +356,9 @@ Public Sub imprimirOrden(idTrabajo As Long)
   ' ===================
   ' Comienza a imprimir
   
+  Dim r As Single ' renglon, para que no sea estático - tiene que ser de tipo single o no funca
+  r = 20
+  
   Dim pdfOrden As New LinePrinter
   With pdfOrden
 
@@ -360,69 +366,85 @@ Public Sub imprimirOrden(idTrabajo As Long)
     .Fat = 16
     .Init 2, 0
 
-    .LineH 25, 20, 165
-    .Text 25, 25, "Cooperativa Eléctrica Integral de Provisión de Servicios Públicos", 14, True, "Arial"
-    .Text 25, 30, "y Sociales de Todd Ltda.", 14, True, "Arial"
-    .LineH 25, 40, 165
+    .LineH 25, r, 165
+    
+    .Text 25, incRenglon(r), "Cooperativa Eléctrica Integral de Provisión de Servicios Públicos", 14, True, "Arial"
+    .Text 25, incRenglon(r), "y Sociales de Todd Ltda.", 14, True, "Arial"
+    
+    .LineH 25, incRenglon(r, 10), 165
 
-    .Text 25, 45, "Todd Net - Nueva conexión", 12, True, "Arial"
-    .Text 25, 50, "Observaciones: " & obs, 11, True, "Arial"
+    .Text 25, incRenglon(r), "Todd Net - Nueva conexión", 12, True, "Arial"
+    .Text 25, incRenglon(r, 10), "Observaciones: " & obs, 11, True, "Arial"
+    
+    .Text 25, incRenglon(r), "Ruta y ubicación: " & ruta_ub, 11, False, "Arial"
+    .Text 100, r, "N.º de usuario: " & nroUsuario, 11, False, "Arial"
+    
+    
+    .Text 25, incRenglon(r), "Fecha de inst. programada: " & Format$(fechaInstalacion, "dd/MM/yyyy"), 11, False, "Arial"
+    .Text 100, r, "Hora de inst. programada: " & Format$(horaInstalacion, "hh:mm AMPM"), 11, False, "Arial"
+    
+    .LineH 25, incRenglon(r, 10), 165
 
-    .Text 25, 55, "N.º de usuario: " & nroUsuario, 10, False, "Arial"
-    .Text 70, 55, "Fecha de inst. programada: " & Format$(fechaInstalacion, "dd/MM/yyyy"), 10, False, "Arial"
-    .Text 135, 55, "Hora de inst. programada: " & Format$(horaInstalacion, "hh:mm AMPM"), 10, False, "Arial"
-    .LineH 25, 65, 165
-
-    .Text 25, 70, "Apellido y nombre: " & Nombre, 11, False, "Arial"
-    .Text 25, 75, "DNI/CUIT: " & dni, 11, False, "Arial"
-    .Text 25, 80, "Condición IVA: " & iva, 11, False, "Arial"
-    .Text 25, 85, "Domicilio de facturación: " & domicilioFacturacion, 11, False, "Arial"
-    .Text 25, 90, "Domicilio de conexión: " & domicilioConexion, 11, False, "Arial"
-    .Text 25, 95, "Teléfono: " & telefono, 11, False, "Arial"
-    .Text 25, 100, "Correo eléctronico: " & email, 11, False, "Arial"
-    .Text 25, 105, "Nombre de usuario de Internet: " & nombreUsuario, 11, False, "Arial"
-    .Text 25, 110, "Ancho de Banda a instalar: " & anchoDeBanda, 11, False, "Arial"
+    .Text 25, incRenglon(r), "Apellido y nombre: " & Nombre, 11, False, "Arial"
+    .Text 25, incRenglon(r), "DNI/CUIT: " & dni, 11, False, "Arial"
+    .Text 25, incRenglon(r), "Condición IVA: " & iva, 11, False, "Arial"
+    .Text 25, incRenglon(r), "Domicilio de facturación: " & domicilioFacturacion, 11, False, "Arial"
+    .Text 25, incRenglon(r), "Domicilio de conexión: " & domicilioConexion, 11, False, "Arial"
+    .Text 25, incRenglon(r), "Teléfono: " & telefono, 11, False, "Arial"
+    .Text 25, incRenglon(r), "Correo eléctronico: " & email, 11, False, "Arial"
+    .Text 25, incRenglon(r), "Nombre de usuario de Internet: " & nombreUsuario, 11, False, "Arial"
+    .Text 25, incRenglon(r), "Ancho de Banda a instalar: " & anchoDeBanda, 11, False, "Arial"
 
     If tipoConexion = "CAMBIO A FTTH" Then
-      .Text 25, 115, "Ancho de Banda anterior: " & getDescripTarifa(idTrabajo), 11, False, "Arial"
+      .Text 25, incRenglon(r), "Ancho de Banda anterior: " & getDescripTarifa(idTrabajo), 11, False, "Arial"
     End If
 
-    .LineH 25, 125, 165
+    .LineH 25, incRenglon(r, 10), 165
 
-    .Text 25, 130, "Datos de la instalación", 12, True, "Arial"
+    .Text 25, incRenglon(r), "Datos de la instalación", 12, True, "Arial"
 
-    .Text 25, 135, "Cuadrilla: " & cuadrilla, 11, True, "Arial"
-    .Text 100, 135, "Tipo de trabajo: " & tipoConexion, 11, True, "Arial"
-    .Text 25, 140, "Fecha de inst.: ______________", 11, True, "Arial"
-    .Text 100, 140, "Hora de inst.: __________", 11, True, "Arial"
+    .Text 25, incRenglon(r, 10), "Cuadrilla: " & cuadrilla, 11, True, "Arial"
+    .Text 100, r, "Tipo de trabajo: " & tipoConexion, 11, True, "Arial"
+    .Text 25, incRenglon(r), "Fecha de inst.: ______________", 11, True, "Arial"
+    .Text 100, r, "Hora de inst.: __________", 11, True, "Arial"
+    
+    .Text 25, incRenglon(r), "Retiro equipo: [  ]", 11, False, "Arial"
+    .Text 100, r, "Retiro fuente: [  ]", 11, False, "Arial"
+    
+    .Text 25, incRenglon(r), "Dir. MAC:       :      :      :      :      :      ", 11, False, "Arial"
+    .Text 25, incRenglon(r), "N.º de fibra: ____________", 11, False, "Arial"
+    .Text 25, incRenglon(r), "Nombre y ubicación de la caja: ____________", 11, False, "Arial"
+    .Text 25, incRenglon(r), "Cant. de cables (mts.): ____________", 11, False, "Arial"
+    .Text 25, incRenglon(r), "Cant. de conectores: ____________", 11, False, "Arial"
+    .Text 25, incRenglon(r), "Cant. de mordazas: ____________", 11, False, "Arial"
+    .Text 25, incRenglon(r), "Cant. de cadenas: ____________", 11, False, "Arial"
+    .Text 25, incRenglon(r), "Patchcord: ____________", 11, False, "Arial"
+    .Text 25, incRenglon(r), "Potencia en abonado: ____________", 11, False, "Arial"
+    .Text 25, incRenglon(r), "IP: ____________", 11, False, "Arial"
+    .Text 25, incRenglon(r), "Cant. de cable UTP: ____________", 11, False, "Arial"
+    .Text 25, incRenglon(r), "Cant. de fichas RJ45: ____________", 11, False, "Arial"
+    
+    .Text 25, incRenglon(r), "¿Antena retirada? [  ]", 11, False, "Arial"
+    .Text 100, r, "Dir. MAC de la antena:       :      :      :      :      :      ", 11, False, "Arial"
 
-    .Text 25, 145, "N.º de fibra: ____________", 11, False, "Arial"
-    .Text 25, 150, "Nombre y ubicación de la caja: ____________", 11, False, "Arial"
-    .Text 25, 155, "Cant. de cables (mts.): ____________", 11, False, "Arial"
-    .Text 25, 160, "Cant. de conectores: ____________", 11, False, "Arial"
-    .Text 25, 165, "Cant. de anilla de distr.: ____________", 11, False, "Arial"
-    .Text 25, 170, "Cant. de anilla de paso: ____________", 11, False, "Arial"
-    .Text 25, 175, "Cant. de mordazas: ____________", 11, False, "Arial"
-    .Text 25, 180, "Cant. de cadenas: ____________", 11, False, "Arial"
-    .Text 25, 185, "Patchcord: ____________", 11, False, "Arial"
-    .Text 25, 190, "Potencia en abonado: ____________", 11, False, "Arial"
-    .Text 25, 195, "IP: ____________", 11, False, "Arial"
-    .Text 25, 200, "Cant. de cable UTP: ____________", 11, False, "Arial"
-    .Text 25, 205, "Cant. de fichas RJ45: ____________", 11, False, "Arial"
+    .LineH 25, incRenglon(r, 10), 165
 
-    .LineH 25, 215, 165
+    .Text 25, incRenglon(r, 10), "Conformidad del usuario", 11, False, "Arial"
+    .Text 150, r, "Nombre del instalador", 11, False, "Arial"
+    .Text 25, incRenglon(r, 10), "____________________", 11, False, "Arial"
+    .Text 150, r, "____________________", 11, False, "Arial"
 
-    .Text 25, 225, "Conformidad del usuario", 11, False, "Arial"
-    .Text 150, 225, "Nombre del instalador", 11, False, "Arial"
-    .Text 25, 235, "____________________", 11, False, "Arial"
-    .Text 150, 235, "____________________", 11, False, "Arial"
-
-    .Text 25, 245, "Acepto bases y condiciones del servicio de Internet indicadas en la página web www.todd.com.ar", 8, False, "Arial"
+    .Text 25, incRenglon(r, 20), "Acepto bases y condiciones del servicio de Internet indicadas en la página web www.todd.com.ar", 8, False, "Arial"
 
     .SendToPrinter
   End With
 
 End Sub
+
+Public Function incRenglon(ByRef renglon As Single, Optional cant As Single = 5) As Single
+  renglon = renglon + cant
+  incRenglon = renglon
+End Function
 
 Public Function crearDirectorio(rutaDirectorio As String)
   If Dir(rutaDirectorio, vbDirectory) = "" Then
